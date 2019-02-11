@@ -1,0 +1,3 @@
+protocol Deletable {
+    func delete()
+}
