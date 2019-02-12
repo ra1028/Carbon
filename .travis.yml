@@ -8,9 +8,8 @@ matrix:
       osx_image: xcode10.1
       install:
         - ./scripts/install_swiftlint.sh
-        - git submodule update --init --recursive
       script:
-        - xcodebuild build-for-testing test-without-building -scheme Carbon -configuration Release -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X' ENABLE_TESTABILITY=YES | xcpretty - c
+        - xcodebuild build-for-testing test-without-building -workspace Carbon.xcworkspace -scheme Carbon -configuration Release -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X' ENABLE_TESTABILITY=YES | xcpretty - c
 
 notifications:
   email: false

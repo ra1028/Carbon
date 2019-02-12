@@ -12,7 +12,6 @@ in UITableView and UICollectionView.</br>
 <a href="https://cocoapods.org/pods/Carbon"><img alt="CocoaPods" src="https://img.shields.io/cocoapods/v/Carbon.svg"/></a>
 <a href="https://github.com/Carthage/Carthage"><img alt="Carthage" src="https://img.shields.io/badge/carthage-compatible-yellow.svg"/></a>
 </br>
-<a href="https://ra1028.github.io/Carbon"><img alt="Documentation" src="https://raw.githubusercontent.com/ra1028/Carbon/master/docs/badge.svg"/></a>
 <a href="https://travis-ci.org/ra1028/Carbon"><img alt="Build Status" src="https://travis-ci.org/ra1028/Carbon.svg?branch=master"/></a>
 <a href="https://developer.apple.com/"><img alt="Platform" src="https://img.shields.io/badge/platform-iOS-green.svg"/></a>
 <a href="https://github.com/ra1028/Carbon/blob/master/LICENSE"><img alt="Lincense" src="https://img.shields.io/badge/License-Apache%202.0-black.svg"/></a>
