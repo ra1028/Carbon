@@ -465,19 +465,19 @@ Please see the [CONTRIBUTING](https://github.com/ra1028/Carbon/blob/master/CONTR
 
 Libraries for list UIs using diffing algorithm that I have sincerely ❤️ and respected.  
 
-- [React](https://github.com/facebook/react/) by [Facebook](https://github.com/facebook)  
+- [React](https://github.com/facebook/react/) (by [Facebook](https://github.com/facebook))  
   I have very inspired about paradigm and API design.  
-- [IGListKit](https://github.com/Instagram/IGListKit) by [Instagram](https://github.com/Instagram)  
+- [IGListKit](https://github.com/Instagram/IGListKit) (by [Instagram](https://github.com/Instagram))  
   The most popular library among list UI libraries using diffing algorithm in iOS.  
-- [Epoxy](https://github.com/airbnb/epoxy) by [Airbnb](https://github.com/airbnb)  
+- [Epoxy](https://github.com/airbnb/epoxy) (by [Airbnb](https://github.com/airbnb))  
   The most popular library among list UI libraries using diffing algorithm in Android.  
-- [RxDataSources](https://github.com/RxSwiftCommunity/RxDataSources) by [@kzaher](https://github.com/kzaher), [RxSwift Community](https://github.com/RxSwiftCommunity)  
+- [RxDataSources](https://github.com/RxSwiftCommunity/RxDataSources) (by [@kzaher](https://github.com/kzaher), [RxSwift Community](https://github.com/RxSwiftCommunity))  
   A great library that can complex diffing update by very fast algorithms.  
-- [Texture](https://github.com/TextureGroup/Texture) by [TextureGroup](https://github.com/TextureGroup), [Facebook](https://github.com/facebook), [Pinterest](https://github.com/pinterest)  
+- [Texture](https://github.com/TextureGroup/Texture) (by [TextureGroup](https://github.com/TextureGroup), [Facebook](https://github.com/facebook), [Pinterest](https://github.com/pinterest))  
   The one and only library for creating list UIs that pursues rendering performance.  
-- [Bento](https://github.com/Babylonpartners/Bento) by [Babylon Health](https://github.com/Babylonpartners)  
+- [Bento](https://github.com/Babylonpartners/Bento) (by [Babylon Health](https://github.com/Babylonpartners))  
   Bento is an awesome declarative library that has an API design which follows React.  
-- [ReactiveLists](https://github.com/plangrid/ReactiveLists) by [PlanGrid](https://github.com/plangrid)  
+- [ReactiveLists](https://github.com/plangrid/ReactiveLists) (by [PlanGrid](https://github.com/plangrid))  
   Uses DifferenceKit as well as Carbon for the diffing algorithm.  
 
 ---
