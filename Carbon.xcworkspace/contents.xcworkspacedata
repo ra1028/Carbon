@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/a14179/Desktop/Carbon/Carbon.playground">
+      location = "group:Carbon.playground">
    </FileRef>
    <FileRef
       location = "container:Carbon.xcodeproj">
