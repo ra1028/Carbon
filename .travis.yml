@@ -1,15 +1,20 @@
-env:
-  global:
-    - LC_CTYPE=en_US.UTF-8
+aliases:
+  - &testing_xcode
+    os: osx
+    language: objective-c
+    install:
+      - ./scripts/install_swiftlint.sh
+    script:
+      - set -o pipefail
+        - xcodebuild build-for-testing test-without-building -workspace Carbon.xcworkspace -scheme Carbon -configuration Release -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X' ENABLE_TESTABILITY=YES | xcpretty - c
+
 matrix:
   include:
-    - os: osx
-      language: objective-c
+    - <<: *testing_xcode
       osx_image: xcode10.1
-      install:
-        - ./scripts/install_swiftlint.sh
-      script:
-        - xcodebuild build-for-testing test-without-building -workspace Carbon.xcworkspace -scheme Carbon -configuration Release -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X' ENABLE_TESTABILITY=YES | xcpretty - c
+
+    - <<: *testing_xcode
+      osx_image: xcode10.2
 
 notifications:
   email: false
