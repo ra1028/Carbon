@@ -12,6 +12,10 @@ open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDel
     /// after diffing updated. Default is false.
     open var alwaysRenderVisibleComponents = false
 
+    /// A Bool value indicating whether that to reset content offset after
+    /// updated if not scrolling. Default is false.
+    open var keepsContentOffset = false
+
     /// Max number of changes that can be animated for diffing updates. Default is 300.
     open var animatableChangeCount = 300
 
@@ -84,6 +88,8 @@ open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDel
         }
 
         func performAnimatedUpdates() {
+            let contentOffsetBeforeUpdates = target.contentOffset
+
             CATransaction.begin()
             CATransaction.setCompletionBlock(completion)
 
@@ -128,6 +134,13 @@ open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDel
             renderVisibleComponentsIfNeeded()
 
             CATransaction.commit()
+
+            if keepsContentOffset && target._isContetRectContainsBounds && !target._isScrolling {
+                target.contentOffset = CGPoint(
+                    x: min(target._maxContentOffsetX, contentOffsetBeforeUpdates.x),
+                    y: min(target._maxContentOffsetY, contentOffsetBeforeUpdates.y)
+                )
+            }
         }
 
         if isAnimationEnabled {

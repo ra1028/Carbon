@@ -411,6 +411,12 @@ Indicates whether to always call `render` of the component in the visible area a
 Should use this in case of using the above mentioned `skipReloadComponents`.  
 Default is `false`.  
 
+- **keepsContentOffset**  
+Indicating whether that to reset content offset after updated.  
+The content offset become unintended position after diffing updates in some case.
+ If set `true`, revert content offset after updates.  
+Default is `false`.  
+
 [See more](https://ra1028.github.io/Carbon/Updaters.html)
 
 #### Element-Specific Behaviors

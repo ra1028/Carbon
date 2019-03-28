@@ -480,6 +480,23 @@ final class MockCollectionReusableViewContent: UICollectionReusableViewContent {
     }
 }
 
+final class MockScrollView: UIScrollView {
+    var _isTracking: Bool = false
+    override var isTracking: Bool {
+        return _isTracking
+    }
+
+    var _isDragging: Bool = false
+    override var isDragging: Bool {
+        return _isDragging
+    }
+
+    var _isDecelerating: Bool = false
+    override var isDecelerating: Bool {
+        return _isDecelerating
+    }
+}
+
 /// Extract `renderedContent` from specified container.
 func renderedContent<T>(of container: Any, as type: T.Type) -> T? {
     guard
