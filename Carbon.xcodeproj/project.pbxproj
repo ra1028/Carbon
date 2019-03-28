@@ -55,6 +55,7 @@
 		6B7ADEF321FDB12B003803BE /* UITableViewComponentCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7ADEEF21FDB12A003803BE /* UITableViewComponentCellTests.swift */; };
 		6B7ADEF421FDB12B003803BE /* UITableViewComponentHeaderFooterViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7ADEF021FDB12A003803BE /* UITableViewComponentHeaderFooterViewTests.swift */; };
 		6B7EED9E224CA5DD00060872 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7EED9D224CA5DD00060872 /* UIScrollViewExtensions.swift */; };
+		6B7EEDA0224CE4E100060872 /* UIScrollViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7EED9F224CE4E000060872 /* UIScrollViewExtensionsTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,7 @@
 		6B7ADEEF21FDB12A003803BE /* UITableViewComponentCellTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewComponentCellTests.swift; sourceTree = "<group>"; };
 		6B7ADEF021FDB12A003803BE /* UITableViewComponentHeaderFooterViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewComponentHeaderFooterViewTests.swift; sourceTree = "<group>"; };
 		6B7EED9D224CA5DD00060872 /* UIScrollViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtensions.swift; sourceTree = "<group>"; };
+		6B7EED9F224CE4E000060872 /* UIScrollViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtensionsTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				6B7ADEE021FBA6D1003803BE /* ComponentContainerTests.swift */,
+				6B7EED9F224CE4E000060872 /* UIScrollViewExtensionsTests.swift */,
 			);
 			path = Internal;
 			sourceTree = "<group>";
@@ -479,6 +482,7 @@
 				6B7ADEDE21FBA59D003803BE /* UICollectionViewReloadDataTests.swift in Sources */,
 				6B7ADEBC21F8B464003803BE /* AnyComponentTests.swift in Sources */,
 				6B7ADEF221FDB12B003803BE /* UICollectionViewComponentCellTests.swift in Sources */,
+				6B7EEDA0224CE4E100060872 /* UIScrollViewExtensionsTests.swift in Sources */,
 				6B7ADEBE21F8BF89003803BE /* ViewNodeTests.swift in Sources */,
 				6B7ADECC21FA067E003803BE /* UITableViewAdapterTests.swift in Sources */,
 				6B7ADEF321FDB12B003803BE /* UITableViewComponentCellTests.swift in Sources */,
