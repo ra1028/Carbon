@@ -13,7 +13,7 @@ open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDel
     open var alwaysRenderVisibleComponents = false
 
     /// A Bool value indicating whether that to reset content offset after
-    /// updated. Default is false.
+    /// updated if not scrolling. Default is false.
     open var keepsContentOffset = false
 
     /// Max number of changes that can be animated for diffing updates. Default is 300.
@@ -135,7 +135,7 @@ open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDel
 
             CATransaction.commit()
 
-            if keepsContentOffset && target._isContetRectContainsBounds {
+            if keepsContentOffset && target._isContetRectContainsBounds && !target._isScrolling {
                 target.contentOffset = CGPoint(
                     x: min(target._maxContentOffsetX, contentOffsetBeforeUpdates.x),
                     y: min(target._maxContentOffsetY, contentOffsetBeforeUpdates.y)

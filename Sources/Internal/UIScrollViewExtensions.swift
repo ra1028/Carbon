@@ -14,6 +14,10 @@ internal extension UIScrollView {
     var _maxContentOffsetY: CGFloat {
         return contentSize.height + availableContentInset.bottom - bounds.height
     }
+
+    var _isScrolling: Bool {
+        return isTracking || isDragging || isDecelerating
+    }
 }
 
 private extension UIScrollView {
