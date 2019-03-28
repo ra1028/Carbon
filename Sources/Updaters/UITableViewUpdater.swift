@@ -30,6 +30,10 @@ open class UITableViewUpdater<Adapter: Carbon.Adapter & UITableViewDelegate & UI
     /// after diffing updated. Default is false.
     open var alwaysRenderVisibleComponents = false
 
+    /// A Bool value indicating whether that to reset content offset after
+    /// updated. Default is false.
+    open var keepsContentOffset = false
+
     /// Max number of changes that can be animated for diffing updates. Default is 300.
     open var animatableChangeCount = 300
 
@@ -114,6 +118,8 @@ open class UITableViewUpdater<Adapter: Carbon.Adapter & UITableViewDelegate & UI
         }
 
         func performAnimatedUpdates() {
+            let contentOffsetYBeforeUpdates = target.contentOffset.y
+
             CATransaction.begin()
             CATransaction.setCompletionBlock(completion)
 
@@ -158,6 +164,10 @@ open class UITableViewUpdater<Adapter: Carbon.Adapter & UITableViewDelegate & UI
             renderVisibleComponentsIfNeeded()
 
             CATransaction.commit()
+
+            if keepsContentOffset && target._isContetRectContainsBounds {
+                target.contentOffset.y = min(target._maxContentOffsetY, contentOffsetYBeforeUpdates)
+            }
         }
 
         if isAnimationEnabled {
