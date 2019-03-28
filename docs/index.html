@@ -579,6 +579,11 @@ Default is <code>false</code>.  </p></li>
 Indicates whether to always call <code>render</code> of the component in the visible area after updating.<br>
 Should use this in case of using the above mentioned <code>skipReloadComponents</code>.<br>
 Default is <code>false</code>.  </p></li>
+<li><p><strong>keepsContentOffset</strong><br>
+Indicating whether that to reset content offset after updated.<br>
+The content offset become unintended position after diffing updates in some case.
+If set <code>true</code>, revert content offset after updates.<br>
+Default is <code>false</code>.  </p></li>
 </ul>
 
 <p><a href="https://ra1028.github.io/Carbon/Updaters.html">See more</a></p>
