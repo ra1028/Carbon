@@ -363,9 +363,11 @@
 				TargetAttributes = {
 					6B65947921E252E300291AAF = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					6B7ADEAD21F783E3003803BE = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -375,6 +377,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 6B65947021E252E300291AAF;
 			productRefGroup = 6B65947B21E252E300291AAF /* Products */;

@@ -31,7 +31,7 @@ open class UITableViewAdapter: NSObject, Adapter {
 
 public extension UITableViewAdapter {
     /// The configuration for the classes of elements in `UITableView`.
-    public struct Config {
+    struct Config {
         /// The default configuration.
         public static var `default` = Config()
 
@@ -64,7 +64,7 @@ public extension UITableViewAdapter {
 
 public extension UITableViewAdapter {
     /// Context when cell is selected.
-    public struct SelectionContext {
+    struct SelectionContext {
         /// A table view of the selected cell.
         public var tableView: UITableView
 

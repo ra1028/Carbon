@@ -10,19 +10,19 @@ internal protocol ComponentContainer: class {
 }
 
 internal extension ComponentContainer {
-    internal func contentWillDisplay() {
+    func contentWillDisplay() {
         guard let content = renderedContent else { return }
 
         renderedComponent?.contentWillDisplay(content)
     }
 
-    internal func contentDidEndDisplay() {
+    func contentDidEndDisplay() {
         guard let content = renderedContent else { return }
 
         renderedComponent?.contentDidEndDisplay(content)
     }
 
-    internal func render(component: AnyComponent) {
+    func render(component: AnyComponent) {
         switch (renderedContent, renderedComponent) {
         case (let content?, let renderedComponent?) where !renderedComponent.shouldRender(next: component, in: content):
             break

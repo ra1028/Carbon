@@ -51,10 +51,10 @@ renderer.render(
         id: 1,
         header: ViewNode(Label(text: "Header 1")),
         cells: [
-            CellNode(id: 1, component: Label(text: "Cell 1")),
-            CellNode(id: 2, component: Label(text: "Cell 2")),
-            CellNode(id: 3, component: Label(text: "Cell 3")),
-            CellNode(id: 4, component: Label(text: "Cell 4"))
+            CellNode(id: 1, Label(text: "Cell 1")),
+            CellNode(id: 2, Label(text: "Cell 2")),
+            CellNode(id: 3, Label(text: "Cell 3")),
+            CellNode(id: 4, Label(text: "Cell 4"))
         ],
         footer: ViewNode(Label(text: "Footer 1"))
     ),
@@ -62,9 +62,9 @@ renderer.render(
         id: 2,
         header: ViewNode(Label(text: "Header 2")),
         cells: [
-            CellNode(id: 5, component: Label(text: "Cell 5")),
-            CellNode(id: 6, component: Label(text: "Cell 6")),
-            CellNode(id: 7, component: Label(text: "Cell 7"))
+            CellNode(id: 5, Label(text: "Cell 5")),
+            CellNode(id: 6, Label(text: "Cell 6")),
+            CellNode(id: 7, Label(text: "Cell 7"))
         ],
         footer: ViewNode(Label(text: "Footer 2"))
     )

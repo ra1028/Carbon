@@ -34,7 +34,7 @@ open class UICollectionViewAdapter: NSObject, Adapter {
 
 public extension UICollectionViewAdapter {
     /// The configuration for the classes of elements in `UICollectionView`.
-    public struct Config {
+    struct Config {
         /// The default configuration.
         public static var `default` = Config()
 
@@ -67,7 +67,7 @@ public extension UICollectionViewAdapter {
 
 public extension UICollectionViewAdapter {
     /// Context when cell is selected.
-    public struct SelectionContext {
+    struct SelectionContext {
         /// A collection view of the selected cell.
         public var collectionView: UICollectionView
 
