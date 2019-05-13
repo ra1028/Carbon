@@ -403,7 +403,7 @@ class CustomTableViewdapter: UITableViewAdapter {
 }
 
 let renderer = Renderer(
-    adapter: CustomTableViewdapter(),
+    adapter: CustomTableViewAdapter(),
     updater: UITableViewUpdater()
 )
 ```
