@@ -8,11 +8,13 @@ import UIKit
 ///
 /// Example for render a section containing simple nodes.
 ///
+///     let tableView: UITableView = ...
 ///     let renderer = Renderer(
-///         target: tableView,
 ///         adapter: UITableViewAdapter(),
 ///         updater: UITableViewUpdater()
 ///     )
+///
+///     renderer.target = tableView
 ///
 ///     renderer.render(
 ///         Section(
@@ -27,14 +29,20 @@ import UIKit
 ///         )
 ///     )
 open class Renderer<Updater: Carbon.Updater> {
-    /// An instance of target that weakly referenced.
-    public private(set) weak var target: Updater.Target?
-
     /// An instance of adapter that specified at initialized.
     public let adapter: Updater.Adapter
 
     /// An instance of updater that specified at initialized.
     public let updater: Updater
+
+    /// An instance of target that weakly referenced.
+    /// It will be passed to the `prepare` method of updater at didSet.
+    open weak var target: Updater.Target? {
+        didSet {
+            guard let target = target else { return }
+            updater.prepare(target: target, adapter: adapter)
+        }
+    }
 
     /// Returns a current data held in adapter.
     /// When data is set, it renders to the target immediately.
@@ -43,14 +51,10 @@ open class Renderer<Updater: Carbon.Updater> {
         set(data) { render(data) }
     }
 
-    /// Create a new instance with given target, adapter and updater.
-    /// Immediately the `prepare` of updater is called.
-    public init(target: Updater.Target, adapter: Updater.Adapter, updater: Updater) {
-        self.target = target
+    /// Create a new instance with given adapter and updater.
+    public init(adapter: Updater.Adapter, updater: Updater) {
         self.adapter = adapter
         self.updater = updater
-
-        updater.prepare(target: target, adapter: adapter)
     }
 
     /// Render given collection of sections, immediately.
@@ -59,12 +63,15 @@ open class Renderer<Updater: Carbon.Updater> {
     ///   - data: A collection of sections to be rendered.
     ///   - completion: A completion handler to be called after rendered.
     open func render<C: Collection>(_ data: C, completion: (() -> Void)? = nil) where C.Element == Section {
+        let data = Array(data)
+
         guard let target = target else {
+            adapter.data = data
             completion?()
             return
         }
 
-        updater.performUpdates(target: target, adapter: adapter, data: Array(data), completion: completion)
+        updater.performUpdates(target: target, adapter: adapter, data: data, completion: completion)
     }
 
     /// Render given collection of sections after removes contained nil, immediately.

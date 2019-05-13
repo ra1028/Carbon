@@ -12,8 +12,7 @@ final class HelloViewController: UIViewController {
         didSet { render() }
     }
 
-    private lazy var renderer = Renderer(
-        target: tableView,
+    private let renderer = Renderer(
         adapter: UITableViewAdapter(),
         updater: UITableViewUpdater()
     )
@@ -23,6 +22,7 @@ final class HelloViewController: UIViewController {
 
         title = "Hello"
         tableView.contentInset.top = 44
+        renderer.target = tableView
 
         render()
     }

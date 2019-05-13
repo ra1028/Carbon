@@ -5,8 +5,7 @@ final class PangramViewController: UIViewController {
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var toolBar: UIToolbar!
 
-    private lazy var renderer = Renderer(
-        target: collectionView,
+    private let renderer = Renderer(
         adapter: UICollectionViewFlowLayoutAdapter(),
         updater: UICollectionViewUpdater()
     )
@@ -21,6 +20,7 @@ final class PangramViewController: UIViewController {
         title = "Pangram"
         toolBar.isTranslucent = false
         collectionView.contentInset.top = 44
+        renderer.target = collectionView
 
         render()
     }

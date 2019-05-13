@@ -56,6 +56,7 @@
 		6B7ADEF421FDB12B003803BE /* UITableViewComponentHeaderFooterViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7ADEF021FDB12A003803BE /* UITableViewComponentHeaderFooterViewTests.swift */; };
 		6B7EED9E224CA5DD00060872 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7EED9D224CA5DD00060872 /* UIScrollViewExtensions.swift */; };
 		6B7EEDA0224CE4E100060872 /* UIScrollViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7EED9F224CE4E000060872 /* UIScrollViewExtensionsTests.swift */; };
+		6BAEA3DA2289C5D10026F81E /* Deprecated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEA3D92289C5D10026F81E /* Deprecated.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,7 @@
 		6B7ADEF021FDB12A003803BE /* UITableViewComponentHeaderFooterViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewComponentHeaderFooterViewTests.swift; sourceTree = "<group>"; };
 		6B7EED9D224CA5DD00060872 /* UIScrollViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtensions.swift; sourceTree = "<group>"; };
 		6B7EED9F224CE4E000060872 /* UIScrollViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtensionsTests.swift; sourceTree = "<group>"; };
+		6BAEA3D92289C5D10026F81E /* Deprecated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deprecated.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +177,7 @@
 				6B65949021E2532100291AAF /* Section.swift */,
 				6B6594A321E2532100291AAF /* Renderer.swift */,
 				6B5304522201EDB200A3E21E /* DataChangeset.swift */,
+				6BAEA3D92289C5D10026F81E /* Deprecated.swift */,
 				6B65948921E2532100291AAF /* Adapters */,
 				6B65949221E2532100291AAF /* Updaters */,
 				6B65949D21E2532100291AAF /* Interfaces */,
@@ -439,6 +442,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BAEA3DA2289C5D10026F81E /* Deprecated.swift in Sources */,
 				6B6594BB21E2532100291AAF /* UITableViewComponentHeaderFooterView.swift in Sources */,
 				6B7EED9E224CA5DD00060872 /* UIScrollViewExtensions.swift in Sources */,
 				6B6594AC21E2532100291AAF /* Section.swift in Sources */,

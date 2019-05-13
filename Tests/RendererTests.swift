@@ -5,10 +5,10 @@ final class RendererTests: XCTestCase {
     func testTargetWeakCapture() {
         var target: MockTarget? = MockTarget()
         let renderer = Renderer(
-            target: target!,
             adapter: MockAdapter(),
             updater: MockUpdater()
         )
+        renderer.target = target
 
         target = nil
         XCTAssertNil(renderer.target)
@@ -18,24 +18,39 @@ final class RendererTests: XCTestCase {
         let target = MockTarget()
         let adapter = MockAdapter()
         let renderer = Renderer(
-            target: target,
+            adapter: adapter,
+            updater: MockUpdater()
+        )
+        renderer.target = target
+
+        XCTAssertEqual(renderer.updater.targetCapturedOnPrepare, target)
+        XCTAssertEqual(renderer.updater.adapterCapturedOnPrepare, adapter)
+    }
+
+    func testRenderBeforeTargetIsSet() {
+        let adapter = MockAdapter()
+        let renderer = Renderer(
             adapter: adapter,
             updater: MockUpdater()
         )
 
-        XCTAssertEqual(renderer.updater.targetCapturedOnPrepare, target)
-        XCTAssertEqual(renderer.updater.adapterCapturedOnPrepare, adapter)
+        renderer.render(
+            Section(id: TestID.a),
+            Section(id: TestID.b)
+        )
+
+        XCTAssertEqual(renderer.adapter.data.count, 2)
     }
 
     func testDataSetter() {
         let target = MockTarget()
         let adapter = MockAdapter()
         let renderer = Renderer(
-            target: target,
             adapter: adapter,
             updater: MockUpdater()
         )
 
+        renderer.target = target
         renderer.data = [
             Section(id: TestID.a),
             Section(id: TestID.b),
@@ -51,10 +66,10 @@ final class RendererTests: XCTestCase {
         let target = MockTarget()
         let adapter = MockAdapter()
         let renderer = Renderer(
-            target: target,
             adapter: adapter,
             updater: MockUpdater()
         )
+        renderer.target = target
 
         var completed = false
         let data = [
@@ -77,10 +92,10 @@ final class RendererTests: XCTestCase {
         let target = MockTarget()
         let adapter = MockAdapter()
         let renderer = Renderer(
-            target: target,
             adapter: adapter,
             updater: MockUpdater()
         )
+        renderer.target = target
 
         var completed = false
         let data = [
@@ -105,10 +120,10 @@ final class RendererTests: XCTestCase {
         let target = MockTarget()
         let adapter = MockAdapter()
         let renderer = Renderer(
-            target: target,
             adapter: adapter,
             updater: MockUpdater()
         )
+        renderer.target = target
 
         var completed = false
 
@@ -131,10 +146,10 @@ final class RendererTests: XCTestCase {
         let target = MockTarget()
         let adapter = MockAdapter()
         let renderer = Renderer(
-            target: target,
             adapter: adapter,
             updater: MockUpdater()
         )
+        renderer.target = target
 
         var completed = false
 
