@@ -2,8 +2,12 @@ import UIKit
 
 /// An updater for managing diffing updates to render data to the `UICollectionView`.
 open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDelegate & UICollectionViewDataSource>: Updater {
-    /// A Bool value indicating whether that enable diffing animations. Default is true.
+    /// A Bool value indicating whether that enable diffing animation. Default is true.
     open var isAnimationEnabled = true
+
+    /// A Bool value indicating whether that enable diffing animation while target is
+    /// scrolling. Default is false.
+    open var isAnimationEnabledWhileScrolling = true
 
     /// A Bool value indicating whether that skips reload components. Default is false.
     open var skipReloadComponents = false
@@ -143,7 +147,7 @@ open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDel
             }
         }
 
-        if isAnimationEnabled {
+        if isAnimationEnabled && (!target._isScrolling || isAnimationEnabledWhileScrolling) {
             performAnimatedUpdates()
         }
         else {
