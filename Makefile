@@ -11,4 +11,4 @@ lib-lint:
 	bundle exec pod lib lint
 
 pod-release:
-	bundle exec pod trunk push
+	bundle exec pod trunk push --allow-warnings
