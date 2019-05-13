@@ -23,8 +23,7 @@ final class TodoViewController: UIViewController, UITextViewDelegate {
         didSet { render() }
     }
 
-    private lazy var renderer = Renderer(
-        target: tableView,
+    private let renderer = Renderer(
         adapter: TodoTableViewAdapter(),
         updater: UITableViewUpdater()
     )
@@ -42,6 +41,8 @@ final class TodoViewController: UIViewController, UITextViewDelegate {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.contentInset.bottom = view.bounds.height - addButton.frame.minY
+
+        renderer.target = tableView
         renderer.updater.skipReloadComponents = true
         renderer.updater.alwaysRenderVisibleComponents = true
 

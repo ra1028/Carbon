@@ -17,8 +17,7 @@ final class HomeViewController: UIViewController {
 
     @IBOutlet var tableView: UITableView!
 
-    private lazy var renderer = Renderer(
-        target: tableView,
+    private let renderer = Renderer(
         adapter: UITableViewAdapter(),
         updater: UITableViewUpdater()
     )
@@ -28,6 +27,7 @@ final class HomeViewController: UIViewController {
 
         title = "Home"
 
+        renderer.target = tableView
         renderer.render(
             Section(
                 id: ID.examples,

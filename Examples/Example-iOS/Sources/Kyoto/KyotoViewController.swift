@@ -9,8 +9,7 @@ final class KyotoViewController: UIViewController {
 
     @IBOutlet var collectionView: UICollectionView!
 
-    private lazy var renderer = Renderer(
-        target: collectionView,
+    private let renderer = Renderer(
         adapter: UICollectionViewFlowLayoutAdapter(),
         updater: UICollectionViewUpdater()
     )
@@ -21,6 +20,7 @@ final class KyotoViewController: UIViewController {
         title = "Kyoto"
         collectionView.contentInset.bottom = 24
 
+        renderer.target = collectionView
         renderer.render(
             Section(
                 id: ID.top,

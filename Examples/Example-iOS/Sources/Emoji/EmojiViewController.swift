@@ -9,8 +9,7 @@ final class EmojiViewController: UIViewController {
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var toolBar: UIToolbar!
 
-    private lazy var renderer = Renderer(
-        target: collectionView,
+    private let renderer = Renderer(
         adapter: UICollectionViewFlowLayoutAdapter(),
         updater: UICollectionViewUpdater()
     )
@@ -25,6 +24,8 @@ final class EmojiViewController: UIViewController {
         title = "Shuffle Emoji"
         toolBar.isTranslucent = false
         collectionView.contentInset.bottom = 44
+
+        renderer.target = collectionView
         renderer.updater.alwaysRenderVisibleComponents = true
 
         refresh()
