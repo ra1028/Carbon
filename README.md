@@ -17,15 +17,15 @@ in UITableView and UICollectionView.</br>
 <a href="https://github.com/ra1028/Carbon/blob/master/LICENSE"><img alt="Lincense" src="https://img.shields.io/badge/License-Apache%202.0-black.svg"/></a>
 </p>
 
+<p align="center">
+Made with ❤️ by <a href="https://github.com/ra1028">Ryo Aoyama</a>
+</p>
+
 ---
 
 |Declarative|Component-Based|Non-Destructive|
 |:----------|:--------------|:--------------|
 |Provides a declarative design with power of diffing algorithm for building list UIs.|Declare component once, it can be reused regardless kind of the list element.|Solves the various problems by architecture and algorithm without destructing UIKit.|
-
-<p align="right">
-Made with ❤️ by <a href="https://github.com/ra1028">Ryo Aoyama</a>
-</p>
 
 ---
 
@@ -37,7 +37,7 @@ This make it painless to build and maintain the complex UIs.
 Uses [DifferenceKit](https://github.com/ra1028/DifferenceKit) which is highly optimized based on Paul Heckel's paper for diffing.  
 Declarative design and diffing algorithm make your code more predictable, debugging easier and providing beautiful animations to users.  
 
-Our goal is similar to [IGListKit](https://github.com/Instagram/IGListKit) and [Epoxy](https://github.com/airbnb/epoxy), we respect those library as pioneers.  
+Our goal is similar to [Instagram/IGListKit](https://github.com/Instagram/IGListKit) and [airbnb/Epoxy](https://github.com/airbnb/epoxy), we respect those library as pioneers.  
 
 ---
 
@@ -75,7 +75,7 @@ renderer.render(
 
 #### Build for Development
 
-```bash
+```sh
 $ git clone https://github.com/ra1028/Carbon.git
 $ cd Carbon/
 $ make setup
@@ -134,7 +134,7 @@ ViewNode(HelloMessage(name: "Vincent"))
 
 `CellNode` is a node representing cell.  
 Unlike in the ViewNode, this needs an `id` which `Hashable` type to identify from among a lot of cells.  
-The `id` is used to find the same component in the list data before and after changed, then calculate the following kind of diff.  
+The `id` is used to find the same component in the list data before and after changed, then calculate the all kind of diff.  
 - deletes
 - inserts
 - moves
@@ -154,7 +154,7 @@ CellNode(HelloMessage(name: "Jules"))
 
 `Section` has a header, a footer and a group of cells.  
 A group of cells can be contains nil, then skipped rendering of it cell.  
-This also needs to specify `id` for identify from among multiple sections, then can be calculate the several kind of diff.  
+This also needs to specify `id` for identify from among multiple sections, then can be calculate the all kind of diff.  
 - section deletes
 - section inserts
 - section moves
@@ -245,6 +245,10 @@ renderer.render(
     )
 )
 ```
+
+<H3 align="center">
+<a href="https://ra1028.github.io/Carbon">[See More Usage]</a>
+</H3>
 
 ---
 
@@ -389,11 +393,34 @@ Invoked every time of after a component went out from visible area.
 
 #### Adapter Customization
 
-You can add methods of `Delegate`, `DataSource` by inheriting each adapter.  
+You can add methods of `delegate`, `dataSource` by subclassing each adapter.  
+
+```swift
+class CustomTableViewdapter: UITableViewAdapter {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Header title for section\(section)"
+    }
+}
+
+let renderer = Renderer(
+    adapter: CustomTableViewAdapter(),
+    updater: UITableViewUpdater()
+)
+```
+
 Furthermore, it can be customized the class of the elements(cell/header/footer) which becomes the container of component by setting it to `config`.  
 
 - **config**  
 The configuration which having the classes of elements. It can be specified only when adapter is initialized.  
+
+```swift
+let config = UITableViewAdapter.Config(
+    cellClass: CustomCell.self,
+    headerViewClass: CustomHeaderView.self,
+    footerViewClass: CustomFooterView.self
+)
+let adapter = UITableViewAdapter(config: config)
+```
 
 [See more](https://ra1028.github.io/Carbon/Adapters.html)
 
@@ -459,11 +486,7 @@ We recommend to do implementation that doesn't count on this protocols.
 ### [CocoaPods](https://cocoapods.org)
 Add the following to your `Podfile`:
 ```ruby
-use_frameworks!
-
-target 'TargetName' do
-  pod 'Carbon'
-end
+pod 'Carbon'
 ```
 
 ### [Carthage](https://github.com/Carthage/Carthage)
