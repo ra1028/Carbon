@@ -195,21 +195,31 @@ Since there are several style syntaxes for passing group of sections, please che
 ```swift
 @IBOutlet var tableView: UITableView!
 
-lazy var renderer = Renderer(
-    target: tableView,
+let renderer = Renderer(
     adapter: UITableViewAdapter(),
     updater: UITableViewUpdater()
 )
+
+override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+
+    renderer.target = tableView
+}
 ```
 
 ```swift
 @IBOutlet var collectionView: UICollectionView!
 
-lazy var renderer = Renderer(
-    target: collectionView,
+let renderer = Renderer(
     adapter: UICollectionViewFlowLayoutAdapter(),
     updater: UICollectionViewUpdater()
 )
+
+override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+
+    renderer.target = collectionView
+}
 ```
 
 ```swift
@@ -395,6 +405,10 @@ Below are some of the default provided settings of `updater`.
 
 - **isAnimationEnabled**  
 Indicating whether enables animation for diffing updates, setting `false` will perform it using `UIView.performWithoutAnimation`.  
+Default is `true`.  
+
+- **isAnimationEnabledWhileScrolling**  
+Indicating whether enables animation for diffing updates while target is scrolling, setting `false` will perform it  using `UIView.performWithoutAnimation`.  
 Default is `true`.  
 
 - **animatableChangeCount**  
