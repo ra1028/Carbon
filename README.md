@@ -21,8 +21,6 @@ in UITableView and UICollectionView.</br>
 Made with ❤️ by <a href="https://github.com/ra1028">Ryo Aoyama</a>
 </p>
 
----
-
 |Declarative|Component-Based|Non-Destructive|
 |:----------|:--------------|:--------------|
 |Provides a declarative design with power of diffing algorithm for building list UIs.|Declare component once, it can be reused regardless kind of the list element.|Solves the various problems by architecture and algorithm without destructing UIKit.|
