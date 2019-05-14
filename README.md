@@ -198,8 +198,8 @@ let renderer = Renderer(
     updater: UITableViewUpdater()
 )
 
-override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
+override func viewDidLoad() {
+    super.viewDidLoad()
 
     renderer.target = tableView
 }
@@ -213,8 +213,8 @@ let renderer = Renderer(
     updater: UICollectionViewUpdater()
 )
 
-override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
+override func viewDidLoad() {
+    super.viewDidLoad()
 
     renderer.target = collectionView
 }
