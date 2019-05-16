@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,7 +20,6 @@
                     <rect key="frame" x="16" y="16" width="343" height="180"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="180" id="I91-t3-dHj"/>
-                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="350" id="SCd-o7-4aA"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Kinkaku-ji" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TYS-9J-0uy">
@@ -30,7 +29,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="748" verticalCompressionResistancePriority="748" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snO-9F-0eV">
-                    <rect key="frame" x="16" y="267.5" width="343" height="168.5"/>
+                    <rect key="frame" x="16" y="267.5" width="343" height="184.5"/>
                     <string key="text">Kinkaku-ji (金閣寺, literally "Temple of the Golden Pavilion"), officially named Rokuon-ji (鹿苑寺, literally "Deer Garden Temple"), is a Zen Buddhist temple in Kyoto, Japan.
 It is one of the most popular buildings in Japan, attracting a large number of visitors annually.
 It is designated as a National Special Historic Site, a National Special Landscape and is one of 17 locations making up the Historic Monuments of Ancient Kyoto which are World Heritage Sites.</string>
@@ -46,7 +45,7 @@ It is designated as a National Special Historic Site, a National Special Landsca
                 <constraint firstItem="O1i-dH-00B" firstAttribute="centerX" secondItem="MJs-we-ZTL" secondAttribute="centerX" id="M7s-z8-dCm"/>
                 <constraint firstItem="TYS-9J-0uy" firstAttribute="leading" secondItem="O1i-dH-00B" secondAttribute="leading" id="T8y-Cd-ouS"/>
                 <constraint firstItem="TYS-9J-0uy" firstAttribute="trailing" secondItem="O1i-dH-00B" secondAttribute="trailing" id="Tni-WE-Fu6"/>
-                <constraint firstAttribute="bottom" secondItem="snO-9F-0eV" secondAttribute="bottom" priority="750" constant="16" id="VeK-xV-YXM"/>
+                <constraint firstAttribute="bottom" secondItem="snO-9F-0eV" secondAttribute="bottom" id="VeK-xV-YXM"/>
                 <constraint firstItem="snO-9F-0eV" firstAttribute="leading" secondItem="O1i-dH-00B" secondAttribute="leading" id="Xtj-EB-215"/>
                 <constraint firstItem="O1i-dH-00B" firstAttribute="leading" secondItem="MJs-we-ZTL" secondAttribute="leading" priority="751" constant="16" id="f8a-NX-xu0"/>
                 <constraint firstItem="O1i-dH-00B" firstAttribute="top" secondItem="YCd-9D-qxO" secondAttribute="top" constant="16" id="j9a-Ke-YMI"/>

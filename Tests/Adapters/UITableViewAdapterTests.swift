@@ -36,8 +36,7 @@ final class UITableViewAdapterTests: XCTestCase {
     }
 
     func testCellForRow() {
-        let config = UITableViewAdapter.Config(cellClass: MockTableViewCell.self)
-        let adapter = UITableViewAdapter(config: config)
+        let adapter = UITableViewAdapter()
         let component = A.Component()
         adapter.data = [
             Section(
@@ -49,10 +48,10 @@ final class UITableViewAdapterTests: XCTestCase {
         let cell = adapter.tableView(UITableView(), cellForRowAt: IndexPath(row: 0, section: 0))
 
         if
-            let testCell = cell as? MockTableViewCell,
+            let testCell = cell as? UITableViewComponentCell,
             let renderedContent = testCell.renderedContent,
             let renderedComponent = testCell.renderedComponent {
-            XCTAssertTrue(testCell.isMember(of: MockTableViewCell.self))
+            XCTAssertTrue(testCell.isMember(of: UITableViewComponentCell.self))
             XCTAssertTrue(renderedContent is A.Component.Content)
             XCTAssertEqual(renderedComponent.as(A.Component.self), component)
         }
@@ -62,8 +61,7 @@ final class UITableViewAdapterTests: XCTestCase {
     }
 
     func testViewForHeader() {
-        let config = UITableViewAdapter.Config(headerViewClass: MockTableViewHeaderFooterView.self)
-        let adapter = UITableViewAdapter(config: config)
+        let adapter = UITableViewAdapter()
         let component = A.Component()
         adapter.data = [
             Section(
@@ -75,10 +73,10 @@ final class UITableViewAdapterTests: XCTestCase {
         let view = adapter.tableView(UITableView(), viewForHeaderInSection: 0)
 
         if
-            let testView = view as? MockTableViewHeaderFooterView,
+            let testView = view as? UITableViewComponentHeaderFooterView,
             let renderedContent = testView.renderedContent,
             let renderedComponent = testView.renderedComponent {
-            XCTAssertTrue(testView.isMember(of: MockTableViewHeaderFooterView.self))
+            XCTAssertTrue(testView.isMember(of: UITableViewComponentHeaderFooterView.self))
             XCTAssertTrue(renderedContent is A.Component.Content)
             XCTAssertEqual(renderedComponent.as(A.Component.self), component)
         }
@@ -88,8 +86,7 @@ final class UITableViewAdapterTests: XCTestCase {
     }
 
     func testViewForFooter() {
-        let config = UITableViewAdapter.Config(footerViewClass: MockTableViewHeaderFooterView.self)
-        let adapter = UITableViewAdapter(config: config)
+        let adapter = UITableViewAdapter()
         let component = A.Component()
         adapter.data = [
             Section(
@@ -101,10 +98,10 @@ final class UITableViewAdapterTests: XCTestCase {
         let view = adapter.tableView(UITableView(), viewForFooterInSection: 0)
 
         if
-            let testView = view as? MockTableViewHeaderFooterView,
+            let testView = view as? UITableViewComponentHeaderFooterView,
             let renderedContent = testView.renderedContent,
             let renderedComponent = testView.renderedComponent {
-            XCTAssertTrue(testView.isMember(of: MockTableViewHeaderFooterView.self))
+            XCTAssertTrue(testView.isMember(of: UITableViewComponentHeaderFooterView.self))
             XCTAssertTrue(renderedContent is A.Component.Content)
             XCTAssertEqual(renderedComponent.as(A.Component.self), component)
         }

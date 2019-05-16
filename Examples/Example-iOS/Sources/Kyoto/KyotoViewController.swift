@@ -1,5 +1,6 @@
 import UIKit
 import Carbon
+import MagazineLayout
 
 final class KyotoViewController: UIViewController {
     enum ID {
@@ -10,15 +11,26 @@ final class KyotoViewController: UIViewController {
     @IBOutlet var collectionView: UICollectionView!
 
     private let renderer = Renderer(
-        adapter: UICollectionViewFlowLayoutAdapter(),
+        adapter: MagazineLayoutKyotoAdapter(),
         updater: UICollectionViewUpdater()
     )
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collectionView.performBatchUpdates(nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = "Kyoto"
-        collectionView.contentInset.bottom = 24
+
+        let layout = MagazineLayout()
+        collectionView.collectionViewLayout = layout
 
         renderer.target = collectionView
         renderer.render(
@@ -42,5 +54,86 @@ final class KyotoViewController: UIViewController {
                 })
             )
         )
+    }
+}
+
+extension MagazineLayoutCollectionViewCell: ComponentRenderable {}
+
+final class MagazineLayoutKyotoAdapter: UICollectionViewAdapter, UICollectionViewDelegateMagazineLayout {
+    override func viewNode(forSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> ViewNode? {
+        switch kind {
+        case MagazineLayout.SupplementaryViewKind.sectionHeader:
+            return headerNode(in: indexPath.section)
+
+        case MagazineLayout.SupplementaryViewKind.sectionFooter:
+            return footerNode(in: indexPath.section)
+
+        default:
+            return super.viewNode(forSupplementaryElementOfKind: kind, at: indexPath)
+        }
+    }
+
+    override func containerCellClass(collectionView: UICollectionView, indexPath: IndexPath, node: CellNode) -> (UICollectionViewCell & ComponentRenderable).Type {
+        return MagazineLayoutCollectionViewCell.self
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeModeForItemAt indexPath: IndexPath) -> MagazineLayoutItemSizeMode {
+        return MagazineLayoutItemSizeMode(widthMode: .halfWidth, heightMode: .static(height: 150))
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        visibilityModeForHeaderInSectionAtIndex index: Int
+        ) -> MagazineLayoutHeaderVisibilityMode {
+        guard let node = headerNode(in: index) else {
+            return .hidden
+        }
+
+        guard let referenceSize = node.component.referenceSize(in: collectionView.bounds) else {
+            return .visible(heightMode: .dynamic)
+        }
+
+        return .visible(heightMode: .static(height: referenceSize.height))
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        visibilityModeForFooterInSectionAtIndex index: Int
+        ) -> MagazineLayoutFooterVisibilityMode {
+        guard let node = footerNode(in: index) else {
+            return .hidden
+        }
+
+        guard let referenceSize = node.component.referenceSize(in: collectionView.bounds) else {
+            return .visible(heightMode: .dynamic)
+        }
+
+        return .visible(heightMode: .static(height: referenceSize.height))
+    }
+
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        visibilityModeForBackgroundInSectionAtIndex index: Int
+        ) -> MagazineLayoutBackgroundVisibilityMode {
+        return .hidden
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, horizontalSpacingForItemsInSectionAtIndex index: Int) -> CGFloat {
+        return 16
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, verticalSpacingForElementsInSectionAtIndex index: Int) -> CGFloat {
+        return 16
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetsForSectionAtIndex index: Int) -> UIEdgeInsets {
+        return .zero
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetsForItemsInSectionAtIndex index: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     }
 }

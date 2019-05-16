@@ -1,5 +1,6 @@
 import UIKit
 import Carbon
+import SwipeCellKit
 
 final class TodoViewController: UIViewController, UITextViewDelegate {
     enum ID {
@@ -24,7 +25,7 @@ final class TodoViewController: UIViewController, UITextViewDelegate {
     }
 
     private let renderer = Renderer(
-        adapter: TodoTableViewAdapter(),
+        adapter: SwipeCellKitTodoAdapter(),
         updater: UITableViewUpdater()
     )
 
@@ -122,6 +123,35 @@ final class TodoViewController: UIViewController, UITextViewDelegate {
             self.inputViewBottom.constant = 0
             self.view.layoutIfNeeded()
         }
+    }
+}
+
+extension SwipeTableViewCell: ComponentRenderable {}
+
+final class SwipeCellKitTodoAdapter: UITableViewAdapter, SwipeTableViewCellDelegate {
+    override func containerCellClass(tableView: UITableView, indexPath: IndexPath, node: CellNode) -> (UITableViewCell & ComponentRenderable).Type {
+        return SwipeTableViewCell.self
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath) as! SwipeTableViewCell
+        cell.delegate = self
+        cell.selectionStyle = .none
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard let deletable = cellNode(at: indexPath).component(as: Deletable.self), orientation == .right else {
+            return nil
+        }
+
+        let deleteAction = SwipeAction(style: .destructive, title: nil) { action, _ in
+            deletable.delete()
+            action.fulfill(with: .delete)
+        }
+
+        deleteAction.image = #imageLiteral(resourceName: "Trash")
+        return [deleteAction]
     }
 }
 

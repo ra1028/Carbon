@@ -21,9 +21,9 @@ import UIKit
 ///             id: "section",
 ///             header: ViewNode(Label(text: "header")),
 ///             cells: [
-///                 CellNode(id: 0, component: Label(text: "cell 0")),
-///                 CellNode(id: 1, component: Label(text: "cell 1")),
-///                 CellNode(id: 2, component: Label(text: "cell 2"))
+///                 CellNode(id: 0, Label(text: "cell 0")),
+///                 CellNode(id: 1, Label(text: "cell 1")),
+///                 CellNode(id: 2, Label(text: "cell 2"))
 ///             ],
 ///             footer: ViewNode(Label(text: "footer"))
 ///         )

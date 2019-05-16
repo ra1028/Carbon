@@ -197,19 +197,19 @@ open class UITableViewUpdater<Adapter: Carbon.Adapter & UITableViewDelegate & UI
             }
 
             if let headerNode = adapter.headerNode(in: section) {
-                let view = target.headerView(forSection: section) as? ComponentContainer
+                let view = target.headerView(forSection: section) as? ComponentRenderable
                 view?.render(component: headerNode.component)
             }
 
             if let footerNode = adapter.footerNode(in: section) {
-                let view = target.footerView(forSection: section) as? ComponentContainer
+                let view = target.footerView(forSection: section) as? ComponentRenderable
                 view?.render(component: footerNode.component)
             }
         }
 
         for indexPath in target.indexPathsForVisibleRows ?? [] {
             let cellNode = adapter.cellNode(at: indexPath)
-            let cell = target.cellForRow(at: indexPath) as? ComponentContainer
+            let cell = target.cellForRow(at: indexPath) as? ComponentRenderable
             cell?.render(component: cellNode.component)
         }
     }

@@ -1,0 +1,31 @@
+PODS:
+  - Carbon (0.3.0):
+    - DifferenceKit/Core (~> 1.1)
+  - DifferenceKit/Core (1.1.2)
+  - MagazineLayout (1.4.5)
+  - SwipeCellKit (2.6.0)
+
+DEPENDENCIES:
+  - Carbon (from `../../`)
+  - MagazineLayout (= 1.4.5)
+  - SwipeCellKit (= 2.6.0)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - DifferenceKit
+    - MagazineLayout
+    - SwipeCellKit
+
+EXTERNAL SOURCES:
+  Carbon:
+    :path: "../../"
+
+SPEC CHECKSUMS:
+  Carbon: 6badf3ea143008d086fadb91318fab09a088a5e1
+  DifferenceKit: 3a1cff9ac9a9cdf2a3f205671067797e83c3f066
+  MagazineLayout: dcd0e08fbda3f891c77b88bd43997f298e8d496a
+  SwipeCellKit: 935ca28c187ec6e1ffb2b578cf8ddca842bfdcbb
+
+PODFILE CHECKSUM: 44ebdd4078910db619cba5ab42b20bcf7482430c
+
+COCOAPODS: 1.7.0.rc.2

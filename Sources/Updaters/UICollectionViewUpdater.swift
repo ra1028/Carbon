@@ -169,7 +169,7 @@ open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDel
                 continue
             }
 
-            let view = target.supplementaryView(forElementKind: headerElementKind, at: indexPath) as? ComponentContainer
+            let view = target.supplementaryView(forElementKind: headerElementKind, at: indexPath) as? ComponentRenderable
             view?.render(component: headerNode.component)
         }
 
@@ -178,13 +178,13 @@ open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDel
                 continue
             }
 
-            let view = target.supplementaryView(forElementKind: footerElementKind, at: indexPath) as? ComponentContainer
+            let view = target.supplementaryView(forElementKind: footerElementKind, at: indexPath) as? ComponentRenderable
             view?.render(component: footerNode.component)
         }
 
         for indexPath in target.indexPathsForVisibleItems {
             let cellNode = adapter.cellNode(at: indexPath)
-            let cell = target.cellForItem(at: indexPath) as? ComponentContainer
+            let cell = target.cellForItem(at: indexPath) as? ComponentRenderable
             cell?.render(component: cellNode.component)
         }
     }

@@ -12,9 +12,6 @@ open class UITableViewAdapter: NSObject, Adapter {
     /// The data to be rendered in the list UI.
     public var data: [Section]
 
-    /// A configuration that determines the classes of the elements to render.
-    public let config: Config
-
     /// A closure that to handle selection events of cell.
     open var didSelect: ((SelectionContext) -> Void)?
 
@@ -22,43 +19,55 @@ open class UITableViewAdapter: NSObject, Adapter {
     ///
     /// - Parameters:
     ///   - data: An initial data to be rendered.
-    ///   - config: A configuration that determines the classes of the elements to render.
-    public init(data: [Section] = [], config: Config = .default) {
+    public init(data: [Section] = []) {
         self.data = data
-        self.config = config
     }
-}
 
-public extension UITableViewAdapter {
-    /// The configuration for the classes of elements in `UITableView`.
-    struct Config {
-        /// The default configuration.
-        public static var `default` = Config()
+    open func containerCellClass(tableView: UITableView, indexPath: IndexPath, node: CellNode) -> (UITableViewCell & ComponentRenderable).Type {
+        return UITableViewComponentCell.self
+    }
 
-        /// The class of the cell.
-        public var cellClass: UITableViewComponentCell.Type
+    open func containerHeaderViewClass(tableView: UITableView, section: Int, node: ViewNode) -> (UITableViewHeaderFooterView & ComponentRenderable).Type {
+        return UITableViewComponentHeaderFooterView.self
+    }
 
-        /// The class of the header view.
-        public var headerViewClass: UITableViewComponentHeaderFooterView.Type
+    open func containerFooterViewClass(tableView: UITableView, section: Int, node: ViewNode) -> (UITableViewHeaderFooterView & ComponentRenderable).Type {
+        return UITableViewComponentHeaderFooterView.self
+    }
 
-        /// The class of the footer view.
-        public var footerViewClass: UITableViewComponentHeaderFooterView.Type
+    open func dequeueContainerCell(
+        tableView: UITableView,
+        indexPath: IndexPath,
+        node: CellNode,
+        class cellClass: (UITableViewCell & ComponentRenderable).Type
+        ) -> UITableViewCell {
+        let reuseIdentifier = node.component.reuseIdentifier
 
-        /// Create a render configuration with the classes of elements.
-        ///
-        /// - Parameters:
-        ///   - cellClass: The class of cell.
-        ///   - headerViewClass: The class of header view.
-        ///   - footerViewClass: The class of footer view.
-        public init(
-            cellClass: UITableViewComponentCell.Type = UITableViewComponentCell.self,
-            headerViewClass: UITableViewComponentHeaderFooterView.Type = UITableViewComponentHeaderFooterView.self,
-            footerViewClass: UITableViewComponentHeaderFooterView.Type = UITableViewComponentHeaderFooterView.self
-            ) {
-            self.cellClass = cellClass
-            self.headerViewClass = headerViewClass
-            self.footerViewClass = footerViewClass
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? UITableViewCell & ComponentRenderable, cell.isMember(of: cellClass) else {
+            tableView.register(cellClass.self, forCellReuseIdentifier: reuseIdentifier)
+            return self.tableView(tableView, cellForRowAt: indexPath)
         }
+
+        cell.render(component: node.component)
+        return cell
+    }
+
+    open func dequeueContainerHeaderFooterView(
+        tableView: UITableView,
+        section: Int,
+        node: ViewNode,
+        class viewClass: (UITableViewHeaderFooterView & ComponentRenderable).Type
+        ) -> UITableViewHeaderFooterView {
+        let reuseIdentifier = node.component.reuseIdentifier
+
+        guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseIdentifier) as? UITableViewHeaderFooterView & ComponentRenderable,
+            view.isMember(of: viewClass) else {
+                tableView.register(viewClass, forHeaderFooterViewReuseIdentifier: reuseIdentifier)
+                return dequeueContainerHeaderFooterView(tableView: tableView, section: section, node: node, class: viewClass)
+        }
+
+        view.render(component: node.component)
+        return view
     }
 }
 
@@ -90,16 +99,8 @@ extension UITableViewAdapter: UITableViewDataSource {
     /// Resister and dequeue the cell at specified index path.
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let node = cellNode(at: indexPath)
-        let reuseIdentifier = node.component.reuseIdentifier
-        let cellClass = config.cellClass
-
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? UITableViewComponentCell else {
-            tableView.register(cellClass.self, forCellReuseIdentifier: reuseIdentifier)
-            return self.tableView(tableView, cellForRowAt: indexPath)
-        }
-
-        cell.render(component: node.component)
-        return cell
+        let cellClass = containerCellClass(tableView: tableView, indexPath: indexPath, node: node)
+        return dequeueContainerCell(tableView: tableView, indexPath: indexPath, node: node, class: cellClass)
     }
 }
 
@@ -108,16 +109,16 @@ extension UITableViewAdapter: UITableViewDelegate {
     open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let node = headerNode(in: section) else { return nil }
 
-        let viewClass = config.headerViewClass
-        return headerFooterView(in: tableView, node: node, viewClass: viewClass)
+        let viewClass = containerHeaderViewClass(tableView: tableView, section: section, node: node)
+        return dequeueContainerHeaderFooterView(tableView: tableView, section: section, node: node, class: viewClass)
     }
 
     /// Resister and dequeue the footer in specified section.
     open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard let node = footerNode(in: section) else { return nil }
 
-        let viewClass = config.footerViewClass
-        return headerFooterView(in: tableView, node: node, viewClass: viewClass)
+        let viewClass = containerFooterViewClass(tableView: tableView, section: section, node: node)
+        return dequeueContainerHeaderFooterView(tableView: tableView, section: section, node: node, class: viewClass)
     }
 
     /// Returns the height for row at specified index path.
@@ -167,32 +168,32 @@ extension UITableViewAdapter: UITableViewDelegate {
 
     /// The event that the cell will display in the visible rect.
     open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        (cell as? ComponentContainer)?.contentWillDisplay()
+        (cell as? ComponentRenderable)?.contentWillDisplay()
     }
 
     /// The event that the cell did left from the visible rect.
     open func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        (cell as? ComponentContainer)?.contentDidEndDisplay()
+        (cell as? ComponentRenderable)?.contentDidEndDisplay()
     }
 
     /// The event that the header will display in the visible rect.
     open func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        (view as? ComponentContainer)?.contentWillDisplay()
+        (view as? ComponentRenderable)?.contentWillDisplay()
     }
 
     /// The event that the header did left from the visible rect.
     open func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
-        (view as? ComponentContainer)?.contentDidEndDisplay()
+        (view as? ComponentRenderable)?.contentDidEndDisplay()
     }
 
     /// The event that the footer will display in the visible rect.
     open func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-        (view as? ComponentContainer)?.contentWillDisplay()
+        (view as? ComponentRenderable)?.contentWillDisplay()
     }
 
     /// The event that the footer did left from the visible rect.
     open func tableView(_ tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int) {
-        (view as? ComponentContainer)?.contentDidEndDisplay()
+        (view as? ComponentRenderable)?.contentDidEndDisplay()
     }
 }
 
@@ -218,23 +219,6 @@ private extension UITableViewAdapter {
         }
 
         return node.component.referenceSize(in: tableView.bounds)?.height ?? defaultHeight
-    }
-
-    func headerFooterView<T: UITableViewComponentHeaderFooterView>(
-        in tableView: UITableView,
-        node: ViewNode,
-        viewClass: T.Type
-        ) -> UITableViewComponentHeaderFooterView {
-        let component = node.component
-        let reuseIdentifier = component.reuseIdentifier
-
-        guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseIdentifier) as? UITableViewComponentHeaderFooterView else {
-            tableView.register(viewClass, forHeaderFooterViewReuseIdentifier: reuseIdentifier)
-            return headerFooterView(in: tableView, node: node, viewClass: viewClass)
-        }
-
-        view.render(component: component)
-        return view
     }
 }
 
