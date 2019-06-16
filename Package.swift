@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "Carbon",
     platforms: [
-        .iOS(.v9)
+        .iOS(.v10)
     ],
     products: [
         .library(name: "Carbon", targets: ["Carbon"]),
@@ -23,5 +23,6 @@ let package = Package(
             name: "Tests",
             dependencies: ["Carbon"],
             path: "Tests"),
-    ]
+    ],
+    swiftLanguageVersions: [.v4_2, .v5]
 )
