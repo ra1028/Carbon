@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "DifferenceKit",
+        "repositoryURL": "https://github.com/ra1028/DifferenceKit.git",
+        "state": {
+          "branch": null,
+          "revision": "1fad2be4b34a711e7c277b183c4ee15b03fc2543",
+          "version": "1.1.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
