@@ -23,7 +23,7 @@ open class UITableViewComponentCell: UITableViewCell, ComponentContainer {
 
         backgroundColor = .clear
         contentView.backgroundColor = .clear
-        selectionStyle = .none
+//        selectionStyle = .none
     }
 
     /// Called just before the cell is dequeued.
