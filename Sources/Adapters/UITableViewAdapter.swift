@@ -183,7 +183,7 @@ extension UITableViewAdapter: UITableViewDelegate {
     open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         (cell as? ComponentContainer)?.contentWillDisplay()
         let context = DisplayContext(tableView: tableView, cell: cell, indexPath: indexPath)
-        willDisplay(
+        willDisplay?(context)
     }
 
     /// The event that the cell did left from the visible rect.
