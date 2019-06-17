@@ -27,7 +27,7 @@ final class PangramViewController: UIViewController {
 
     func render() {
         if isSorted {
-            renderer.render(
+
                 "ABC DEF GHI JKL MNO PQR STU VWY XZ".split(separator: " ").enumerated().map { offset, word in
                     Section(
                         id: offset,

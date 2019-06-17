@@ -18,6 +18,8 @@ open class UITableViewAdapter: NSObject, Adapter {
     /// A closure that to handle selection events of cell.
     open var didSelect: ((SelectionContext) -> Void)?
 
+    open var willDisplay: ((DisplayContext) -> Void)?
+
     /// Create an adapter with initial data and rendering config.
     ///
     /// - Parameters:
@@ -70,6 +72,18 @@ public extension UITableViewAdapter {
 
         /// A node corresponding to the selected cell position.
         public var node: CellNode
+
+        /// The index path of the selected cell.
+        public var indexPath: IndexPath
+    }
+
+    /// Context when cell is selected.
+    struct DisplayContext {
+        /// A table view of the selected cell.
+        public var tableView: UITableView
+
+        /// A node corresponding to the selected cell position.
+        public var cell: UITableViewCell
 
         /// The index path of the selected cell.
         public var indexPath: IndexPath
@@ -168,6 +182,8 @@ extension UITableViewAdapter: UITableViewDelegate {
     /// The event that the cell will display in the visible rect.
     open func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         (cell as? ComponentContainer)?.contentWillDisplay()
+        let context = DisplayContext(tableView: tableView, cell: cell, indexPath: indexPath)
+        willDisplay(
     }
 
     /// The event that the cell did left from the visible rect.
