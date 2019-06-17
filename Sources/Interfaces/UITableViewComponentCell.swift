@@ -21,8 +21,8 @@ open class UITableViewComponentCell: UITableViewCell, ComponentContainer {
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        backgroundColor = .clear
-        contentView.backgroundColor = .clear
+//        backgroundColor = .clear
+//        contentView.backgroundColor = .clear
 //        selectionStyle = .none
     }
 
