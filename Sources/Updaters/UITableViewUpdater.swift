@@ -169,7 +169,7 @@ open class UITableViewUpdater<Adapter: Carbon.Adapter & UITableViewDelegate & UI
 
             CATransaction.commit()
 
-            if keepsContentOffset && target._isContetRectContainsBounds && !target._isScrolling {
+            if keepsContentOffset && target._isContentRectContainsBounds && !target._isScrolling {
                 target.contentOffset.y = min(target._maxContentOffsetY, contentOffsetYBeforeUpdates)
             }
         }

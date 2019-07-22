@@ -22,9 +22,9 @@ final class MockScrollViewExtensionsTests: XCTestCase {
         scrollView3.bounds.size = CGSize(width: 100, height: 200)
         scrollView3.contentOffset = CGPoint(x: 10, y: 20)
 
-        XCTAssertTrue(scrollView1._isContetRectContainsBounds)
-        XCTAssertFalse(scrollView2._isContetRectContainsBounds)
-        XCTAssertTrue(scrollView3._isContetRectContainsBounds)
+        XCTAssertTrue(scrollView1._isContentRectContainsBounds)
+        XCTAssertFalse(scrollView2._isContentRectContainsBounds)
+        XCTAssertTrue(scrollView3._isContentRectContainsBounds)
     }
 
     func testIsScrolling() {

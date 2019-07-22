@@ -1,7 +1,7 @@
 import UIKit
 
 internal extension UIScrollView {
-    var _isContetRectContainsBounds: Bool {
+    var _isContentRectContainsBounds: Bool {
         return CGRect(origin: .zero, size: contentSize)
             .inset(by: availableContentInset.inverted)
             .contains(bounds)

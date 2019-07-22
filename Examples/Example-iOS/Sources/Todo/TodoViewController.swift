@@ -129,7 +129,7 @@ final class TodoViewController: UIViewController, UITextViewDelegate {
 extension SwipeTableViewCell: ComponentRenderable {}
 
 final class SwipeCellKitTodoAdapter: UITableViewAdapter, SwipeTableViewCellDelegate {
-    override func containerCellClass(tableView: UITableView, indexPath: IndexPath, node: CellNode) -> (UITableViewCell & ComponentRenderable).Type {
+    override func componentCellClass(tableView: UITableView, indexPath: IndexPath, node: CellNode) -> (UITableViewCell & ComponentRenderable).Type {
         return SwipeTableViewCell.self
     }
 

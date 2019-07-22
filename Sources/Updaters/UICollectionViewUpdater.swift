@@ -139,7 +139,7 @@ open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDel
 
             CATransaction.commit()
 
-            if keepsContentOffset && target._isContetRectContainsBounds && !target._isScrolling {
+            if keepsContentOffset && target._isContentRectContainsBounds && !target._isScrolling {
                 target.contentOffset = CGPoint(
                     x: min(target._maxContentOffsetX, contentOffsetBeforeUpdates.x),
                     y: min(target._maxContentOffsetY, contentOffsetBeforeUpdates.y)

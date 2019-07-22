@@ -358,7 +358,7 @@ final class MockCollectionViewUpdater: UICollectionViewUpdater<MockCollectionVie
 
 final class MockCollectionViewReloadDataUpdater: UICollectionViewReloadDataUpdater<MockCollectionViewFlowLayoutAdapter> {}
 
-final class MockComponentContainer: ComponentContainerElement {
+final class MockComponentContainer: ComponentRenderable {
     let componentContainerView: UIView
 
     init(componentContainerView: UIView = UIView()) {
@@ -383,10 +383,56 @@ final class MockScrollView: UIScrollView {
     }
 }
 
+final class MockCustomTableViewCell1: UITableViewCell, ComponentRenderable {}
+final class MockCustomTableViewCell2: UITableViewCell, ComponentRenderable {}
+final class MockCustomTableViewHeaderFooterView1: UITableViewHeaderFooterView, ComponentRenderable {}
+final class MockCustomTableViewHeaderFooterView2: UITableViewHeaderFooterView, ComponentRenderable {}
+
+final class MockCustomTableViewAdapter: UITableViewAdapter {
+    var cellClass: (UITableViewCell & ComponentRenderable).Type = MockCustomTableViewCell1.self
+    var headerClass: (UITableViewHeaderFooterView & ComponentRenderable).Type = MockCustomTableViewHeaderFooterView1.self
+    var footerClass: (UITableViewHeaderFooterView & ComponentRenderable).Type = MockCustomTableViewHeaderFooterView1.self
+
+    override func componentCellClass(tableView: UITableView, indexPath: IndexPath, node: CellNode) -> (UITableViewCell & ComponentRenderable).Type {
+        return cellClass
+    }
+
+    override func componentHeaderViewClass(tableView: UITableView, section: Int, node: ViewNode) -> (UITableViewHeaderFooterView & ComponentRenderable).Type {
+        return headerClass
+    }
+
+    override func componentFooterViewClass(tableView: UITableView, section: Int, node: ViewNode) -> (UITableViewHeaderFooterView & ComponentRenderable).Type {
+        return footerClass
+    }
+}
+
+final class MockCustomCollectionViewCell1: UICollectionViewCell, ComponentRenderable {}
+final class MockCustomCollectionViewCell2: UICollectionViewCell, ComponentRenderable {}
+final class MockCustomCollectionViewReusableView1: UICollectionReusableView, ComponentRenderable {}
+final class MockCustomCollectionViewReusableView2: UICollectionReusableView, ComponentRenderable {}
+
+final class MockCustomCollectionViewAdapter: UICollectionViewAdapter {
+    var cellClass: (UICollectionViewCell & ComponentRenderable).Type = MockCustomCollectionViewCell1.self
+    var supplementaryViewClasses: [String: (UICollectionReusableView & ComponentRenderable).Type] = [:]
+
+    override func componentCellClass(collectionView: UICollectionView, indexPath: IndexPath, node: CellNode) -> (UICollectionViewCell & ComponentRenderable).Type {
+        return cellClass
+    }
+
+    override func componentSupplementaryViewClass(
+        ofKind kind: String,
+        collectionView: UICollectionView,
+        indexPath: IndexPath,
+        node: ViewNode
+        ) -> (UICollectionReusableView & ComponentRenderable).Type {
+        return supplementaryViewClasses[kind] ?? MockCustomCollectionViewReusableView1.self
+    }
+}
+
 /// Extract `renderedContent` from specified container.
 func renderedContent<T>(of container: Any, as type: T.Type) -> T? {
     guard
-        let container = container as? ComponentContainerElement,
+        let container = container as? ComponentRenderable,
         let content = container.renderedContent as? T else {
             XCTFail()
             return nil

@@ -23,51 +23,16 @@ open class UITableViewAdapter: NSObject, Adapter {
         self.data = data
     }
 
-    open func containerCellClass(tableView: UITableView, indexPath: IndexPath, node: CellNode) -> (UITableViewCell & ComponentRenderable).Type {
+    open func componentCellClass(tableView: UITableView, indexPath: IndexPath, node: CellNode) -> (UITableViewCell & ComponentRenderable).Type {
         return UITableViewComponentCell.self
     }
 
-    open func containerHeaderViewClass(tableView: UITableView, section: Int, node: ViewNode) -> (UITableViewHeaderFooterView & ComponentRenderable).Type {
+    open func componentHeaderViewClass(tableView: UITableView, section: Int, node: ViewNode) -> (UITableViewHeaderFooterView & ComponentRenderable).Type {
         return UITableViewComponentHeaderFooterView.self
     }
 
-    open func containerFooterViewClass(tableView: UITableView, section: Int, node: ViewNode) -> (UITableViewHeaderFooterView & ComponentRenderable).Type {
+    open func componentFooterViewClass(tableView: UITableView, section: Int, node: ViewNode) -> (UITableViewHeaderFooterView & ComponentRenderable).Type {
         return UITableViewComponentHeaderFooterView.self
-    }
-
-    open func dequeueContainerCell(
-        tableView: UITableView,
-        indexPath: IndexPath,
-        node: CellNode,
-        class cellClass: (UITableViewCell & ComponentRenderable).Type
-        ) -> UITableViewCell {
-        let reuseIdentifier = node.component.reuseIdentifier
-
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? UITableViewCell & ComponentRenderable, cell.isMember(of: cellClass) else {
-            tableView.register(cellClass.self, forCellReuseIdentifier: reuseIdentifier)
-            return self.tableView(tableView, cellForRowAt: indexPath)
-        }
-
-        cell.render(component: node.component)
-        return cell
-    }
-
-    open func dequeueContainerHeaderFooterView(
-        tableView: UITableView,
-        section: Int,
-        node: ViewNode,
-        class viewClass: (UITableViewHeaderFooterView & ComponentRenderable).Type
-        ) -> UITableViewHeaderFooterView {
-        let reuseIdentifier = node.component.reuseIdentifier
-
-        guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseIdentifier) as? UITableViewHeaderFooterView & ComponentRenderable,
-            view.isMember(of: viewClass) else {
-                tableView.register(viewClass, forHeaderFooterViewReuseIdentifier: reuseIdentifier)
-                return dequeueContainerHeaderFooterView(tableView: tableView, section: section, node: node, class: viewClass)
-        }
-
-        view.render(component: node.component)
-        return view
     }
 }
 
@@ -99,8 +64,16 @@ extension UITableViewAdapter: UITableViewDataSource {
     /// Resister and dequeue the cell at specified index path.
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let node = cellNode(at: indexPath)
-        let cellClass = containerCellClass(tableView: tableView, indexPath: indexPath, node: node)
-        return dequeueContainerCell(tableView: tableView, indexPath: indexPath, node: node, class: cellClass)
+        let cellClass = componentCellClass(tableView: tableView, indexPath: indexPath, node: node)
+        let reuseIdentifier = node.component.reuseIdentifier
+
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? UITableViewCell & ComponentRenderable, cell.isMember(of: cellClass) else {
+            tableView.register(cellClass.self, forCellReuseIdentifier: reuseIdentifier)
+            return self.tableView(tableView, cellForRowAt: indexPath)
+        }
+
+        cell.render(component: node.component)
+        return cell
     }
 }
 
@@ -109,16 +82,16 @@ extension UITableViewAdapter: UITableViewDelegate {
     open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let node = headerNode(in: section) else { return nil }
 
-        let viewClass = containerHeaderViewClass(tableView: tableView, section: section, node: node)
-        return dequeueContainerHeaderFooterView(tableView: tableView, section: section, node: node, class: viewClass)
+        let viewClass = componentHeaderViewClass(tableView: tableView, section: section, node: node)
+        return dequeueComponentHeaderFooterView(tableView: tableView, section: section, node: node, class: viewClass)
     }
 
     /// Resister and dequeue the footer in specified section.
     open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard let node = footerNode(in: section) else { return nil }
 
-        let viewClass = containerFooterViewClass(tableView: tableView, section: section, node: node)
-        return dequeueContainerHeaderFooterView(tableView: tableView, section: section, node: node, class: viewClass)
+        let viewClass = componentFooterViewClass(tableView: tableView, section: section, node: node)
+        return dequeueComponentHeaderFooterView(tableView: tableView, section: section, node: node, class: viewClass)
     }
 
     /// Returns the height for row at specified index path.
@@ -219,6 +192,24 @@ private extension UITableViewAdapter {
         }
 
         return node.component.referenceSize(in: tableView.bounds)?.height ?? defaultHeight
+    }
+
+    func dequeueComponentHeaderFooterView(
+        tableView: UITableView,
+        section: Int,
+        node: ViewNode,
+        class viewClass: (UITableViewHeaderFooterView & ComponentRenderable).Type
+        ) -> UITableViewHeaderFooterView {
+        let reuseIdentifier = node.component.reuseIdentifier
+
+        guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseIdentifier) as? UITableViewHeaderFooterView & ComponentRenderable,
+            view.isMember(of: viewClass) else {
+                tableView.register(viewClass, forHeaderFooterViewReuseIdentifier: reuseIdentifier)
+                return dequeueComponentHeaderFooterView(tableView: tableView, section: section, node: node, class: viewClass)
+        }
+
+        view.render(component: node.component)
+        return view
     }
 }
 

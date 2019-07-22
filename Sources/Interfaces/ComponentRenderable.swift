@@ -1,11 +1,11 @@
 import UIKit
 
-private let renderedContentAssociation = RuntimeAssociation<Any?>()
-private let renderedComponentAssociation = RuntimeAssociation<AnyComponent?>()
-
 public protocol ComponentRenderable: class {
     var componentContainerView: UIView { get }
 }
+
+private let renderedContentAssociation = RuntimeAssociation<Any?>()
+private let renderedComponentAssociation = RuntimeAssociation<AnyComponent?>()
 
 public extension ComponentRenderable {
     private(set) var renderedContent: Any? {

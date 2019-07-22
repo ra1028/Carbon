@@ -15,9 +15,6 @@ open class UICollectionViewAdapter: NSObject, Adapter {
     /// A closure that to handle selection events of cell.
     open var didSelect: ((SelectionContext) -> Void)?
 
-    private var registeredCellReuseIdentifiers = Set<String>()
-    private var registeredViewReuseIdentifiersForKind = [String: Set<String>]()
-
     /// Create an adapter with initial data and rendering config.
     ///
     /// - Parameters:
@@ -26,68 +23,12 @@ open class UICollectionViewAdapter: NSObject, Adapter {
         self.data = data
     }
 
-    open func containerCellClass(collectionView: UICollectionView, indexPath: IndexPath, node: CellNode) -> (UICollectionViewCell & ComponentRenderable).Type {
+    open func componentCellClass(collectionView: UICollectionView, indexPath: IndexPath, node: CellNode) -> (UICollectionViewCell & ComponentRenderable).Type {
         return UICollectionViewComponentCell.self
     }
 
-    open func containerReusableViewClass(ofKind kind: String, collectionView: UICollectionView, indexPath: IndexPath, node: ViewNode) -> (UICollectionReusableView & ComponentRenderable).Type {
+    open func componentSupplementaryViewClass(ofKind kind: String, collectionView: UICollectionView, indexPath: IndexPath, node: ViewNode) -> (UICollectionReusableView & ComponentRenderable).Type {
         return UICollectionComponentReusableView.self
-    }
-
-    open func dequeueContainerCell(
-        collectionView: UICollectionView,
-        indexPath: IndexPath,
-        node: CellNode,
-        class cellClass: (UICollectionViewCell & ComponentRenderable).Type
-        ) -> UICollectionViewCell {
-        let reuseIdentifier = node.component.reuseIdentifier
-
-        if !registeredCellReuseIdentifiers.contains(reuseIdentifier) {
-            collectionView.register(cellClass, forCellWithReuseIdentifier: reuseIdentifier)
-            registeredCellReuseIdentifiers.insert(reuseIdentifier)
-        }
-
-        func dequeue() -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-            guard let containerCell = cell as? UICollectionViewCell & ComponentRenderable, containerCell.isMember(of: cellClass) else {
-                collectionView.register(cellClass, forCellWithReuseIdentifier: reuseIdentifier)
-                return dequeue()
-            }
-
-            containerCell.render(component: node.component)
-            return cell
-        }
-
-        return dequeue()
-    }
-
-    open func dequeueContainerSupplementaryView(
-        ofKind kind: String,
-        collectionView: UICollectionView,
-        indexPath: IndexPath,
-        node: ViewNode,
-        class viewClass: (UICollectionReusableView & ComponentRenderable).Type
-        ) -> UICollectionReusableView {
-        let reuseIdentifier = node.component.reuseIdentifier
-
-        let contains = registeredViewReuseIdentifiersForKind[kind]?.contains(reuseIdentifier) ?? false
-        if !contains {
-            collectionView.register(viewClass, forSupplementaryViewOfKind: kind, withReuseIdentifier: reuseIdentifier)
-            registeredViewReuseIdentifiersForKind[kind, default: []].insert(reuseIdentifier)
-        }
-
-        func dequeue() -> UICollectionReusableView {
-            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseIdentifier, for: indexPath)
-            guard let containerView = view as? UICollectionReusableView & ComponentRenderable, containerView.isMember(of: viewClass) else {
-                collectionView.register(viewClass, forSupplementaryViewOfKind: kind, withReuseIdentifier: reuseIdentifier)
-                return dequeue()
-            }
-
-            containerView.render(component: node.component)
-            return view
-        }
-
-        return dequeue()
     }
 
     open func supplementaryViewNode(forElementKind kind: String, at indexPath: IndexPath) -> ViewNode? {
@@ -132,19 +73,37 @@ extension UICollectionViewAdapter: UICollectionViewDataSource {
     /// Resister and dequeue the cell at specified index path.
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let node = cellNode(at: indexPath)
-        let cellClass = containerCellClass(collectionView: collectionView, indexPath: indexPath, node: node)
-        return dequeueContainerCell(collectionView: collectionView, indexPath: indexPath, node: node, class: cellClass)
+        let cellClass = componentCellClass(collectionView: collectionView, indexPath: indexPath, node: node)
+        let reuseIdentifier = node.component.reuseIdentifier
+
+        if !collectionView.registeredCellReuseIdentifiers.contains(reuseIdentifier) {
+            collectionView.register(cellClass, forCellWithReuseIdentifier: reuseIdentifier)
+            collectionView.registeredCellReuseIdentifiers.insert(reuseIdentifier)
+        }
+
+        func dequeue() -> UICollectionViewCell {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+            guard let componentCell = cell as? UICollectionViewCell & ComponentRenderable, componentCell.isMember(of: cellClass) else {
+                collectionView.register(cellClass, forCellWithReuseIdentifier: reuseIdentifier)
+                return dequeue()
+            }
+
+            componentCell.render(component: node.component)
+            return cell
+        }
+
+        return dequeue()
     }
 
     /// Resister and dequeue the header or footer in specified section.
     open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let node = supplementaryViewNode(forElementKind: kind, at: indexPath) else {
-            assertionFailure("Unsupported supplementary element of kind: \(kind). Override `viewNode(forSupplementaryElementOfKind:at:)` or `dequeueContainerSupplementaryView` to adopt this kind.")
+            assertionFailure("Unsupported supplementary element of kind: \(kind). Override `supplementaryViewNode` or `dequeueComponentSupplementaryView` to adopt this kind.")
             return UICollectionReusableView()
         }
 
-        let viewClass = containerReusableViewClass(ofKind: kind, collectionView: collectionView, indexPath: indexPath, node: node)
-        return dequeueContainerSupplementaryView(
+        let viewClass = componentSupplementaryViewClass(ofKind: kind, collectionView: collectionView, indexPath: indexPath, node: node)
+        return dequeueComponentSupplementaryView(
             ofKind: kind,
             collectionView: collectionView,
             indexPath: indexPath,
@@ -182,5 +141,51 @@ extension UICollectionViewAdapter: UICollectionViewDelegate {
     /// The event that the header or footer did left from the visible rect.
     open func collectionView(_ collectionView: UICollectionView, didEndDisplayingSupplementaryView view: UICollectionReusableView, forElementOfKind elementKind: String, at indexPath: IndexPath) {
         (view as? ComponentRenderable)?.contentDidEndDisplay()
+    }
+}
+
+private extension UICollectionViewAdapter {
+    func dequeueComponentSupplementaryView(
+        ofKind kind: String,
+        collectionView: UICollectionView,
+        indexPath: IndexPath,
+        node: ViewNode,
+        class viewClass: (UICollectionReusableView & ComponentRenderable).Type
+        ) -> UICollectionReusableView {
+        let reuseIdentifier = node.component.reuseIdentifier
+
+        let contains = collectionView.registeredViewReuseIdentifiersForKind[kind]?.contains(reuseIdentifier) ?? false
+        if !contains {
+            collectionView.register(viewClass, forSupplementaryViewOfKind: kind, withReuseIdentifier: reuseIdentifier)
+            collectionView.registeredViewReuseIdentifiersForKind[kind, default: []].insert(reuseIdentifier)
+        }
+
+        func dequeue() -> UICollectionReusableView {
+            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseIdentifier, for: indexPath)
+            guard let componentView = view as? UICollectionReusableView & ComponentRenderable, componentView.isMember(of: viewClass) else {
+                collectionView.register(viewClass, forSupplementaryViewOfKind: kind, withReuseIdentifier: reuseIdentifier)
+                return dequeue()
+            }
+
+            componentView.render(component: node.component)
+            return view
+        }
+
+        return dequeue()
+    }
+}
+
+private let registeredCellReuseIdentifiersAssociation = RuntimeAssociation<Set<String>>()
+private let registeredViewReuseIdentifiersForKindAssociation = RuntimeAssociation<[String: Set<String>]>()
+
+private extension UICollectionView {
+    var registeredCellReuseIdentifiers: Set<String> {
+        get { return registeredCellReuseIdentifiersAssociation.value(for: self, default: []) }
+        set { registeredCellReuseIdentifiersAssociation.set(value: newValue, for: self) }
+    }
+
+    var registeredViewReuseIdentifiersForKind: [String: Set<String>] {
+        get { return registeredViewReuseIdentifiersForKindAssociation.value(for: self, default: [:]) }
+        set { registeredViewReuseIdentifiersForKindAssociation.set(value: newValue, for: self) }
     }
 }

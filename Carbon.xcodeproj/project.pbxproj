@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B1BE6B722E5CA0D0054DB46 /* ComponentRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1BE6B622E5CA0D0054DB46 /* ComponentRenderable.swift */; };
 		6B5304532201EDB200A3E21E /* DataChangeset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5304522201EDB200A3E21E /* DataChangeset.swift */; };
 		6B6594A421E2532100291AAF /* IdentifiableComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B65948621E2532100291AAF /* IdentifiableComponent.swift */; };
-		6B6594A521E2532100291AAF /* ComponentContainerElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B65948821E2532100291AAF /* ComponentContainerElement.swift */; };
 		6B6594A621E2532100291AAF /* UICollectionViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B65948A21E2532100291AAF /* UICollectionViewAdapter.swift */; };
 		6B6594A721E2532100291AAF /* UITableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B65948B21E2532100291AAF /* UITableViewAdapter.swift */; };
 		6B6594A921E2532100291AAF /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B65948D21E2532100291AAF /* Adapter.swift */; };
@@ -48,7 +48,6 @@
 		6B7ADEE121FBA6D1003803BE /* ComponentContainerElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7ADEE021FBA6D1003803BE /* ComponentContainerElementTests.swift */; };
 		6B7EED9E224CA5DD00060872 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7EED9D224CA5DD00060872 /* UIScrollViewExtensions.swift */; };
 		6B7EEDA0224CE4E100060872 /* UIScrollViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7EED9F224CE4E000060872 /* UIScrollViewExtensionsTests.swift */; };
-		6BAEA3DA2289C5D10026F81E /* Availability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEA3D92289C5D10026F81E /* Availability.swift */; };
 		6BAEA43D228D4E920026F81E /* RuntimeAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEA43C228D4E920026F81E /* RuntimeAssociation.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,10 +62,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6B1BE6B622E5CA0D0054DB46 /* ComponentRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentRenderable.swift; sourceTree = "<group>"; };
 		6B5304522201EDB200A3E21E /* DataChangeset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataChangeset.swift; sourceTree = "<group>"; };
 		6B65947A21E252E300291AAF /* Carbon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Carbon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B65948621E2532100291AAF /* IdentifiableComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentifiableComponent.swift; sourceTree = "<group>"; };
-		6B65948821E2532100291AAF /* ComponentContainerElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentContainerElement.swift; sourceTree = "<group>"; };
 		6B65948A21E2532100291AAF /* UICollectionViewAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewAdapter.swift; sourceTree = "<group>"; };
 		6B65948B21E2532100291AAF /* UITableViewAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewAdapter.swift; sourceTree = "<group>"; };
 		6B65948D21E2532100291AAF /* Adapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adapter.swift; sourceTree = "<group>"; };
@@ -108,7 +107,6 @@
 		6B7ADEE021FBA6D1003803BE /* ComponentContainerElementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentContainerElementTests.swift; sourceTree = "<group>"; };
 		6B7EED9D224CA5DD00060872 /* UIScrollViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtensions.swift; sourceTree = "<group>"; };
 		6B7EED9F224CE4E000060872 /* UIScrollViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtensionsTests.swift; sourceTree = "<group>"; };
-		6BAEA3D92289C5D10026F81E /* Availability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Availability.swift; sourceTree = "<group>"; };
 		6BAEA43C228D4E920026F81E /* RuntimeAssociation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeAssociation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -163,7 +161,6 @@
 				6B65949021E2532100291AAF /* Section.swift */,
 				6B6594A321E2532100291AAF /* Renderer.swift */,
 				6B5304522201EDB200A3E21E /* DataChangeset.swift */,
-				6BAEA3D92289C5D10026F81E /* Availability.swift */,
 				6B65948921E2532100291AAF /* Adapters */,
 				6B65949221E2532100291AAF /* Updaters */,
 				6B65949D21E2532100291AAF /* Interfaces */,
@@ -208,7 +205,7 @@
 		6B65949D21E2532100291AAF /* Interfaces */ = {
 			isa = PBXGroup;
 			children = (
-				6B65948821E2532100291AAF /* ComponentContainerElement.swift */,
+				6B1BE6B622E5CA0D0054DB46 /* ComponentRenderable.swift */,
 				6B65949F21E2532100291AAF /* UITableViewComponentCell.swift */,
 				6B6594A121E2532100291AAF /* UITableViewComponentHeaderFooterView.swift */,
 				6B6594A021E2532100291AAF /* UICollectionViewComponentCell.swift */,
@@ -421,7 +418,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BAEA3DA2289C5D10026F81E /* Availability.swift in Sources */,
 				6B6594BB21E2532100291AAF /* UITableViewComponentHeaderFooterView.swift in Sources */,
 				6B7EED9E224CA5DD00060872 /* UIScrollViewExtensions.swift in Sources */,
 				6B6594AC21E2532100291AAF /* Section.swift in Sources */,
@@ -440,8 +436,8 @@
 				6B6594B221E2532100291AAF /* UICollectionViewUpdater.swift in Sources */,
 				6B6594B021E2532100291AAF /* Updater.swift in Sources */,
 				6B6594BD21E2532100291AAF /* Renderer.swift in Sources */,
-				6B6594A521E2532100291AAF /* ComponentContainerElement.swift in Sources */,
 				6B6594B921E2532100291AAF /* UITableViewComponentCell.swift in Sources */,
+				6B1BE6B722E5CA0D0054DB46 /* ComponentRenderable.swift in Sources */,
 				6B5304532201EDB200A3E21E /* DataChangeset.swift in Sources */,
 				6B6594BA21E2532100291AAF /* UICollectionViewComponentCell.swift in Sources */,
 				6B6594B521E2532100291AAF /* AnyComponent.swift in Sources */,

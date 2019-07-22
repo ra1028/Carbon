@@ -307,4 +307,88 @@ final class UITableViewAdapterTests: XCTestCase {
         XCTAssertEqual(renderedContent(of: footerView, as: MockComponent.Content.self), footerComponent.contentCapturedOnWillDisplay)
         XCTAssertEqual(renderedContent(of: footerView, as: MockComponent.Content.self), footerComponent.contentCapturedOnDidEndDisplay)
     }
+
+    func testCustomCell() {
+        let adapter = MockCustomTableViewAdapter()
+        let component = A.Component()
+        adapter.data = [
+            Section(
+                id: TestID.a,
+                cells: [CellNode(component)]
+            )
+        ]
+
+        let tableView = UITableView()
+
+        func check(expectedClass: (UITableViewCell & ComponentRenderable).Type) {
+            let cell = adapter.tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 0))
+            if
+                let testCell = cell as? UITableViewCell & ComponentRenderable,
+                let renderedContent = testCell.renderedContent,
+                let renderedComponent = testCell.renderedComponent {
+                XCTAssertTrue(testCell.isMember(of: expectedClass))
+                XCTAssertTrue(renderedContent is A.Component.Content)
+                XCTAssertEqual(renderedComponent.as(A.Component.self), component)
+            }
+            else {
+                XCTFail()
+            }
+        }
+
+        adapter.cellClass = MockCustomTableViewCell1.self
+        check(expectedClass: MockCustomTableViewCell1.self)
+
+        adapter.cellClass = MockCustomTableViewCell2.self
+        check(expectedClass: MockCustomTableViewCell2.self)
+    }
+
+    func testViewForHeaderFooter() {
+        let adapter = MockCustomTableViewAdapter()
+        let component = A.Component()
+        adapter.data = [
+            Section(
+                id: TestID.a,
+                header: ViewNode(component),
+                footer: ViewNode(component)
+            )
+        ]
+
+        let tableView = UITableView()
+
+        func check(view: UIView?, expectedClass: (UITableViewHeaderFooterView & ComponentRenderable).Type) {
+            if
+                let testView = view as? UITableViewHeaderFooterView & ComponentRenderable,
+                let renderedContent = testView.renderedContent,
+                let renderedComponent = testView.renderedComponent {
+                XCTAssertTrue(testView.isMember(of: expectedClass))
+                XCTAssertTrue(renderedContent is A.Component.Content)
+                XCTAssertEqual(renderedComponent.as(A.Component.self), component)
+            }
+            else {
+                XCTFail()
+            }
+        }
+
+        func checkHeader(expectedClass: (UITableViewHeaderFooterView & ComponentRenderable).Type) {
+            let view = adapter.tableView(tableView, viewForHeaderInSection: 0)
+            check(view: view, expectedClass: expectedClass)
+        }
+
+        func checkFooter(expectedClass: (UITableViewHeaderFooterView & ComponentRenderable).Type) {
+            let view = adapter.tableView(tableView, viewForFooterInSection: 0)
+            check(view: view, expectedClass: expectedClass)
+        }
+
+        adapter.headerClass = MockCustomTableViewHeaderFooterView1.self
+        checkHeader(expectedClass: MockCustomTableViewHeaderFooterView1.self)
+
+        adapter.headerClass = MockCustomTableViewHeaderFooterView2.self
+        checkHeader(expectedClass: MockCustomTableViewHeaderFooterView2.self)
+
+        adapter.footerClass = MockCustomTableViewHeaderFooterView1.self
+        checkFooter(expectedClass: MockCustomTableViewHeaderFooterView1.self)
+
+        adapter.footerClass = MockCustomTableViewHeaderFooterView2.self
+        checkFooter(expectedClass: MockCustomTableViewHeaderFooterView2.self)
+    }
 }
