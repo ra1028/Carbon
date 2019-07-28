@@ -374,7 +374,7 @@ Following are part of it.
 
 - **shouldContentUpdate**  
 If the result is `true`, the component displayed as a cell is reloaded individually, header or footer is reloaded with entire section.  
-It can be omitted by conforming to `Equitable`.  
+It can be omitted by conforming to `Equatable`.  
 
 - **shouldRender**  
 By returning `false`, you can skip component re-rendering when reloading or dequeuing element.  

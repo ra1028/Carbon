@@ -59,7 +59,7 @@ public struct AnyComponent: Component {
 
     /// Returns a `Bool` value indicating whether the content should be reloaded.
     ///
-    /// - Note: Unlike `Equitable`, this doesn't compare whether the two values
+    /// - Note: Unlike `Equatable`, this doesn't compare whether the two values
     ///         exactly equal. It's can be ignore property comparisons, if not expect
     ///         to reload content.
     ///
