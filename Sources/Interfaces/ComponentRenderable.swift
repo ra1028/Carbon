@@ -4,18 +4,18 @@ public protocol ComponentRenderable: class {
     var componentContainerView: UIView { get }
 }
 
-private let renderedContentAssociation = RuntimeAssociation<Any?>()
-private let renderedComponentAssociation = RuntimeAssociation<AnyComponent?>()
+private let renderedContentAssociation = RuntimeAssociation<Any?>(default: nil)
+private let renderedComponentAssociation = RuntimeAssociation<AnyComponent?>(default: nil)
 
 public extension ComponentRenderable {
     private(set) var renderedContent: Any? {
-        get { return renderedContentAssociation.value(for: self, default: nil) }
-        set { renderedContentAssociation.set(value: newValue, for: self) }
+        get { return renderedContentAssociation[self] }
+        set { renderedContentAssociation[self] = newValue }
     }
 
     private(set) var renderedComponent: AnyComponent? {
-        get { return renderedComponentAssociation.value(for: self, default: nil) }
-        set { renderedComponentAssociation.set(value: newValue, for: self) }
+        get { return renderedComponentAssociation[self] }
+        set { renderedComponentAssociation[self] = newValue }
     }
 
     func contentWillDisplay() {

@@ -23,15 +23,41 @@ open class UICollectionViewAdapter: NSObject, Adapter {
         self.data = data
     }
 
-    open func componentCellClass(collectionView: UICollectionView, indexPath: IndexPath, node: CellNode) -> (UICollectionViewCell & ComponentRenderable).Type {
-        return UICollectionViewComponentCell.self
+    /// Returns a registration info for register each cells.
+    ///
+    /// - Parameters:
+    ///   - collectionView: A collection view to register cell.
+    ///   - indexPath: An index path for the cell.
+    ///   - node: A node representing cell.
+    ///
+    /// - Returns: A registration info for each cells.
+    open func cellRegistration(collectionView: UICollectionView, indexPath: IndexPath, node: CellNode) -> CellRegistration {
+        return CellRegistration(class: UICollectionViewComponentCell.self)
     }
 
-    open func componentSupplementaryViewClass(ofKind kind: String, collectionView: UICollectionView, indexPath: IndexPath, node: ViewNode) -> (UICollectionReusableView & ComponentRenderable).Type {
-        return UICollectionComponentReusableView.self
+    /// Returns a registration info for register each header views.
+    ///
+    /// - Parameters:
+    ///   - kind: The kind of element for supplementary view.
+    ///   - collectionView: A collection view to register supplementary view.
+    ///   - indexPath: An index path for the supplementary view.
+    ///   - node: A node representing supplementary view.
+    ///
+    /// - Returns: A registration info for each supplementary views.
+    open func supplementaryViewRegistration(forElementKind kind: String, collectionView: UICollectionView, indexPath: IndexPath, node: ViewNode) -> ViewRegistration {
+        return ViewRegistration(class: UICollectionComponentReusableView.self)
     }
 
-    open func supplementaryViewNode(forElementKind kind: String, at indexPath: IndexPath) -> ViewNode? {
+    /// Returns a node for supplementary view for arbitrary element of kind.
+    ///
+    /// - Parameters:
+    ///   - kind: The kind of element for supplementary view.
+    ///   - collectionView: A collection view to display supplementary view.
+    ///   - indexPath: An index path for the supplementary view.
+    ///   - node: A node representing supplementary view.
+    ///
+    /// - Returns: A node for supplementary view for arbitrary element of kind.
+    open func supplementaryViewNode(forElementKind kind: String, collectionView: UICollectionView, at indexPath: IndexPath) -> ViewNode? {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             return headerNode(in: indexPath.section)
@@ -46,6 +72,36 @@ open class UICollectionViewAdapter: NSObject, Adapter {
 }
 
 public extension UICollectionViewAdapter {
+    /// Registration info for collection view cell.
+    struct CellRegistration {
+        /// A class for register cell conforming `ComponentRenderable`.
+        public var `class`: (UICollectionViewCell & ComponentRenderable).Type
+
+        /// The nib for register cell.
+        public var nib: UINib?
+
+        /// Create a new registration.
+        public init(class: (UICollectionViewCell & ComponentRenderable).Type, nib: UINib? = nil) {
+            self.class = `class`
+            self.nib = nib
+        }
+    }
+
+    /// Registration info for collection view supplementary view.
+    struct ViewRegistration {
+        /// A class for register supplementary view conforming `ComponentRenderable`.
+        public var `class`: (UICollectionReusableView & ComponentRenderable).Type
+
+        /// The nib for register supplementary view.
+        public var nib: UINib?
+
+        /// Create a new registration.
+        public init(class: (UICollectionReusableView & ComponentRenderable).Type, nib: UINib? = nil) {
+            self.class = `class`
+            self.nib = nib
+        }
+    }
+
     /// Context when cell is selected.
     struct SelectionContext {
         /// A collection view of the selected cell.
@@ -73,42 +129,36 @@ extension UICollectionViewAdapter: UICollectionViewDataSource {
     /// Resister and dequeue the cell at specified index path.
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let node = cellNode(at: indexPath)
-        let cellClass = componentCellClass(collectionView: collectionView, indexPath: indexPath, node: node)
+        let registration = cellRegistration(collectionView: collectionView, indexPath: indexPath, node: node)
         let reuseIdentifier = node.component.reuseIdentifier
+        let componentCell = collectionView._dequeueReusableCell(
+            withReuseIdentifier: reuseIdentifier,
+            for: indexPath
+            ) as? UICollectionViewCell & ComponentRenderable
 
-        if !collectionView.registeredCellReuseIdentifiers.contains(reuseIdentifier) {
-            collectionView.register(cellClass, forCellWithReuseIdentifier: reuseIdentifier)
-            collectionView.registeredCellReuseIdentifiers.insert(reuseIdentifier)
+        guard let cell = componentCell, cell.isMember(of: registration.class) else {
+            collectionView.register(cell: registration, forReuseIdentifier: reuseIdentifier)
+            return self.collectionView(collectionView, cellForItemAt: indexPath)
         }
 
-        func dequeue() -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-            guard let componentCell = cell as? UICollectionViewCell & ComponentRenderable, componentCell.isMember(of: cellClass) else {
-                collectionView.register(cellClass, forCellWithReuseIdentifier: reuseIdentifier)
-                return dequeue()
-            }
-
-            componentCell.render(component: node.component)
-            return cell
-        }
-
-        return dequeue()
+        cell.render(component: node.component)
+        return cell
     }
 
     /// Resister and dequeue the header or footer in specified section.
     open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard let node = supplementaryViewNode(forElementKind: kind, at: indexPath) else {
-            assertionFailure("Unsupported supplementary element of kind: \(kind). Override `supplementaryViewNode` or `dequeueComponentSupplementaryView` to adopt this kind.")
+        guard let node = supplementaryViewNode(forElementKind: kind, collectionView: collectionView, at: indexPath) else {
+            assertionFailure("Unsupported supplementary element of kind: \(kind). Override `supplementaryViewNode` to adopt this kind.")
             return UICollectionReusableView()
         }
 
-        let viewClass = componentSupplementaryViewClass(ofKind: kind, collectionView: collectionView, indexPath: indexPath, node: node)
+        let registration = supplementaryViewRegistration(forElementKind: kind, collectionView: collectionView, indexPath: indexPath, node: node)
         return dequeueComponentSupplementaryView(
             ofKind: kind,
             collectionView: collectionView,
             indexPath: indexPath,
             node: node,
-            class: viewClass
+            registration: registration
         )
     }
 }
@@ -150,42 +200,75 @@ private extension UICollectionViewAdapter {
         collectionView: UICollectionView,
         indexPath: IndexPath,
         node: ViewNode,
-        class viewClass: (UICollectionReusableView & ComponentRenderable).Type
+        registration: ViewRegistration
         ) -> UICollectionReusableView {
         let reuseIdentifier = node.component.reuseIdentifier
+        let componentView = collectionView._dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: reuseIdentifier,
+            for: indexPath
+            ) as? UICollectionReusableView & ComponentRenderable
 
-        let contains = collectionView.registeredViewReuseIdentifiersForKind[kind]?.contains(reuseIdentifier) ?? false
-        if !contains {
-            collectionView.register(viewClass, forSupplementaryViewOfKind: kind, withReuseIdentifier: reuseIdentifier)
-            collectionView.registeredViewReuseIdentifiersForKind[kind, default: []].insert(reuseIdentifier)
+        guard let view = componentView, view.isMember(of: registration.class) else {
+            collectionView.register(supplementaryView: registration, forSupplementaryViewOfKind: kind, forReuseIdentifier: reuseIdentifier)
+            return dequeueComponentSupplementaryView(
+                ofKind: kind,
+                collectionView: collectionView,
+                indexPath: indexPath,
+                node: node,
+                registration: registration
+            )
         }
 
-        func dequeue() -> UICollectionReusableView {
-            let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseIdentifier, for: indexPath)
-            guard let componentView = view as? UICollectionReusableView & ComponentRenderable, componentView.isMember(of: viewClass) else {
-                collectionView.register(viewClass, forSupplementaryViewOfKind: kind, withReuseIdentifier: reuseIdentifier)
-                return dequeue()
-            }
-
-            componentView.render(component: node.component)
-            return view
-        }
-
-        return dequeue()
+        view.render(component: node.component)
+        return view
     }
 }
 
-private let registeredCellReuseIdentifiersAssociation = RuntimeAssociation<Set<String>>()
-private let registeredViewReuseIdentifiersForKindAssociation = RuntimeAssociation<[String: Set<String>]>()
+private let registeredCellReuseIdentifiersAssociation = RuntimeAssociation<Set<String>>(default: [])
+private let registeredViewReuseIdentifiersForKindAssociation = RuntimeAssociation<[String: Set<String>]>(default: [:])
 
 private extension UICollectionView {
-    var registeredCellReuseIdentifiers: Set<String> {
-        get { return registeredCellReuseIdentifiersAssociation.value(for: self, default: []) }
-        set { registeredCellReuseIdentifiersAssociation.set(value: newValue, for: self) }
+    func _dequeueReusableCell(withReuseIdentifier reuseIdentifier: String, for indexPath: IndexPath) -> UICollectionViewCell? {
+        let registeredCellReuseIdentifiers = registeredCellReuseIdentifiersAssociation[self]
+
+        guard registeredCellReuseIdentifiers.contains(reuseIdentifier) else {
+            return nil
+        }
+
+        return dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
     }
 
-    var registeredViewReuseIdentifiersForKind: [String: Set<String>] {
-        get { return registeredViewReuseIdentifiersForKindAssociation.value(for: self, default: [:]) }
-        set { registeredViewReuseIdentifiersForKindAssociation.set(value: newValue, for: self) }
+    func _dequeueReusableSupplementaryView(ofKind kind: String, withReuseIdentifier reuseIdentifier: String, for indexPath: IndexPath) -> UICollectionReusableView? {
+        let registeredViewReuseIdentifiersForKind = registeredViewReuseIdentifiersForKindAssociation[self]
+        let contains = registeredViewReuseIdentifiersForKind[kind]?.contains(reuseIdentifier) ?? false
+
+        guard contains else {
+            return nil
+        }
+
+        return dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: reuseIdentifier, for: indexPath)
+    }
+
+    func register(cell registration: UICollectionViewAdapter.CellRegistration, forReuseIdentifier reuseIdentifier: String) {
+        if let nib = registration.nib {
+            register(nib, forCellWithReuseIdentifier: reuseIdentifier)
+        }
+        else {
+            register(registration.class, forCellWithReuseIdentifier: reuseIdentifier)
+        }
+
+        registeredCellReuseIdentifiersAssociation[self].insert(reuseIdentifier)
+    }
+
+    func register(supplementaryView registration: UICollectionViewAdapter.ViewRegistration, forSupplementaryViewOfKind kind: String, forReuseIdentifier reuseIdentifier: String) {
+        if let nib = registration.nib {
+            register(nib, forSupplementaryViewOfKind: kind, withReuseIdentifier: reuseIdentifier)
+        }
+        else {
+            register(registration.class, forSupplementaryViewOfKind: kind, withReuseIdentifier: reuseIdentifier)
+        }
+
+        registeredViewReuseIdentifiersForKindAssociation[self][kind, default: []].insert(reuseIdentifier)
     }
 }

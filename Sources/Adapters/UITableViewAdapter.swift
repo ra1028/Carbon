@@ -23,20 +23,74 @@ open class UITableViewAdapter: NSObject, Adapter {
         self.data = data
     }
 
-    open func componentCellClass(tableView: UITableView, indexPath: IndexPath, node: CellNode) -> (UITableViewCell & ComponentRenderable).Type {
-        return UITableViewComponentCell.self
+    /// Returns a registration info for register each cells.
+    ///
+    /// - Parameters:
+    ///   - tableView: A table view to register cell.
+    ///   - indexPath: An index path for the cell.
+    ///   - node: A node representing cell.
+    ///
+    /// - Returns: A registration info for each cells.
+    open func cellRegistration(tableView: UITableView, indexPath: IndexPath, node: CellNode) -> CellRegistration {
+        return CellRegistration(class: UITableViewComponentCell.self)
     }
 
-    open func componentHeaderViewClass(tableView: UITableView, section: Int, node: ViewNode) -> (UITableViewHeaderFooterView & ComponentRenderable).Type {
-        return UITableViewComponentHeaderFooterView.self
+    /// Returns a registration info for register each header views.
+    ///
+    /// - Parameters:
+    ///   - tableView: A table view to register header view.
+    ///   - section: A index of section for the header view.
+    ///   - node: A node representing header view.
+    ///
+    /// - Returns: A registration info for each header views.
+    open func headerViewRegistration(tableView: UITableView, section: Int, node: ViewNode) -> ViewRegistration {
+        return ViewRegistration(class: UITableViewComponentHeaderFooterView.self)
     }
 
-    open func componentFooterViewClass(tableView: UITableView, section: Int, node: ViewNode) -> (UITableViewHeaderFooterView & ComponentRenderable).Type {
-        return UITableViewComponentHeaderFooterView.self
+    /// Returns a registration info for register each footer views.
+    ///
+    /// - Parameters:
+    ///   - tableView: A table view to register footer view.
+    ///   - section: A index of section for the footer view.
+    ///   - node: A node representing footer view.
+    ///
+    /// - Returns: A registration info for each footer views.
+    open func footerViewRegistration(tableView: UITableView, section: Int, node: ViewNode) -> ViewRegistration {
+        return ViewRegistration(class: UITableViewComponentHeaderFooterView.self)
     }
 }
 
 public extension UITableViewAdapter {
+    /// Registration info for table view cell.
+    struct CellRegistration {
+        /// A class for register cell conforming `ComponentRenderable`.
+        public var `class`: (UITableViewCell & ComponentRenderable).Type
+
+        /// The nib for register cell.
+        public var nib: UINib?
+
+        /// Create a new registration.
+        public init(class: (UITableViewCell & ComponentRenderable).Type, nib: UINib? = nil) {
+            self.class = `class`
+            self.nib = nib
+        }
+    }
+
+    /// Registration info for table view header or footer view.
+    struct ViewRegistration {
+        /// A class for register header or footer view conforming `ComponentRenderable`.
+        public var `class`: (UITableViewHeaderFooterView & ComponentRenderable).Type
+
+        /// The nib for register header or footer view.
+        public var nib: UINib?
+
+        /// Create a new registration.
+        public init(class: (UITableViewHeaderFooterView & ComponentRenderable).Type, nib: UINib? = nil) {
+            self.class = `class`
+            self.nib = nib
+        }
+    }
+
     /// Context when cell is selected.
     struct SelectionContext {
         /// A table view of the selected cell.
@@ -64,11 +118,12 @@ extension UITableViewAdapter: UITableViewDataSource {
     /// Resister and dequeue the cell at specified index path.
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let node = cellNode(at: indexPath)
-        let cellClass = componentCellClass(tableView: tableView, indexPath: indexPath, node: node)
+        let registration = cellRegistration(tableView: tableView, indexPath: indexPath, node: node)
         let reuseIdentifier = node.component.reuseIdentifier
+        let componentCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? UITableViewCell & ComponentRenderable
 
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? UITableViewCell & ComponentRenderable, cell.isMember(of: cellClass) else {
-            tableView.register(cellClass.self, forCellReuseIdentifier: reuseIdentifier)
+        guard let cell = componentCell, cell.isMember(of: registration.class) else {
+            tableView.register(cell: registration, forReuseIdentifier: reuseIdentifier)
             return self.tableView(tableView, cellForRowAt: indexPath)
         }
 
@@ -82,16 +137,16 @@ extension UITableViewAdapter: UITableViewDelegate {
     open func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let node = headerNode(in: section) else { return nil }
 
-        let viewClass = componentHeaderViewClass(tableView: tableView, section: section, node: node)
-        return dequeueComponentHeaderFooterView(tableView: tableView, section: section, node: node, class: viewClass)
+        let registration = headerViewRegistration(tableView: tableView, section: section, node: node)
+        return dequeueComponentHeaderFooterView(tableView: tableView, section: section, node: node, registration: registration)
     }
 
     /// Resister and dequeue the footer in specified section.
     open func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         guard let node = footerNode(in: section) else { return nil }
 
-        let viewClass = componentFooterViewClass(tableView: tableView, section: section, node: node)
-        return dequeueComponentHeaderFooterView(tableView: tableView, section: section, node: node, class: viewClass)
+        let registration = footerViewRegistration(tableView: tableView, section: section, node: node)
+        return dequeueComponentHeaderFooterView(tableView: tableView, section: section, node: node, registration: registration)
     }
 
     /// Returns the height for row at specified index path.
@@ -198,18 +253,38 @@ private extension UITableViewAdapter {
         tableView: UITableView,
         section: Int,
         node: ViewNode,
-        class viewClass: (UITableViewHeaderFooterView & ComponentRenderable).Type
+        registration: ViewRegistration
         ) -> UITableViewHeaderFooterView {
         let reuseIdentifier = node.component.reuseIdentifier
+        let componentView = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseIdentifier) as? UITableViewHeaderFooterView & ComponentRenderable
 
-        guard let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseIdentifier) as? UITableViewHeaderFooterView & ComponentRenderable,
-            view.isMember(of: viewClass) else {
-                tableView.register(viewClass, forHeaderFooterViewReuseIdentifier: reuseIdentifier)
-                return dequeueComponentHeaderFooterView(tableView: tableView, section: section, node: node, class: viewClass)
+        guard let view = componentView, view.isMember(of: registration.class) else {
+            tableView.register(headerFooterView: registration, forReuseIdentifier: reuseIdentifier)
+            return dequeueComponentHeaderFooterView(tableView: tableView, section: section, node: node, registration: registration)
         }
 
         view.render(component: node.component)
         return view
+    }
+}
+
+private extension UITableView {
+    func register(cell registration: UITableViewAdapter.CellRegistration, forReuseIdentifier reuseIdentifier: String) {
+        if let nib = registration.nib {
+            register(nib, forCellReuseIdentifier: reuseIdentifier)
+        }
+        else {
+            register(registration.class, forCellReuseIdentifier: reuseIdentifier)
+        }
+    }
+
+    func register(headerFooterView registration: UITableViewAdapter.ViewRegistration, forReuseIdentifier reuseIdentifier: String) {
+        if let nib = registration.nib {
+            register(nib, forHeaderFooterViewReuseIdentifier: reuseIdentifier)
+        }
+        else {
+            register(registration.class, forHeaderFooterViewReuseIdentifier: reuseIdentifier)
+        }
     }
 }
 

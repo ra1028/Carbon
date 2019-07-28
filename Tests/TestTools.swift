@@ -393,16 +393,16 @@ final class MockCustomTableViewAdapter: UITableViewAdapter {
     var headerClass: (UITableViewHeaderFooterView & ComponentRenderable).Type = MockCustomTableViewHeaderFooterView1.self
     var footerClass: (UITableViewHeaderFooterView & ComponentRenderable).Type = MockCustomTableViewHeaderFooterView1.self
 
-    override func componentCellClass(tableView: UITableView, indexPath: IndexPath, node: CellNode) -> (UITableViewCell & ComponentRenderable).Type {
-        return cellClass
+    override func cellRegistration(tableView: UITableView, indexPath: IndexPath, node: CellNode) -> CellRegistration {
+        return CellRegistration(class: cellClass)
     }
 
-    override func componentHeaderViewClass(tableView: UITableView, section: Int, node: ViewNode) -> (UITableViewHeaderFooterView & ComponentRenderable).Type {
-        return headerClass
+    override func headerViewRegistration(tableView: UITableView, section: Int, node: ViewNode) -> ViewRegistration {
+        return ViewRegistration(class: headerClass)
     }
 
-    override func componentFooterViewClass(tableView: UITableView, section: Int, node: ViewNode) -> (UITableViewHeaderFooterView & ComponentRenderable).Type {
-        return footerClass
+    override func footerViewRegistration(tableView: UITableView, section: Int, node: ViewNode) -> ViewRegistration {
+        return ViewRegistration(class: footerClass)
     }
 }
 
@@ -415,17 +415,12 @@ final class MockCustomCollectionViewAdapter: UICollectionViewAdapter {
     var cellClass: (UICollectionViewCell & ComponentRenderable).Type = MockCustomCollectionViewCell1.self
     var supplementaryViewClasses: [String: (UICollectionReusableView & ComponentRenderable).Type] = [:]
 
-    override func componentCellClass(collectionView: UICollectionView, indexPath: IndexPath, node: CellNode) -> (UICollectionViewCell & ComponentRenderable).Type {
-        return cellClass
+    override func cellRegistration(collectionView: UICollectionView, indexPath: IndexPath, node: CellNode) -> CellRegistration {
+        return CellRegistration(class: cellClass)
     }
 
-    override func componentSupplementaryViewClass(
-        ofKind kind: String,
-        collectionView: UICollectionView,
-        indexPath: IndexPath,
-        node: ViewNode
-        ) -> (UICollectionReusableView & ComponentRenderable).Type {
-        return supplementaryViewClasses[kind] ?? MockCustomCollectionViewReusableView1.self
+    override func supplementaryViewRegistration(forElementKind kind: String, collectionView: UICollectionView, indexPath: IndexPath, node: ViewNode) -> ViewRegistration {
+        return ViewRegistration(class: supplementaryViewClasses[kind] ?? MockCustomCollectionViewReusableView1.self)
     }
 }
 

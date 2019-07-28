@@ -2,24 +2,30 @@ import ObjectiveC
 
 internal final class RuntimeAssociation<Value> {
     private let key = UnsafeMutablePointer<UInt8>.allocate(capacity: 1)
+    private let defaultValue: () -> Value
 
     deinit {
         key.deinitialize(count: 1)
         key.deallocate()
     }
 
-    internal func value<Owner: AnyObject>(for owner: Owner, default defaultValue: @autoclosure () -> Value) -> Value {
-        if let object = objc_getAssociatedObject(owner, key) as? Value {
-            return object
-        }
-        else {
-            let value = defaultValue()
-            set(value: value, for: owner)
-            return value
-        }
+    init(default defaultValue: @escaping @autoclosure () -> Value) {
+        self.defaultValue = defaultValue
     }
 
-    internal func set<Owner: AnyObject>(value: Value, for owner: Owner) {
-        objc_setAssociatedObject(owner, key, value, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    subscript<Owner: AnyObject>(owner: Owner) -> Value {
+        get {
+            if let object = objc_getAssociatedObject(owner, key) as? Value {
+                return object
+            }
+            else {
+                let value = defaultValue()
+                self[owner] = value
+                return value
+            }
+        }
+        set {
+            objc_setAssociatedObject(owner, key, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
     }
 }

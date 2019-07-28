@@ -60,15 +60,11 @@ final class KyotoViewController: UIViewController {
 extension MagazineLayoutCollectionViewCell: ComponentRenderable {}
 
 final class MagazineLayoutKyotoAdapter: UICollectionViewAdapter, UICollectionViewDelegateMagazineLayout {
-    override func componentCellClass(collectionView: UICollectionView, indexPath: IndexPath, node: CellNode) -> (UICollectionViewCell & ComponentRenderable).Type {
-        return MagazineLayoutCollectionViewCell.self
+    override func cellRegistration(collectionView: UICollectionView, indexPath: IndexPath, node: CellNode) -> CellRegistration {
+        return CellRegistration(class: MagazineLayoutCollectionViewCell.self)
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeModeForItemAt indexPath: IndexPath) -> MagazineLayoutItemSizeMode {
-        return MagazineLayoutItemSizeMode(widthMode: .halfWidth, heightMode: .static(height: 150))
-    }
-
-    override func supplementaryViewNode(forElementKind kind: String, at indexPath: IndexPath) -> ViewNode? {
+    override func supplementaryViewNode(forElementKind kind: String, collectionView: UICollectionView, at indexPath: IndexPath) -> ViewNode? {
         switch kind {
         case MagazineLayout.SupplementaryViewKind.sectionHeader:
             return headerNode(in: indexPath.section)
@@ -77,8 +73,12 @@ final class MagazineLayoutKyotoAdapter: UICollectionViewAdapter, UICollectionVie
             return footerNode(in: indexPath.section)
 
         default:
-            return super.supplementaryViewNode(forElementKind: kind, at: indexPath)
+            return super.supplementaryViewNode(forElementKind: kind, collectionView: collectionView, at: indexPath)
         }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeModeForItemAt indexPath: IndexPath) -> MagazineLayoutItemSizeMode {
+        return MagazineLayoutItemSizeMode(widthMode: .halfWidth, heightMode: .static(height: 150))
     }
 
     func collectionView(
