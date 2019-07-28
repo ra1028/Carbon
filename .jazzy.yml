@@ -44,16 +44,11 @@ custom_categories:
     - UICollectionViewReloadDataUpdater
   - name: Interfaces
     children:
+    - ComponentRenderable
     - UITableViewComponentCell
     - UITableViewComponentHeaderFooterView
     - UICollectionViewComponentCell
     - UICollectionComponentReusableView
-  - name: Content Protocols
-    children:
-    - UITableViewCellContent
-    - UITableViewHeaderFooterViewContent
-    - UICollectionViewCellContent
-    - UICollectionReusableViewContent
   - name: Changesets
     children:
     - DataChangeset

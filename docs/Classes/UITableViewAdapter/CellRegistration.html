@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Config Structure Reference</title>
+    <title>CellRegistration Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Struct/Config" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Struct/CellRegistration" class="dashAnchor"></a>
 
-    <a title="Config Structure Reference"></a>
+    <a title="CellRegistration Structure Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../../index.html">Carbon Reference</a>
       <img class="carat" src="../../img/carat.png" />
-      Config Structure Reference
+      CellRegistration Structure Reference
     </p>
 
     <div class="content-wrapper">
@@ -101,7 +101,10 @@
                 <a class="nav-group-task-link" href="../../Classes/UITableViewAdapter.html">UITableViewAdapter</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../../Classes/UITableViewAdapter/Config.html">– Config</a>
+                <a class="nav-group-task-link" href="../../Classes/UITableViewAdapter/CellRegistration.html">– CellRegistration</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/UITableViewAdapter/ViewRegistration.html">– ViewRegistration</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../../Classes/UITableViewAdapter/SelectionContext.html">– SelectionContext</a>
@@ -110,7 +113,10 @@
                 <a class="nav-group-task-link" href="../../Classes/UICollectionViewAdapter.html">UICollectionViewAdapter</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../../Classes/UICollectionViewAdapter/Config.html">– Config</a>
+                <a class="nav-group-task-link" href="../../Classes/UICollectionViewAdapter/CellRegistration.html">– CellRegistration</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Classes/UICollectionViewAdapter/ViewRegistration.html">– ViewRegistration</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../../Classes/UICollectionViewAdapter/SelectionContext.html">– SelectionContext</a>
@@ -144,6 +150,9 @@
             <a class="nav-group-name-link" href="../../Interfaces.html">Interfaces</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../../Protocols/ComponentRenderable.html">ComponentRenderable</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../../Classes/UITableViewComponentCell.html">UITableViewComponentCell</a>
               </li>
               <li class="nav-group-task">
@@ -154,23 +163,6 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../../Classes/UICollectionComponentReusableView.html">UICollectionComponentReusableView</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../../Content Protocols.html">Content Protocols</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../../Protocols/UITableViewCellContent.html">UITableViewCellContent</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../../Protocols/UITableViewHeaderFooterViewContent.html">UITableViewHeaderFooterViewContent</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../../Protocols/UICollectionViewCellContent.html">UICollectionViewCellContent</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../../Protocols/UICollectionReusableViewContent.html">UICollectionReusableViewContent</a>
               </li>
             </ul>
           </li>
@@ -191,14 +183,14 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>Config</h1>
+            <h1>CellRegistration</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">Config</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">CellRegistration</span></code></pre>
 
                 </div>
               </div>
-            <p>The configuration for the classes of elements in <code>UITableView</code>.</p>
+            <p>Registration info for table view cell.</p>
 
           </div>
         </section>
@@ -210,9 +202,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Carbon18UITableViewAdapterC6ConfigV7defaultAEvpZ"></a>
-                    <a name="//apple_ref/swift/Variable/default" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC6ConfigV7defaultAEvpZ">default</a>
+                    <a name="/s:6Carbon18UITableViewAdapterC16CellRegistrationV5classAA19ComponentRenderable_So0bcE0CXcXpvp"></a>
+                    <a name="//apple_ref/swift/Property/class" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC16CellRegistrationV5classAA19ComponentRenderable_So0bcE0CXcXpvp">class</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -220,14 +212,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The default configuration.</p>
+                        <p>A class for register cell conforming <code><a href="../../Protocols/ComponentRenderable.html">ComponentRenderable</a></code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">var</span> <span class="p">`</span><span class="nv">default</span><span class="p">`:</span> <span class="kt"><a href="../../Classes/UITableViewAdapter.html">UITableViewAdapter</a></span><span class="o">.</span><span class="kt">Config</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">var</span> <span class="p">`</span><span class="nv">class</span><span class="p">`:</span> <span class="p">(</span><span class="kt">UITableViewCell</span> <span class="o">&amp;</span> <span class="kt"><a href="../../Protocols/ComponentRenderable.html">ComponentRenderable</a></span><span class="p">)</span><span class="o">.</span><span class="k">Type</span></code></pre>
 
                         </div>
                       </div>
@@ -237,9 +229,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Carbon18UITableViewAdapterC6ConfigV9cellClassAA0bC13ComponentCellCmvp"></a>
-                    <a name="//apple_ref/swift/Property/cellClass" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC6ConfigV9cellClassAA0bC13ComponentCellCmvp">cellClass</a>
+                    <a name="/s:6Carbon18UITableViewAdapterC16CellRegistrationV3nibSo5UINibCSgvp"></a>
+                    <a name="//apple_ref/swift/Property/nib" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC16CellRegistrationV3nibSo5UINibCSgvp">nib</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -247,14 +239,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The class of the cell.</p>
+                        <p>The nib for register cell.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">cellClass</span><span class="p">:</span> <span class="kt"><a href="../../Classes/UITableViewComponentCell.html">UITableViewComponentCell</a></span><span class="o">.</span><span class="k">Type</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">nib</span><span class="p">:</span> <span class="kt">UINib</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -264,9 +256,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Carbon18UITableViewAdapterC6ConfigV06headerC5ClassAA0bc21ComponentHeaderFooterC0Cmvp"></a>
-                    <a name="//apple_ref/swift/Property/headerViewClass" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC6ConfigV06headerC5ClassAA0bc21ComponentHeaderFooterC0Cmvp">headerViewClass</a>
+                    <a name="/s:6Carbon18UITableViewAdapterC16CellRegistrationV5class3nibAeA19ComponentRenderable_So0bcE0CXcXp_So5UINibCSgtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(class:nib:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC16CellRegistrationV5class3nibAeA19ComponentRenderable_So0bcE0CXcXp_So5UINibCSgtcfc">init(class:nib:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -274,117 +266,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The class of the header view.</p>
+                        <p>Create a new registration.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">headerViewClass</span><span class="p">:</span> <span class="kt"><a href="../../Classes/UITableViewComponentHeaderFooterView.html">UITableViewComponentHeaderFooterView</a></span><span class="o">.</span><span class="k">Type</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">class</span><span class="p">:</span> <span class="p">(</span><span class="kt">UITableViewCell</span> <span class="o">&amp;</span> <span class="kt"><a href="../../Protocols/ComponentRenderable.html">ComponentRenderable</a></span><span class="p">)</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="nv">nib</span><span class="p">:</span> <span class="kt">UINib</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:6Carbon18UITableViewAdapterC6ConfigV06footerC5ClassAA0bc21ComponentHeaderFooterC0Cmvp"></a>
-                    <a name="//apple_ref/swift/Property/footerViewClass" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC6ConfigV06footerC5ClassAA0bc21ComponentHeaderFooterC0Cmvp">footerViewClass</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The class of the footer view.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">footerViewClass</span><span class="p">:</span> <span class="kt"><a href="../../Classes/UITableViewComponentHeaderFooterView.html">UITableViewComponentHeaderFooterView</a></span><span class="o">.</span><span class="k">Type</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:6Carbon18UITableViewAdapterC6ConfigV9cellClass06headercG006footercG0AeA0bC13ComponentCellCm_AA0bcj12HeaderFooterC0CmALmtcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(cellClass:headerViewClass:footerViewClass:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC6ConfigV9cellClass06headercG006footercG0AeA0bC13ComponentCellCm_AA0bcj12HeaderFooterC0CmALmtcfc">init(cellClass:headerViewClass:footerViewClass:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Create a render configuration with the classes of elements.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
-    <span class="nv">cellClass</span><span class="p">:</span> <span class="kt"><a href="../../Classes/UITableViewComponentCell.html">UITableViewComponentCell</a></span><span class="o">.</span><span class="k">Type</span> <span class="o">=</span> <span class="kt"><a href="../../Classes/UITableViewComponentCell.html">UITableViewComponentCell</a></span><span class="o">.</span><span class="k">self</span><span class="p">,</span>
-    <span class="nv">headerViewClass</span><span class="p">:</span> <span class="kt"><a href="../../Classes/UITableViewComponentHeaderFooterView.html">UITableViewComponentHeaderFooterView</a></span><span class="o">.</span><span class="k">Type</span> <span class="o">=</span> <span class="kt"><a href="../../Classes/UITableViewComponentHeaderFooterView.html">UITableViewComponentHeaderFooterView</a></span><span class="o">.</span><span class="k">self</span><span class="p">,</span>
-    <span class="nv">footerViewClass</span><span class="p">:</span> <span class="kt"><a href="../../Classes/UITableViewComponentHeaderFooterView.html">UITableViewComponentHeaderFooterView</a></span><span class="o">.</span><span class="k">Type</span> <span class="o">=</span> <span class="kt"><a href="../../Classes/UITableViewComponentHeaderFooterView.html">UITableViewComponentHeaderFooterView</a></span><span class="o">.</span><span class="k">self</span>
-    <span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>cellClass</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The class of cell.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>headerViewClass</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The class of header view.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>footerViewClass</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The class of footer view.</p>
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
                       </div>
                     </section>
                   </div>
@@ -397,7 +288,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2019 <a class="link" href="https://github.com/ra1028" target="_blank" rel="external">Ryo Aoyama</a>. All rights reserved. (Last updated: 2019-05-14)</p>
+      <p>&copy; 2019 <a class="link" href="https://github.com/ra1028" target="_blank" rel="external">Ryo Aoyama</a>. All rights reserved. (Last updated: 2019-07-29)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

@@ -3,7 +3,6 @@ import UIKit
 /// An adapter for `UICollectionView`.
 /// It can be inherited to implement customized behavior or give some unimplemented
 /// methods of delegate or dataSource.
-/// Classes of cell, header and footer to be rendered can be customized by `UICollectionViewRenderConfig`.
 ///
 /// Attention : In UIKit, if inheriting the @objc class which using generics, the delegate and dataSource
 ///             are don't work properly, so this class doesn't use generics, and also the class inherited
@@ -15,7 +14,7 @@ open class UICollectionViewAdapter: NSObject, Adapter {
     /// A closure that to handle selection events of cell.
     open var didSelect: ((SelectionContext) -> Void)?
 
-    /// Create an adapter with initial data and rendering config.
+    /// Create an adapter with initial data.
     ///
     /// - Parameters:
     ///   - data: An initial data to be rendered.

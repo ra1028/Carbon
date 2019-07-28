@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>SelectionContext Structure Reference</title>
+    <title>ViewRegistration Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Struct/SelectionContext" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Struct/ViewRegistration" class="dashAnchor"></a>
 
-    <a title="SelectionContext Structure Reference"></a>
+    <a title="ViewRegistration Structure Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../../index.html">Carbon Reference</a>
       <img class="carat" src="../../img/carat.png" />
-      SelectionContext Structure Reference
+      ViewRegistration Structure Reference
     </p>
 
     <div class="content-wrapper">
@@ -183,14 +183,14 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>SelectionContext</h1>
+            <h1>ViewRegistration</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">SelectionContext</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">ViewRegistration</span></code></pre>
 
                 </div>
               </div>
-            <p>Context when cell is selected.</p>
+            <p>Registration info for table view header or footer view.</p>
 
           </div>
         </section>
@@ -202,9 +202,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Carbon18UITableViewAdapterC16SelectionContextV05tableC0So0bC0Cvp"></a>
-                    <a name="//apple_ref/swift/Property/tableView" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC16SelectionContextV05tableC0So0bC0Cvp">tableView</a>
+                    <a name="/s:6Carbon18UITableViewAdapterC0C12RegistrationV5classAA19ComponentRenderable_So0bc12HeaderFooterC0CXcXpvp"></a>
+                    <a name="//apple_ref/swift/Property/class" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC0C12RegistrationV5classAA19ComponentRenderable_So0bc12HeaderFooterC0CXcXpvp">class</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -212,14 +212,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A table view of the selected cell.</p>
+                        <p>A class for register header or footer view conforming <code><a href="../../Protocols/ComponentRenderable.html">ComponentRenderable</a></code>.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">var</span> <span class="p">`</span><span class="nv">class</span><span class="p">`:</span> <span class="p">(</span><span class="kt">UITableViewHeaderFooterView</span> <span class="o">&amp;</span> <span class="kt"><a href="../../Protocols/ComponentRenderable.html">ComponentRenderable</a></span><span class="p">)</span><span class="o">.</span><span class="k">Type</span></code></pre>
 
                         </div>
                       </div>
@@ -229,9 +229,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Carbon18UITableViewAdapterC16SelectionContextV4nodeAA8CellNodeVvp"></a>
-                    <a name="//apple_ref/swift/Property/node" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC16SelectionContextV4nodeAA8CellNodeVvp">node</a>
+                    <a name="/s:6Carbon18UITableViewAdapterC0C12RegistrationV3nibSo5UINibCSgvp"></a>
+                    <a name="//apple_ref/swift/Property/nib" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC0C12RegistrationV3nibSo5UINibCSgvp">nib</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -239,14 +239,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A node corresponding to the selected cell position.</p>
+                        <p>The nib for register header or footer view.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">node</span><span class="p">:</span> <span class="kt"><a href="../../Structs/CellNode.html">CellNode</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">nib</span><span class="p">:</span> <span class="kt">UINib</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -256,9 +256,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Carbon18UITableViewAdapterC16SelectionContextV9indexPath10Foundation05IndexH0Vvp"></a>
-                    <a name="//apple_ref/swift/Property/indexPath" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC16SelectionContextV9indexPath10Foundation05IndexH0Vvp">indexPath</a>
+                    <a name="/s:6Carbon18UITableViewAdapterC0C12RegistrationV5class3nibAeA19ComponentRenderable_So0bc12HeaderFooterC0CXcXp_So5UINibCSgtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(class:nib:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC0C12RegistrationV5class3nibAeA19ComponentRenderable_So0bc12HeaderFooterC0CXcXp_So5UINibCSgtcfc">init(class:nib:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -266,14 +266,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The index path of the selected cell.</p>
+                        <p>Create a new registration.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">class</span><span class="p">:</span> <span class="p">(</span><span class="kt">UITableViewHeaderFooterView</span> <span class="o">&amp;</span> <span class="kt"><a href="../../Protocols/ComponentRenderable.html">ComponentRenderable</a></span><span class="p">)</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="nv">nib</span><span class="p">:</span> <span class="kt">UINib</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
