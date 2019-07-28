@@ -385,42 +385,46 @@ final class MockScrollView: UIScrollView {
 
 final class MockCustomTableViewCell1: UITableViewCell, ComponentRenderable {}
 final class MockCustomTableViewCell2: UITableViewCell, ComponentRenderable {}
+final class MockCustomXibTableViewCell: UITableViewCell, ComponentRenderable {}
 final class MockCustomTableViewHeaderFooterView1: UITableViewHeaderFooterView, ComponentRenderable {}
 final class MockCustomTableViewHeaderFooterView2: UITableViewHeaderFooterView, ComponentRenderable {}
+final class MockCustomXibTableViewHeaderFooterView: UITableViewHeaderFooterView, ComponentRenderable {}
 
 final class MockCustomTableViewAdapter: UITableViewAdapter {
-    var cellClass: (UITableViewCell & ComponentRenderable).Type = MockCustomTableViewCell1.self
-    var headerClass: (UITableViewHeaderFooterView & ComponentRenderable).Type = MockCustomTableViewHeaderFooterView1.self
-    var footerClass: (UITableViewHeaderFooterView & ComponentRenderable).Type = MockCustomTableViewHeaderFooterView1.self
+    var cellRegistration = CellRegistration(class: MockCustomTableViewCell1.self)
+    var headerRegistration = ViewRegistration(class: MockCustomTableViewHeaderFooterView1.self)
+    var footerRegistration = ViewRegistration(class: MockCustomTableViewHeaderFooterView1.self)
 
     override func cellRegistration(tableView: UITableView, indexPath: IndexPath, node: CellNode) -> CellRegistration {
-        return CellRegistration(class: cellClass)
+        return cellRegistration
     }
 
     override func headerViewRegistration(tableView: UITableView, section: Int, node: ViewNode) -> ViewRegistration {
-        return ViewRegistration(class: headerClass)
+        return headerRegistration
     }
 
     override func footerViewRegistration(tableView: UITableView, section: Int, node: ViewNode) -> ViewRegistration {
-        return ViewRegistration(class: footerClass)
+        return footerRegistration
     }
 }
 
 final class MockCustomCollectionViewCell1: UICollectionViewCell, ComponentRenderable {}
 final class MockCustomCollectionViewCell2: UICollectionViewCell, ComponentRenderable {}
+final class MockCustomXibCollectionViewCell: UICollectionViewCell, ComponentRenderable {}
 final class MockCustomCollectionViewReusableView1: UICollectionReusableView, ComponentRenderable {}
 final class MockCustomCollectionViewReusableView2: UICollectionReusableView, ComponentRenderable {}
+final class MockCustomXibCollectionViewReusableView: UICollectionReusableView, ComponentRenderable {}
 
 final class MockCustomCollectionViewAdapter: UICollectionViewAdapter {
-    var cellClass: (UICollectionViewCell & ComponentRenderable).Type = MockCustomCollectionViewCell1.self
-    var supplementaryViewClasses: [String: (UICollectionReusableView & ComponentRenderable).Type] = [:]
+    var cellRegistration = CellRegistration(class: MockCustomCollectionViewCell1.self)
+    var supplementaryViewRegistrations: [String: ViewRegistration] = [:]
 
     override func cellRegistration(collectionView: UICollectionView, indexPath: IndexPath, node: CellNode) -> CellRegistration {
-        return CellRegistration(class: cellClass)
+        return cellRegistration
     }
 
     override func supplementaryViewRegistration(forElementKind kind: String, collectionView: UICollectionView, indexPath: IndexPath, node: ViewNode) -> ViewRegistration {
-        return ViewRegistration(class: supplementaryViewClasses[kind] ?? MockCustomCollectionViewReusableView1.self)
+        return supplementaryViewRegistrations[kind] ?? ViewRegistration(class: MockCustomCollectionViewReusableView1.self)
     }
 }
 
@@ -485,5 +489,11 @@ extension XCTestCase {
         wait(for: [expectation], timeout: 3)
 
         testing()
+    }
+}
+
+extension UINib {
+    convenience init(for class: AnyClass) {
+        self.init(nibName: String(describing: `class`), bundle: Bundle(for: `class`))
     }
 }

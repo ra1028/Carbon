@@ -303,11 +303,14 @@ final class UICollectionViewFlowLayoutAdapterTests: XCTestCase {
             }
         }
 
-        adapter.cellClass = MockCustomCollectionViewCell1.self
+        adapter.cellRegistration = .init(class: MockCustomCollectionViewCell1.self)
         check(expectedClass: MockCustomCollectionViewCell1.self)
 
-        adapter.cellClass = MockCustomCollectionViewCell2.self
+        adapter.cellRegistration = .init(class: MockCustomCollectionViewCell2.self)
         check(expectedClass: MockCustomCollectionViewCell2.self)
+
+        adapter.cellRegistration = .init(class: MockCustomXibCollectionViewCell.self)
+        check(expectedClass: MockCustomXibCollectionViewCell.self)
     }
 
     func testViewForHeaderFooter() {
@@ -358,16 +361,28 @@ final class UICollectionViewFlowLayoutAdapterTests: XCTestCase {
             check(view: view, expectedClass: expectedClass)
         }
 
-        adapter.supplementaryViewClasses[UICollectionView.elementKindSectionHeader] = MockCustomCollectionViewReusableView1.self
+        adapter.supplementaryViewRegistrations[UICollectionView.elementKindSectionHeader] = .init(class: MockCustomCollectionViewReusableView1.self)
         checkHeader(expectedClass: MockCustomCollectionViewReusableView1.self)
 
-        adapter.supplementaryViewClasses[UICollectionView.elementKindSectionHeader] = MockCustomCollectionViewReusableView2.self
+        adapter.supplementaryViewRegistrations[UICollectionView.elementKindSectionHeader] = .init(class: MockCustomCollectionViewReusableView2.self)
         checkHeader(expectedClass: MockCustomCollectionViewReusableView2.self)
 
-        adapter.supplementaryViewClasses[UICollectionView.elementKindSectionFooter] = MockCustomCollectionViewReusableView1.self
+        adapter.supplementaryViewRegistrations[UICollectionView.elementKindSectionHeader] = .init(
+            class: MockCustomXibCollectionViewReusableView.self,
+            nib: UINib(for: MockCustomXibCollectionViewReusableView.self)
+        )
+        checkHeader(expectedClass: MockCustomXibCollectionViewReusableView.self)
+
+        adapter.supplementaryViewRegistrations[UICollectionView.elementKindSectionFooter] = .init(class: MockCustomCollectionViewReusableView1.self)
         checkFooter(expectedClass: MockCustomCollectionViewReusableView1.self)
 
-        adapter.supplementaryViewClasses[UICollectionView.elementKindSectionFooter] = MockCustomCollectionViewReusableView2.self
+        adapter.supplementaryViewRegistrations[UICollectionView.elementKindSectionFooter] = .init(class: MockCustomCollectionViewReusableView2.self)
         checkFooter(expectedClass: MockCustomCollectionViewReusableView2.self)
+
+        adapter.supplementaryViewRegistrations[UICollectionView.elementKindSectionFooter] = .init(
+            class: MockCustomXibCollectionViewReusableView.self,
+            nib: UINib(for: MockCustomXibCollectionViewReusableView.self)
+        )
+        checkFooter(expectedClass: MockCustomXibCollectionViewReusableView.self)
     }
 }

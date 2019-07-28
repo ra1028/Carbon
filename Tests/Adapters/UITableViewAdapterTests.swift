@@ -335,11 +335,14 @@ final class UITableViewAdapterTests: XCTestCase {
             }
         }
 
-        adapter.cellClass = MockCustomTableViewCell1.self
+        adapter.cellRegistration = .init(class: MockCustomTableViewCell1.self)
         check(expectedClass: MockCustomTableViewCell1.self)
 
-        adapter.cellClass = MockCustomTableViewCell2.self
+        adapter.cellRegistration = .init(class: MockCustomTableViewCell2.self)
         check(expectedClass: MockCustomTableViewCell2.self)
+
+        adapter.cellRegistration = .init(class: MockCustomXibTableViewCell.self, nib: UINib(for: MockCustomXibTableViewCell.self))
+        check(expectedClass: MockCustomXibTableViewCell.self)
     }
 
     func testViewForHeaderFooter() {
@@ -379,16 +382,22 @@ final class UITableViewAdapterTests: XCTestCase {
             check(view: view, expectedClass: expectedClass)
         }
 
-        adapter.headerClass = MockCustomTableViewHeaderFooterView1.self
+        adapter.headerRegistration = .init(class: MockCustomTableViewHeaderFooterView1.self)
         checkHeader(expectedClass: MockCustomTableViewHeaderFooterView1.self)
 
-        adapter.headerClass = MockCustomTableViewHeaderFooterView2.self
+        adapter.headerRegistration = .init(class: MockCustomTableViewHeaderFooterView2.self)
         checkHeader(expectedClass: MockCustomTableViewHeaderFooterView2.self)
 
-        adapter.footerClass = MockCustomTableViewHeaderFooterView1.self
+        adapter.headerRegistration = .init(class: MockCustomXibTableViewHeaderFooterView.self, nib: UINib(for: MockCustomXibTableViewHeaderFooterView.self))
+        checkHeader(expectedClass: MockCustomXibTableViewHeaderFooterView.self)
+
+        adapter.footerRegistration = .init(class: MockCustomTableViewHeaderFooterView1.self)
         checkFooter(expectedClass: MockCustomTableViewHeaderFooterView1.self)
 
-        adapter.footerClass = MockCustomTableViewHeaderFooterView2.self
+        adapter.footerRegistration = .init(class: MockCustomTableViewHeaderFooterView2.self)
         checkFooter(expectedClass: MockCustomTableViewHeaderFooterView2.self)
+
+        adapter.footerRegistration = .init(class: MockCustomXibTableViewHeaderFooterView.self, nib: UINib(for: MockCustomXibTableViewHeaderFooterView.self))
+        checkFooter(expectedClass: MockCustomXibTableViewHeaderFooterView.self)
     }
 }

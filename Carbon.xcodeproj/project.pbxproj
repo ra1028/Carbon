@@ -30,6 +30,10 @@
 		6B6594BB21E2532100291AAF /* UITableViewComponentHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6594A121E2532100291AAF /* UITableViewComponentHeaderFooterView.swift */; };
 		6B6594BD21E2532100291AAF /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6594A321E2532100291AAF /* Renderer.swift */; };
 		6B6594C221E2599600291AAF /* DifferenceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6594C121E2599600291AAF /* DifferenceKit.framework */; };
+		6B6F25BF22EE201F009C3029 /* MockCustomXibTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6F25BE22EE201F009C3029 /* MockCustomXibTableViewCell.xib */; };
+		6B6F25C122EE234F009C3029 /* MockCustomXibCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6F25C022EE234F009C3029 /* MockCustomXibCollectionViewCell.xib */; };
+		6B6F25C322EE25A2009C3029 /* MockCustomXibTableViewHeaderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6F25C222EE25A2009C3029 /* MockCustomXibTableViewHeaderFooterView.xib */; };
+		6B6F25C522EE267E009C3029 /* MockCustomXibCollectionViewReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6F25C422EE267E009C3029 /* MockCustomXibCollectionViewReusableView.xib */; };
 		6B7ADEB121F783E3003803BE /* ComponentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7ADEB021F783E3003803BE /* ComponentTests.swift */; };
 		6B7ADEB321F783E3003803BE /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B65947A21E252E300291AAF /* Carbon.framework */; };
 		6B7ADEBA21F78957003803BE /* TestTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7ADEB921F78957003803BE /* TestTools.swift */; };
@@ -88,6 +92,10 @@
 		6B6594A321E2532100291AAF /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		6B6594BF21E2534B00291AAF /* Carbon.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Carbon.xcconfig; sourceTree = "<group>"; };
 		6B6594C121E2599600291AAF /* DifferenceKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DifferenceKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B6F25BE22EE201F009C3029 /* MockCustomXibTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MockCustomXibTableViewCell.xib; sourceTree = "<group>"; };
+		6B6F25C022EE234F009C3029 /* MockCustomXibCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MockCustomXibCollectionViewCell.xib; sourceTree = "<group>"; };
+		6B6F25C222EE25A2009C3029 /* MockCustomXibTableViewHeaderFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MockCustomXibTableViewHeaderFooterView.xib; sourceTree = "<group>"; };
+		6B6F25C422EE267E009C3029 /* MockCustomXibCollectionViewReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MockCustomXibCollectionViewReusableView.xib; sourceTree = "<group>"; };
 		6B7ADEAE21F783E3003803BE /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B7ADEB021F783E3003803BE /* ComponentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentTests.swift; sourceTree = "<group>"; };
 		6B7ADEB221F783E3003803BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -255,6 +263,10 @@
 			children = (
 				6B7ADECB21FA067E003803BE /* UITableViewAdapterTests.swift */,
 				6B7ADECD21FA1B32003803BE /* UICollectionViewFlowLayoutAdapterTests.swift */,
+				6B6F25BE22EE201F009C3029 /* MockCustomXibTableViewCell.xib */,
+				6B6F25C222EE25A2009C3029 /* MockCustomXibTableViewHeaderFooterView.xib */,
+				6B6F25C022EE234F009C3029 /* MockCustomXibCollectionViewCell.xib */,
+				6B6F25C422EE267E009C3029 /* MockCustomXibCollectionViewReusableView.xib */,
 			);
 			path = Adapters;
 			sourceTree = "<group>";
@@ -387,6 +399,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B6F25C122EE234F009C3029 /* MockCustomXibCollectionViewCell.xib in Resources */,
+				6B6F25C522EE267E009C3029 /* MockCustomXibCollectionViewReusableView.xib in Resources */,
+				6B6F25C322EE25A2009C3029 /* MockCustomXibTableViewHeaderFooterView.xib in Resources */,
+				6B6F25BF22EE201F009C3029 /* MockCustomXibTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
