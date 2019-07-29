@@ -39,10 +39,11 @@ struct Label: Component, Equatable {
 // Create renderer
 
 let renderer = Renderer(
-    target: tableView,
     adapter: UITableViewAdapter(),
     updater: UITableViewUpdater()
 )
+
+renderer.target = tableView
 
 // Render
 
