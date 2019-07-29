@@ -504,8 +504,8 @@ Default is `false`.
 
 ## Requirements
 
-- Swift 4.2+
-- iOS 10.0+
+- Swift 5.0+
+- iOS 10.2+
 
 ---
 
