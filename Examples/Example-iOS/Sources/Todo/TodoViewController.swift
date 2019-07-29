@@ -52,12 +52,12 @@ final class TodoViewController: UIViewController, UITextViewDelegate {
 
     func render() {
         renderer.render(
-            Section(
-                id: ID.task,
-                header: state.todos.isEmpty
+            Section(id: ID.task) { section in
+                section.header = state.todos.isEmpty
                     ? ViewNode(TodoEmpty())
-                    : ViewNode(Header(title: "TASKS")),
-                cells: state.todos.enumerated().map { offset, todo in
+                    : ViewNode(Header(title: "TASKS"))
+
+                section.cells = state.todos.enumerated().map { offset, todo in
                     CellNode(TodoText(todo: todo, isCompleted: false) { [weak self] event in
                         switch event {
                         case .toggleCompleted:
@@ -69,13 +69,13 @@ final class TodoViewController: UIViewController, UITextViewDelegate {
                         }
                     })
                 }
-            ),
-            Section(
-                id: ID.completed,
-                header: state.completed.isEmpty
-                    ? nil
-                    : ViewNode(Header(title: "COMPLETED")),
-                cells: state.completed.enumerated().map { offset, todo in
+            },
+            Section(id: ID.completed) { section in
+                if !state.completed.isEmpty {
+                    section.header = ViewNode(Header(title: "COMPLETED"))
+                }
+
+                section.cells = state.completed.enumerated().map { offset, todo in
                     CellNode(TodoText(todo: todo, isCompleted: true) { [weak self] event in
                         switch event {
                         case .toggleCompleted:
@@ -87,7 +87,7 @@ final class TodoViewController: UIViewController, UITextViewDelegate {
                         }
                     })
                 }
-            )
+            }
         )
     }
 
