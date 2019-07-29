@@ -22,7 +22,7 @@ public protocol UITableViewHeaderFooterViewContent {
     ///
     /// - Parameter:
     ///   - view: An instance of view rendering `self`.
-    func viwDidPrepareForReuse(_ view: UITableViewHeaderFooterView)
+    func viewDidPrepareForReuse(_ view: UITableViewHeaderFooterView)
 }
 
 public extension UITableViewHeaderFooterViewContent {
@@ -42,5 +42,5 @@ public extension UITableViewHeaderFooterViewContent {
     ///
     /// - Parameter:
     ///   - view: An instance of view rendering `self`.
-    func viwDidPrepareForReuse(_ view: UITableViewHeaderFooterView) {}
+    func viewDidPrepareForReuse(_ view: UITableViewHeaderFooterView) {}
 }

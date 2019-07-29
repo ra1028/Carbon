@@ -29,7 +29,7 @@ open class UITableViewComponentHeaderFooterView: UITableViewHeaderFooterView, Co
     open override func prepareForReuse() {
         super.prepareForReuse()
 
-        renderedViewContent?.viwDidPrepareForReuse(self)
+        renderedViewContent?.viewDidPrepareForReuse(self)
     }
 
     /// Called after the content is rendered on `self`.
