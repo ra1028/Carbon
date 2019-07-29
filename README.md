@@ -327,7 +327,9 @@ class MenuItemContent: UIControl {
         addTarget(self, action: #selector(handleSelect), for: .touchUpInside)
     }
 }
+```
 
+```swift
 struct MenuItem: Component {
     var text: String
     var onSelect: () -> Void
@@ -406,18 +408,42 @@ let renderer = Renderer(
 )
 ```
 
-Furthermore, it can be customized the class of the elements(cell/header/footer) which becomes the container of component by setting it to `config`.  
-
-- **config**  
-The configuration which having the classes of elements. It can be specified only when adapter is initialized.  
+Furthermore, it can be customized the class of the elements(cell/header/footer) which becomes the container of components by overriding some methods in adapter as following.  
+You can also use `xib` by giving nib as parameter of init of the return value Registration.  
 
 ```swift
-let config = UITableViewAdapter.Config(
-    cellClass: CustomCell.self,
-    headerViewClass: CustomHeaderView.self,
-    footerViewClass: CustomFooterView.self
-)
-let adapter = UITableViewAdapter(config: config)
+class CustomTableViewAdapter: UITableViewAdapter {
+    // Use custom cell.
+    override func cellRegistration(tableView: UITableView, indexPath: IndexPath, node: CellNode) -> CellRegistration {
+        return CellRegistration(class: CustomTableViewCell.self)
+    }
+
+    // Use custom header view.
+    override func headerViewRegistration(tableView: UITableView, section: Int, node: ViewNode) -> ViewRegistration {
+        return ViewRegistration(class: CustomTableViewHeaderFooterView.self)
+    }
+
+    // Use custom footer view.
+    override func footerViewRegistration(tableView: UITableView, section: Int, node: ViewNode) -> ViewRegistration {
+        return ViewRegistration(class: CustomTableViewHeaderFooterView.self)
+    }
+}
+```
+
+In UICollectionViewAdapter, you can select the node corresponding to a certain kind.  
+
+```swift
+class CustomCollectionViewAdapter: UICollectionViewAdapter {
+    override func supplementaryViewNode(forElementKind kind: String, collectionView: UICollectionView, at indexPath: IndexPath) -> ViewNode? {
+        switch kind {
+        case "CustomSupplementaryViewKindSectionHeader":
+            return headerNode(in: indexPath.section)
+
+        default:
+            return super.supplementaryViewNode(forElementKind: kind, collectionView: collectionView, at: indexPath)
+        }
+    }
+}
 ```
 
 [See more](https://ra1028.github.io/Carbon/Adapters.html)
@@ -457,18 +483,6 @@ The content offset become unintended position after diffing updates in some case
 Default is `false`.  
 
 [See more](https://ra1028.github.io/Carbon/Updaters.html)
-
-#### Element-Specific Behaviors
-
-The `content` of component can be received some emement-specific events such as when highlighted, selected, or immediately after rendered, by conforming to protocols below.  
-We recommend to do implementation that doesn't count on this protocols.  
-
-- **UITableViewCellContent**
-- **UITableViewHeaderFooterViewContent**
-- **UICollectionViewCellContent**
-- **UICollectionReusableViewContent**
-
-[See more](https://ra1028.github.io/Carbon/Content%20Protocols.html)
 
 ---
 

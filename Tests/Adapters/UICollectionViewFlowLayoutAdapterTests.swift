@@ -36,8 +36,7 @@ final class UICollectionViewFlowLayoutAdapterTests: XCTestCase {
     }
 
     func testCellForItem() {
-        let config = UICollectionViewAdapter.Config(cellClass: MockCollectionViewCell.self)
-        let adapter = UICollectionViewFlowLayoutAdapter(config: config)
+        let adapter = UICollectionViewFlowLayoutAdapter()
         let component = A.Component()
         adapter.data = [
             Section(
@@ -51,10 +50,10 @@ final class UICollectionViewFlowLayoutAdapterTests: XCTestCase {
         let cell = adapter.collectionView(collectionView, cellForItemAt: IndexPath(item: 0, section: 0))
 
         if
-            let testCell = cell as? MockCollectionViewCell,
+            let testCell = cell as? UICollectionViewComponentCell,
             let renderedContent = testCell.renderedContent,
             let renderedComponent = testCell.renderedComponent {
-            XCTAssertTrue(testCell.isMember(of: MockCollectionViewCell.self))
+            XCTAssertTrue(testCell.isMember(of: UICollectionViewComponentCell.self))
             XCTAssertTrue(renderedContent is  A.Component.Content)
             XCTAssertEqual(renderedComponent.as(A.Component.self), component)
         }
@@ -64,8 +63,7 @@ final class UICollectionViewFlowLayoutAdapterTests: XCTestCase {
     }
 
     func testViewForHeader() {
-        let config = UICollectionViewAdapter.Config(headerViewClass: MockCollectionReusableView.self)
-        let adapter = UICollectionViewFlowLayoutAdapter(config: config)
+        let adapter = UICollectionViewFlowLayoutAdapter()
         let component = MockComponent(referenceSize: CGSize(width: 100, height: 100))
         adapter.data = [
             Section(
@@ -88,10 +86,10 @@ final class UICollectionViewFlowLayoutAdapterTests: XCTestCase {
         let view = adapter.collectionView(collectionView, viewForSupplementaryElementOfKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: 0))
 
         if
-            let testView = view as? MockCollectionReusableView,
+            let testView = view as? UICollectionComponentReusableView,
             let renderedContent = testView.renderedContent,
             let renderedComponent = testView.renderedComponent {
-            XCTAssertTrue(testView.isMember(of: MockCollectionReusableView.self))
+            XCTAssertTrue(testView.isMember(of: UICollectionComponentReusableView.self))
             XCTAssertTrue(renderedContent is MockComponent.Content)
             XCTAssertEqual(renderedComponent.as(MockComponent.self), component)
         }
@@ -101,8 +99,7 @@ final class UICollectionViewFlowLayoutAdapterTests: XCTestCase {
     }
 
     func testViewForFooter() {
-        let config = UICollectionViewAdapter.Config(footerViewClass: MockCollectionReusableView.self)
-        let adapter = UICollectionViewFlowLayoutAdapter(config: config)
+        let adapter = UICollectionViewFlowLayoutAdapter()
         let component = MockComponent(referenceSize: CGSize(width: 100, height: 100))
         adapter.data = [
             Section(
@@ -125,10 +122,10 @@ final class UICollectionViewFlowLayoutAdapterTests: XCTestCase {
         let view = adapter.collectionView(collectionView, viewForSupplementaryElementOfKind: UICollectionView.elementKindSectionFooter, at: IndexPath(item: 0, section: 0))
 
         if
-            let testView = view as? MockCollectionReusableView,
+            let testView = view as? UICollectionComponentReusableView,
             let renderedContent = testView.renderedContent,
             let renderedComponent = testView.renderedComponent {
-            XCTAssertTrue(testView.isMember(of: MockCollectionReusableView.self))
+            XCTAssertTrue(testView.isMember(of: UICollectionComponentReusableView.self))
             XCTAssertTrue(renderedContent is MockComponent.Content)
             XCTAssertEqual(renderedComponent.as(MockComponent.self), component)
         }
@@ -273,5 +270,119 @@ final class UICollectionViewFlowLayoutAdapterTests: XCTestCase {
         XCTAssertEqual(renderedContent(of: headerView, as: MockComponent.Content.self), headerComponent.contentCapturedOnDidEndDisplay)
         XCTAssertEqual(renderedContent(of: footerView, as: MockComponent.Content.self), footerComponent.contentCapturedOnWillDisplay)
         XCTAssertEqual(renderedContent(of: footerView, as: MockComponent.Content.self), footerComponent.contentCapturedOnDidEndDisplay)
+    }
+
+    func testCustomCell() {
+        let adapter = MockCustomCollectionViewAdapter()
+        let component = A.Component()
+        adapter.data = [
+            Section(
+                id: TestID.a,
+                cells: [CellNode(component)]
+            )
+        ]
+
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+
+        func check(expectedClass: (UICollectionViewCell & ComponentRenderable).Type) {
+            let cell = adapter.collectionView(
+                collectionView,
+                cellForItemAt: IndexPath(row: 0, section: 0)
+            )
+
+            if
+                let testCell = cell as? UICollectionViewCell & ComponentRenderable,
+                let renderedContent = testCell.renderedContent,
+                let renderedComponent = testCell.renderedComponent {
+                XCTAssertTrue(testCell.isMember(of: expectedClass))
+                XCTAssertTrue(renderedContent is A.Component.Content)
+                XCTAssertEqual(renderedComponent.as(A.Component.self), component)
+            }
+            else {
+                XCTFail()
+            }
+        }
+
+        adapter.cellRegistration = .init(class: MockCustomCollectionViewCell1.self)
+        check(expectedClass: MockCustomCollectionViewCell1.self)
+
+        adapter.cellRegistration = .init(class: MockCustomCollectionViewCell2.self)
+        check(expectedClass: MockCustomCollectionViewCell2.self)
+
+        adapter.cellRegistration = .init(class: MockCustomXibCollectionViewCell.self)
+        check(expectedClass: MockCustomXibCollectionViewCell.self)
+    }
+
+    func testViewForHeaderFooter() {
+        let adapter = MockCustomCollectionViewAdapter()
+        let component = A.Component()
+        adapter.data = [
+            Section(
+                id: TestID.a,
+                header: ViewNode(component),
+                footer: ViewNode(component)
+            )
+        ]
+
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+        collectionView.dataSource = adapter
+        collectionView.delegate = adapter
+        collectionView.layoutIfNeeded()
+
+        func check(view: UICollectionReusableView, expectedClass: (UICollectionReusableView & ComponentRenderable).Type) {
+            if
+                let testView = view as? UICollectionReusableView & ComponentRenderable,
+                let renderedContent = testView.renderedContent,
+                let renderedComponent = testView.renderedComponent {
+                XCTAssertTrue(testView.isMember(of: expectedClass))
+                XCTAssertTrue(renderedContent is A.Component.Content)
+                XCTAssertEqual(renderedComponent.as(A.Component.self), component)
+            }
+            else {
+                XCTFail()
+            }
+        }
+
+        func checkHeader(expectedClass: (UICollectionReusableView & ComponentRenderable).Type) {
+            let view = adapter.collectionView(
+                collectionView,
+                viewForSupplementaryElementOfKind: UICollectionView.elementKindSectionHeader,
+                at: IndexPath(row: 0, section: 0)
+            )
+            check(view: view, expectedClass: expectedClass)
+        }
+
+        func checkFooter(expectedClass: (UICollectionReusableView & ComponentRenderable).Type) {
+            let view = adapter.collectionView(
+                collectionView,
+                viewForSupplementaryElementOfKind: UICollectionView.elementKindSectionFooter,
+                at: IndexPath(row: 0, section: 0)
+            )
+            check(view: view, expectedClass: expectedClass)
+        }
+
+        adapter.supplementaryViewRegistrations[UICollectionView.elementKindSectionHeader] = .init(class: MockCustomCollectionViewReusableView1.self)
+        checkHeader(expectedClass: MockCustomCollectionViewReusableView1.self)
+
+        adapter.supplementaryViewRegistrations[UICollectionView.elementKindSectionHeader] = .init(class: MockCustomCollectionViewReusableView2.self)
+        checkHeader(expectedClass: MockCustomCollectionViewReusableView2.self)
+
+        adapter.supplementaryViewRegistrations[UICollectionView.elementKindSectionHeader] = .init(
+            class: MockCustomXibCollectionViewReusableView.self,
+            nib: UINib(for: MockCustomXibCollectionViewReusableView.self)
+        )
+        checkHeader(expectedClass: MockCustomXibCollectionViewReusableView.self)
+
+        adapter.supplementaryViewRegistrations[UICollectionView.elementKindSectionFooter] = .init(class: MockCustomCollectionViewReusableView1.self)
+        checkFooter(expectedClass: MockCustomCollectionViewReusableView1.self)
+
+        adapter.supplementaryViewRegistrations[UICollectionView.elementKindSectionFooter] = .init(class: MockCustomCollectionViewReusableView2.self)
+        checkFooter(expectedClass: MockCustomCollectionViewReusableView2.self)
+
+        adapter.supplementaryViewRegistrations[UICollectionView.elementKindSectionFooter] = .init(
+            class: MockCustomXibCollectionViewReusableView.self,
+            nib: UINib(for: MockCustomXibCollectionViewReusableView.self)
+        )
+        checkFooter(expectedClass: MockCustomXibCollectionViewReusableView.self)
     }
 }

@@ -1,0 +1,13 @@
+source 'https://cdn.cocoapods.org/'
+platform :ios, '12.2'
+
+use_frameworks!
+inhibit_all_warnings!
+
+ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+
+target 'Example-iOS' do
+  pod 'Carbon', path: '../../'
+  pod 'MagazineLayout', '1.5.0'
+  pod 'SwipeCellKit', '2.6.0'
+end

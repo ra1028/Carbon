@@ -2,12 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "container:Example-iOS.xcodeproj">
+      location = "group:Example-iOS.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:../../Carbon.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:../../Carthage/Checkouts/DifferenceKit/DifferenceKit.xcodeproj">
+      location = "group:Pods/Pods.xcodeproj">
    </FileRef>
 </Workspace>

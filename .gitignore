@@ -24,7 +24,10 @@ docs/undocumented.json
 
 ## Gems
 .bundle
-vendor/bundle
+vendor
 
 ## Carthage
 Carthage/Build
+
+## CocoaPods
+Pods/

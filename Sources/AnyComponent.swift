@@ -5,6 +5,12 @@ public struct AnyComponent: Component {
     @usableFromInline
     internal let box: AnyComponentBox
 
+    /// The value wrapped by this instance.
+    @inlinable
+    public var base: Any {
+        return box.base
+    }
+
     /// A string used to identify a element that is reusable. Default is the type name of `Content`.
     @inlinable
     public var reuseIdentifier: String {
