@@ -90,6 +90,7 @@ For more advanced usage, see the [Advanced Guide](https://github.com/ra1028/Carb
 And the more practical examples are [here](https://github.com/ra1028/Carbon/tree/master/Examples).  
 
 #### Component
+
 `Component` is the base unit of the UI in Carbon.  
 All elements are made up of components, and it can be animated by diffing update.  
 `UIView`, `UIViewController`, and its subclasses are laid out with edge constraints by default. Other classes can also be rendered as `Content` by implementing `layout` function to component.
@@ -133,6 +134,7 @@ ViewNode(HelloMessage(name: "Vincent"))
 `CellNode` is a node representing cell.  
 Unlike in the ViewNode, this needs an `id` which `Hashable` type to identify from among a lot of cells.  
 The `id` is used to find the same component in the list data before and after changed, then calculate the all kind of diff.  
+
 - deletes
 - inserts
 - moves
@@ -153,6 +155,7 @@ CellNode(HelloMessage(name: "Jules"))
 `Section` has a header, a footer and a group of cells.  
 A group of cells can be contains nil, then skipped rendering of it cell.  
 This also needs to specify `id` for identify from among multiple sections, then can be calculate the all kind of diff.  
+
 - section deletes
 - section inserts
 - section moves
@@ -163,18 +166,24 @@ let emptySection = Section(id: 0)
 ```
 
 ```swift
-let hidesHelloMia: Bool = ...
+let showsHelloMia: Bool = ...
 
-let section = Section(
-    id: "hello",
-    header: ViewNode(HelloMessage(name: "Vincent")),
-    cells: [
+let section = Section(id: "hello") { section in
+    section.header = ViewNode(HelloMessage(name: "Vincent"))
+
+    section.cells = [
         CellNode(HelloMessage(name: "Jules")),
-        CellNode(HelloMessage(name: "Butch")),
-        hidesHelloMia ? nil : CellNode(HelloMessage(name: "Mia"))
-    ],
-    footer: ViewNode(HelloMessage(name: "Marsellus"))
-)
+        CellNode(HelloMessage(name: "Butch"))
+    ]
+
+    if showsHelloMia {
+        section.cells += [
+            CellNode(HelloMessage(name: "Mia"))
+        ]
+    }
+
+    section.footer = ViewNode(HelloMessage(name: "Marsellus"))
+}
 ```
 
 #### Renderer
@@ -221,27 +230,34 @@ override func viewDidLoad() {
 ```
 
 ```swift
-let hidesBottomSection: Bool = ...
+let showsBottomSection: Bool = ...
 
-renderer.render(
-    Section(
-        id: "top section",
-        cells: [
-            CellNode(HelloMessage(name: "Vincent")),
-            CellNode(HelloMessage(name: "Jules")),
-            CellNode(HelloMessage(name: "Butch"))
+renderer.render { sections in
+    sections = [
+        Section(
+            id: "top section",
+            cells: [
+                CellNode(HelloMessage(name: "Vincent")),
+                CellNode(HelloMessage(name: "Jules")),
+                CellNode(HelloMessage(name: "Butch"))
+            ]
+        )
+    ]
+
+    if showsBottomSection {
+        sections += [
+            Section(
+                id: "bottom section",
+                header: ViewNode(HelloMessage(name: "Pumpkin")),
+                cells: [
+                    CellNode(HelloMessage(name: "Marsellus")),
+                    CellNode(HelloMessage(name: "Mia"))
+                ],
+                footer: ViewNode(HelloMessage(name: "Honey Bunny"))
+            )
         ]
-    ),
-    hidesBottomSection ? nil : Section(
-        id: "bottom section",
-        header: ViewNode(HelloMessage(name: "Pumpkin")),
-        cells: [
-            CellNode(HelloMessage(name: "Marsellus")),
-            CellNode(HelloMessage(name: "Mia"))
-        ],
-        footer: ViewNode(HelloMessage(name: "Honey Bunny"))
-    )
-)
+    }
+}
 ```
 
 <H3 align="center">
