@@ -421,7 +421,7 @@ final class MockTableViewHeaderFooterViewContent: UITableViewHeaderFooterViewCon
     var viewCapturedOnDidRender: UITableViewHeaderFooterView?
     var viewCapturedOnDidRenderComponent: UITableViewHeaderFooterView?
 
-    func viwDidPrepareForReuse(_ view: UITableViewHeaderFooterView) {
+    func viewDidPrepareForReuse(_ view: UITableViewHeaderFooterView) {
         viewCapturedOnPrepareForReuse = view
     }
 
