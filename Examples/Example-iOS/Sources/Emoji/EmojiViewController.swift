@@ -36,10 +36,12 @@ final class EmojiViewController: UIViewController {
             Section(
                 id: ID.emoji,
                 header: ViewNode(Header(title: "EMOJIS")),
-                cells: emojiCodes.enumerated().map { offset, code in
-                    CellNode(EmojiLabel(code: code) { [weak self] in
-                        self?.emojiCodes.remove(at: offset)
-                    })
+                cells: emojiCodes
+                    .enumerated()
+                    .map { offset, code in
+                        CellNode(EmojiLabel(code: code) { [weak self] in
+                            self?.emojiCodes.remove(at: offset)
+                        })
                 }
             )
         )

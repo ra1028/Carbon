@@ -44,6 +44,9 @@ open class Renderer<Updater: Carbon.Updater> {
         }
     }
 
+    /// A completion handler to be called after each rendering.
+    open var completion: (() -> Void)?
+
     /// Returns a current data held in adapter.
     /// When data is set, it renders to the target immediately.
     open var data: [Section] {
@@ -61,8 +64,7 @@ open class Renderer<Updater: Carbon.Updater> {
     ///
     /// - Parameters:
     ///   - data: A collection of sections to be rendered.
-    ///   - completion: A completion handler to be called after rendered.
-    open func render<C: Collection>(_ data: C, completion: (() -> Void)? = nil) where C.Element == Section {
+    open func render<C: Collection>(_ data: C) where C.Element == Section {
         let data = Array(data)
 
         guard let target = target else {
@@ -80,26 +82,33 @@ open class Renderer<Updater: Carbon.Updater> {
     ///
     /// - Parameters:
     ///   - data: A collection of sections to be rendered that can be contains nil.
-    ///   - completion: A completion handler to be called after rendered.
-    open func render<C: Collection>(_ data: C, completion: (() -> Void)? = nil) where C.Element == Section? {
-        render(data.compactMap { $0 }, completion: completion)
+    open func render<C: Collection>(_ data: C) where C.Element == Section? {
+        render(data.compactMap { $0 })
     }
 
     /// Render a given variadic number of sections, immediately.
     ///
     /// - Parameters:
     ///   - data: A variadic number of sections to be rendered.
-    ///   - completion: A completion handler to be called after rendered.
-    open func render(_ data: Section..., completion: (() -> Void)? = nil) {
-        render(data, completion: completion)
+    open func render(_ data: Section...) {
+        render(data)
     }
 
     /// Render a given variadic number of sections after removes contained nil, immediately.
     ///
     /// - Parameters:
     ///   - data: A variadic number of sections to be rendered that can be contains nil.
-    ///   - completion: A completion handler to be called after rendered.
-    open func render(_ data: Section?..., completion: (() -> Void)? = nil) {
-        render(data.compactMap { $0 }, completion: completion)
+    open func render(_ data: Section?...) {
+        render(data.compactMap { $0 })
+    }
+
+    /// Render sections built by given closure, immediately.
+    ///
+    /// - Parameters:
+    ///   - buildData: A closure to build sections.
+    open func render(_ buildData: (inout [Section]) -> Void) {
+        var data = [Section]()
+        buildData(&data)
+        render(data)
     }
 }
