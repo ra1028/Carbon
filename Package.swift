@@ -22,7 +22,7 @@ let package = Package(
         .testTarget(
             name: "Tests",
             dependencies: ["Carbon"],
-            path: "Tests"),
+            path: "Tests")
     ],
     swiftLanguageVersions: [.v4_2, .v5]
 )
