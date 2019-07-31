@@ -32,5 +32,6 @@ Carthage/Build
 ## CocoaPods
 Pods/
 
-## Swift PM
+## SwiftPM
 .swiftpm
+.build
