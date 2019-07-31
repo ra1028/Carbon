@@ -28,33 +28,27 @@ final class HelloViewController: UIViewController {
     }
 
     func render() {
-        if !isToggled {
-            renderer.render(
-                Section(
-                    id: ID.greet,
-                    header: ViewNode(Header(title: "GREET")),
-                    cells: [
+        renderer.render(
+            Section(id: ID.greet) { section in
+                section.header = ViewNode(Header(title: "GREET"))
+
+                if isToggled {
+                    section.cells = [
+                        CellNode(HelloMessage(name: "Jules")),
+                        CellNode(HelloMessage(name: "Vincent"))
+                    ]
+                }
+                else {
+                    section.cells = [
                         CellNode(HelloMessage(name: "Vincent")),
                         CellNode(HelloMessage(name: "Jules")),
                         CellNode(HelloMessage(name: "Butch"))
-                    ],
-                    footer: ViewNode(Footer(text: "💡 Tap anywhere"))
-                )
-            )
-        }
-        else {
-            renderer.render(
-                Section(
-                    id: ID.greet,
-                    header: ViewNode(Header(title: "GREET")),
-                    cells: [
-                        CellNode(HelloMessage(name: "Jules")),
-                        CellNode(HelloMessage(name: "Vincent"))
-                    ],
-                    footer: ViewNode(Footer(text: "💡 Tap anywhere"))
-                )
-            )
-        }
+                    ]
+                }
+
+                section.footer = ViewNode(Footer(text: "💡 Tap anywhere"))
+            }
+        )
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

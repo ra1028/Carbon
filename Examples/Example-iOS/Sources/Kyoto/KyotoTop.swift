@@ -9,7 +9,7 @@ struct KyotoTop: Component, Equatable {
     func render(in content: KyotoTopContent) {}
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: 452)
+        return nil
     }
 }
 

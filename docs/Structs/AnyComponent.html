@@ -101,7 +101,10 @@
                 <a class="nav-group-task-link" href="../Classes/UITableViewAdapter.html">UITableViewAdapter</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/UITableViewAdapter/Config.html">– Config</a>
+                <a class="nav-group-task-link" href="../Classes/UITableViewAdapter/CellRegistration.html">– CellRegistration</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/UITableViewAdapter/ViewRegistration.html">– ViewRegistration</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/UITableViewAdapter/SelectionContext.html">– SelectionContext</a>
@@ -110,7 +113,10 @@
                 <a class="nav-group-task-link" href="../Classes/UICollectionViewAdapter.html">UICollectionViewAdapter</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/UICollectionViewAdapter/Config.html">– Config</a>
+                <a class="nav-group-task-link" href="../Classes/UICollectionViewAdapter/CellRegistration.html">– CellRegistration</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/UICollectionViewAdapter/ViewRegistration.html">– ViewRegistration</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/UICollectionViewAdapter/SelectionContext.html">– SelectionContext</a>
@@ -144,6 +150,9 @@
             <a class="nav-group-name-link" href="../Interfaces.html">Interfaces</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/ComponentRenderable.html">ComponentRenderable</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/UITableViewComponentCell.html">UITableViewComponentCell</a>
               </li>
               <li class="nav-group-task">
@@ -154,23 +163,6 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/UICollectionComponentReusableView.html">UICollectionComponentReusableView</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Content Protocols.html">Content Protocols</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/UITableViewCellContent.html">UITableViewCellContent</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/UITableViewHeaderFooterViewContent.html">UITableViewHeaderFooterViewContent</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/UICollectionViewCellContent.html">UICollectionViewCellContent</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/UICollectionReusableViewContent.html">UICollectionReusableViewContent</a>
               </li>
             </ul>
           </li>
@@ -207,6 +199,34 @@
           <div class="section-content">
             <div class="task-group">
               <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Carbon12AnyComponentV4baseypvp"></a>
+                    <a name="//apple_ref/swift/Property/base" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon12AnyComponentV4baseypvp">base</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The value wrapped by this instance.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">base</span><span class="p">:</span> <span class="kt">Any</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -393,7 +413,7 @@
                         <p>Returns a <code>Bool</code> value indicating whether the content should be reloaded.</p>
 <div class="aside aside-note">
     <p class="aside-title">Note</p>
-    <p>Unlike <code>Equitable</code>, this doesn&rsquo;t compare whether the two values
+    <p>Unlike <code>Equatable</code>, this doesn&rsquo;t compare whether the two values
     exactly equal. It&rsquo;s can be ignore property comparisons, if not expect
     to reload content.</p>
 
@@ -670,7 +690,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2019 <a class="link" href="https://github.com/ra1028" target="_blank" rel="external">Ryo Aoyama</a>. All rights reserved. (Last updated: 2019-05-14)</p>
+      <p>&copy; 2019 <a class="link" href="https://github.com/ra1028" target="_blank" rel="external">Ryo Aoyama</a>. All rights reserved. (Last updated: 2019-07-30)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

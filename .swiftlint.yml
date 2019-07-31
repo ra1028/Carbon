@@ -2,6 +2,8 @@
 
 excluded:
   - Carthage
+  - Pods
+  - Examples/Example-iOS/Pods
 
 disabled_rules:
   - type_name

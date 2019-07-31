@@ -63,6 +63,18 @@ public struct Section {
     public init<I: Hashable>(id: I, header: ViewNode? = nil, footer: ViewNode? = nil) {
         self.init(id: id, header: header, cells: [], footer: footer)
     }
+
+    /// Create a section by given closure.
+    ///
+    /// - Parameters:
+    ///   - id: An identifier to be wrapped.
+    ///   - buildSection: A closure to build section.
+    @inlinable
+    public init<I: Hashable>(id: I, _ buildSection: (inout Section) -> Void) {
+        var section = Section(id: id)
+        buildSection(&section)
+        self = section
+    }
 }
 
 extension Section: DifferentiableSection {

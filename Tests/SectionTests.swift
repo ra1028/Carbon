@@ -33,6 +33,23 @@ final class SectionTests: XCTestCase {
         XCTAssertEqual(section.cells.count, 2)
     }
 
+    func testInitWithBuilderClosure() {
+        let section = Section(id: TestID.a) { section in
+            section.header = ViewNode(A.Component())
+            section.cells = [
+                CellNode(MockIdentifiableComponent(id: TestID.a)),
+                CellNode(MockIdentifiableComponent(id: TestID.b)),
+                CellNode(MockIdentifiableComponent(id: TestID.c))
+            ]
+            section.footer = ViewNode(A.Component())
+        }
+
+        XCTAssertEqual(section.id.base as? TestID, .a)
+        XCTAssertNotNil(section.header)
+        XCTAssertNotNil(section.footer)
+        XCTAssertEqual(section.cells.count, 3)
+    }
+
     func testContentEquatableConformance() {
         let section1 = Section(
             id: TestID.a,

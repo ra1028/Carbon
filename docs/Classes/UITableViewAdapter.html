@@ -101,7 +101,10 @@
                 <a class="nav-group-task-link" href="../Classes/UITableViewAdapter.html">UITableViewAdapter</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/UITableViewAdapter/Config.html">– Config</a>
+                <a class="nav-group-task-link" href="../Classes/UITableViewAdapter/CellRegistration.html">– CellRegistration</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/UITableViewAdapter/ViewRegistration.html">– ViewRegistration</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/UITableViewAdapter/SelectionContext.html">– SelectionContext</a>
@@ -110,7 +113,10 @@
                 <a class="nav-group-task-link" href="../Classes/UICollectionViewAdapter.html">UICollectionViewAdapter</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Classes/UICollectionViewAdapter/Config.html">– Config</a>
+                <a class="nav-group-task-link" href="../Classes/UICollectionViewAdapter/CellRegistration.html">– CellRegistration</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/UICollectionViewAdapter/ViewRegistration.html">– ViewRegistration</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/UICollectionViewAdapter/SelectionContext.html">– SelectionContext</a>
@@ -144,6 +150,9 @@
             <a class="nav-group-name-link" href="../Interfaces.html">Interfaces</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/ComponentRenderable.html">ComponentRenderable</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/UITableViewComponentCell.html">UITableViewComponentCell</a>
               </li>
               <li class="nav-group-task">
@@ -154,23 +163,6 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/UICollectionComponentReusableView.html">UICollectionComponentReusableView</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Content Protocols.html">Content Protocols</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/UITableViewCellContent.html">UITableViewCellContent</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/UITableViewHeaderFooterViewContent.html">UITableViewHeaderFooterViewContent</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/UICollectionViewCellContent.html">UICollectionViewCellContent</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/UICollectionReusableViewContent.html">UICollectionReusableViewContent</a>
               </li>
             </ul>
           </li>
@@ -200,8 +192,7 @@
               </div>
             <p>An adapter for <code>UITableView</code>.
 It can be inherited to implement customized behavior or give some unimplemented
-methods of delegate or dataSource.
-Classes of cell, header and footer to be rendered can be customized by <code>UITableViewRenderConfig</code>.</p>
+methods of delegate or dataSource.</p>
 
 <p>Attention : In UIKit, if inheriting the @objc class which using generics, the delegate and dataSource
             are don&rsquo;t work properly, so this class doesn&rsquo;t use generics, and also the class inherited
@@ -244,33 +235,6 @@ Classes of cell, header and footer to be rendered can be customized by <code>UIT
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Carbon18UITableViewAdapterC6configAC6ConfigVvp"></a>
-                    <a name="//apple_ref/swift/Property/config" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC6configAC6ConfigVvp">config</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A configuration that determines the classes of the elements to render.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">config</span><span class="p">:</span> <span class="kt"><a href="../Classes/UITableViewAdapter/Config.html">Config</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:6Carbon18UITableViewAdapterC9didSelectyAC16SelectionContextVcSgvp"></a>
                     <a name="//apple_ref/swift/Property/didSelect" class="dashAnchor"></a>
                     <a class="token" href="#/s:6Carbon18UITableViewAdapterC9didSelectyAC16SelectionContextVcSgvp">didSelect</a>
@@ -298,9 +262,9 @@ Classes of cell, header and footer to be rendered can be customized by <code>UIT
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Carbon18UITableViewAdapterC4data6configACSayAA7SectionVG_AC6ConfigVtcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(data:config:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC4data6configACSayAA7SectionVG_AC6ConfigVtcfc">init(data:config:)</a>
+                    <a name="/s:6Carbon18UITableViewAdapterC4dataACSayAA7SectionVG_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(data:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC4dataACSayAA7SectionVG_tcfc">init(data:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -308,14 +272,14 @@ Classes of cell, header and footer to be rendered can be customized by <code>UIT
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create an adapter with initial data and rendering config.</p>
+                        <p>Create an adapter with initial data.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Section.html">Section</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="nv">config</span><span class="p">:</span> <span class="kt"><a href="../Classes/UITableViewAdapter/Config.html">Config</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">data</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Section.html">Section</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[])</span></code></pre>
 
                         </div>
                       </div>
@@ -335,20 +299,230 @@ Classes of cell, header and footer to be rendered can be customized by <code>UIT
                                 </div>
                               </td>
                             </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Carbon18UITableViewAdapterC16cellRegistration05tableC09indexPath4nodeAC04CellF0VSo0bC0C_10Foundation05IndexI0VAA0K4NodeVtF"></a>
+                    <a name="//apple_ref/swift/Method/cellRegistration(tableView:indexPath:node:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC16cellRegistration05tableC09indexPath4nodeAC04CellF0VSo0bC0C_10Foundation05IndexI0VAA0K4NodeVtF">cellRegistration(tableView:indexPath:node:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a registration info for register each cells.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">cellRegistration</span><span class="p">(</span><span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">,</span> <span class="nv">node</span><span class="p">:</span> <span class="kt"><a href="../Structs/CellNode.html">CellNode</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/UITableViewAdapter/CellRegistration.html">CellRegistration</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
                             <tr>
                               <td>
                                 <code>
-                                <em>config</em>
+                                <em>tableView</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>A configuration that determines the classes of the elements to render.</p>
+                                  <p>A table view to register cell.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>indexPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An index path for the cell.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>node</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A node representing cell.</p>
                                 </div>
                               </td>
                             </tr>
                           </tbody>
                         </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A registration info for each cells.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Carbon18UITableViewAdapterC06headerC12Registration05tableC07section4nodeAC0cF0VSo0bC0C_SiAA0C4NodeVtF"></a>
+                    <a name="//apple_ref/swift/Method/headerViewRegistration(tableView:section:node:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC06headerC12Registration05tableC07section4nodeAC0cF0VSo0bC0C_SiAA0C4NodeVtF">headerViewRegistration(tableView:section:node:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a registration info for register each header views.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">headerViewRegistration</span><span class="p">(</span><span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="nv">section</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">node</span><span class="p">:</span> <span class="kt"><a href="../Structs/ViewNode.html">ViewNode</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/UITableViewAdapter/ViewRegistration.html">ViewRegistration</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tableView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A table view to register header view.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>section</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A index of section for the header view.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>node</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A node representing header view.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A registration info for each header views.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Carbon18UITableViewAdapterC06footerC12Registration05tableC07section4nodeAC0cF0VSo0bC0C_SiAA0C4NodeVtF"></a>
+                    <a name="//apple_ref/swift/Method/footerViewRegistration(tableView:section:node:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC06footerC12Registration05tableC07section4nodeAC0cF0VSo0bC0C_SiAA0C4NodeVtF">footerViewRegistration(tableView:section:node:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a registration info for register each footer views.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">footerViewRegistration</span><span class="p">(</span><span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="nv">section</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">node</span><span class="p">:</span> <span class="kt"><a href="../Structs/ViewNode.html">ViewNode</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/UITableViewAdapter/ViewRegistration.html">ViewRegistration</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tableView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A table view to register footer view.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>section</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A index of section for the footer view.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>node</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A node representing footer view.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A registration info for each footer views.</p>
                       </div>
                     </section>
                   </div>
@@ -360,9 +534,9 @@ Classes of cell, header and footer to be rendered can be customized by <code>UIT
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Carbon18UITableViewAdapterC6ConfigV"></a>
-                    <a name="//apple_ref/swift/Struct/Config" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC6ConfigV">Config</a>
+                    <a name="/s:6Carbon18UITableViewAdapterC16CellRegistrationV"></a>
+                    <a name="//apple_ref/swift/Struct/CellRegistration" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC16CellRegistrationV">CellRegistration</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -370,25 +544,49 @@ Classes of cell, header and footer to be rendered can be customized by <code>UIT
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The configuration for the classes of elements in <code>UITableView</code>.</p>
+                        <p>Registration info for table view cell.</p>
 
-                        <a href="../Classes/UITableViewAdapter/Config.html" class="slightly-smaller">See more</a>
+                        <a href="../Classes/UITableViewAdapter/CellRegistration.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">Config</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">CellRegistration</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Carbon18UITableViewAdapterC0C12RegistrationV"></a>
+                    <a name="//apple_ref/swift/Struct/ViewRegistration" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon18UITableViewAdapterC0C12RegistrationV">ViewRegistration</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Registration info for table view header or footer view.</p>
+
+                        <a href="../Classes/UITableViewAdapter/ViewRegistration.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">ViewRegistration</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -919,7 +1117,7 @@ Classes of cell, header and footer to be rendered can be customized by <code>UIT
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2019 <a class="link" href="https://github.com/ra1028" target="_blank" rel="external">Ryo Aoyama</a>. All rights reserved. (Last updated: 2019-05-14)</p>
+      <p>&copy; 2019 <a class="link" href="https://github.com/ra1028" target="_blank" rel="external">Ryo Aoyama</a>. All rights reserved. (Last updated: 2019-07-30)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

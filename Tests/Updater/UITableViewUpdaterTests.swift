@@ -142,9 +142,9 @@ final class UITableViewUpdaterTests: XCTestCase {
         let updater = MockTableViewUpdater()
         let adapter = MockTableViewAdapter()
         let tableView = MockTableView().addingToWindow()
-        let header = MockTableViewHeaderFooterView(reuseIdentifier: nil)
-        let cell = MockTableViewCell(style: .default, reuseIdentifier: nil)
-        let footer = MockTableViewHeaderFooterView(reuseIdentifier: nil)
+        let header = UITableViewComponentHeaderFooterView(reuseIdentifier: nil)
+        let cell = UITableViewComponentCell(style: .default, reuseIdentifier: nil)
+        let footer = UITableViewComponentHeaderFooterView(reuseIdentifier: nil)
         let component = MockIdentifiableComponent(id: TestID.b)
         let data = [
             Section(

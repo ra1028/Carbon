@@ -4,11 +4,10 @@ import XCTest
 final class ComponentContainerTests: XCTestCase {
     func testContentWillDisplay() {
         let container = MockComponentContainer()
-        let component = MockComponent()
         let content = UIView()
+        let component = MockComponent(content: content)
 
-        container.renderedComponent = AnyComponent(component)
-        container.renderedContent = content
+        container.render(component: AnyComponent(component))
         container.contentWillDisplay()
 
         if let captured = component.contentCapturedOnWillDisplay {
@@ -21,11 +20,10 @@ final class ComponentContainerTests: XCTestCase {
 
     func testContentDidEndDisplay() {
         let container = MockComponentContainer()
-        let component = MockComponent()
         let content = UIView()
+        let component = MockComponent(content: content)
 
-        container.renderedComponent = AnyComponent(component)
-        container.renderedContent = content
+        container.render(component: AnyComponent(component))
         container.contentDidEndDisplay()
 
         if let captured = component.contentCapturedOnDidEndDisplay {
@@ -38,23 +36,19 @@ final class ComponentContainerTests: XCTestCase {
 
     func testRenderComponent() {
         let component = MockComponent(shouldRender: false)
-        let containerView = UIView()
-        let container = MockComponentContainer(containerView: containerView)
+        let componentContainerView = UIView()
+        let container = MockComponentContainer(componentContainerView: componentContainerView)
 
         container.render(component: AnyComponent(component))
 
         if
-            let subview = containerView.subviews.first,
+            let subview = componentContainerView.subviews.first,
             let renderedContent = container.renderedContent as? UIView?,
             let renderedComponent = container.renderedComponent?.as(MockComponent.self),
-            let capturedContentInComponent = component.contentCapturedOnRender,
-            let capturedContentInContainer = container.contentCapturedOnDidRender as? UIView,
-            let capturedComponentInContainer = container.componentCapturedOnDidRender?.as(MockComponent.self) {
+            let capturedContentInComponent = component.contentCapturedOnRender {
             XCTAssertEqual(renderedContent, subview)
             XCTAssertEqual(capturedContentInComponent, renderedContent)
             XCTAssertEqual(renderedComponent, component)
-            XCTAssertEqual(capturedContentInContainer, subview)
-            XCTAssertEqual(capturedComponentInContainer, component)
         }
         else {
             XCTFail()
@@ -63,11 +57,9 @@ final class ComponentContainerTests: XCTestCase {
 
     func testShouldRenderComponent() {
         let component = A.Component(value: 100)
-        let content = A.Content()
         let container = MockComponentContainer()
 
-        container.renderedComponent = AnyComponent(component)
-        container.renderedContent = content
+        container.render(component: AnyComponent(component))
 
         let nextComponent = A.Component(value: 200)
 

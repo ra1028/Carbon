@@ -8,10 +8,10 @@ jobs:
   strategy:
     maxParallel: 10
     matrix:
-      xcode10_1:
-        DEVELOPER_DIR: /Applications/Xcode_10.1.app
       xcode10_2:
         DEVELOPER_DIR: /Applications/Xcode_10.2.app
+      xcode11:
+        DEVELOPER_DIR: /Applications/Xcode_11.app
   steps:
     - checkout: self
       submodules: true
