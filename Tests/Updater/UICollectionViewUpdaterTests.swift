@@ -130,9 +130,9 @@ final class UICollectionViewUpdaterTests: XCTestCase {
         let updater = MockCollectionViewUpdater()
         let adapter = MockCollectionViewFlowLayoutAdapter()
         let collectionView = MockCollectionView().addingToWindow()
-        let header = MockCollectionReusableView(frame: .zero)
-        let cell = MockCollectionViewCell(frame: .zero)
-        let footer = MockCollectionReusableView(frame: .zero)
+        let header = UICollectionComponentReusableView(frame: .zero)
+        let cell = UICollectionViewComponentCell(frame: .zero)
+        let footer = UICollectionComponentReusableView(frame: .zero)
         let component = MockIdentifiableComponent(id: TestID.b)
         let data = [
             Section(

@@ -101,7 +101,10 @@
                 <a class="nav-group-task-link" href="Classes/UITableViewAdapter.html">UITableViewAdapter</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/UITableViewAdapter/Config.html">– Config</a>
+                <a class="nav-group-task-link" href="Classes/UITableViewAdapter/CellRegistration.html">– CellRegistration</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/UITableViewAdapter/ViewRegistration.html">– ViewRegistration</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/UITableViewAdapter/SelectionContext.html">– SelectionContext</a>
@@ -110,7 +113,10 @@
                 <a class="nav-group-task-link" href="Classes/UICollectionViewAdapter.html">UICollectionViewAdapter</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Classes/UICollectionViewAdapter/Config.html">– Config</a>
+                <a class="nav-group-task-link" href="Classes/UICollectionViewAdapter/CellRegistration.html">– CellRegistration</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/UICollectionViewAdapter/ViewRegistration.html">– ViewRegistration</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/UICollectionViewAdapter/SelectionContext.html">– SelectionContext</a>
@@ -144,6 +150,9 @@
             <a class="nav-group-name-link" href="Interfaces.html">Interfaces</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/ComponentRenderable.html">ComponentRenderable</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/UITableViewComponentCell.html">UITableViewComponentCell</a>
               </li>
               <li class="nav-group-task">
@@ -154,23 +163,6 @@
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Classes/UICollectionComponentReusableView.html">UICollectionComponentReusableView</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Content Protocols.html">Content Protocols</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/UITableViewCellContent.html">UITableViewCellContent</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/UITableViewHeaderFooterViewContent.html">UITableViewHeaderFooterViewContent</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/UICollectionViewCellContent.html">UICollectionViewCellContent</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Protocols/UICollectionReusableViewContent.html">UICollectionReusableViewContent</a>
               </li>
             </ul>
           </li>
@@ -203,6 +195,38 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:6Carbon19ComponentRenderableP"></a>
+                    <a name="//apple_ref/swift/Protocol/ComponentRenderable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon19ComponentRenderableP">ComponentRenderable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Represents a container that can render a component.</p>
+
+                        <a href="Protocols/ComponentRenderable.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ComponentRenderable</span> <span class="p">:</span> <span class="kt">AnyObject</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/c:@M@Carbon@objc(cs)UITableViewComponentCell"></a>
                     <a name="//apple_ref/swift/Class/UITableViewComponentCell" class="dashAnchor"></a>
                     <a class="token" href="#/c:@M@Carbon@objc(cs)UITableViewComponentCell">UITableViewComponentCell</a>
@@ -221,7 +245,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">UITableViewComponentCell</span> <span class="p">:</span> <span class="kt">UITableViewCell</span><span class="p">,</span> <span class="kt">ComponentContainer</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">UITableViewComponentCell</span> <span class="p">:</span> <span class="kt">UITableViewCell</span><span class="p">,</span> <span class="kt"><a href="Protocols/ComponentRenderable.html">ComponentRenderable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -253,7 +277,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">UITableViewComponentHeaderFooterView</span> <span class="p">:</span> <span class="kt">UITableViewHeaderFooterView</span><span class="p">,</span> <span class="kt">ComponentContainer</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">UITableViewComponentHeaderFooterView</span> <span class="p">:</span> <span class="kt">UITableViewHeaderFooterView</span><span class="p">,</span> <span class="kt"><a href="Protocols/ComponentRenderable.html">ComponentRenderable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -285,7 +309,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">UICollectionViewComponentCell</span> <span class="p">:</span> <span class="kt">UICollectionViewCell</span><span class="p">,</span> <span class="kt">ComponentContainer</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">UICollectionViewComponentCell</span> <span class="p">:</span> <span class="kt">UICollectionViewCell</span><span class="p">,</span> <span class="kt"><a href="Protocols/ComponentRenderable.html">ComponentRenderable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -317,7 +341,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">UICollectionComponentReusableView</span> <span class="p">:</span> <span class="kt">UICollectionReusableView</span><span class="p">,</span> <span class="kt">ComponentContainer</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">UICollectionComponentReusableView</span> <span class="p">:</span> <span class="kt">UICollectionReusableView</span><span class="p">,</span> <span class="kt"><a href="Protocols/ComponentRenderable.html">ComponentRenderable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -332,7 +356,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2019 <a class="link" href="https://github.com/ra1028" target="_blank" rel="external">Ryo Aoyama</a>. All rights reserved. (Last updated: 2019-05-14)</p>
+      <p>&copy; 2019 <a class="link" href="https://github.com/ra1028" target="_blank" rel="external">Ryo Aoyama</a>. All rights reserved. (Last updated: 2019-07-30)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

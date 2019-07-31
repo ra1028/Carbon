@@ -69,7 +69,6 @@ final class RendererTests: XCTestCase {
             adapter: adapter,
             updater: MockUpdater()
         )
-        renderer.target = target
 
         var completed = false
         let data = [
@@ -78,9 +77,11 @@ final class RendererTests: XCTestCase {
             Section(id: TestID.c)
         ]
 
-        renderer.render(data) {
+        renderer.target = target
+        renderer.completion = {
             completed = true
         }
+        renderer.render(data)
 
         XCTAssertEqual(renderer.adapter.data.count, 3)
         XCTAssertEqual(renderer.updater.targetCapturedOnUpdates, target)
@@ -95,7 +96,6 @@ final class RendererTests: XCTestCase {
             adapter: adapter,
             updater: MockUpdater()
         )
-        renderer.target = target
 
         var completed = false
         let data = [
@@ -106,9 +106,11 @@ final class RendererTests: XCTestCase {
             Section(id: TestID.c)
         ]
 
-        renderer.render(data) {
+        renderer.target = target
+        renderer.completion = {
             completed = true
         }
+        renderer.render(data)
 
         XCTAssertEqual(renderer.adapter.data.count, 3)
         XCTAssertEqual(renderer.updater.targetCapturedOnUpdates, target)
@@ -123,18 +125,20 @@ final class RendererTests: XCTestCase {
             adapter: adapter,
             updater: MockUpdater()
         )
-        renderer.target = target
 
         var completed = false
-
-        renderer.render(
+        let data = [
             Section(id: TestID.a),
             Section(id: TestID.b),
             Section(id: TestID.c),
-            Section(id: TestID.d),
-            completion: {
-                completed = true
-        })
+            Section(id: TestID.d)
+        ]
+
+        renderer.target = target
+        renderer.completion = {
+            completed = true
+        }
+        renderer.render(data)
 
         XCTAssertEqual(renderer.adapter.data.count, 4)
         XCTAssertEqual(renderer.updater.targetCapturedOnUpdates, target)
@@ -149,20 +153,51 @@ final class RendererTests: XCTestCase {
             adapter: adapter,
             updater: MockUpdater()
         )
-        renderer.target = target
 
         var completed = false
-
-        renderer.render(
+        let data = [
             Section(id: TestID.a),
             Section(id: TestID.b),
             nil,
             Section(id: TestID.c),
             nil,
-            Section(id: TestID.d),
-            completion: {
-                completed = true
-        })
+            Section(id: TestID.d)
+        ]
+
+        renderer.target = target
+        renderer.completion = {
+            completed = true
+        }
+        renderer.render(data)
+
+        XCTAssertEqual(renderer.adapter.data.count, 4)
+        XCTAssertEqual(renderer.updater.targetCapturedOnUpdates, target)
+        XCTAssertEqual(renderer.updater.adapterCapturedOnUpdates, adapter)
+        XCTAssertEqual(completed, true)
+    }
+
+    func testRenderWithBuilderClosure() {
+        let target = MockTarget()
+        let adapter = MockAdapter()
+        let renderer = Renderer(
+            adapter: adapter,
+            updater: MockUpdater()
+        )
+
+        var completed = false
+        let data = [
+            Section(id: TestID.a),
+            Section(id: TestID.b),
+            Section(id: TestID.c),
+            Section(id: TestID.d)
+        ]
+
+        renderer.target = target
+        renderer.completion = {
+            completed = true
+        }
+        renderer.render(data)
+        renderer.render { $0 = data }
 
         XCTAssertEqual(renderer.adapter.data.count, 4)
         XCTAssertEqual(renderer.updater.targetCapturedOnUpdates, target)

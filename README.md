@@ -90,6 +90,7 @@ For more advanced usage, see the [Advanced Guide](https://github.com/ra1028/Carb
 And the more practical examples are [here](https://github.com/ra1028/Carbon/tree/master/Examples).  
 
 #### Component
+
 `Component` is the base unit of the UI in Carbon.  
 All elements are made up of components, and it can be animated by diffing update.  
 `UIView`, `UIViewController`, and its subclasses are laid out with edge constraints by default. Other classes can also be rendered as `Content` by implementing `layout` function to component.
@@ -133,6 +134,7 @@ ViewNode(HelloMessage(name: "Vincent"))
 `CellNode` is a node representing cell.  
 Unlike in the ViewNode, this needs an `id` which `Hashable` type to identify from among a lot of cells.  
 The `id` is used to find the same component in the list data before and after changed, then calculate the all kind of diff.  
+
 - deletes
 - inserts
 - moves
@@ -153,6 +155,7 @@ CellNode(HelloMessage(name: "Jules"))
 `Section` has a header, a footer and a group of cells.  
 A group of cells can be contains nil, then skipped rendering of it cell.  
 This also needs to specify `id` for identify from among multiple sections, then can be calculate the all kind of diff.  
+
 - section deletes
 - section inserts
 - section moves
@@ -163,18 +166,24 @@ let emptySection = Section(id: 0)
 ```
 
 ```swift
-let hidesHelloMia: Bool = ...
+let showsHelloMia: Bool = ...
 
-let section = Section(
-    id: "hello",
-    header: ViewNode(HelloMessage(name: "Vincent")),
-    cells: [
+let section = Section(id: "hello") { section in
+    section.header = ViewNode(HelloMessage(name: "Vincent"))
+
+    section.cells = [
         CellNode(HelloMessage(name: "Jules")),
-        CellNode(HelloMessage(name: "Butch")),
-        hidesHelloMia ? nil : CellNode(HelloMessage(name: "Mia"))
-    ],
-    footer: ViewNode(HelloMessage(name: "Marsellus"))
-)
+        CellNode(HelloMessage(name: "Butch"))
+    ]
+
+    if showsHelloMia {
+        section.cells += [
+            CellNode(HelloMessage(name: "Mia"))
+        ]
+    }
+
+    section.footer = ViewNode(HelloMessage(name: "Marsellus"))
+}
 ```
 
 #### Renderer
@@ -221,27 +230,34 @@ override func viewDidLoad() {
 ```
 
 ```swift
-let hidesBottomSection: Bool = ...
+let showsBottomSection: Bool = ...
 
-renderer.render(
-    Section(
-        id: "top section",
-        cells: [
-            CellNode(HelloMessage(name: "Vincent")),
-            CellNode(HelloMessage(name: "Jules")),
-            CellNode(HelloMessage(name: "Butch"))
+renderer.render { sections in
+    sections = [
+        Section(
+            id: "top section",
+            cells: [
+                CellNode(HelloMessage(name: "Vincent")),
+                CellNode(HelloMessage(name: "Jules")),
+                CellNode(HelloMessage(name: "Butch"))
+            ]
+        )
+    ]
+
+    if showsBottomSection {
+        sections += [
+            Section(
+                id: "bottom section",
+                header: ViewNode(HelloMessage(name: "Pumpkin")),
+                cells: [
+                    CellNode(HelloMessage(name: "Marsellus")),
+                    CellNode(HelloMessage(name: "Mia"))
+                ],
+                footer: ViewNode(HelloMessage(name: "Honey Bunny"))
+            )
         ]
-    ),
-    hidesBottomSection ? nil : Section(
-        id: "bottom section",
-        header: ViewNode(HelloMessage(name: "Pumpkin")),
-        cells: [
-            CellNode(HelloMessage(name: "Marsellus")),
-            CellNode(HelloMessage(name: "Mia"))
-        ],
-        footer: ViewNode(HelloMessage(name: "Honey Bunny"))
-    )
-)
+    }
+}
 ```
 
 <H3 align="center">
@@ -327,7 +343,9 @@ class MenuItemContent: UIControl {
         addTarget(self, action: #selector(handleSelect), for: .touchUpInside)
     }
 }
+```
 
+```swift
 struct MenuItem: Component {
     var text: String
     var onSelect: () -> Void
@@ -374,7 +392,7 @@ Following are part of it.
 
 - **shouldContentUpdate**  
 If the result is `true`, the component displayed as a cell is reloaded individually, header or footer is reloaded with entire section.  
-It can be omitted by conforming to `Equitable`.  
+It can be omitted by conforming to `Equatable`.  
 
 - **shouldRender**  
 By returning `false`, you can skip component re-rendering when reloading or dequeuing element.  
@@ -406,18 +424,42 @@ let renderer = Renderer(
 )
 ```
 
-Furthermore, it can be customized the class of the elements(cell/header/footer) which becomes the container of component by setting it to `config`.  
-
-- **config**  
-The configuration which having the classes of elements. It can be specified only when adapter is initialized.  
+Furthermore, it can be customized the class of the elements(cell/header/footer) which becomes the container of components by overriding some methods in adapter as following.  
+You can also use `xib` by giving nib as parameter of init of the return value Registration.  
 
 ```swift
-let config = UITableViewAdapter.Config(
-    cellClass: CustomCell.self,
-    headerViewClass: CustomHeaderView.self,
-    footerViewClass: CustomFooterView.self
-)
-let adapter = UITableViewAdapter(config: config)
+class CustomTableViewAdapter: UITableViewAdapter {
+    // Use custom cell.
+    override func cellRegistration(tableView: UITableView, indexPath: IndexPath, node: CellNode) -> CellRegistration {
+        return CellRegistration(class: CustomTableViewCell.self)
+    }
+
+    // Use custom header view.
+    override func headerViewRegistration(tableView: UITableView, section: Int, node: ViewNode) -> ViewRegistration {
+        return ViewRegistration(class: CustomTableViewHeaderFooterView.self)
+    }
+
+    // Use custom footer view.
+    override func footerViewRegistration(tableView: UITableView, section: Int, node: ViewNode) -> ViewRegistration {
+        return ViewRegistration(class: CustomTableViewHeaderFooterView.self)
+    }
+}
+```
+
+In UICollectionViewAdapter, you can select the node corresponding to a certain kind.  
+
+```swift
+class CustomCollectionViewAdapter: UICollectionViewAdapter {
+    override func supplementaryViewNode(forElementKind kind: String, collectionView: UICollectionView, at indexPath: IndexPath) -> ViewNode? {
+        switch kind {
+        case "CustomSupplementaryViewKindSectionHeader":
+            return headerNode(in: indexPath.section)
+
+        default:
+            return super.supplementaryViewNode(forElementKind: kind, collectionView: collectionView, at: indexPath)
+        }
+    }
+}
 ```
 
 [See more](https://ra1028.github.io/Carbon/Adapters.html)
@@ -458,24 +500,12 @@ Default is `false`.
 
 [See more](https://ra1028.github.io/Carbon/Updaters.html)
 
-#### Element-Specific Behaviors
-
-The `content` of component can be received some emement-specific events such as when highlighted, selected, or immediately after rendered, by conforming to protocols below.  
-We recommend to do implementation that doesn't count on this protocols.  
-
-- **UITableViewCellContent**
-- **UITableViewHeaderFooterViewContent**
-- **UICollectionViewCellContent**
-- **UICollectionReusableViewContent**
-
-[See more](https://ra1028.github.io/Carbon/Content%20Protocols.html)
-
 ---
 
 ## Requirements
 
-- Swift 4.2+
-- iOS 10.0+
+- Swift 5.0+
+- iOS 10.2+
 
 ---
 

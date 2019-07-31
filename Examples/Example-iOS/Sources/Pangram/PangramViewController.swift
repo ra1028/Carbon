@@ -26,29 +26,22 @@ final class PangramViewController: UIViewController {
     }
 
     func render() {
-        if isSorted {
-            renderer.render(
-                "ABC DEF GHI JKL MNO PQR STU VWY XZ".split(separator: " ").enumerated().map { offset, word in
+        renderer.render { sections in
+            let pangram = isSorted
+                ? "ABC DEF GHI JKL MNO PQR STU VWY XZ"
+                : "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG"
+
+            sections = pangram
+                .split(separator: " ")
+                .enumerated()
+                .map { offset, word in
                     Section(
                         id: offset,
                         cells: word.map { text in
                             CellNode(PangramLabel(text: String(text)))
                         }
                     )
-                }
-            )
-        }
-        else {
-            renderer.render(
-                "THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG".split(separator: " ").enumerated().map { offset, word in
-                    Section(
-                        id: offset,
-                        cells: word.map { text in
-                            CellNode(PangramLabel(text: String(text)))
-                        }
-                    )
-                }
-            )
+            }
         }
     }
 

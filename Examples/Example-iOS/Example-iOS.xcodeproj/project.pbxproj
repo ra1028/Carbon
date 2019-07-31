@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A729640B3FDCE139DDB84E1 /* Pods_Example_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C676BFED3D0A58EBFA76D7DA /* Pods_Example_iOS.framework */; };
 		6B09264421FE17B300CFEC2F /* Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B09264321FE17B300CFEC2F /* Footer.swift */; };
 		6B09264621FE183300CFEC2F /* FooterContent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B09264521FE183300CFEC2F /* FooterContent.xib */; };
 		6B21A49521E279AB00568841 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B6594D621E2619E00291AAF /* Assets.xcassets */; };
@@ -35,7 +36,6 @@
 		6B5A987B21E8EED30013BB95 /* TodoText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5A987A21E8EED30013BB95 /* TodoText.swift */; };
 		6B5A987D21E8F16F0013BB95 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5A987C21E8F16F0013BB95 /* Todo.swift */; };
 		6B5A987F21E8F2090013BB95 /* TodoTextContent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B5A987E21E8F2090013BB95 /* TodoTextContent.xib */; };
-		6B5A988521ECBD380013BB95 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5A988421ECBD380013BB95 /* UIColorExtension.swift */; };
 		6B6594D021E2619B00291AAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6594CF21E2619B00291AAF /* AppDelegate.swift */; };
 		6B6594D221E2619B00291AAF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6594D121E2619B00291AAF /* HomeViewController.swift */; };
 		6B6594DA21E2619E00291AAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B6594D821E2619E00291AAF /* LaunchScreen.storyboard */; };
@@ -43,18 +43,13 @@
 		6B6594E721E2650000291AAF /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6594E621E2650000291AAF /* NibLoadable.swift */; };
 		6B6594E921E2655400291AAF /* HomeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6594E821E2655400291AAF /* HomeItem.swift */; };
 		6B6594ED21E2659500291AAF /* HomeItemContent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6594EC21E2659500291AAF /* HomeItemContent.xib */; };
-		6B6594EF21E26A7A00291AAF /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6594EE21E26A7A00291AAF /* UITableViewExtension.swift */; };
-		6B6594FA21E2730600291AAF /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6594E221E262C400291AAF /* Carbon.framework */; };
-		6B6594FB21E2730600291AAF /* Carbon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6594E221E262C400291AAF /* Carbon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		6B6594FC21E2730600291AAF /* DifferenceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6594F721E272D500291AAF /* DifferenceKit.framework */; };
-		6B6594FD21E2730600291AAF /* DifferenceKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6594F721E272D500291AAF /* DifferenceKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6B6594EF21E26A7A00291AAF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B6594EE21E26A7A00291AAF /* Extensions.swift */; };
 		6B7ADEFA21FDD5D3003803BE /* HelloViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7ADEF921FDD5D3003803BE /* HelloViewController.swift */; };
 		6B7ADEFC21FDD77A003803BE /* HelloViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B7ADEFB21FDD77A003803BE /* HelloViewController.xib */; };
 		6B7ADF0021FDE3F2003803BE /* HelloMessageContent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B7ADEFF21FDE3F2003803BE /* HelloMessageContent.xib */; };
 		6B7ADF0221FDEEC7003803BE /* HelloMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7ADF0121FDEEC7003803BE /* HelloMessage.swift */; };
 		6BBC279121ECF91A00446FB7 /* TodoEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBC279021ECF91A00446FB7 /* TodoEmpty.swift */; };
 		6BBC279321ECFE6A00446FB7 /* TodoEmptyContent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BBC279221ECFE6A00446FB7 /* TodoEmptyContent.xib */; };
-		6BBC279521EE25B500446FB7 /* TodoTableViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBC279421EE25B500446FB7 /* TodoTableViewAdapter.swift */; };
 		6BBC279821EE2B9A00446FB7 /* KyotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBC279721EE2B9A00446FB7 /* KyotoViewController.swift */; };
 		6BBC279A21EE2C7500446FB7 /* KyotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BBC279921EE2C7500446FB7 /* KyotoViewController.xib */; };
 		6BBC279C21EE2F8200446FB7 /* Deletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBC279B21EE2F8200446FB7 /* Deletable.swift */; };
@@ -70,22 +65,8 @@
 		6BBC27B721EF8D4D00446FB7 /* EmojiLabelContent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BBC27B621EF8D4D00446FB7 /* EmojiLabelContent.xib */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		6B6594FE21E2730700291AAF /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				6B6594FD21E2730600291AAF /* DifferenceKit.framework in Embed Frameworks */,
-				6B6594FB21E2730600291AAF /* Carbon.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
+		21CAE3C8FFB1A0F4BD270D3B /* Pods-Example-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-iOS.release.xcconfig"; path = "Target Support Files/Pods-Example-iOS/Pods-Example-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		6B09264321FE17B300CFEC2F /* Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Footer.swift; sourceTree = "<group>"; };
 		6B09264521FE183300CFEC2F /* FooterContent.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FooterContent.xib; sourceTree = "<group>"; };
 		6B21A49E21E3A67200568841 /* FormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
@@ -113,7 +94,6 @@
 		6B5A987A21E8EED30013BB95 /* TodoText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoText.swift; sourceTree = "<group>"; };
 		6B5A987C21E8F16F0013BB95 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		6B5A987E21E8F2090013BB95 /* TodoTextContent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoTextContent.xib; sourceTree = "<group>"; };
-		6B5A988421ECBD380013BB95 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		6B6594CC21E2619B00291AAF /* Example-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Example-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B6594CF21E2619B00291AAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6B6594D121E2619B00291AAF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -125,7 +105,7 @@
 		6B6594E621E2650000291AAF /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		6B6594E821E2655400291AAF /* HomeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeItem.swift; sourceTree = "<group>"; };
 		6B6594EC21E2659500291AAF /* HomeItemContent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeItemContent.xib; sourceTree = "<group>"; };
-		6B6594EE21E26A7A00291AAF /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
+		6B6594EE21E26A7A00291AAF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		6B6594F721E272D500291AAF /* DifferenceKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DifferenceKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B7ADEF921FDD5D3003803BE /* HelloViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloViewController.swift; sourceTree = "<group>"; };
 		6B7ADEFB21FDD77A003803BE /* HelloViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelloViewController.xib; sourceTree = "<group>"; };
@@ -133,7 +113,6 @@
 		6B7ADF0121FDEEC7003803BE /* HelloMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloMessage.swift; sourceTree = "<group>"; };
 		6BBC279021ECF91A00446FB7 /* TodoEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoEmpty.swift; sourceTree = "<group>"; };
 		6BBC279221ECFE6A00446FB7 /* TodoEmptyContent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoEmptyContent.xib; sourceTree = "<group>"; };
-		6BBC279421EE25B500446FB7 /* TodoTableViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewAdapter.swift; sourceTree = "<group>"; };
 		6BBC279721EE2B9A00446FB7 /* KyotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KyotoViewController.swift; sourceTree = "<group>"; };
 		6BBC279921EE2C7500446FB7 /* KyotoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KyotoViewController.xib; sourceTree = "<group>"; };
 		6BBC279B21EE2F8200446FB7 /* Deletable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deletable.swift; sourceTree = "<group>"; };
@@ -147,6 +126,8 @@
 		6BBC27B221EF8A6600446FB7 /* EmojiLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiLabel.swift; sourceTree = "<group>"; };
 		6BBC27B421EF8CDB00446FB7 /* EmojiViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmojiViewController.xib; sourceTree = "<group>"; };
 		6BBC27B621EF8D4D00446FB7 /* EmojiLabelContent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmojiLabelContent.xib; sourceTree = "<group>"; };
+		C676BFED3D0A58EBFA76D7DA /* Pods_Example_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA7767A4E02CFCA79CE0E01E /* Pods-Example-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Example-iOS/Pods-Example-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,14 +135,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B6594FC21E2730600291AAF /* DifferenceKit.framework in Frameworks */,
-				6B6594FA21E2730600291AAF /* Carbon.framework in Frameworks */,
+				0A729640B3FDCE139DDB84E1 /* Pods_Example_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A86BB19C6009EA031F77B52 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CA7767A4E02CFCA79CE0E01E /* Pods-Example-iOS.debug.xcconfig */,
+				21CAE3C8FFB1A0F4BD270D3B /* Pods-Example-iOS.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		6B21A49D21E3A63A00568841 /* Form */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,7 +192,6 @@
 				6BBC279021ECF91A00446FB7 /* TodoEmpty.swift */,
 				6BBC279221ECFE6A00446FB7 /* TodoEmptyContent.xib */,
 				6B5A987C21E8F16F0013BB95 /* Todo.swift */,
-				6BBC279421EE25B500446FB7 /* TodoTableViewAdapter.swift */,
 				6BBC279B21EE2F8200446FB7 /* Deletable.swift */,
 			);
 			path = Todo;
@@ -218,8 +206,7 @@
 				6B09264321FE17B300CFEC2F /* Footer.swift */,
 				6B09264521FE183300CFEC2F /* FooterContent.xib */,
 				6B6594E621E2650000291AAF /* NibLoadable.swift */,
-				6B6594EE21E26A7A00291AAF /* UITableViewExtension.swift */,
-				6B5A988421ECBD380013BB95 /* UIColorExtension.swift */,
+				6B6594EE21E26A7A00291AAF /* Extensions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -230,6 +217,7 @@
 				6B6594CE21E2619B00291AAF /* Sources */,
 				6B6594CD21E2619B00291AAF /* Products */,
 				6B6594E121E262C400291AAF /* Frameworks */,
+				4A86BB19C6009EA031F77B52 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -265,6 +253,7 @@
 			children = (
 				6B6594F721E272D500291AAF /* DifferenceKit.framework */,
 				6B6594E221E262C400291AAF /* Carbon.framework */,
+				C676BFED3D0A58EBFA76D7DA /* Pods_Example_iOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -324,11 +313,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6B6594DE21E2619E00291AAF /* Build configuration list for PBXNativeTarget "Example-iOS" */;
 			buildPhases = (
+				B42E1DF0DCAF8D02E3E2C6FD /* [CP] Check Pods Manifest.lock */,
 				6B6594C821E2619B00291AAF /* Sources */,
 				6B6594C921E2619B00291AAF /* Frameworks */,
 				6B6594CA21E2619B00291AAF /* Resources */,
-				6B6594FE21E2730700291AAF /* Embed Frameworks */,
 				6B7ADEF521FDC40B003803BE /* SwiftLint */,
+				BF42A6766E4C867797999EB1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -427,6 +417,45 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint --config ../../.swiftlint.yml\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		B42E1DF0DCAF8D02E3E2C6FD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Example-iOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BF42A6766E4C867797999EB1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Example-iOS/Pods-Example-iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Example-iOS/Pods-Example-iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example-iOS/Pods-Example-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -443,9 +472,8 @@
 				6B3973B6220000EC002BB03A /* PangramLabel.swift in Sources */,
 				6BBC27B321EF8A6600446FB7 /* EmojiLabel.swift in Sources */,
 				6BBC279C21EE2F8200446FB7 /* Deletable.swift in Sources */,
-				6B5A988521ECBD380013BB95 /* UIColorExtension.swift in Sources */,
 				6B21A4B321E3BABF00568841 /* FormTextView.swift in Sources */,
-				6B6594EF21E26A7A00291AAF /* UITableViewExtension.swift in Sources */,
+				6B6594EF21E26A7A00291AAF /* Extensions.swift in Sources */,
 				6B6594D221E2619B00291AAF /* HomeViewController.swift in Sources */,
 				6BBC27AC21EE5BFE00446FB7 /* KyotoLicense.swift in Sources */,
 				6B3973B5220000EC002BB03A /* PangramViewController.swift in Sources */,
@@ -465,7 +493,6 @@
 				6B21A4A521E3A92F00568841 /* FormTextField.swift in Sources */,
 				6B5A987D21E8F16F0013BB95 /* Todo.swift in Sources */,
 				6B6594D021E2619B00291AAF /* AppDelegate.swift in Sources */,
-				6BBC279521EE25B500446FB7 /* TodoTableViewAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -601,6 +628,7 @@
 		};
 		6B6594DF21E2619E00291AAF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA7767A4E02CFCA79CE0E01E /* Pods-Example-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_NOTICES = YES;
@@ -617,13 +645,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ryo.Example-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		6B6594E021E2619E00291AAF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21CAE3C8FFB1A0F4BD270D3B /* Pods-Example-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_NOTICES = YES;
@@ -640,7 +669,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ryo.Example-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
