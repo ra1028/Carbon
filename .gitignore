@@ -28,3 +28,6 @@ vendor/bundle
 
 ## Carthage
 Carthage/Build
+
+## Swift PM
+.swiftpm
