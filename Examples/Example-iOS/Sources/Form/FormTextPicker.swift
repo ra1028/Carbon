@@ -14,12 +14,8 @@ struct FormTextPicker: Component {
         content.onSelect = onSelect
     }
 
-    func shouldContentUpdate(with next: FormTextPicker) -> Bool {
-        return texts != next.texts
-    }
-
     func shouldRender(next: FormTextPicker, in content: FormTextPickerContent) -> Bool {
-        return shouldContentUpdate(with: next)
+        return texts != next.texts
     }
 
     func referenceSize(in bounds: CGRect) -> CGSize? {

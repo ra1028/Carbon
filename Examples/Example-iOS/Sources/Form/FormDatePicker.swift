@@ -14,10 +14,6 @@ struct FormDatePicker: Component {
         content.onSelect = onSelect
     }
 
-    func shouldContentUpdate(with next: FormDatePicker) -> Bool {
-        return false
-    }
-
     func shouldRender(next: FormDatePicker, in content: FormDatePickerContent) -> Bool {
         return false
     }

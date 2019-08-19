@@ -28,11 +28,6 @@ struct TodoText: IdentifiableComponent, Deletable {
         }
     }
 
-    func shouldContentUpdate(with next: TodoText) -> Bool {
-        return todo != next.todo
-            || isCompleted != next.isCompleted
-    }
-
     func referenceSize(in bounds: CGRect) -> CGSize? {
         return nil
     }

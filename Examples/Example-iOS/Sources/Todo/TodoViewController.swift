@@ -36,16 +36,12 @@ final class TodoViewController: UIViewController, UITextViewDelegate {
         addButton.layer.cornerRadius = addButton.bounds.height / 2
         inputTextView.textContainerInset = .zero
         inputContainerView.layer.cornerRadius = 24
+
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.contentInset.bottom = view.bounds.height - addButton.frame.minY
-
         renderer.target = tableView
-        renderer.updater.skipReloadComponents = true
-        renderer.updater.alwaysRenderVisibleComponents = true
 
         render()
     }

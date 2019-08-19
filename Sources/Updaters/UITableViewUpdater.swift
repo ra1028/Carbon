@@ -31,8 +31,8 @@ open class UITableViewUpdater<Adapter: Carbon.Adapter & UITableViewDelegate & UI
     open var skipReloadComponents = false
 
     /// A Bool value indicating whether that to always render visible components
-    /// after diffing updated. Default is false.
-    open var alwaysRenderVisibleComponents = false
+    /// after diffing updated. Default is true.
+    open var alwaysRenderVisibleComponents = true
 
     /// A Bool value indicating whether that to reset content offset after
     /// updated if not scrolling. Default is false.
@@ -188,29 +188,31 @@ open class UITableViewUpdater<Adapter: Carbon.Adapter & UITableViewDelegate & UI
     ///   - target: A target instance to render components.
     ///   - adapter: An adapter holding currently rendered data.
     open func renderVisibleComponents(in target: UITableView, adapter: Adapter) {
-        let sections = 0..<target.numberOfSections
-        let visibleRect = target.bounds
+        target._performBatchUpdates {
+            let sections = 0..<target.numberOfSections
+            let visibleRect = target.bounds
 
-        for section in sections {
-            guard target.rect(forSection: section).intersects(visibleRect) else {
-                continue
+            for section in sections {
+                guard target.rect(forSection: section).intersects(visibleRect) else {
+                    continue
+                }
+
+                if let headerNode = adapter.headerNode(in: section) {
+                    let view = target.headerView(forSection: section) as? ComponentRenderable
+                    view?.render(component: headerNode.component)
+                }
+
+                if let footerNode = adapter.footerNode(in: section) {
+                    let view = target.footerView(forSection: section) as? ComponentRenderable
+                    view?.render(component: footerNode.component)
+                }
             }
 
-            if let headerNode = adapter.headerNode(in: section) {
-                let view = target.headerView(forSection: section) as? ComponentRenderable
-                view?.render(component: headerNode.component)
+            for indexPath in target.indexPathsForVisibleRows ?? [] {
+                let cellNode = adapter.cellNode(at: indexPath)
+                let cell = target.cellForRow(at: indexPath) as? ComponentRenderable
+                cell?.render(component: cellNode.component)
             }
-
-            if let footerNode = adapter.footerNode(in: section) {
-                let view = target.footerView(forSection: section) as? ComponentRenderable
-                view?.render(component: footerNode.component)
-            }
-        }
-
-        for indexPath in target.indexPathsForVisibleRows ?? [] {
-            let cellNode = adapter.cellNode(at: indexPath)
-            let cell = target.cellForRow(at: indexPath) as? ComponentRenderable
-            cell?.render(component: cellNode.component)
         }
     }
 }

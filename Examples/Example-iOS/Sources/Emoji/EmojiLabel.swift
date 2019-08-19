@@ -18,10 +18,6 @@ struct EmojiLabel: IdentifiableComponent {
         content.onSelect = onSelect
     }
 
-    func shouldContentUpdate(with next: EmojiLabel) -> Bool {
-        return code != next.code
-    }
-
     func referenceSize(in bounds: CGRect) -> CGSize? {
         return CGSize(width: 50, height: 30)
     }

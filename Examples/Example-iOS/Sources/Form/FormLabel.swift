@@ -20,11 +20,6 @@ struct FormLabel: IdentifiableComponent {
         content.onSelect = onSelect
     }
 
-    func shouldContentUpdate(with next: FormLabel) -> Bool {
-        return title != next.title
-            || text != next.text
-    }
-
     func referenceSize(in bounds: CGRect) -> CGSize? {
         return CGSize(width: bounds.width, height: 44)
     }

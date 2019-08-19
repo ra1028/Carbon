@@ -18,10 +18,6 @@ struct HomeItem: IdentifiableComponent {
         content.onSelect = onSelect
     }
 
-    func shouldContentUpdate(with next: HomeItem) -> Bool {
-        return title != next.title
-    }
-
     func referenceSize(in bounds: CGRect) -> CGSize? {
         return CGSize(width: bounds.width, height: 70)
     }
