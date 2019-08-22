@@ -45,8 +45,6 @@ final class FormViewController: UIViewController {
         super.viewDidLoad()
 
         title = "Profile Form"
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = UITableView.automaticDimension
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
 
         renderer.target = tableView
@@ -101,11 +99,6 @@ final class FormViewController: UIViewController {
                     cells: [
                         CellNode(id: ID.note, FormTextView(text: state.note) { [weak self] text in
                             self?.state.note = text
-
-                            UIView.performWithoutAnimation {
-                                self?.tableView.beginUpdates()
-                                self?.tableView.endUpdates()
-                            }
                         })
                     ]
                 ),

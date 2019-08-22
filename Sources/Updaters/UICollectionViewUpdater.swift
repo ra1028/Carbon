@@ -158,33 +158,35 @@ open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDel
     ///   - target: A target instance to render components.
     ///   - adapter: An adapter holding currently rendered data.
     open func renderVisibleComponents(in target: UICollectionView, adapter: Adapter) {
-        target.performBatchUpdates({
-            let headerElementKind = UICollectionView.elementKindSectionHeader
-            let footerElementKind = UICollectionView.elementKindSectionFooter
+        UIView.performWithoutAnimation {
+            target.performBatchUpdates({
+                let headerElementKind = UICollectionView.elementKindSectionHeader
+                let footerElementKind = UICollectionView.elementKindSectionFooter
 
-            for indexPath in target.indexPathsForVisibleSupplementaryElements(ofKind: headerElementKind) {
-                guard let headerNode = adapter.headerNode(in: indexPath.section) else {
-                    continue
+                for indexPath in target.indexPathsForVisibleSupplementaryElements(ofKind: headerElementKind) {
+                    guard let headerNode = adapter.headerNode(in: indexPath.section) else {
+                        continue
+                    }
+
+                    let view = target.supplementaryView(forElementKind: headerElementKind, at: indexPath) as? ComponentRenderable
+                    view?.render(component: headerNode.component)
                 }
 
-                let view = target.supplementaryView(forElementKind: headerElementKind, at: indexPath) as? ComponentRenderable
-                view?.render(component: headerNode.component)
-            }
+                for indexPath in target.indexPathsForVisibleSupplementaryElements(ofKind: footerElementKind) {
+                    guard let footerNode = adapter.headerNode(in: indexPath.section) else {
+                        continue
+                    }
 
-            for indexPath in target.indexPathsForVisibleSupplementaryElements(ofKind: footerElementKind) {
-                guard let footerNode = adapter.headerNode(in: indexPath.section) else {
-                    continue
+                    let view = target.supplementaryView(forElementKind: footerElementKind, at: indexPath) as? ComponentRenderable
+                    view?.render(component: footerNode.component)
                 }
 
-                let view = target.supplementaryView(forElementKind: footerElementKind, at: indexPath) as? ComponentRenderable
-                view?.render(component: footerNode.component)
-            }
-
-            for indexPath in target.indexPathsForVisibleItems {
-                let cellNode = adapter.cellNode(at: indexPath)
-                let cell = target.cellForItem(at: indexPath) as? ComponentRenderable
-                cell?.render(component: cellNode.component)
-            }
-        })
+                for indexPath in target.indexPathsForVisibleItems {
+                    let cellNode = adapter.cellNode(at: indexPath)
+                    let cell = target.cellForItem(at: indexPath) as? ComponentRenderable
+                    cell?.render(component: cellNode.component)
+                }
+            })
+        }
     }
 }
