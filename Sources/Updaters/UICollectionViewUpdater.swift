@@ -9,9 +9,6 @@ open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDel
     /// scrolling. Default is false.
     open var isAnimationEnabledWhileScrolling = true
 
-    /// A Bool value indicating whether that skips reload components. Default is false.
-    open var skipReloadComponents = false
-
     /// A Bool value indicating whether that to always render visible components
     /// after diffing updated. Default is true.
     open var alwaysRenderVisibleComponents = true
@@ -125,7 +122,7 @@ open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDel
                         target.insertItems(at: changeset.elementInserted.map { IndexPath(item: $0.element, section: $0.section) })
                     }
 
-                    if !skipReloadComponents && !changeset.elementUpdated.isEmpty {
+                    if !changeset.elementUpdated.isEmpty {
                         target.reloadItems(at: changeset.elementUpdated.map { IndexPath(item: $0.element, section: $0.section) })
                     }
 

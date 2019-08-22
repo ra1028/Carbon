@@ -104,28 +104,6 @@ final class UICollectionViewUpdaterTests: XCTestCase {
         })
     }
 
-    func testSkipReloadComponents() {
-        let updater = MockCollectionViewUpdater()
-        let adapter = MockCollectionViewFlowLayoutAdapter()
-        let collectionView = MockCollectionView().addingToWindow()
-
-        let stagedChangeset: StagedDataChangeset = [
-            DataChangeset(data: [], elementUpdated: [ElementPath(element: 0, section: 0)])
-        ]
-
-        updater.skipReloadComponents = true
-
-        performAsyncTests(
-            block: { e in
-                updater.performDifferentialUpdates(target: collectionView, adapter: adapter, data: [Section(id: TestID.a)], stagedChangeset: stagedChangeset) {
-                    e.fulfill()
-                }},
-            testing: {
-                XCTAssertEqual(collectionView.reloadedItems, [])
-                XCTAssertFalse(collectionView.isReloadDataCalled)
-        })
-    }
-
     func testAlwaysRenderVisibleComponents() {
         let updater = MockCollectionViewUpdater()
         let adapter = MockCollectionViewFlowLayoutAdapter()

@@ -87,6 +87,9 @@ final class UITableViewUpdaterTests: XCTestCase {
         let adapter = MockTableViewAdapter()
         let tableView = MockTableView().addingToWindow()
 
+        // Rendering visible components is no needed in this test.
+        updater.alwaysRenderVisibleComponents = false
+
         let stagedChangeset: StagedDataChangeset = [
             DataChangeset(data: [], sectionDeleted: [0, 1]),
             DataChangeset(data: [], sectionInserted: [2, 3]),
@@ -112,28 +115,6 @@ final class UITableViewUpdaterTests: XCTestCase {
                 XCTAssertEqual(tableView.insertedRows, [IndexPath(row: 10, section: 11)])
                 XCTAssertEqual(tableView.reloadedRows, [IndexPath(row: 12, section: 13)])
                 XCTAssertEqual(tableView.movedRows.map(Pair.init), [Pair(IndexPath(row: 14, section: 15), IndexPath(row: 16, section: 17))])
-                XCTAssertFalse(tableView.isReloadDataCalled)
-        })
-    }
-
-    func testSkipReloadComponents() {
-        let updater = MockTableViewUpdater()
-        let adapter = MockTableViewAdapter()
-        let tableView = MockTableView().addingToWindow()
-
-        let stagedChangeset: StagedDataChangeset = [
-            DataChangeset(data: [], elementUpdated: [ElementPath(element: 0, section: 0)])
-        ]
-
-        updater.skipReloadComponents = true
-
-        performAsyncTests(
-            block: { e in
-                updater.performDifferentialUpdates(target: tableView, adapter: adapter, data: [Section(id: TestID.a)], stagedChangeset: stagedChangeset) {
-                    e.fulfill()
-                }},
-            testing: {
-                XCTAssertEqual(tableView.reloadedRows, [])
                 XCTAssertFalse(tableView.isReloadDataCalled)
         })
     }

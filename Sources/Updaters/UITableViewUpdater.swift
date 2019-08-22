@@ -27,9 +27,6 @@ open class UITableViewUpdater<Adapter: Carbon.Adapter & UITableViewDelegate & UI
     /// scrolling. Default is false.
     open var isAnimationEnabledWhileScrolling = true
 
-    /// A Bool value indicating whether that skips reload components. Default is false.
-    open var skipReloadComponents = false
-
     /// A Bool value indicating whether that to always render visible components
     /// after diffing updated. Default is true.
     open var alwaysRenderVisibleComponents = true
@@ -155,7 +152,7 @@ open class UITableViewUpdater<Adapter: Carbon.Adapter & UITableViewDelegate & UI
                         target.insertRows(at: changeset.elementInserted.map { IndexPath(row: $0.element, section: $0.section) }, with: insertRowsAnimation)
                     }
 
-                    if !skipReloadComponents && !changeset.elementUpdated.isEmpty {
+                    if !changeset.elementUpdated.isEmpty {
                         target.reloadRows(at: changeset.elementUpdated.map { IndexPath(row: $0.element, section: $0.section) }, with: reloadRowsAnimation)
                     }
 
