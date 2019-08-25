@@ -1,7 +1,7 @@
 import UIKit
 
 /// An updater for managing diffing updates to render data to the `UICollectionView`.
-open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDelegate & UICollectionViewDataSource>: Updater {
+open class UICollectionViewUpdater<Adapter: UICollectionViewAdapter>: Updater {
     /// A Bool value indicating whether that enable diffing animation. Default is true.
     open var isAnimationEnabled = true
 
@@ -9,12 +9,9 @@ open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDel
     /// scrolling. Default is false.
     open var isAnimationEnabledWhileScrolling = true
 
-    /// A Bool value indicating whether that skips reload components. Default is false.
-    open var skipReloadComponents = false
-
     /// A Bool value indicating whether that to always render visible components
-    /// after diffing updated. Default is false.
-    open var alwaysRenderVisibleComponents = false
+    /// after diffing updated. Default is true.
+    open var alwaysRenderVisibleComponents = true
 
     /// A Bool value indicating whether that to reset content offset after
     /// updated if not scrolling. Default is false.
@@ -125,7 +122,7 @@ open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDel
                         target.insertItems(at: changeset.elementInserted.map { IndexPath(item: $0.element, section: $0.section) })
                     }
 
-                    if !skipReloadComponents && !changeset.elementUpdated.isEmpty {
+                    if !changeset.elementUpdated.isEmpty {
                         target.reloadItems(at: changeset.elementUpdated.map { IndexPath(item: $0.element, section: $0.section) })
                     }
 
@@ -161,31 +158,25 @@ open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDel
     ///   - target: A target instance to render components.
     ///   - adapter: An adapter holding currently rendered data.
     open func renderVisibleComponents(in target: UICollectionView, adapter: Adapter) {
-        let headerElementKind = UICollectionView.elementKindSectionHeader
-        let footerElementKind = UICollectionView.elementKindSectionFooter
+        UIView.performWithoutAnimation {
+            target.performBatchUpdates({
+                for kind in adapter.registeredSupplementaryViewKinds(for: target) {
+                    for indexPath in target.indexPathsForVisibleSupplementaryElements(ofKind: kind) {
+                        guard let node = adapter.supplementaryViewNode(forElementKind: kind, collectionView: target, at: indexPath) else {
+                            continue
+                        }
 
-        for indexPath in target.indexPathsForVisibleSupplementaryElements(ofKind: headerElementKind) {
-            guard let headerNode = adapter.headerNode(in: indexPath.section) else {
-                continue
-            }
+                        let view = target.supplementaryView(forElementKind: kind, at: indexPath) as? ComponentRenderable
+                        view?.render(component: node.component)
+                    }
+                }
 
-            let view = target.supplementaryView(forElementKind: headerElementKind, at: indexPath) as? ComponentRenderable
-            view?.render(component: headerNode.component)
-        }
-
-        for indexPath in target.indexPathsForVisibleSupplementaryElements(ofKind: footerElementKind) {
-            guard let footerNode = adapter.headerNode(in: indexPath.section) else {
-                continue
-            }
-
-            let view = target.supplementaryView(forElementKind: footerElementKind, at: indexPath) as? ComponentRenderable
-            view?.render(component: footerNode.component)
-        }
-
-        for indexPath in target.indexPathsForVisibleItems {
-            let cellNode = adapter.cellNode(at: indexPath)
-            let cell = target.cellForItem(at: indexPath) as? ComponentRenderable
-            cell?.render(component: cellNode.component)
+                for indexPath in target.indexPathsForVisibleItems {
+                    let cellNode = adapter.cellNode(at: indexPath)
+                    let cell = target.cellForItem(at: indexPath) as? ComponentRenderable
+                    cell?.render(component: cellNode.component)
+                }
+            })
         }
     }
 }

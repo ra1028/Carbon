@@ -14,10 +14,6 @@ struct FormTextView: Component {
         content.onInput = onInput
     }
 
-    func shouldContentUpdate(with next: FormTextView) -> Bool {
-        return false
-    }
-
     func referenceSize(in bounds: CGRect) -> CGSize? {
         return nil
     }

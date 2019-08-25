@@ -26,7 +26,8 @@ final class ComponentTests: XCTestCase {
         let component1 = A.Component(value: 100)
         let component2 = A.Component(value: 200)
 
+        // Always false by default.
         XCTAssertFalse(component1.shouldContentUpdate(with: component1))
-        XCTAssertTrue(component1.shouldContentUpdate(with: component2))
+        XCTAssertFalse(component1.shouldContentUpdate(with: component2))
     }
 }

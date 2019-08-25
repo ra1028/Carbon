@@ -1,5 +1,5 @@
 PODS:
-  - Carbon (0.3.0):
+  - Carbon (1.0.0-rc.1):
     - DifferenceKit/Core (~> 1.1)
   - DifferenceKit/Core (1.1.3)
   - MagazineLayout (1.5.0)
@@ -21,7 +21,7 @@ EXTERNAL SOURCES:
     :path: "../../"
 
 SPEC CHECKSUMS:
-  Carbon: 6badf3ea143008d086fadb91318fab09a088a5e1
+  Carbon: 66addbbb03c1433ec0bcdc4317e3640862a08f71
   DifferenceKit: 5018791b6c1fc839921a3c171a0a539ace6ea60c
   MagazineLayout: fe41dc2cf1923e3bf377cd8d906a4455a0bf9c83
   SwipeCellKit: 935ca28c187ec6e1ffb2b578cf8ddca842bfdcbb

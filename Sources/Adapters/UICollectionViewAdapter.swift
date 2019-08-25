@@ -68,6 +68,16 @@ open class UICollectionViewAdapter: NSObject, Adapter {
             return nil
         }
     }
+
+    /// Returns the kinds of supplementary view registered in the specified collection view.
+    ///
+    /// - Parameters:
+    ///   - collectionView: A collection view that supplementary views registered.
+    ///
+    /// - Returns: The kinds of supplementary view registered in the specified collection view.
+    public func registeredSupplementaryViewKinds(for collectionView: UICollectionView) -> [String] {
+        return Array(registeredViewReuseIdentifiersForKindAssociation[collectionView].keys)
+    }
 }
 
 public extension UICollectionViewAdapter {

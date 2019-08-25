@@ -29,11 +29,6 @@ struct FormTextField: IdentifiableComponent {
         content.onInput = onInput
     }
 
-    func shouldContentUpdate(with next: FormTextField) -> Bool {
-        return title != next.title
-            || keyboardType != next.keyboardType
-    }
-
     func referenceSize(in bounds: CGRect) -> CGSize? {
         return CGSize(width: bounds.width, height: 44)
     }

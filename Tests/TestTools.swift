@@ -181,6 +181,7 @@ final class MockTableView: UITableView {
     var customCellForRowAt: ((IndexPath) -> UITableViewCell?)?
     var customHeaderViewForSection: ((Int) -> UITableViewHeaderFooterView)?
     var customFooterViewForSection: ((Int) -> UITableViewHeaderFooterView)?
+    var customRectForSection: (Int) -> CGRect = { _ in CGRect(x: 0, y: 0, width: 500, height: 500) }
 
     override var numberOfSections: Int {
         return customNumberOfSections ?? super.numberOfSections
@@ -203,7 +204,7 @@ final class MockTableView: UITableView {
     }
 
     override func rect(forSection section: Int) -> CGRect {
-        return CGRect(x: 0, y: 0, width: 500, height: 500)
+        return customRectForSection(section)
     }
 
     override func layoutSubviews() {

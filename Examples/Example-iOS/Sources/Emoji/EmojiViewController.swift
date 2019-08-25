@@ -26,7 +26,6 @@ final class EmojiViewController: UIViewController {
         collectionView.contentInset.bottom = 44
 
         renderer.target = collectionView
-        renderer.updater.alwaysRenderVisibleComponents = true
 
         refresh()
     }

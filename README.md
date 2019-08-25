@@ -99,11 +99,10 @@ The value returned by `referenceSize` is used as the size of component on the li
 If returning `nil`, it falls back to default such as `UITableView.rowHeight` or `UICollectionViewFlowLayout.itemSize`.  
 Therefore, automatic sizing can also be used.  
 
-Definition below is the simplest implementation. It's not mandatory to conform to `Equatable`.  
-If the component have values that can't equality comparison ​​such as closure, it can explicitly shift off the comparisons by implementing `shouldContentUpdate`.  
+Definition below is the simplest implementation.  
 
 ```swift
-struct HelloMessage: Component, Equatable {
+struct HelloMessage: Component {
     var name: String
 
     func renderContent() -> UILabel {
@@ -168,22 +167,18 @@ let emptySection = Section(id: 0)
 ```swift
 let showsHelloMia: Bool = ...
 
-let section = Section(id: "hello") { section in
-    section.header = ViewNode(HelloMessage(name: "Vincent"))
-
-    section.cells = [
+let section = Section(
+    id: "hello",
+    header: ViewNode(HelloMessage(name: "Vincent")),
+    cells: [
         CellNode(HelloMessage(name: "Jules")),
-        CellNode(HelloMessage(name: "Butch"))
-    ]
-
-    if showsHelloMia {
-        section.cells += [
-            CellNode(HelloMessage(name: "Mia"))
-        ]
-    }
-
-    section.footer = ViewNode(HelloMessage(name: "Marsellus"))
-}
+        CellNode(HelloMessage(name: "Butch")),
+        !showsHelloMia
+            ? nil
+            : CellNode(HelloMessage(name: "Mia"))
+    ],
+    footer: ViewNode(HelloMessage(name: "Marsellus"))
+)
 ```
 
 #### Renderer
@@ -193,7 +188,7 @@ Boilerplates such as registering element types to a table view are no longer nee
 
 The adapter acts as delegate and dataSource, the updater handles updates.  
 You can also change the behaviors by inheriting the class and customizing it.  
-There are also `UITableViewReloadDataUpdater` and` UICollectionViewReloadDataUpdater` which update by `reloadData` without diffing update.  
+There are also `UITableViewReloadDataUpdater` and `UICollectionViewReloadDataUpdater` which update by `reloadData` without diffing updates.  
 Note that it doesn't retain `target` inside `Renderer` because it avoids circular references.  
 
 When `render` called again, the updater calculates the diff from currently rendering components and update them with system animation.  
@@ -232,32 +227,27 @@ override func viewDidLoad() {
 ```swift
 let showsBottomSection: Bool = ...
 
-renderer.render { sections in
-    sections = [
-        Section(
-            id: "top section",
-            cells: [
-                CellNode(HelloMessage(name: "Vincent")),
-                CellNode(HelloMessage(name: "Jules")),
-                CellNode(HelloMessage(name: "Butch"))
-            ]
-        )
-    ]
-
-    if showsBottomSection {
-        sections += [
-            Section(
-                id: "bottom section",
-                header: ViewNode(HelloMessage(name: "Pumpkin")),
-                cells: [
-                    CellNode(HelloMessage(name: "Marsellus")),
-                    CellNode(HelloMessage(name: "Mia"))
-                ],
-                footer: ViewNode(HelloMessage(name: "Honey Bunny"))
-            )
+renderer.render(
+    Section(
+        id: "top section",
+        cells: [
+            CellNode(HelloMessage(name: "Vincent")),
+            CellNode(HelloMessage(name: "Jules")),
+            CellNode(HelloMessage(name: "Butch"))
         ]
-    }
-}
+    ),
+    !showsBottomSection
+        ? nil
+        : Section(
+            id: "bottom section",
+            header: ViewNode(HelloMessage(name: "Pumpkin")),
+            cells: [
+                CellNode(HelloMessage(name: "Marsellus")),
+                CellNode(HelloMessage(name: "Mia"))
+            ],
+            footer: ViewNode(HelloMessage(name: "Honey Bunny"))
+        )
+)
 ```
 
 <H3 align="center">
@@ -282,7 +272,7 @@ class HelloMessageContent: UIView {
 ```
 
 ``` swift
-struct HelloMessage: Component, Equatable {
+struct HelloMessage: Component {
     var name: String
 
     func renderContent() -> HelloMessageContent {
@@ -302,7 +292,7 @@ struct HelloMessage: Component, Equatable {
 It can be omitted the definition of `id` if the component conforms to `Hashable`.  
 
 ```swift
-struct HelloMessage: IdentifiableComponent, Equatable {
+struct HelloMessage: IdentifiableComponent {
     var name: String
 
     var id: String {
@@ -359,10 +349,6 @@ struct MenuItem: Component {
         content.onSelect = onSelect
     }
 
-    func shouldContentUpdate(with next: MenuItem) -> Bool {
-        return text != next.text
-    }
-
     func referenceSize(in bounds: CGRect) -> CGSize? {
         return CGSize(width: bounds.width, height: 44)
     }
@@ -392,11 +378,11 @@ Following are part of it.
 
 - **shouldContentUpdate**  
 If the result is `true`, the component displayed as a cell is reloaded individually, header or footer is reloaded with entire section.  
-It can be omitted by conforming to `Equatable`.  
+By default it returns `false`, but the updater will always re-render visible components changed.  
 
 - **shouldRender**  
 By returning `false`, you can skip component re-rendering when reloading or dequeuing element.  
-You can re-render only when component is changed, if implement to call `shouldContentUpdate` within here.  
+Instead of re-rendering, detects component changes by comparing with next value.  
 This is recommended to use only for performance tuning.  
 
 - **contentWillDisplay**  
@@ -481,16 +467,6 @@ Default is `true`.
 - **animatableChangeCount**  
 The max number of changes to perform diffing updates. It falls back to `reloadData` if it exceeded.  
 Default is `300`.  
-
-- **skipReloadComponents**  
-Indicates whether to explicitly avoid `UITableView.reloadRows`, `UICollectionView.reloadItems`.  
-Try it when an animation glitch occurs.  
-Default is `false`.  
-
-- **alwaysRenderVisibleComponents**  
-Indicates whether to always call `render` of the component in the visible area after updating.  
-Should use this in case of using the above mentioned `skipReloadComponents`.  
-Default is `false`.  
 
 - **keepsContentOffset**  
 Indicating whether that to reset content offset after updated.  

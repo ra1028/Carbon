@@ -56,6 +56,11 @@ public protocol Component {
     ///            like `UITableView.rowHeight` or `UICollectionViewFlowLayout.itemSize`.
     func referenceSize(in bounds: CGRect) -> CGSize?
 
+    // MARK: - Rendering - optional
+
+    /// A string used to identify a element that is reusable. Default is the type name of `Content`.
+    var reuseIdentifier: String { get }
+
     /// Returns a `Bool` value indicating whether the content should be reloaded.
     ///
     /// - Note: Unlike `Equatable`, this doesn't compare whether the two values
@@ -67,11 +72,6 @@ public protocol Component {
     ///
     /// - Returns: A `Bool` value indicating whether the content should be reloaded.
     func shouldContentUpdate(with next: Self) -> Bool
-
-    // MARK: - Rendering - optional
-
-    /// A string used to identify a element that is reusable. Default is the type name of `Content`.
-    var reuseIdentifier: String { get }
 
     /// Returns a `Bool` value indicating whether component should be render again.
     ///
@@ -113,6 +113,20 @@ public extension Component {
         return String(reflecting: Content.self)
     }
 
+    /// Returns a `Bool` value indicating whether the content should be reloaded. Default is false.
+    ///
+    /// - Note: Unlike `Equatable`, this doesn't compare whether the two values
+    ///         exactly equal. It's can be ignore property comparisons, if not expect
+    ///         to reload content.
+    ///
+    /// - Parameter:
+    ///   - next: The next value to be compared to the receiver.
+    ///
+    /// - Returns: A `Bool` value indicating whether the content should be reloaded.
+    func shouldContentUpdate(with next: Self) -> Bool {
+        return false
+    }
+
     /// Returns a `Bool` value indicating whether component should be render again.
     ///
     /// - Parameters:
@@ -138,20 +152,6 @@ public extension Component {
     ///   - content: An instance of content going out from display area.
     @inlinable
     func contentDidEndDisplay(_ content: Content) {}
-}
-
-public extension Component where Self: Equatable {
-    /// Returns a `Bool` value indicating whether the content should be reloaded.
-    ///
-    /// - Parameter:
-    ///   - next: The next value to be compared to the receiver.
-    ///
-    /// - Returns: A `Bool` value indicating whether the content should be reloaded.
-    ///            Default is the result of comparison by `Equatable.==`.
-    @inlinable
-    func shouldContentUpdate(with next: Self) -> Bool {
-        return self != next
-    }
 }
 
 public extension Component where Content: UIView {

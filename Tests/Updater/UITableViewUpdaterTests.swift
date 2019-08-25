@@ -87,6 +87,9 @@ final class UITableViewUpdaterTests: XCTestCase {
         let adapter = MockTableViewAdapter()
         let tableView = MockTableView().addingToWindow()
 
+        // Rendering visible components is no needed in this test.
+        updater.alwaysRenderVisibleComponents = false
+
         let stagedChangeset: StagedDataChangeset = [
             DataChangeset(data: [], sectionDeleted: [0, 1]),
             DataChangeset(data: [], sectionInserted: [2, 3]),
@@ -116,70 +119,65 @@ final class UITableViewUpdaterTests: XCTestCase {
         })
     }
 
-    func testSkipReloadComponents() {
-        let updater = MockTableViewUpdater()
-        let adapter = MockTableViewAdapter()
-        let tableView = MockTableView().addingToWindow()
-
-        let stagedChangeset: StagedDataChangeset = [
-            DataChangeset(data: [], elementUpdated: [ElementPath(element: 0, section: 0)])
-        ]
-
-        updater.skipReloadComponents = true
-
-        performAsyncTests(
-            block: { e in
-                updater.performDifferentialUpdates(target: tableView, adapter: adapter, data: [Section(id: TestID.a)], stagedChangeset: stagedChangeset) {
-                    e.fulfill()
-                }},
-            testing: {
-                XCTAssertEqual(tableView.reloadedRows, [])
-                XCTAssertFalse(tableView.isReloadDataCalled)
-        })
-    }
-
     func testAlwaysRenderVisibleComponents() {
         let updater = MockTableViewUpdater()
         let adapter = MockTableViewAdapter()
         let tableView = MockTableView().addingToWindow()
-        let header = UITableViewComponentHeaderFooterView(reuseIdentifier: nil)
-        let cell = UITableViewComponentCell(style: .default, reuseIdentifier: nil)
-        let footer = UITableViewComponentHeaderFooterView(reuseIdentifier: nil)
-        let component = MockIdentifiableComponent(id: TestID.b)
-        let data = [
+
+        let visible = (
+            header: UITableViewComponentHeaderFooterView(reuseIdentifier: nil),
+            cell: UITableViewComponentCell(style: .default, reuseIdentifier: nil),
+            footer: UITableViewComponentHeaderFooterView(reuseIdentifier: nil),
+            component: MockIdentifiableComponent(id: TestID.a),
+            indexPath: IndexPath(item: 0, section: 0)
+        )
+        let unvisible = (
+            header: UITableViewComponentHeaderFooterView(reuseIdentifier: nil),
+            cell: UITableViewComponentCell(style: .default, reuseIdentifier: nil),
+            footer: UITableViewComponentHeaderFooterView(reuseIdentifier: nil),
+            component: MockIdentifiableComponent(id: TestID.b),
+            indexPath: IndexPath(item: 0, section: 1)
+        )
+
+        let data = [visible, unvisible].map { mock in
             Section(
                 id: TestID.a,
-                header: ViewNode(component),
+                header: ViewNode(mock.component),
                 cells: [
-                    CellNode(component)
+                    CellNode(mock.component)
                 ],
-                footer: ViewNode(component)
+                footer: ViewNode(mock.component)
             )
-        ]
+        }
 
         tableView.bounds = CGRect(x: 0, y: 0, width: 500, height: 500)
         tableView.customNumberOfSections = data.count
-        tableView.customIndexPathsForVisibleRows = [IndexPath(row: 0, section: 0)]
-        tableView.customCellForRowAt = { _ in cell }
-        tableView.customHeaderViewForSection = { _ in header }
-        tableView.customFooterViewForSection = { _ in footer }
+        tableView.customIndexPathsForVisibleRows = [visible.indexPath]
+        tableView.customCellForRowAt = { indexPath in
+            indexPath == visible.indexPath ? visible.cell : unvisible.cell
+        }
+        tableView.customHeaderViewForSection = { section in
+            section == visible.indexPath.section ? visible.header : unvisible.header
+        }
+        tableView.customFooterViewForSection = { section in
+            section == visible.indexPath.section ? visible.footer : unvisible.footer
+        }
+        tableView.customRectForSection = { section in
+            let y: CGFloat = section == visible.indexPath.section ? 0 : 1000
+            return CGRect(x: 0, y: y, width: 500, height: 500)
+        }
 
-        updater.alwaysRenderVisibleComponents = true
-
-        XCTAssertNil(cell.renderedComponent)
+        XCTAssertNil(visible.cell.renderedComponent)
+        XCTAssertNil(visible.header.renderedComponent)
+        XCTAssertNil(visible.footer.renderedComponent)
 
         updater.performDifferentialUpdates(target: tableView, adapter: adapter, data: data, stagedChangeset: [], completion: nil)
 
-        if
-            let cellComponent = cell.renderedComponent?.as(MockIdentifiableComponent<TestID>.self),
-            let headerComponent = header.renderedComponent?.as(MockIdentifiableComponent<TestID>.self),
-            let footerComponent = footer.renderedComponent?.as(MockIdentifiableComponent<TestID>.self) {
-            XCTAssertEqual(cellComponent, component)
-            XCTAssertEqual(headerComponent, component)
-            XCTAssertEqual(footerComponent, component)
-        }
-        else {
-            XCTFail()
-        }
+        XCTAssertEqual(visible.component, visible.cell.renderedComponent?.as(MockIdentifiableComponent<TestID>.self))
+        XCTAssertEqual(visible.component, visible.header.renderedComponent?.as(MockIdentifiableComponent<TestID>.self))
+        XCTAssertEqual(visible.component, visible.footer.renderedComponent?.as(MockIdentifiableComponent<TestID>.self))
+        XCTAssertNil(unvisible.cell.renderedComponent)
+        XCTAssertNil(unvisible.header.renderedComponent)
+        XCTAssertNil(unvisible.footer.renderedComponent)
     }
 }

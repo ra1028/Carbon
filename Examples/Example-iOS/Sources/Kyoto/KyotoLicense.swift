@@ -12,10 +12,6 @@ struct KyotoLicense: Component {
         content.onSelected = onSelected
     }
 
-    func shouldContentUpdate(with next: KyotoLicense) -> Bool {
-        return false
-    }
-
     func referenceSize(in bounds: CGRect) -> CGSize? {
         return CGSize(width: bounds.width, height: 70)
     }
