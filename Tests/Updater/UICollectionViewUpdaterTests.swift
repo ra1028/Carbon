@@ -108,51 +108,67 @@ final class UICollectionViewUpdaterTests: XCTestCase {
         let updater = MockCollectionViewUpdater()
         let adapter = MockCollectionViewFlowLayoutAdapter()
         let collectionView = MockCollectionView().addingToWindow()
-        let header = UICollectionComponentReusableView(frame: .zero)
-        let cell = UICollectionViewComponentCell(frame: .zero)
-        let footer = UICollectionComponentReusableView(frame: .zero)
-        let component = MockIdentifiableComponent(id: TestID.b)
-        let data = [
+
+        let visible = (
+            header: UICollectionComponentReusableView(frame: .zero),
+            cell: UICollectionViewComponentCell(frame: .zero),
+            footer: UICollectionComponentReusableView(frame: .zero),
+            component: MockIdentifiableComponent(id: TestID.a),
+            indexPath: IndexPath(item: 0, section: 0)
+        )
+        let unvisible = (
+            header: UICollectionComponentReusableView(frame: .zero),
+            cell: UICollectionViewComponentCell(frame: .zero),
+            footer: UICollectionComponentReusableView(frame: .zero),
+            component: MockIdentifiableComponent(id: TestID.b),
+            indexPath: IndexPath(item: 0, section: 1)
+        )
+
+        let data = [visible, unvisible].map { mock in
             Section(
                 id: TestID.a,
-                header: ViewNode(component),
+                header: ViewNode(mock.component),
                 cells: [
-                    CellNode(component)
+                    CellNode(mock.component)
                 ],
-                footer: ViewNode(component)
+                footer: ViewNode(mock.component)
             )
-        ]
+        }
 
-        collectionView.customIndexPathsForVisibleItems = [IndexPath(item: 0, section: 0)]
-        collectionView.customIndexPathsForVisibleSupplementaryElementsOfKind = { _ in [IndexPath(item: 0, section: 0)] }
-        collectionView.customCellForItemAt = { _ in cell }
-        collectionView.customSupplementaryViewForElementKindAt = { kind, _ in
+        collectionView.customIndexPathsForVisibleItems = [visible.indexPath]
+        collectionView.customIndexPathsForVisibleSupplementaryElementsOfKind = { _ in [visible.indexPath] }
+        collectionView.customCellForItemAt = { indexPath in
+            indexPath == visible.indexPath ? visible.cell : unvisible.cell
+        }
+        collectionView.customSupplementaryViewForElementKindAt = { kind, indexPath in
+            let isVisible = indexPath.section == visible.indexPath.section
             switch kind {
             case UICollectionView.elementKindSectionHeader:
-                return header
+                return isVisible ? visible.header : unvisible.header
             case UICollectionView.elementKindSectionFooter:
-                return footer
+                return isVisible ? visible.footer : unvisible.footer
             default:
                 return nil
             }
         }
 
-        updater.alwaysRenderVisibleComponents = true
+        // Register cell and header, footer.
+        adapter.data = data
+        _ = adapter.collectionView(collectionView, cellForItemAt: visible.indexPath)
+        _ = adapter.collectionView(collectionView, viewForSupplementaryElementOfKind: UICollectionView.elementKindSectionHeader, at: visible.indexPath)
+        _ = adapter.collectionView(collectionView, viewForSupplementaryElementOfKind: UICollectionView.elementKindSectionFooter, at: visible.indexPath)
 
-        XCTAssertNil(cell.renderedComponent)
+        XCTAssertNil(visible.cell.renderedComponent)
+        XCTAssertNil(visible.header.renderedComponent)
+        XCTAssertNil(visible.footer.renderedComponent)
 
         updater.performDifferentialUpdates(target: collectionView, adapter: adapter, data: data, stagedChangeset: [], completion: nil)
 
-        if
-            let cellComponent = cell.renderedComponent?.as(MockIdentifiableComponent<TestID>.self),
-            let headerComponent = header.renderedComponent?.as(MockIdentifiableComponent<TestID>.self),
-            let footerComponent = footer.renderedComponent?.as(MockIdentifiableComponent<TestID>.self) {
-            XCTAssertEqual(cellComponent, component)
-            XCTAssertEqual(headerComponent, component)
-            XCTAssertEqual(footerComponent, component)
-        }
-        else {
-            XCTFail()
-        }
+        XCTAssertEqual(visible.component, visible.cell.renderedComponent?.as(MockIdentifiableComponent<TestID>.self))
+        XCTAssertEqual(visible.component, visible.header.renderedComponent?.as(MockIdentifiableComponent<TestID>.self))
+        XCTAssertEqual(visible.component, visible.footer.renderedComponent?.as(MockIdentifiableComponent<TestID>.self))
+        XCTAssertNil(unvisible.cell.renderedComponent)
+        XCTAssertNil(unvisible.header.renderedComponent)
+        XCTAssertNil(unvisible.footer.renderedComponent)
     }
 }

@@ -47,6 +47,7 @@ final class FormViewController: UIViewController {
         title = "Profile Form"
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
 
+        tableView.estimatedRowHeight = 100
         renderer.target = tableView
         renderer.updater.deleteRowsAnimation = .middle
         renderer.updater.insertRowsAnimation = .middle

@@ -40,6 +40,7 @@ final class TodoViewController: UIViewController, UITextViewDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 
+        tableView.estimatedRowHeight = 70
         tableView.contentInset.bottom = view.bounds.height - addButton.frame.minY
         renderer.target = tableView
 
@@ -51,7 +52,7 @@ final class TodoViewController: UIViewController, UITextViewDelegate {
             Section(id: ID.task) { section in
                 section.header = state.todos.isEmpty
                     ? ViewNode(TodoEmpty())
-                    : ViewNode(Header(title: "TASKS"))
+                    : ViewNode(Header(title: "TASKS (\(state.todos.count))"))
 
                 section.cells = state.todos.enumerated().map { offset, todo in
                     CellNode(TodoText(todo: todo, isCompleted: false) { [weak self] event in
@@ -68,7 +69,7 @@ final class TodoViewController: UIViewController, UITextViewDelegate {
             },
             Section(id: ID.completed) { section in
                 if !state.completed.isEmpty {
-                    section.header = ViewNode(Header(title: "COMPLETED"))
+                    section.header = ViewNode(Header(title: "COMPLETED (\(state.completed.count))"))
                 }
 
                 section.cells = state.completed.enumerated().map { offset, todo in

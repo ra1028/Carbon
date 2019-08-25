@@ -1,7 +1,7 @@
 import UIKit
 
 /// An updater for managing diffing updates to render data to the `UITableView`.
-open class UITableViewUpdater<Adapter: Carbon.Adapter & UITableViewDelegate & UITableViewDataSource>: Updater {
+open class UITableViewUpdater<Adapter: UITableViewAdapter>: Updater {
     /// An animation for section deletions. Default is fade.
     open var deleteSectionsAnimation = UITableView.RowAnimation.fade
 
