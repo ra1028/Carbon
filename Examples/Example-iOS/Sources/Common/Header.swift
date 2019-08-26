@@ -1,7 +1,7 @@
 import UIKit
 import Carbon
 
-struct Header: Component, Equatable {
+struct Header: Component {
     var title: String
 
     func renderContent() -> HeaderContent {

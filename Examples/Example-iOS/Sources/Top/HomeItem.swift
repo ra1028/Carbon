@@ -17,10 +17,6 @@ struct HomeItem: IdentifiableComponent {
         content.titleLabel.text = title
         content.onSelect = onSelect
     }
-
-    func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: 70)
-    }
 }
 
 final class HomeItemContent: UIControl, NibLoadable {

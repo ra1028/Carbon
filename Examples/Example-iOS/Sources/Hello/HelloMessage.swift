@@ -11,10 +11,6 @@ struct HelloMessage: IdentifiableComponent, Hashable {
     func render(in content: HelloMessageContent) {
         content.label.text = "Hello \(name)"
     }
-
-    func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: 44)
-    }
 }
 
 final class HelloMessageContent: UIView, NibLoadable {

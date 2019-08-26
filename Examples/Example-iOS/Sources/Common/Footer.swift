@@ -1,7 +1,7 @@
 import UIKit
 import Carbon
 
-struct Footer: Component, Equatable {
+struct Footer: Component {
     var text: String
 
     func renderContent() -> FooterContent {

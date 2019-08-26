@@ -3,11 +3,11 @@ import UIKit
 /// Represents a component of a list UI such as `UITableView` or `UICollectionView`.
 ///
 /// - Note: Components are designed to be available for `UITableView`, `UICollectionView`,
-///         and its cell, header, footer, and other generally elements.
+///         and its cell, header, footer or other generally elements.
 ///
 /// Example for the simple component:
 ///
-///     struct Label: Component, Equatable {
+///     struct Label: Component {
 ///         var text: String
 ///
 ///         func renderContent() -> UILabel {
@@ -16,10 +16,6 @@ import UIKit
 ///
 ///         func render(in content: UILabel) {
 ///             content.text = text
-///         }
-///
-///         func referenceSize(in bounds: CGRect) -> CGSize? {
-///             return CGSize(width: bounds.width, height: 44)
 ///         }
 ///     }
 ///
@@ -42,6 +38,11 @@ public protocol Component {
     ///   - content: An instance of `Content` laid out on the element of list UI.
     func render(in content: Content)
 
+    // MARK: - Rendering - optional
+
+    /// A string used to identify a element that is reusable. Default is the type name of `Content`.
+    var reuseIdentifier: String { get }
+
     /// Returns the referencing size of content to render on the list UI.
     ///
     /// - Parameter:
@@ -55,11 +56,6 @@ public protocol Component {
     ///            If returns nil, the element of list UI falls back to its default size
     ///            like `UITableView.rowHeight` or `UICollectionViewFlowLayout.itemSize`.
     func referenceSize(in bounds: CGRect) -> CGSize?
-
-    // MARK: - Rendering - optional
-
-    /// A string used to identify a element that is reusable. Default is the type name of `Content`.
-    var reuseIdentifier: String { get }
 
     /// Returns a `Bool` value indicating whether the content should be reloaded.
     ///
@@ -113,6 +109,23 @@ public extension Component {
         return String(reflecting: Content.self)
     }
 
+    /// Returns the referencing size of content to render on the list UI. Returns nil by default.
+    ///
+    /// - Parameter:
+    ///   - bounds: A value of `CGRect` containing the size of the list UI itself,
+    ///             such as `UITableView` or `UICollectionView`.
+    ///
+    /// - Note: Only `CGSize.height` is used to determine the size of element
+    ///         in `UITableView`.
+    ///
+    /// - Returns: The referencing size of content to render on the list UI.
+    ///            If returns nil, the element of list UI falls back to its default size
+    ///            like `UITableView.rowHeight` or `UICollectionViewFlowLayout.itemSize`.
+    @inlinable
+    func referenceSize(in bounds: CGRect) -> CGSize? {
+        return nil
+    }
+
     /// Returns a `Bool` value indicating whether the content should be reloaded. Default is false.
     ///
     /// - Note: Unlike `Equatable`, this doesn't compare whether the two values
@@ -122,7 +135,8 @@ public extension Component {
     /// - Parameter:
     ///   - next: The next value to be compared to the receiver.
     ///
-    /// - Returns: A `Bool` value indicating whether the content should be reloaded.
+    /// - Returns: A `Bool` value indicatig whether the content should be reloaded.
+    @inlinable
     func shouldContentUpdate(with next: Self) -> Bool {
         return false
     }

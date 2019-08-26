@@ -11,10 +11,6 @@ struct KyotoLicense: Component {
     func render(in content: KyotoLicenseContent) {
         content.onSelected = onSelected
     }
-
-    func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: 70)
-    }
 }
 
 final class KyotoLicenseContent: UIControl, NibLoadable {
