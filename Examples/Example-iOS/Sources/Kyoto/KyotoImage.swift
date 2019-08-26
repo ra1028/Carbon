@@ -13,10 +13,6 @@ struct KyotoImage: IdentifiableComponent, Hashable {
         content.imageView.image = image
         content.titleLabel.text = title
     }
-
-    func referenceSize(in bounds: CGRect) -> CGSize? {
-        return nil
-    }
 }
 
 final class KyotoImageContent: UIView, NibLoadable {

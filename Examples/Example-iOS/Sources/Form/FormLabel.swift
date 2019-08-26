@@ -19,10 +19,6 @@ struct FormLabel: IdentifiableComponent {
         content.textLabel.text = text
         content.onSelect = onSelect
     }
-
-    func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: 44)
-    }
 }
 
 final class FormLabelContent: UIControl, NibLoadable {

@@ -17,10 +17,6 @@ struct FormDatePicker: Component {
     func shouldRender(next: FormDatePicker, in content: FormDatePickerContent) -> Bool {
         return false
     }
-
-    func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: 194)
-    }
 }
 
 final class FormDatePickerContent: UIView, NibLoadable {

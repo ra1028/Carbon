@@ -28,10 +28,6 @@ struct TodoText: IdentifiableComponent, Deletable {
         }
     }
 
-    func referenceSize(in bounds: CGRect) -> CGSize? {
-        return nil
-    }
-
     func delete() {
         onEvent(.delete)
     }

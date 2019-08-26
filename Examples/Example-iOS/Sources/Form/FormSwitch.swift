@@ -19,10 +19,6 @@ struct FormSwitch: IdentifiableComponent {
         content.switch.isOn = isOn
         content.onSwitch = onSwitch
     }
-
-    func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: 44)
-    }
 }
 
 final class FormSwitchContent: UIView, NibLoadable {

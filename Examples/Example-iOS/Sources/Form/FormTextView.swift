@@ -13,10 +13,6 @@ struct FormTextView: Component {
         content.textView.text = text
         content.onInput = onInput
     }
-
-    func referenceSize(in bounds: CGRect) -> CGSize? {
-        return nil
-    }
 }
 
 final class FormTextViewContent: UIView, NibLoadable, UITextViewDelegate {

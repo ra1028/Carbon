@@ -17,10 +17,6 @@ struct FormTextPicker: Component {
     func shouldRender(next: FormTextPicker, in content: FormTextPickerContent) -> Bool {
         return texts != next.texts
     }
-
-    func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: 162)
-    }
 }
 
 final class FormTextPickerContent: UIView, NibLoadable, UIPickerViewDelegate, UIPickerViewDataSource {

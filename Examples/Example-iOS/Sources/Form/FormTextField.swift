@@ -28,10 +28,6 @@ struct FormTextField: IdentifiableComponent {
         content.textField.keyboardType = keyboardType
         content.onInput = onInput
     }
-
-    func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: 44)
-    }
 }
 
 final class FormTextFieldContent: UIControl, NibLoadable {
