@@ -193,13 +193,9 @@
             <p>Represents a component that can be uniquely identify.</p>
 
 <p>Example for the simple identified component:</p>
-<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">UserLabel</span><span class="p">:</span> <span class="kt">IdentifiableComponent</span><span class="p">,</span> <span class="kt">Equatable</span> <span class="p">{</span>
-    <span class="k">var</span> <span class="nv">userID</span><span class="p">:</span> <span class="kt">Int64</span>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">UserLabel</span><span class="p">:</span> <span class="kt">IdentifiableComponent</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">Int64</span>
     <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
-
-    <span class="k">var</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">Int64</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">userID</span>
-    <span class="p">}</span>
 
     <span class="kd">func</span> <span class="nf">renderContent</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UILabel</span> <span class="p">{</span>
         <span class="k">return</span> <span class="kt">UILabel</span><span class="p">()</span>
@@ -208,14 +204,10 @@
     <span class="kd">func</span> <span class="nf">render</span><span class="p">(</span><span class="k">in</span> <span class="nv">content</span><span class="p">:</span> <span class="kt">UILabel</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">content</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">name</span>
     <span class="p">}</span>
-
-    <span class="kd">func</span> <span class="nf">referenceSize</span><span class="p">(</span><span class="k">in</span> <span class="nv">bounds</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGSize</span><span class="p">?</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kt">CGSize</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="n">bounds</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">44</span><span class="p">)</span>
-    <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="k">let</span> <span class="nv">view</span> <span class="o">=</span> <span class="kt">ViewNode</span><span class="p">(</span><span class="kt">UserLabel</span><span class="p">(</span><span class="nv">userID</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="s">"John"</span><span class="p">))</span>
-<span class="k">let</span> <span class="nv">cell</span> <span class="o">=</span> <span class="kt">CellNode</span><span class="p">(</span><span class="kt">UserLabel</span><span class="p">(</span><span class="nv">userID</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="s">"Jane"</span><span class="p">))</span>
+<span class="k">let</span> <span class="nv">view</span> <span class="o">=</span> <span class="kt">ViewNode</span><span class="p">(</span><span class="kt">UserLabel</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="s">"John"</span><span class="p">))</span>
+<span class="k">let</span> <span class="nv">cell</span> <span class="o">=</span> <span class="kt">CellNode</span><span class="p">(</span><span class="kt">UserLabel</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nv">name</span><span class="p">:</span> <span class="s">"Jane"</span><span class="p">))</span>
 </code></pre>
 
           </div>

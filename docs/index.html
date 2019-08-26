@@ -291,9 +291,10 @@ And the more practical examples are <a href="https://github.com/ra1028/Carbon/tr
 All elements are made up of components, and it can be animated by diffing update.<br>
 <code>UIView</code>, <code>UIViewController</code>, and its subclasses are laid out with edge constraints by default. Other classes can also be rendered as <code>Content</code> by implementing <code>layout</code> function to component.</p>
 
-<p>The value returned by <code>referenceSize</code> is used as the size of component on the list UI. Note that UITableView ignores width.<br>
-If returning <code>nil</code>, it falls back to default such as <code>UITableView.rowHeight</code> or <code>UICollectionViewFlowLayout.itemSize</code>.<br>
-Therefore, automatic sizing can also be used.  </p>
+<p>You can declare fixed size component by implementing <code>referenceSize(in bounds: CGRect) -&gt; CGSize?</code>.<br>
+Returned <code>CGSize</code> value is used to the size of component on the list UI. Note that UITableView ignores width.<br>
+If returning <code>nil</code>, it falls back to default value such as <code>UITableView.rowHeight</code> or <code>UICollectionViewFlowLayout.itemSize</code> defined in <code><a href="Protocols/Adapter.html">Adapter</a></code>.<br>
+Returns <code>nil</code> by default, it works as automatic sizing.  </p>
 
 <p>Definition below is the simplest implementation.  </p>
 <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">HelloMessage</span><span class="p">:</span> <span class="kt">Component</span> <span class="p">{</span>
@@ -305,10 +306,6 @@ Therefore, automatic sizing can also be used.  </p>
 
     <span class="kd">func</span> <span class="nf">render</span><span class="p">(</span><span class="k">in</span> <span class="nv">content</span><span class="p">:</span> <span class="kt">UILabel</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">content</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">"Hello </span><span class="se">\(</span><span class="n">name</span><span class="se">)</span><span class="s">"</span>
-    <span class="p">}</span>
-
-    <span class="kd">func</span> <span class="nf">referenceSize</span><span class="p">(</span><span class="k">in</span> <span class="nv">bounds</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGSize</span><span class="p">?</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kt">CGSize</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="n">bounds</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">44</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
@@ -338,7 +335,7 @@ The <code>id</code> is used to find the same component in the list data before a
 </code></pre>
 <h4 id='section' class='heading'>Section</h4>
 
-<p><code><a href="Structs/Section.html">Section</a></code> has a header, a footer and a group of cells.<br>
+<p><code><a href="Structs/Section.html">Section</a></code> has a header, a footer and a collection of cells.<br>
 A group of cells can be contains nil, then skipped rendering of it cell.<br>
 This also needs to specify <code>id</code> for identify from among multiple sections, then can be calculate the all kind of diff.  </p>
 
@@ -454,8 +451,6 @@ It can be inherited whichever class, but the common means is inherit <code>UIVie
     <span class="kd">func</span> <span class="nf">render</span><span class="p">(</span><span class="k">in</span> <span class="nv">content</span><span class="p">:</span> <span class="kt">HelloMessageContent</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">content</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">"Hello </span><span class="se">\(</span><span class="n">name</span><span class="se">)</span><span class="s">"</span>
     <span class="p">}</span>
-
-    <span class="o">...</span>
 </code></pre>
 <h4 id='identifiablecomponent' class='heading'>IdentifiableComponent</h4>
 
@@ -493,7 +488,6 @@ It&rsquo;s more maintainable and extensible.  </p>
 
     <span class="k">override</span> <span class="kd">func</span> <span class="nf">awakeFromNib</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">super</span><span class="o">.</span><span class="nf">awakeFromNib</span><span class="p">()</span>
-
         <span class="nf">addTarget</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="nv">action</span><span class="p">:</span> <span class="kd">#selector(</span><span class="nf">handleSelect</span><span class="kd">)</span><span class="p">,</span> <span class="nv">for</span><span class="p">:</span> <span class="o">.</span><span class="n">touchUpInside</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -509,10 +503,6 @@ It&rsquo;s more maintainable and extensible.  </p>
     <span class="kd">func</span> <span class="nf">render</span><span class="p">(</span><span class="k">in</span> <span class="nv">content</span><span class="p">:</span> <span class="kt">MenuItemContent</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">content</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">text</span>
         <span class="n">content</span><span class="o">.</span><span class="n">onSelect</span> <span class="o">=</span> <span class="n">onSelect</span>
-    <span class="p">}</span>
-
-    <span class="kd">func</span> <span class="nf">referenceSize</span><span class="p">(</span><span class="k">in</span> <span class="nv">bounds</span><span class="p">:</span> <span class="kt">CGRect</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGSize</span><span class="p">?</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kt">CGSize</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="n">bounds</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">44</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
@@ -536,16 +526,20 @@ It&rsquo;s more maintainable and extensible.  </p>
 Following are part of it.  </p>
 
 <ul>
-<li><p><strong>shouldContentUpdate</strong><br>
+<li><p><strong>shouldContentUpdate(with next: Self) -&gt; Bool</strong><br>
 If the result is <code>true</code>, the component displayed as a cell is reloaded individually, header or footer is reloaded with entire section.<br>
 By default it returns <code>false</code>, but the updater will always re-render visible components changed.  </p></li>
-<li><p><strong>shouldRender</strong><br>
+<li><p><strong>referenceSize(in bounds: CGRect) -&gt; CGSize?</strong><br>
+Defining the size of component on the list UI.<br>
+You can use default value such as <code>UITableView.rowHeight</code> or <code>UICollectionViewLayout.itemSize</code> by returning <code>nil</code>.<br>
+Returns <code>nil</code> by default.  </p></li>
+<li><p><strong>shouldRender(next: Self, in content: Content) -&gt; Bool</strong><br>
 By returning <code>false</code>, you can skip component re-rendering when reloading or dequeuing element.<br>
 Instead of re-rendering, detects component changes by comparing with next value.<br>
 This is recommended to use only for performance tuning.  </p></li>
-<li><p><strong>contentWillDisplay</strong><br>
+<li><p><strong>contentWillDisplay(_ content: Content)</strong><br>
 Invoked every time of before a component got into visible area.  </p></li>
-<li><p><strong>contentDidEndDisplay</strong><br>
+<li><p><strong>contentDidEndDisplay(_ content: Content)</strong><br>
 Invoked every time of after a component went out from visible area.  </p></li>
 </ul>
 

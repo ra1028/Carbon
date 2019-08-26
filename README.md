@@ -95,9 +95,10 @@ And the more practical examples are [here](https://github.com/ra1028/Carbon/tree
 All elements are made up of components, and it can be animated by diffing update.  
 `UIView`, `UIViewController`, and its subclasses are laid out with edge constraints by default. Other classes can also be rendered as `Content` by implementing `layout` function to component.
 
-The value returned by `referenceSize` is used as the size of component on the list UI. Note that UITableView ignores width.  
-If returning `nil`, it falls back to default such as `UITableView.rowHeight` or `UICollectionViewFlowLayout.itemSize`.  
-Therefore, automatic sizing can also be used.  
+You can declare fixed size component by implementing `referenceSize(in bounds: CGRect) -> CGSize?`.  
+Returned `CGSize` value is used to the size of component on the list UI. Note that UITableView ignores width.  
+If returning `nil`, it falls back to default value such as `UITableView.rowHeight` or `UICollectionViewFlowLayout.itemSize` defined in `Adapter`.  
+Returns `nil` by default, it works as automatic sizing.  
 
 Definition below is the simplest implementation.  
 
@@ -111,10 +112,6 @@ struct HelloMessage: Component {
 
     func render(in content: UILabel) {
         content.text = "Hello \(name)"
-    }
-
-    func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: 44)
     }
 }
 ```
@@ -151,7 +148,7 @@ CellNode(HelloMessage(name: "Jules"))
 
 #### Section
 
-`Section` has a header, a footer and a group of cells.  
+`Section` has a header, a footer and a collection of cells.  
 A group of cells can be contains nil, then skipped rendering of it cell.  
 This also needs to specify `id` for identify from among multiple sections, then can be calculate the all kind of diff.  
 
@@ -282,8 +279,6 @@ struct HelloMessage: Component {
     func render(in content: HelloMessageContent) {
         content.label.text = "Hello \(name)"
     }
-
-    ...
 ```
 
 #### IdentifiableComponent
@@ -329,7 +324,6 @@ class MenuItemContent: UIControl {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         addTarget(self, action: #selector(handleSelect), for: .touchUpInside)
     }
 }
@@ -347,10 +341,6 @@ struct MenuItem: Component {
     func render(in content: MenuItemContent) {
         content.label.text = text
         content.onSelect = onSelect
-    }
-
-    func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: 44)
     }
 }
 ```
@@ -376,19 +366,24 @@ extension UICollectionView {
 Components can define more detailed behaviors.  
 Following are part of it.  
 
-- **shouldContentUpdate**  
+- **shouldContentUpdate(with next: Self) -> Bool**  
 If the result is `true`, the component displayed as a cell is reloaded individually, header or footer is reloaded with entire section.  
 By default it returns `false`, but the updater will always re-render visible components changed.  
 
-- **shouldRender**  
+- **referenceSize(in bounds: CGRect) -> CGSize?**  
+Defining the size of component on the list UI.  
+You can use default value such as `UITableView.rowHeight` or `UICollectionViewLayout.itemSize` by returning `nil`.  
+Returns `nil` by default.  
+
+- **shouldRender(next: Self, in content: Content) -> Bool**  
 By returning `false`, you can skip component re-rendering when reloading or dequeuing element.  
 Instead of re-rendering, detects component changes by comparing with next value.  
 This is recommended to use only for performance tuning.  
 
-- **contentWillDisplay**  
+- **contentWillDisplay(_ content: Content)**  
 Invoked every time of before a component got into visible area.  
 
-- **contentDidEndDisplay**  
+- **contentDidEndDisplay(_ content: Content)**  
 Invoked every time of after a component went out from visible area.  
 
 [See more](https://ra1028.github.io/Carbon/Protocols/Component.html)
