@@ -94,15 +94,9 @@ open class UITableViewUpdater<Adapter: UITableViewAdapter>: Updater {
     ///   - stagedChangeset: A staged set of changes of current data and next data..
     ///   - completion: A closure that to callback end of update and animations.
     open func performDifferentialUpdates(target: UITableView, adapter: Adapter, data: [Section], stagedChangeset: StagedDataChangeset, completion: (() -> Void)?) {
-        func renderVisibleComponentsIfNeeded() {
-            if alwaysRenderVisibleComponents {
-                renderVisibleComponents(in: target, adapter: adapter)
-            }
-        }
-
         guard !stagedChangeset.isEmpty else {
             adapter.data = data
-            renderVisibleComponentsIfNeeded()
+            renderVisibleComponentsIfNeeded(in: target, adapter: adapter)
             completion?()
             return
         }
@@ -118,12 +112,23 @@ open class UITableViewUpdater<Adapter: UITableViewAdapter>: Updater {
             return
         }
 
-        func performAnimatedUpdates() {
-            let contentOffsetBeforeUpdates = target.contentOffset
+        CATransaction.begin()
+        CATransaction.setCompletionBlock(completion)
+        differentialUpdatesTransaction(target: target, adapter: adapter, stagedChangeset: stagedChangeset)
+        CATransaction.commit()
+    }
 
-            CATransaction.begin()
-            CATransaction.setCompletionBlock(completion)
+    /// A transaction for perform UI updates.
+    /// By overwriting this method, updater can insert any processing before or after the update.
+    ///
+    /// - Parameters:
+    ///   - target: A target instance to be updated to render given data.
+    ///   - adapter: An adapter holding currently rendered data.
+    ///   - stagedChangeset: A staged set of changes of current data and next data.
+    open func differentialUpdatesTransaction(target: UITableView, adapter: Adapter, stagedChangeset: StagedDataChangeset) {
+        let contentOffsetBeforeUpdates = target.contentOffset
 
+        func performBatchUpdates() {
             for changeset in stagedChangeset {
                 target._performBatchUpdates {
                     adapter.data = changeset.data
@@ -161,22 +166,20 @@ open class UITableViewUpdater<Adapter: UITableViewAdapter>: Updater {
                     }
                 }
             }
-
-            renderVisibleComponentsIfNeeded()
-
-            if keepsContentOffset {
-                target._setAdjustedContentOffsetIfNeeded(contentOffsetBeforeUpdates)
-            }
-
-            CATransaction.commit()
         }
 
         if isAnimationEnabled && (isAnimationEnabledWhileScrolling || !target._isScrolling) {
-            performAnimatedUpdates()
+            performBatchUpdates()
         }
         else {
-            UIView.performWithoutAnimation(performAnimatedUpdates)
+            UIView.performWithoutAnimation(performBatchUpdates)
         }
+
+        if keepsContentOffset {
+            target._setAdjustedContentOffsetIfNeeded(contentOffsetBeforeUpdates)
+        }
+
+        renderVisibleComponentsIfNeeded(in: target, adapter: adapter)
     }
 
     /// Renders components displayed in visible area again.
@@ -212,6 +215,14 @@ open class UITableViewUpdater<Adapter: UITableViewAdapter>: Updater {
                     cell?.render(component: cellNode.component)
                 }
             }
+        }
+    }
+}
+
+private extension UITableViewUpdater {
+    func renderVisibleComponentsIfNeeded(in target: UITableView, adapter: Adapter) {
+        if alwaysRenderVisibleComponents {
+            renderVisibleComponents(in: target, adapter: adapter)
         }
     }
 }
