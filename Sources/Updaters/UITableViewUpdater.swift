@@ -119,7 +119,7 @@ open class UITableViewUpdater<Adapter: UITableViewAdapter>: Updater {
         }
 
         func performAnimatedUpdates() {
-            let contentOffsetYBeforeUpdates = target.contentOffset.y
+            let contentOffsetBeforeUpdates = target.contentOffset
 
             CATransaction.begin()
             CATransaction.setCompletionBlock(completion)
@@ -164,14 +164,14 @@ open class UITableViewUpdater<Adapter: UITableViewAdapter>: Updater {
 
             renderVisibleComponentsIfNeeded()
 
-            CATransaction.commit()
-
-            if keepsContentOffset && target._isContentRectContainsBounds && !target._isScrolling {
-                target.contentOffset.y = min(target._maxContentOffsetY, contentOffsetYBeforeUpdates)
+            if keepsContentOffset {
+                target._setAdjustedContentOffsetIfNeeded(contentOffsetBeforeUpdates)
             }
+
+            CATransaction.commit()
         }
 
-        if isAnimationEnabled && (!target._isScrolling || isAnimationEnabledWhileScrolling) {
+        if isAnimationEnabled && (isAnimationEnabledWhileScrolling || !target._isScrolling) {
             performAnimatedUpdates()
         }
         else {

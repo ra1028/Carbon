@@ -134,17 +134,14 @@ open class UICollectionViewUpdater<Adapter: UICollectionViewAdapter>: Updater {
 
             renderVisibleComponentsIfNeeded()
 
-            CATransaction.commit()
-
-            if keepsContentOffset && target._isContentRectContainsBounds && !target._isScrolling {
-                target.contentOffset = CGPoint(
-                    x: min(target._maxContentOffsetX, contentOffsetBeforeUpdates.x),
-                    y: min(target._maxContentOffsetY, contentOffsetBeforeUpdates.y)
-                )
+            if keepsContentOffset {
+                target._setAdjustedContentOffsetIfNeeded(contentOffsetBeforeUpdates)
             }
+
+            CATransaction.commit()
         }
 
-        if isAnimationEnabled && (!target._isScrolling || isAnimationEnabledWhileScrolling) {
+        if isAnimationEnabled && (isAnimationEnabledWhileScrolling || !target._isScrolling) {
             performAnimatedUpdates()
         }
         else {
