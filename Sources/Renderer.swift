@@ -44,9 +44,6 @@ open class Renderer<Updater: Carbon.Updater> {
         }
     }
 
-    /// A completion handler to be called after each rendering.
-    open var completion: (() -> Void)?
-
     /// Returns a current data held in adapter.
     /// When data is set, it renders to the target immediately.
     open var data: [Section] {
@@ -69,11 +66,10 @@ open class Renderer<Updater: Carbon.Updater> {
 
         guard let target = target else {
             adapter.data = data
-            completion?()
             return
         }
 
-        updater.performUpdates(target: target, adapter: adapter, data: data, completion: completion)
+        updater.performUpdates(target: target, adapter: adapter, data: data)
     }
 
     /// Render given collection of sections after removes contained nil, immediately.

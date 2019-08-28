@@ -19,14 +19,8 @@ final class UICollectionViewReloadDataTests: XCTestCase {
         let adapter = MockCollectionViewFlowLayoutAdapter()
         let collectionView = MockCollectionView()
 
-        performAsyncTests(
-            block: { e in
-                updater.performUpdates(target: collectionView, adapter: adapter, data: [Section(id: TestID.a)]) {
-                    e.fulfill()
-                }},
-            testing: {
-                XCTAssertEqual(adapter.data.count, 1)
-                XCTAssertTrue(collectionView.isReloadDataCalled)
-        })
+        updater.performUpdates(target: collectionView, adapter: adapter, data: [Section(id: TestID.a)])
+        XCTAssertEqual(adapter.data.count, 1)
+        XCTAssertTrue(collectionView.isReloadDataCalled)
     }
 }

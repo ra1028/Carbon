@@ -21,9 +21,9 @@ final class UICollectionViewUpdaterTests: XCTestCase {
 
         performAsyncTests(
             block: { e in
-                updater.performUpdates(target: collectionView, adapter: adapter, data: [Section(id: TestID.a)]) {
-                    e.fulfill()
-                }},
+                updater.completion = e.fulfill
+                updater.performUpdates(target: collectionView, adapter: adapter, data: [Section(id: TestID.a)])
+        },
             testing: {
                 XCTAssertEqual(adapter.data.count, 1)
                 XCTAssertTrue(collectionView.isReloadDataCalled)
@@ -43,9 +43,9 @@ final class UICollectionViewUpdaterTests: XCTestCase {
 
         performAsyncTests(
             block: { e in
-                updater.performDifferentialUpdates(target: collectionView, adapter: adapter, data: [], stagedChangeset: stagedChangeset) {
-                    e.fulfill()
-                }},
+                updater.completion = e.fulfill
+                updater.performDifferentialUpdates(target: collectionView, adapter: adapter, data: [], stagedChangeset: stagedChangeset)
+        },
             testing: {
                 XCTAssertTrue(collectionView.isReloadDataCalled)
                 XCTAssertEqual(collectionView.deletedSections, [])
@@ -60,9 +60,9 @@ final class UICollectionViewUpdaterTests: XCTestCase {
 
         performAsyncTests(
             block: { e in
-                updater.performDifferentialUpdates(target: collectionView, adapter: adapter, data: [Section(id: TestID.a)], stagedChangeset: []) {
-                    e.fulfill()
-                }},
+                updater.completion = e.fulfill
+                updater.performDifferentialUpdates(target: collectionView, adapter: adapter, data: [Section(id: TestID.a)], stagedChangeset: [])
+        },
             testing: {
                 XCTAssertEqual(adapter.data.count, 1)
                 XCTAssertFalse(collectionView.hasChanges)
@@ -88,9 +88,9 @@ final class UICollectionViewUpdaterTests: XCTestCase {
 
         performAsyncTests(
             block: { e in
-                updater.performDifferentialUpdates(target: collectionView, adapter: adapter, data: [Section(id: TestID.a)], stagedChangeset: stagedChangeset) {
-                    e.fulfill()
-                }},
+                updater.completion = e.fulfill
+                updater.performDifferentialUpdates(target: collectionView, adapter: adapter, data: [Section(id: TestID.a)], stagedChangeset: stagedChangeset)
+        },
             testing: {
                 XCTAssertEqual(collectionView.deletedSections, [0, 1])
                 XCTAssertEqual(collectionView.insertedSections, [2, 3])
@@ -162,7 +162,7 @@ final class UICollectionViewUpdaterTests: XCTestCase {
         XCTAssertNil(visible.header.renderedComponent)
         XCTAssertNil(visible.footer.renderedComponent)
 
-        updater.performDifferentialUpdates(target: collectionView, adapter: adapter, data: data, stagedChangeset: [], completion: nil)
+        updater.performDifferentialUpdates(target: collectionView, adapter: adapter, data: data, stagedChangeset: [])
 
         XCTAssertEqual(visible.component, visible.cell.renderedComponent?.as(MockIdentifiableComponent<TestID>.self))
         XCTAssertEqual(visible.component, visible.header.renderedComponent?.as(MockIdentifiableComponent<TestID>.self))

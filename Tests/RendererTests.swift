@@ -70,7 +70,6 @@ final class RendererTests: XCTestCase {
             updater: MockUpdater()
         )
 
-        var completed = false
         let data = [
             Section(id: TestID.a),
             Section(id: TestID.b),
@@ -78,15 +77,11 @@ final class RendererTests: XCTestCase {
         ]
 
         renderer.target = target
-        renderer.completion = {
-            completed = true
-        }
         renderer.render(data)
 
         XCTAssertEqual(renderer.adapter.data.count, 3)
         XCTAssertEqual(renderer.updater.targetCapturedOnUpdates, target)
         XCTAssertEqual(renderer.updater.adapterCapturedOnUpdates, adapter)
-        XCTAssertEqual(completed, true)
     }
 
     func testRenderWithDataCollectionContainingNil() {
@@ -97,7 +92,6 @@ final class RendererTests: XCTestCase {
             updater: MockUpdater()
         )
 
-        var completed = false
         let data = [
             Section(id: TestID.a),
             nil,
@@ -107,15 +101,11 @@ final class RendererTests: XCTestCase {
         ]
 
         renderer.target = target
-        renderer.completion = {
-            completed = true
-        }
         renderer.render(data)
 
         XCTAssertEqual(renderer.adapter.data.count, 3)
         XCTAssertEqual(renderer.updater.targetCapturedOnUpdates, target)
         XCTAssertEqual(renderer.updater.adapterCapturedOnUpdates, adapter)
-        XCTAssertEqual(completed, true)
     }
 
     func testRenderWithVariadicData() {
@@ -126,7 +116,6 @@ final class RendererTests: XCTestCase {
             updater: MockUpdater()
         )
 
-        var completed = false
         let data = [
             Section(id: TestID.a),
             Section(id: TestID.b),
@@ -135,15 +124,11 @@ final class RendererTests: XCTestCase {
         ]
 
         renderer.target = target
-        renderer.completion = {
-            completed = true
-        }
         renderer.render(data)
 
         XCTAssertEqual(renderer.adapter.data.count, 4)
         XCTAssertEqual(renderer.updater.targetCapturedOnUpdates, target)
         XCTAssertEqual(renderer.updater.adapterCapturedOnUpdates, adapter)
-        XCTAssertEqual(completed, true)
     }
 
     func testRenderWithVariadicDataContainingNil() {
@@ -154,7 +139,6 @@ final class RendererTests: XCTestCase {
             updater: MockUpdater()
         )
 
-        var completed = false
         let data = [
             Section(id: TestID.a),
             Section(id: TestID.b),
@@ -165,15 +149,11 @@ final class RendererTests: XCTestCase {
         ]
 
         renderer.target = target
-        renderer.completion = {
-            completed = true
-        }
         renderer.render(data)
 
         XCTAssertEqual(renderer.adapter.data.count, 4)
         XCTAssertEqual(renderer.updater.targetCapturedOnUpdates, target)
         XCTAssertEqual(renderer.updater.adapterCapturedOnUpdates, adapter)
-        XCTAssertEqual(completed, true)
     }
 
     func testRenderWithBuilderClosure() {
@@ -184,7 +164,6 @@ final class RendererTests: XCTestCase {
             updater: MockUpdater()
         )
 
-        var completed = false
         let data = [
             Section(id: TestID.a),
             Section(id: TestID.b),
@@ -193,15 +172,10 @@ final class RendererTests: XCTestCase {
         ]
 
         renderer.target = target
-        renderer.completion = {
-            completed = true
-        }
-        renderer.render(data)
         renderer.render { $0 = data }
 
         XCTAssertEqual(renderer.adapter.data.count, 4)
         XCTAssertEqual(renderer.updater.targetCapturedOnUpdates, target)
         XCTAssertEqual(renderer.updater.adapterCapturedOnUpdates, adapter)
-        XCTAssertEqual(completed, true)
     }
 }

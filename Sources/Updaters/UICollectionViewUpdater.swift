@@ -20,6 +20,9 @@ open class UICollectionViewUpdater<Adapter: UICollectionViewAdapter>: Updater {
     /// Max number of changes that can be animated for diffing updates. Default is 300.
     open var animatableChangeCount = 300
 
+    /// A completion handler to be called after each updates.
+    open var completion: (() -> Void)?
+
     /// Create a new updater.
     public init() {}
 
@@ -41,8 +44,7 @@ open class UICollectionViewUpdater<Adapter: UICollectionViewAdapter>: Updater {
     ///   - target: A target instance to be updated to render given data.
     ///   - adapter: An adapter holding currently rendered data.
     ///   - data: A collection of sections to be rendered next.
-    ///   - completion: A closure that to callback end of update and animations.
-    open func performUpdates(target: UICollectionView, adapter: Adapter, data: [Section], completion: (() -> Void)?) {
+    open func performUpdates(target: UICollectionView, adapter: Adapter, data: [Section]) {
         guard case .some = target.window else {
             adapter.data = data
             target.reloadData()
@@ -51,7 +53,7 @@ open class UICollectionViewUpdater<Adapter: UICollectionViewAdapter>: Updater {
         }
 
         let stagedChangeset = StagedDataChangeset(source: adapter.data, target: data)
-        performDifferentialUpdates(target: target, adapter: adapter, data: data, stagedChangeset: stagedChangeset, completion: completion)
+        performDifferentialUpdates(target: target, adapter: adapter, data: data, stagedChangeset: stagedChangeset)
     }
 
     /// Perform diffing updates to render given data to the target.
@@ -61,9 +63,8 @@ open class UICollectionViewUpdater<Adapter: UICollectionViewAdapter>: Updater {
     ///   - target: A target instance to be updated to render given data.
     ///   - adapter: An adapter holding currently rendered data.
     ///   - data: A collection of sections to be rendered next.
-    ///   - stagedChangeset: A staged set of changes of current data and next data..
-    ///   - completion: A closure that to callback end of update and animations.
-    open func performDifferentialUpdates(target: UICollectionView, adapter: Adapter, data: [Section], stagedChangeset: StagedDataChangeset, completion: (() -> Void)?) {
+    ///   - stagedChangeset: A staged set of changes of current data and next data.
+    open func performDifferentialUpdates(target: UICollectionView, adapter: Adapter, data: [Section], stagedChangeset: StagedDataChangeset) {
         guard !stagedChangeset.isEmpty else {
             adapter.data = data
             renderVisibleComponentsIfNeeded(in: target, adapter: adapter)

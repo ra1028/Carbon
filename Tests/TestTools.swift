@@ -144,11 +144,10 @@ final class MockUpdater: Updater {
         adapterCapturedOnPrepare = adapter
     }
 
-    func performUpdates(target: MockTarget, adapter: MockAdapter, data: [Section], completion: (() -> Void)?) {
+    func performUpdates(target: MockTarget, adapter: MockAdapter, data: [Section]) {
         adapter.data = data
         targetCapturedOnUpdates = target
         adapterCapturedOnUpdates = adapter
-        completion?()
     }
 }
 

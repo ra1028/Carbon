@@ -33,9 +33,9 @@ final class UITableViewUpdaterTests: XCTestCase {
 
         performAsyncTests(
             block: { e in
-                updater.performUpdates(target: tableView, adapter: adapter, data: [Section(id: TestID.a)]) {
-                    e.fulfill()
-                }},
+                updater.completion = e.fulfill
+                updater.performUpdates(target: tableView, adapter: adapter, data: [Section(id: TestID.a)])
+        },
             testing: {
                 XCTAssertEqual(adapter.data.count, 1)
                 XCTAssertTrue(tableView.isReloadDataCalled)
@@ -55,9 +55,9 @@ final class UITableViewUpdaterTests: XCTestCase {
 
         performAsyncTests(
             block: { e in
-                updater.performDifferentialUpdates(target: tableView, adapter: adapter, data: [], stagedChangeset: stagedChangeset) {
-                    e.fulfill()
-                }},
+                updater.completion = e.fulfill
+                updater.performDifferentialUpdates(target: tableView, adapter: adapter, data: [], stagedChangeset: stagedChangeset)
+        },
             testing: {
                 XCTAssertTrue(tableView.isReloadDataCalled)
                 XCTAssertEqual(tableView.deletedSections, [])
@@ -72,9 +72,9 @@ final class UITableViewUpdaterTests: XCTestCase {
 
         performAsyncTests(
             block: { e in
-                updater.performDifferentialUpdates(target: tableView, adapter: adapter, data: [Section(id: TestID.a)], stagedChangeset: []) {
-                    e.fulfill()
-                }},
+                updater.completion = e.fulfill
+                updater.performDifferentialUpdates(target: tableView, adapter: adapter, data: [Section(id: TestID.a)], stagedChangeset: [])
+        },
             testing: {
                 XCTAssertEqual(adapter.data.count, 1)
                 XCTAssertFalse(tableView.hasChanges)
@@ -103,9 +103,9 @@ final class UITableViewUpdaterTests: XCTestCase {
 
         performAsyncTests(
             block: { e in
-                updater.performDifferentialUpdates(target: tableView, adapter: adapter, data: [Section(id: TestID.a)], stagedChangeset: stagedChangeset) {
-                    e.fulfill()
-                }},
+                updater.completion = e.fulfill
+                updater.performDifferentialUpdates(target: tableView, adapter: adapter, data: [Section(id: TestID.a)], stagedChangeset: stagedChangeset)
+        },
             testing: {
                 XCTAssertEqual(tableView.deletedSections, [0, 1])
                 XCTAssertEqual(tableView.insertedSections, [2, 3])
@@ -171,7 +171,7 @@ final class UITableViewUpdaterTests: XCTestCase {
         XCTAssertNil(visible.header.renderedComponent)
         XCTAssertNil(visible.footer.renderedComponent)
 
-        updater.performDifferentialUpdates(target: tableView, adapter: adapter, data: data, stagedChangeset: [], completion: nil)
+        updater.performDifferentialUpdates(target: tableView, adapter: adapter, data: data, stagedChangeset: [])
 
         XCTAssertEqual(visible.component, visible.cell.renderedComponent?.as(MockIdentifiableComponent<TestID>.self))
         XCTAssertEqual(visible.component, visible.header.renderedComponent?.as(MockIdentifiableComponent<TestID>.self))
