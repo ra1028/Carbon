@@ -1,7 +1,7 @@
 import UIKit
 
 /// An updater for managing to perform reload data to render data to the `UITableView`.
-open class UITableViewReloadDataUpdater<Adapter: Carbon.Adapter & UITableViewDelegate & UITableViewDataSource>: Updater {
+open class UITableViewReloadDataUpdater<Adapter: UITableViewAdapter>: Updater {
     /// Create a new updater.
     public init() {}
 

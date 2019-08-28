@@ -1,7 +1,7 @@
 import UIKit
 
 /// An updater for managing to perform reload data to render data to the `UICollectionView`.
-open class UICollectionViewReloadDataUpdater<Adapter: Carbon.Adapter & UICollectionViewDelegate & UICollectionViewDataSource>: Updater {
+open class UICollectionViewReloadDataUpdater<Adapter: UICollectionViewAdapter>: Updater {
     /// Create a new updater.
     public init() {}
 
