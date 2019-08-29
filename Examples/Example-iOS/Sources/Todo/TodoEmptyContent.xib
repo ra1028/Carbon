@@ -29,10 +29,9 @@ from the button below 👇</string>
             </subviews>
             <color key="backgroundColor" name="primaryBlack"/>
             <constraints>
-                <constraint firstItem="M99-wh-reI" firstAttribute="top" secondItem="feS-77-7rz" secondAttribute="top" constant="56" id="5Lv-gd-QgB"/>
-                <constraint firstItem="feS-77-7rz" firstAttribute="trailing" secondItem="M99-wh-reI" secondAttribute="trailing" priority="750" constant="16" id="Lyh-K6-9XQ"/>
+                <constraint firstAttribute="trailing" secondItem="M99-wh-reI" secondAttribute="trailing" constant="16" id="Lyh-K6-9XQ"/>
                 <constraint firstAttribute="bottom" secondItem="M99-wh-reI" secondAttribute="bottom" constant="8" id="fnC-Ss-C4V"/>
-                <constraint firstItem="M99-wh-reI" firstAttribute="leading" secondItem="feS-77-7rz" secondAttribute="leading" constant="16" id="s7h-eN-RB4"/>
+                <constraint firstItem="M99-wh-reI" firstAttribute="leading" secondItem="71K-Pg-3W4" secondAttribute="leading" constant="16" id="s7h-eN-RB4"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="feS-77-7rz"/>
