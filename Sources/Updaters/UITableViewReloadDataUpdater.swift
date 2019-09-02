@@ -17,7 +17,6 @@ open class UITableViewReloadDataUpdater<Adapter: UITableViewAdapter>: Updater {
     }
 
     /// Perform reload data to render given data to the target.
-    /// The completion is called after reload data, not after completion of the layout.
     ///
     /// - Parameters:
     ///   - target: A target instance to be updated to render given data.
