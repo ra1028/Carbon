@@ -19,14 +19,8 @@ final class UITableViewReloadDataUpdaterTests: XCTestCase {
         let adapter = MockTableViewAdapter()
         let tableView = MockTableView()
 
-        performAsyncTests(
-            block: { e in
-                updater.performUpdates(target: tableView, adapter: adapter, data: [Section(id: TestID.a)]) {
-                    e.fulfill()
-                }},
-            testing: {
-                XCTAssertEqual(adapter.data.count, 1)
-                XCTAssertTrue(tableView.isReloadDataCalled)
-        })
+        updater.performUpdates(target: tableView, adapter: adapter, data: [Section(id: TestID.a)])
+        XCTAssertEqual(adapter.data.count, 1)
+        XCTAssertTrue(tableView.isReloadDataCalled)
     }
 }

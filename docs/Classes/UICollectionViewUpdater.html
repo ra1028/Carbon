@@ -340,6 +340,33 @@ updated if not scrolling. Default is false.</p>
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:6Carbon23UICollectionViewUpdaterC10completionyycSgvp"></a>
+                    <a name="//apple_ref/swift/Property/completion" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon23UICollectionViewUpdaterC10completionyycSgvp">completion</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A completion handler to be called after each updates.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:6Carbon23UICollectionViewUpdaterCACyxGycfc"></a>
                     <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
                     <a class="token" href="#/s:6Carbon23UICollectionViewUpdaterCACyxGycfc">init()</a>
@@ -425,9 +452,9 @@ updated if not scrolling. Default is false.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Carbon23UICollectionViewUpdaterC14performUpdates6target7adapter4data10completionySo0bC0C_xSayAA7SectionVGyycSgtF"></a>
-                    <a name="//apple_ref/swift/Method/performUpdates(target:adapter:data:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon23UICollectionViewUpdaterC14performUpdates6target7adapter4data10completionySo0bC0C_xSayAA7SectionVGyycSgtF">performUpdates(target:adapter:data:completion:)</a>
+                    <a name="/s:6Carbon23UICollectionViewUpdaterC14performUpdates6target7adapter4dataySo0bC0C_xSayAA7SectionVGtF"></a>
+                    <a name="//apple_ref/swift/Method/performUpdates(target:adapter:data:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon23UICollectionViewUpdaterC14performUpdates6target7adapter4dataySo0bC0C_xSayAA7SectionVGtF">performUpdates(target:adapter:data:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -435,14 +462,16 @@ updated if not scrolling. Default is false.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Calculates a set of changes to perform diffing updates.</p>
+                        <p>Perform updates to render given data to the target.
+The completion is expected to be called after all updates
+and the its animations.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">performUpdates</span><span class="p">(</span><span class="nv">target</span><span class="p">:</span> <span class="kt">UICollectionView</span><span class="p">,</span> <span class="nv">adapter</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Adapter.html">Adapter</a></span><span class="p">,</span> <span class="nv">data</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Section.html">Section</a></span><span class="p">],</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">performUpdates</span><span class="p">(</span><span class="nv">target</span><span class="p">:</span> <span class="kt">UICollectionView</span><span class="p">,</span> <span class="nv">adapter</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Adapter.html">Adapter</a></span><span class="p">,</span> <span class="nv">data</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Section.html">Section</a></span><span class="p">])</span></code></pre>
 
                         </div>
                       </div>
@@ -483,18 +512,6 @@ updated if not scrolling. Default is false.</p>
                               <td>
                                 <div>
                                   <p>A collection of sections to be rendered next.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completion</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>A closure that to callback end of update and animations.</p>
                                 </div>
                               </td>
                             </tr>
@@ -507,9 +524,9 @@ updated if not scrolling. Default is false.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Carbon23UICollectionViewUpdaterC26performDifferentialUpdates6target7adapter4data15stagedChangeset10completionySo0bC0C_xSayAA7SectionVG13DifferenceKit06StagedL0VyANGyycSgtF"></a>
-                    <a name="//apple_ref/swift/Method/performDifferentialUpdates(target:adapter:data:stagedChangeset:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon23UICollectionViewUpdaterC26performDifferentialUpdates6target7adapter4data15stagedChangeset10completionySo0bC0C_xSayAA7SectionVG13DifferenceKit06StagedL0VyANGyycSgtF">performDifferentialUpdates(target:adapter:data:stagedChangeset:completion:)</a>
+                    <a name="/s:6Carbon23UICollectionViewUpdaterC26performDifferentialUpdates6target7adapter15stagedChangesetySo0bC0C_x13DifferenceKit06StagedK0VySayAA7SectionVGGtF"></a>
+                    <a name="//apple_ref/swift/Method/performDifferentialUpdates(target:adapter:stagedChangeset:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon23UICollectionViewUpdaterC26performDifferentialUpdates6target7adapter15stagedChangesetySo0bC0C_x13DifferenceKit06StagedK0VySayAA7SectionVGGtF">performDifferentialUpdates(target:adapter:stagedChangeset:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -517,15 +534,14 @@ updated if not scrolling. Default is false.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Perform diffing updates to render given data to the target.
-The completion is called after all updates and the its animations.</p>
+                        <p>Perform diffing updates to render given data to the target.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">performDifferentialUpdates</span><span class="p">(</span><span class="nv">target</span><span class="p">:</span> <span class="kt">UICollectionView</span><span class="p">,</span> <span class="nv">adapter</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Adapter.html">Adapter</a></span><span class="p">,</span> <span class="nv">data</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Section.html">Section</a></span><span class="p">],</span> <span class="nv">stagedChangeset</span><span class="p">:</span> <span class="kt"><a href="../Changesets.html#/s:6Carbon19StagedDataChangeseta">StagedDataChangeset</a></span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">performDifferentialUpdates</span><span class="p">(</span><span class="nv">target</span><span class="p">:</span> <span class="kt">UICollectionView</span><span class="p">,</span> <span class="nv">adapter</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Adapter.html">Adapter</a></span><span class="p">,</span> <span class="nv">stagedChangeset</span><span class="p">:</span> <span class="kt"><a href="../Changesets.html#/s:6Carbon19StagedDataChangeseta">StagedDataChangeset</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -560,36 +576,12 @@ The completion is called after all updates and the its animations.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>data</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>A collection of sections to be rendered next.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
                                 <em>stagedChangeset</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>A staged set of changes of current data and next data..</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>completion</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>A closure that to callback end of update and animations.</p>
+                                  <p>A staged set of changes of current data and next data.</p>
                                 </div>
                               </td>
                             </tr>
@@ -665,7 +657,7 @@ The completion is called after all updates and the its animations.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2019 <a class="link" href="https://github.com/ra1028" target="_blank" rel="external">Ryo Aoyama</a>. All rights reserved. (Last updated: 2019-08-26)</p>
+      <p>&copy; 2019 <a class="link" href="https://github.com/ra1028" target="_blank" rel="external">Ryo Aoyama</a>. All rights reserved. (Last updated: 2019-09-02)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

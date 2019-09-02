@@ -7,6 +7,10 @@ struct TodoEmpty: Component {
     }
 
     func render(in content: TodoEmptyContent) {}
+
+    func referenceSize(in bounds: CGRect) -> CGSize? {
+        return CGSize(width: bounds.width, height: 150)
+    }
 }
 
 final class TodoEmptyContent: UIView, NibLoadable {

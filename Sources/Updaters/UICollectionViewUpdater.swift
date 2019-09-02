@@ -20,6 +20,9 @@ open class UICollectionViewUpdater<Adapter: UICollectionViewAdapter>: Updater {
     /// Max number of changes that can be animated for diffing updates. Default is 300.
     open var animatableChangeCount = 300
 
+    /// A completion handler to be called after each updates.
+    open var completion: (() -> Void)?
+
     /// Create a new updater.
     public init() {}
 
@@ -35,14 +38,15 @@ open class UICollectionViewUpdater<Adapter: UICollectionViewAdapter>: Updater {
         target.collectionViewLayout.invalidateLayout()
     }
 
-    /// Calculates a set of changes to perform diffing updates.
+    /// Perform updates to render given data to the target.
+    /// The completion is expected to be called after all updates
+    /// and the its animations.
     ///
     /// - Parameters:
     ///   - target: A target instance to be updated to render given data.
     ///   - adapter: An adapter holding currently rendered data.
     ///   - data: A collection of sections to be rendered next.
-    ///   - completion: A closure that to callback end of update and animations.
-    open func performUpdates(target: UICollectionView, adapter: Adapter, data: [Section], completion: (() -> Void)?) {
+    open func performUpdates(target: UICollectionView, adapter: Adapter, data: [Section]) {
         guard case .some = target.window else {
             adapter.data = data
             target.reloadData()
@@ -51,28 +55,10 @@ open class UICollectionViewUpdater<Adapter: UICollectionViewAdapter>: Updater {
         }
 
         let stagedChangeset = StagedDataChangeset(source: adapter.data, target: data)
-        performDifferentialUpdates(target: target, adapter: adapter, data: data, stagedChangeset: stagedChangeset, completion: completion)
-    }
-
-    /// Perform diffing updates to render given data to the target.
-    /// The completion is called after all updates and the its animations.
-    ///
-    /// - Parameters:
-    ///   - target: A target instance to be updated to render given data.
-    ///   - adapter: An adapter holding currently rendered data.
-    ///   - data: A collection of sections to be rendered next.
-    ///   - stagedChangeset: A staged set of changes of current data and next data..
-    ///   - completion: A closure that to callback end of update and animations.
-    open func performDifferentialUpdates(target: UICollectionView, adapter: Adapter, data: [Section], stagedChangeset: StagedDataChangeset, completion: (() -> Void)?) {
-        func renderVisibleComponentsIfNeeded() {
-            if alwaysRenderVisibleComponents {
-                renderVisibleComponents(in: target, adapter: adapter)
-            }
-        }
 
         guard !stagedChangeset.isEmpty else {
             adapter.data = data
-            renderVisibleComponentsIfNeeded()
+            renderVisibleComponentsIfNeeded(in: target, adapter: adapter)
             completion?()
             return
         }
@@ -88,12 +74,24 @@ open class UICollectionViewUpdater<Adapter: UICollectionViewAdapter>: Updater {
             return
         }
 
-        func performAnimatedUpdates() {
-            let contentOffsetBeforeUpdates = target.contentOffset
+        CATransaction.begin()
+        CATransaction.setCompletionBlock(completion)
 
-            CATransaction.begin()
-            CATransaction.setCompletionBlock(completion)
+        performDifferentialUpdates(target: target, adapter: adapter, stagedChangeset: stagedChangeset)
 
+        CATransaction.commit()
+    }
+
+    /// Perform diffing updates to render given data to the target.
+    ///
+    /// - Parameters:
+    ///   - target: A target instance to be updated to render given data.
+    ///   - adapter: An adapter holding currently rendered data.
+    ///   - stagedChangeset: A staged set of changes of current data and next data.
+    open func performDifferentialUpdates(target: UICollectionView, adapter: Adapter, stagedChangeset: StagedDataChangeset) {
+        let contentOffsetBeforeUpdates = target.contentOffset
+
+        func performBatchUpdates() {
             for changeset in stagedChangeset {
                 target.performBatchUpdates({
                     adapter.data = changeset.data
@@ -131,25 +129,20 @@ open class UICollectionViewUpdater<Adapter: UICollectionViewAdapter>: Updater {
                     }
                 })
             }
-
-            renderVisibleComponentsIfNeeded()
-
-            CATransaction.commit()
-
-            if keepsContentOffset && target._isContentRectContainsBounds && !target._isScrolling {
-                target.contentOffset = CGPoint(
-                    x: min(target._maxContentOffsetX, contentOffsetBeforeUpdates.x),
-                    y: min(target._maxContentOffsetY, contentOffsetBeforeUpdates.y)
-                )
-            }
         }
 
-        if isAnimationEnabled && (!target._isScrolling || isAnimationEnabledWhileScrolling) {
-            performAnimatedUpdates()
+        if isAnimationEnabled && (isAnimationEnabledWhileScrolling || !target._isScrolling) {
+            performBatchUpdates()
         }
         else {
-            UIView.performWithoutAnimation(performAnimatedUpdates)
+            UIView.performWithoutAnimation(performBatchUpdates)
         }
+
+        if keepsContentOffset {
+            target._setAdjustedContentOffsetIfNeeded(contentOffsetBeforeUpdates)
+        }
+
+        renderVisibleComponentsIfNeeded(in: target, adapter: adapter)
     }
 
     /// Renders components displayed in visible area again.
@@ -177,6 +170,14 @@ open class UICollectionViewUpdater<Adapter: UICollectionViewAdapter>: Updater {
                     cell?.render(component: cellNode.component)
                 }
             })
+        }
+    }
+}
+
+private extension UICollectionViewUpdater {
+    func renderVisibleComponentsIfNeeded(in target: UICollectionView, adapter: Adapter) {
+        if alwaysRenderVisibleComponents {
+            renderVisibleComponents(in: target, adapter: adapter)
         }
     }
 }
