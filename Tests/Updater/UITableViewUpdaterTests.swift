@@ -46,17 +46,21 @@ final class UITableViewUpdaterTests: XCTestCase {
         let updater = MockTableViewUpdater()
         let adapter = MockTableViewAdapter()
         let tableView = MockTableView().addingToWindow()
-        let stagedChangeset: StagedDataChangeset = [
-            DataChangeset(data: [], sectionDeleted: [0]),
-            DataChangeset(data: [], sectionInserted: [1, 2])
+        let sourceData = [
+            Section(id: 0)
+        ]
+        let targetData = [
+            Section(id: 1),
+            Section(id: 2)
         ]
 
         updater.animatableChangeCount = 1
+        adapter.data = sourceData
 
         performAsyncTests(
             block: { e in
                 updater.completion = e.fulfill
-                updater.performDifferentialUpdates(target: tableView, adapter: adapter, data: [], stagedChangeset: stagedChangeset)
+                updater.performUpdates(target: tableView, adapter: adapter, data: targetData)
         },
             testing: {
                 XCTAssertTrue(tableView.isReloadDataCalled)
@@ -69,11 +73,14 @@ final class UITableViewUpdaterTests: XCTestCase {
         let updater = MockTableViewUpdater()
         let adapter = MockTableViewAdapter()
         let tableView = MockTableView().addingToWindow()
+        let data = [Section(id: TestID.a)]
+
+        adapter.data = data
 
         performAsyncTests(
             block: { e in
                 updater.completion = e.fulfill
-                updater.performDifferentialUpdates(target: tableView, adapter: adapter, data: [Section(id: TestID.a)], stagedChangeset: [])
+                updater.performUpdates(target: tableView, adapter: adapter, data: data)
         },
             testing: {
                 XCTAssertEqual(adapter.data.count, 1)
@@ -101,22 +108,17 @@ final class UITableViewUpdaterTests: XCTestCase {
             DataChangeset(data: [], elementMoved: [(source: ElementPath(element: 14, section: 15), target: ElementPath(element: 16, section: 17))])
         ]
 
-        performAsyncTests(
-            block: { e in
-                updater.completion = e.fulfill
-                updater.performDifferentialUpdates(target: tableView, adapter: adapter, data: [Section(id: TestID.a)], stagedChangeset: stagedChangeset)
-        },
-            testing: {
-                XCTAssertEqual(tableView.deletedSections, [0, 1])
-                XCTAssertEqual(tableView.insertedSections, [2, 3])
-                XCTAssertEqual(tableView.reloadedSections, [4, 5])
-                XCTAssertEqual(tableView.movedSections.map(Pair.init), [Pair(6, 7)])
-                XCTAssertEqual(tableView.deletedRows, [IndexPath(row: 8, section: 9)])
-                XCTAssertEqual(tableView.insertedRows, [IndexPath(row: 10, section: 11)])
-                XCTAssertEqual(tableView.reloadedRows, [IndexPath(row: 12, section: 13)])
-                XCTAssertEqual(tableView.movedRows.map(Pair.init), [Pair(IndexPath(row: 14, section: 15), IndexPath(row: 16, section: 17))])
-                XCTAssertFalse(tableView.isReloadDataCalled)
-        })
+        updater.performDifferentialUpdates(target: tableView, adapter: adapter, stagedChangeset: stagedChangeset)
+
+        XCTAssertEqual(tableView.deletedSections, [0, 1])
+        XCTAssertEqual(tableView.insertedSections, [2, 3])
+        XCTAssertEqual(tableView.reloadedSections, [4, 5])
+        XCTAssertEqual(tableView.movedSections.map(Pair.init), [Pair(6, 7)])
+        XCTAssertEqual(tableView.deletedRows, [IndexPath(row: 8, section: 9)])
+        XCTAssertEqual(tableView.insertedRows, [IndexPath(row: 10, section: 11)])
+        XCTAssertEqual(tableView.reloadedRows, [IndexPath(row: 12, section: 13)])
+        XCTAssertEqual(tableView.movedRows.map(Pair.init), [Pair(IndexPath(row: 14, section: 15), IndexPath(row: 16, section: 17))])
+        XCTAssertFalse(tableView.isReloadDataCalled)
     }
 
     func testAlwaysRenderVisibleComponents() {
@@ -171,7 +173,8 @@ final class UITableViewUpdaterTests: XCTestCase {
         XCTAssertNil(visible.header.renderedComponent)
         XCTAssertNil(visible.footer.renderedComponent)
 
-        updater.performDifferentialUpdates(target: tableView, adapter: adapter, data: data, stagedChangeset: [])
+        adapter.data = data
+        updater.performDifferentialUpdates(target: tableView, adapter: adapter, stagedChangeset: [])
 
         XCTAssertEqual(visible.component, visible.cell.renderedComponent?.as(MockIdentifiableComponent<TestID>.self))
         XCTAssertEqual(visible.component, visible.header.renderedComponent?.as(MockIdentifiableComponent<TestID>.self))

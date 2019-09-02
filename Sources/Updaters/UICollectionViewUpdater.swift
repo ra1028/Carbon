@@ -38,7 +38,9 @@ open class UICollectionViewUpdater<Adapter: UICollectionViewAdapter>: Updater {
         target.collectionViewLayout.invalidateLayout()
     }
 
-    /// Calculates a set of changes to perform diffing updates.
+    /// Perform updates to render given data to the target.
+    /// The completion is expected to be called after all updates
+    /// and the its animations.
     ///
     /// - Parameters:
     ///   - target: A target instance to be updated to render given data.
@@ -53,18 +55,7 @@ open class UICollectionViewUpdater<Adapter: UICollectionViewAdapter>: Updater {
         }
 
         let stagedChangeset = StagedDataChangeset(source: adapter.data, target: data)
-        performDifferentialUpdates(target: target, adapter: adapter, data: data, stagedChangeset: stagedChangeset)
-    }
 
-    /// Perform diffing updates to render given data to the target.
-    /// The completion is called after all updates and the its animations.
-    ///
-    /// - Parameters:
-    ///   - target: A target instance to be updated to render given data.
-    ///   - adapter: An adapter holding currently rendered data.
-    ///   - data: A collection of sections to be rendered next.
-    ///   - stagedChangeset: A staged set of changes of current data and next data.
-    open func performDifferentialUpdates(target: UICollectionView, adapter: Adapter, data: [Section], stagedChangeset: StagedDataChangeset) {
         guard !stagedChangeset.isEmpty else {
             adapter.data = data
             renderVisibleComponentsIfNeeded(in: target, adapter: adapter)
@@ -85,18 +76,19 @@ open class UICollectionViewUpdater<Adapter: UICollectionViewAdapter>: Updater {
 
         CATransaction.begin()
         CATransaction.setCompletionBlock(completion)
-        differentialUpdatesTransaction(target: target, adapter: adapter, stagedChangeset: stagedChangeset)
+
+        performDifferentialUpdates(target: target, adapter: adapter, stagedChangeset: stagedChangeset)
+
         CATransaction.commit()
     }
 
-    /// A transaction for perform UI updates.
-    /// By overwriting this method, updater can insert any processing before or after the update.
+    /// Perform diffing updates to render given data to the target.
     ///
     /// - Parameters:
     ///   - target: A target instance to be updated to render given data.
     ///   - adapter: An adapter holding currently rendered data.
     ///   - stagedChangeset: A staged set of changes of current data and next data.
-    open func differentialUpdatesTransaction(target: UICollectionView, adapter: Adapter, stagedChangeset: StagedDataChangeset) {
+    open func performDifferentialUpdates(target: UICollectionView, adapter: Adapter, stagedChangeset: StagedDataChangeset) {
         let contentOffsetBeforeUpdates = target.contentOffset
 
         func performBatchUpdates() {

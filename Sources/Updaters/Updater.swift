@@ -14,8 +14,6 @@ public protocol Updater {
     func prepare(target: Target, adapter: Adapter)
 
     /// Perform updates to render given data to the target.
-    /// The completion is expected to be called after all updates
-    /// and the its animations.
     ///
     /// - Parameters:
     ///   - target: A target instance to be updated to render given data.
