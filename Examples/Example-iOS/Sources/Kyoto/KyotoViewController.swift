@@ -19,11 +19,6 @@ final class KyotoViewController: UIViewController {
         return .portrait
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        collectionView.performBatchUpdates(nil)
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,29 +26,34 @@ final class KyotoViewController: UIViewController {
 
         let layout = MagazineLayout()
         collectionView.collectionViewLayout = layout
-
         renderer.target = collectionView
-        renderer.render(
+
+        renderer.render {
             Section(
                 id: ID.top,
-                header: ViewNode(KyotoTop())
-            ),
+                header: KyotoTop()
+            )
+
             Section(
                 id: ID.photo,
-                header: ViewNode(Header(title: "PHOTOS")),
-                cells: [
-                    CellNode(KyotoImage(title: "Fushimi Inari-taisha", image: #imageLiteral(resourceName: "KyotoFushimiInari"))),
-                    CellNode(KyotoImage(title: "Arashiyama", image: #imageLiteral(resourceName: "KyotoArashiyama"))),
-                    CellNode(KyotoImage(title: "Byōdō-in", image: #imageLiteral(resourceName: "KyotoByōdōIn"))),
-                    CellNode(KyotoImage(title: "Gion", image: #imageLiteral(resourceName: "KyotoGion"))),
-                    CellNode(KyotoImage(title: "Kiyomizu-dera", image: #imageLiteral(resourceName: "KyotoKiyomizuDera")))
-                ],
-                footer: ViewNode(KyotoLicense {
+                header: Header(title: "PHOTOS"),
+                footer: KyotoLicense {
                     let url = URL(string: "https://unsplash.com/")!
                     UIApplication.shared.open(url)
-                })
-            )
-        )
+                },
+                cells: {
+                    KyotoImage(title: "Fushimi Inari-taisha", image: #imageLiteral(resourceName: "KyotoFushimiInari"))
+                    KyotoImage(title: "Arashiyama", image: #imageLiteral(resourceName: "KyotoArashiyama"))
+                    KyotoImage(title: "Byōdō-in", image: #imageLiteral(resourceName: "KyotoByōdōIn"))
+                    KyotoImage(title: "Gion", image: #imageLiteral(resourceName: "KyotoGion"))
+                    KyotoImage(title: "Kiyomizu-dera", image: #imageLiteral(resourceName: "KyotoKiyomizuDera"))
+            })
+        }
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collectionView.performBatchUpdates(nil)
     }
 }
 

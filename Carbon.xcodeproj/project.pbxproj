@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6B1BE6B722E5CA0D0054DB46 /* ComponentRenderable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B1BE6B622E5CA0D0054DB46 /* ComponentRenderable.swift */; };
+		6B37B2F52320339300A80D62 /* IdentifiedComponentWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B37B2F32320339300A80D62 /* IdentifiedComponentWrapper.swift */; };
+		6B37B2F62320339300A80D62 /* ComponentWrapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B37B2F42320339300A80D62 /* ComponentWrapping.swift */; };
 		6B5304532201EDB200A3E21E /* DataChangeset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B5304522201EDB200A3E21E /* DataChangeset.swift */; };
 		6B6594A421E2532100291AAF /* IdentifiableComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B65948621E2532100291AAF /* IdentifiableComponent.swift */; };
 		6B6594A621E2532100291AAF /* UICollectionViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B65948A21E2532100291AAF /* UICollectionViewAdapter.swift */; };
@@ -53,6 +55,12 @@
 		6B7EED9E224CA5DD00060872 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7EED9D224CA5DD00060872 /* UIScrollViewExtensions.swift */; };
 		6B7EEDA0224CE4E100060872 /* UIScrollViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7EED9F224CE4E000060872 /* UIScrollViewExtensionsTests.swift */; };
 		6BAEA43D228D4E920026F81E /* RuntimeAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEA43C228D4E920026F81E /* RuntimeAssociation.swift */; };
+		6BC83E4B231ED14700350855 /* CellsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC83E4A231ED14600350855 /* CellsBuilder.swift */; };
+		6BC83E4D231ED17300350855 /* CellsBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC83E4C231ED17300350855 /* CellsBuildable.swift */; };
+		6BC83E4F231ED1BB00350855 /* CellGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC83E4E231ED1BB00350855 /* CellGroup.swift */; };
+		6BC83E51231ED21700350855 /* SectionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC83E50231ED21700350855 /* SectionsBuilder.swift */; };
+		6BC83E53231ED42C00350855 /* SectionsBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC83E52231ED42C00350855 /* SectionsBuildable.swift */; };
+		6BC83E55231ED44300350855 /* SectionGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC83E54231ED44300350855 /* SectionGroup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +75,8 @@
 
 /* Begin PBXFileReference section */
 		6B1BE6B622E5CA0D0054DB46 /* ComponentRenderable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentRenderable.swift; sourceTree = "<group>"; };
+		6B37B2F32320339300A80D62 /* IdentifiedComponentWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentifiedComponentWrapper.swift; sourceTree = "<group>"; };
+		6B37B2F42320339300A80D62 /* ComponentWrapping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentWrapping.swift; sourceTree = "<group>"; };
 		6B5304522201EDB200A3E21E /* DataChangeset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataChangeset.swift; sourceTree = "<group>"; };
 		6B65947A21E252E300291AAF /* Carbon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Carbon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B65948621E2532100291AAF /* IdentifiableComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IdentifiableComponent.swift; sourceTree = "<group>"; };
@@ -116,6 +126,12 @@
 		6B7EED9D224CA5DD00060872 /* UIScrollViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtensions.swift; sourceTree = "<group>"; };
 		6B7EED9F224CE4E000060872 /* UIScrollViewExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScrollViewExtensionsTests.swift; sourceTree = "<group>"; };
 		6BAEA43C228D4E920026F81E /* RuntimeAssociation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeAssociation.swift; sourceTree = "<group>"; };
+		6BC83E4A231ED14600350855 /* CellsBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellsBuilder.swift; sourceTree = "<group>"; };
+		6BC83E4C231ED17300350855 /* CellsBuildable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellsBuildable.swift; sourceTree = "<group>"; };
+		6BC83E4E231ED1BB00350855 /* CellGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellGroup.swift; sourceTree = "<group>"; };
+		6BC83E50231ED21700350855 /* SectionsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsBuilder.swift; sourceTree = "<group>"; };
+		6BC83E52231ED42C00350855 /* SectionsBuildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsBuildable.swift; sourceTree = "<group>"; };
+		6BC83E54231ED44300350855 /* SectionGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionGroup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +185,7 @@
 				6B65949021E2532100291AAF /* Section.swift */,
 				6B6594A321E2532100291AAF /* Renderer.swift */,
 				6B5304522201EDB200A3E21E /* DataChangeset.swift */,
+				6BC83E47231ECE5000350855 /* FunctionBuilder */,
 				6B65948921E2532100291AAF /* Adapters */,
 				6B65949221E2532100291AAF /* Updaters */,
 				6B65949D21E2532100291AAF /* Interfaces */,
@@ -296,6 +313,21 @@
 				6B7ADEE021FBA6D1003803BE /* ComponentContainerElementTests.swift */,
 			);
 			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		6BC83E47231ECE5000350855 /* FunctionBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				6BC83E4A231ED14600350855 /* CellsBuilder.swift */,
+				6BC83E4C231ED17300350855 /* CellsBuildable.swift */,
+				6BC83E4E231ED1BB00350855 /* CellGroup.swift */,
+				6BC83E50231ED21700350855 /* SectionsBuilder.swift */,
+				6BC83E52231ED42C00350855 /* SectionsBuildable.swift */,
+				6BC83E54231ED44300350855 /* SectionGroup.swift */,
+				6B37B2F42320339300A80D62 /* ComponentWrapping.swift */,
+				6B37B2F32320339300A80D62 /* IdentifiedComponentWrapper.swift */,
+			);
+			path = FunctionBuilder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -434,15 +466,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B37B2F52320339300A80D62 /* IdentifiedComponentWrapper.swift in Sources */,
 				6B6594BB21E2532100291AAF /* UITableViewComponentHeaderFooterView.swift in Sources */,
 				6B7EED9E224CA5DD00060872 /* UIScrollViewExtensions.swift in Sources */,
+				6BC83E53231ED42C00350855 /* SectionsBuildable.swift in Sources */,
 				6B6594AC21E2532100291AAF /* Section.swift in Sources */,
+				6BC83E4B231ED14700350855 /* CellsBuilder.swift in Sources */,
 				6B6594B121E2532100291AAF /* UICollectionViewReloadDataUpdater.swift in Sources */,
+				6BC83E4D231ED17300350855 /* CellsBuildable.swift in Sources */,
 				6B6594B421E2532100291AAF /* Component.swift in Sources */,
 				6B6594B821E2532100291AAF /* UICollectionComponentReusableView.swift in Sources */,
 				6BAEA43D228D4E920026F81E /* RuntimeAssociation.swift in Sources */,
+				6BC83E51231ED21700350855 /* SectionsBuilder.swift in Sources */,
 				6B6594A621E2532100291AAF /* UICollectionViewAdapter.swift in Sources */,
+				6B37B2F62320339300A80D62 /* ComponentWrapping.swift in Sources */,
+				6BC83E4F231ED1BB00350855 /* CellGroup.swift in Sources */,
 				6B6594A921E2532100291AAF /* Adapter.swift in Sources */,
+				6BC83E55231ED44300350855 /* SectionGroup.swift in Sources */,
 				6B6594A721E2532100291AAF /* UITableViewAdapter.swift in Sources */,
 				6B6594AD21E2532100291AAF /* ViewNode.swift in Sources */,
 				6B6594A421E2532100291AAF /* IdentifiableComponent.swift in Sources */,

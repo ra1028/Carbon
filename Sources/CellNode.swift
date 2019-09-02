@@ -48,6 +48,12 @@ public struct CellNode {
     }
 }
 
+extension CellNode: CellsBuildable {
+    public func buildCells() -> [CellNode] {
+        [self]
+    }
+}
+
 extension CellNode: Differentiable {
     /// An identifier value for difference calculation.
     @inlinable

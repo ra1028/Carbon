@@ -78,6 +78,66 @@ public struct Section {
     }
 }
 
+public extension Section {
+    @inlinable
+    init<I: Hashable, C: CellsBuildable>(id: I, @CellsBuilder cells: () -> C) {
+        self.init(id: id, cells: cells().buildCells())
+    }
+
+    @inlinable
+    init<I: Hashable, H: Component, F: Component, C: CellsBuildable>(id: I, header: H?, footer: F?, @CellsBuilder cells: () -> C) {
+        self.init(
+            id: id,
+            header: header.map(ViewNode.init),
+            cells: cells().buildCells(),
+            footer: footer.map(ViewNode.init)
+        )
+    }
+
+    @inlinable
+    init<I: Hashable, H: Component, F: Component>(id: I, header: H?, footer: F?) {
+        self.init(
+            id: id,
+            header: header.map(ViewNode.init),
+            footer: footer.map(ViewNode.init)
+        )
+    }
+
+    @inlinable
+    init<I: Hashable, H: Component>(id: I, header: H?, @CellsBuilder cells: () -> CellsBuildable) {
+        self.init(
+            id: id,
+            header: header.map(ViewNode.init),
+            cells: cells().buildCells()
+        )
+    }
+
+    @inlinable
+    init<I: Hashable, H: Component>(id: I, header: H?) {
+        self.init(id: id, header: header.map(ViewNode.init))
+    }
+
+    @inlinable
+    init<I: Hashable, F: Component, C: CellsBuildable>(id: I, footer: F?, @CellsBuilder cells: () -> C) {
+        self.init(
+            id: id,
+            cells: cells().buildCells(),
+            footer: footer.map(ViewNode.init)
+        )
+    }
+
+    @inlinable
+    init<I: Hashable, F: Component>(id: I, footer: F?) {
+        self.init(id: id, footer: footer.map(ViewNode.init))
+    }
+}
+
+extension Section: SectionsBuildable {
+    public func buildSections() -> [Section] {
+        [self]
+    }
+}
+
 extension Section: DifferentiableSection {
     /// An identifier value for difference calculation.
     @inlinable

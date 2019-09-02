@@ -8,7 +8,7 @@ struct PangramLabel: IdentifiableComponent, Hashable {
         let label = UILabel()
         label.textColor = .primaryGreen
         label.textAlignment = .center
-        label.font = .boldSystemFont(ofSize: 18)
+        label.font = .boldSystemFont(ofSize: 20)
         label.backgroundColor = UIColor.primaryWhite.withAlphaComponent(0.1)
         return label
     }

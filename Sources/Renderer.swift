@@ -108,4 +108,19 @@ open class Renderer<Updater: Carbon.Updater> {
         buildData(&data)
         render(data)
     }
+
+    open func render<S: SectionsBuildable>(@SectionsBuilder sections: () -> S) {
+        render(sections().buildSections())
+    }
+
+    open func render<C: CellsBuildable>(@CellsBuilder cells: () -> C) {
+        render(
+            Section(
+                id: UniqueIdentifier(),
+                cells: cells().buildCells()
+            )
+        )
+    }
 }
+
+private struct UniqueIdentifier: Hashable {}

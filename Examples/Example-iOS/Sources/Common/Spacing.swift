@@ -1,7 +1,7 @@
 import UIKit
 import Carbon
 
-struct Spacing: IdentifiableComponent, Hashable {
+struct Spacing: Component {
     var height: CGFloat
 
     func renderContent() -> UIView {

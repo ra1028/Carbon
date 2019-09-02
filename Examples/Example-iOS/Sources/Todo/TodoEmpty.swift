@@ -1,7 +1,7 @@
 import UIKit
 import Carbon
 
-struct TodoEmpty: Component {
+struct TodoEmpty: IdentifiableComponent, Hashable {
     func renderContent() -> TodoEmptyContent {
         return .loadFromNib()
     }

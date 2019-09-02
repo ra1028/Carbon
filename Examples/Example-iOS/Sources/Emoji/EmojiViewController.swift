@@ -2,10 +2,6 @@ import UIKit
 import Carbon
 
 final class EmojiViewController: UIViewController {
-    enum ID {
-        case emoji
-    }
-
     @IBOutlet var collectionView: UICollectionView!
     @IBOutlet var toolBar: UIToolbar!
 
@@ -22,8 +18,7 @@ final class EmojiViewController: UIViewController {
         super.viewDidLoad()
 
         title = "Shuffle Emoji"
-        toolBar.isTranslucent = false
-        collectionView.contentInset.bottom = 44
+        collectionView.contentInset.top = 44
 
         renderer.target = collectionView
 
@@ -31,19 +26,13 @@ final class EmojiViewController: UIViewController {
     }
 
     func render() {
-        renderer.render(
-            Section(
-                id: ID.emoji,
-                header: ViewNode(Header(title: "EMOJIS")),
-                cells: emojiCodes
-                    .enumerated()
-                    .map { offset, code in
-                        CellNode(EmojiLabel(code: code) { [weak self] in
-                            self?.emojiCodes.remove(at: offset)
-                        })
+        renderer.render {
+            CellGroup(of: emojiCodes.enumerated()) { offset, code in
+                EmojiLabel(code: code) { [weak self] in
+                    self?.emojiCodes.remove(at: offset)
                 }
-            )
-        )
+            }
+        }
     }
 
     @IBAction func refresh() {
