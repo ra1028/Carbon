@@ -69,6 +69,7 @@ public struct Section {
     /// - Parameters:
     ///   - id: An identifier to be wrapped.
     ///   - buildSection: A closure to build section.
+    @available(*, deprecated, message: "This method will be removed next version owing to avoid ambiguity with new syntax using function builder.")
     @inlinable
     public init<I: Hashable>(id: I, _ buildSection: (inout Section) -> Void) {
         var section = Section(id: id)
