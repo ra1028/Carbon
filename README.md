@@ -44,18 +44,17 @@ Our goal is similar to [Instagram/IGListKit](https://github.com/Instagram/IGList
 <img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/hello.png" height=260 align=right>
 
 ```swift
-renderer.render(
-    Section(
-        id: ID.greet,
-        header: ViewNode(Header(title: "GREET")),
-        cells: [
-            CellNode(HelloMessage(name: "Vincent")),
-            CellNode(HelloMessage(name: "Jules")),
-            CellNode(HelloMessage(name: "Butch"))
-        ],
-        footer: ViewNode(Footer(text: "💡 Tap anywhere"))
-    )
-)
+renderer.render {
+    Header(title: "GREET")
+        .identified(by: \.title)
+
+    HelloMessage(name: "Vincent")
+    HelloMessage(name: "Jules")
+    HelloMessage(name: "Butch")
+
+    Footer(text: "💡 Tap anywhere")
+        .identified(by: \.title)
+}
 ```
 
 ---
@@ -158,23 +157,20 @@ This also needs to specify `id` for identify from among multiple sections, then 
 - section updates
 
 ```swift
-let emptySection = Section(id: 0)
-```
-
-```swift
 let showsHelloMia: Bool = ...
 
 let section = Section(
     id: "hello",
-    header: ViewNode(HelloMessage(name: "Vincent")),
-    cells: [
-        CellNode(HelloMessage(name: "Jules")),
-        CellNode(HelloMessage(name: "Butch")),
-        !showsHelloMia
-            ? nil
-            : CellNode(HelloMessage(name: "Mia"))
-    ],
-    footer: ViewNode(HelloMessage(name: "Marsellus"))
+    header: Header(title: "GREET"),
+    footer: Footer(text: "Greeting from Carbon"),
+    cells: {
+        HelloMessage(name: "Jules")
+        HelloMessage(name: "Butch")
+
+        if showsHelloMia {
+            HelloMessage(name: "Mia")
+        }
+    }
 )
 ```
 
@@ -224,27 +220,25 @@ override func viewDidLoad() {
 ```swift
 let showsBottomSection: Bool = ...
 
-renderer.render(
-    Section(
-        id: "top section",
-        cells: [
-            CellNode(HelloMessage(name: "Vincent")),
-            CellNode(HelloMessage(name: "Jules")),
-            CellNode(HelloMessage(name: "Butch"))
-        ]
-    ),
-    !showsBottomSection
-        ? nil
-        : Section(
-            id: "bottom section",
-            header: ViewNode(HelloMessage(name: "Pumpkin")),
-            cells: [
-                CellNode(HelloMessage(name: "Marsellus")),
-                CellNode(HelloMessage(name: "Mia"))
-            ],
-            footer: ViewNode(HelloMessage(name: "Honey Bunny"))
+renderer.render {
+    Section(id: "top") {
+        HelloMessage(name: "Vincent")
+        HelloMessage(name: "Jules")
+        HelloMessage(name: "Butch")
+    }
+
+    if showsBottomSection {
+        Section(
+            id: "bottom",
+            header: Header(title: "GREET"),
+            footer: Footer(text: "Greeting from Carbon"),
+            cells: {
+                HelloMessage(name: "Marsellus")
+                HelloMessage(name: "Mia")
+            }
         )
-)
+    }
+}
 ```
 
 <H3 align="center">
