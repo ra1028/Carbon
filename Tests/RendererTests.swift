@@ -155,28 +155,4 @@ final class RendererTests: XCTestCase {
         XCTAssertEqual(renderer.updater.targetCapturedOnUpdates, target)
         XCTAssertEqual(renderer.updater.adapterCapturedOnUpdates, adapter)
     }
-
-    @available(*, deprecated)
-    func testRenderWithBuilderClosure() {
-        let target = MockTarget()
-        let adapter = MockAdapter()
-        let renderer = Renderer(
-            adapter: adapter,
-            updater: MockUpdater()
-        )
-
-        let data = [
-            Section(id: TestID.a),
-            Section(id: TestID.b),
-            Section(id: TestID.c),
-            Section(id: TestID.d)
-        ]
-
-        renderer.target = target
-        renderer.render { $0 = data }
-
-        XCTAssertEqual(renderer.adapter.data.count, 4)
-        XCTAssertEqual(renderer.updater.targetCapturedOnUpdates, target)
-        XCTAssertEqual(renderer.updater.adapterCapturedOnUpdates, adapter)
-    }
 }

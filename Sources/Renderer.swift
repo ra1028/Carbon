@@ -98,17 +98,6 @@ open class Renderer<Updater: Carbon.Updater> {
         render(data.compactMap { $0 })
     }
 
-    /// Render sections built by given closure, immediately.
-    ///
-    /// - Parameters:
-    ///   - buildData: A closure to build sections.
-    @available(*, deprecated, message: "This method will be removed next version owing to avoid ambiguity with new syntax using function builder.")
-    open func render(_ buildData: (inout [Section]) -> Void) {
-        var data = [Section]()
-        buildData(&data)
-        render(data)
-    }
-
     open func render<S: SectionsBuildable>(@SectionsBuilder sections: () -> S) {
         render(sections().buildSections())
     }
