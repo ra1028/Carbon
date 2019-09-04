@@ -102,6 +102,7 @@ open class Renderer<Updater: Carbon.Updater> {
     ///
     /// - Parameters:
     ///   - buildData: A closure to build sections.
+    @available(*, deprecated, message: "This method will be removed next version owing to avoid ambiguity with new syntax using function builder.")
     open func render(_ buildData: (inout [Section]) -> Void) {
         var data = [Section]()
         buildData(&data)

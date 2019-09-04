@@ -33,6 +33,7 @@ final class SectionTests: XCTestCase {
         XCTAssertEqual(section.cells.count, 2)
     }
 
+    @available(*, deprecated)
     func testInitWithBuilderClosure() {
         let section = Section(id: TestID.a) { section in
             section.header = ViewNode(A.Component())

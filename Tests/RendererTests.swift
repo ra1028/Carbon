@@ -156,6 +156,7 @@ final class RendererTests: XCTestCase {
         XCTAssertEqual(renderer.updater.adapterCapturedOnUpdates, adapter)
     }
 
+    @available(*, deprecated)
     func testRenderWithBuilderClosure() {
         let target = MockTarget()
         let adapter = MockAdapter()
