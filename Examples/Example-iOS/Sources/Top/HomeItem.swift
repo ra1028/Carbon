@@ -27,7 +27,7 @@ final class HomeItemContent: UIControl, NibLoadable {
 
     override var isHighlighted: Bool {
         didSet {
-            backgroundColor = isHighlighted ? .secondaryBlack : .primaryBlack
+            backgroundColor = isHighlighted ? .systemGray4 : .clear
         }
     }
 

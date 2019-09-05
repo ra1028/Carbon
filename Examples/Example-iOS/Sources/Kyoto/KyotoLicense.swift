@@ -16,7 +16,7 @@ struct KyotoLicense: Component {
 final class KyotoLicenseContent: UIControl, NibLoadable {
     override var isHighlighted: Bool {
         didSet {
-            alpha = isHighlighted ? 0.5 : 1
+            backgroundColor = isHighlighted ? .systemGray4 : .clear
         }
     }
 

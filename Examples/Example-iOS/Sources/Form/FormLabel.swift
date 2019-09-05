@@ -29,7 +29,7 @@ final class FormLabelContent: UIControl, NibLoadable {
 
     override var isHighlighted: Bool {
         didSet {
-            backgroundColor = isHighlighted ? .primaryBlack : .secondaryBlack
+            backgroundColor = isHighlighted ? .systemGray4 : .secondarySystemBackground
         }
     }
 

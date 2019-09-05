@@ -43,7 +43,7 @@ final class FormTextPickerContent: UIView, NibLoadable, UIPickerViewDelegate, UI
     }
 
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: texts[row], attributes: [.foregroundColor: UIColor.white])
+        return NSAttributedString(string: texts[row], attributes: [.foregroundColor: UIColor.label])
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

@@ -139,6 +139,7 @@ final class SwipeCellKitTodoAdapter: UITableViewAdapter, SwipeTableViewCellDeleg
         let cell = super.tableView(tableView, cellForRowAt: indexPath) as! SwipeTableViewCell
         cell.delegate = self
         cell.selectionStyle = .none
+        cell.backgroundColor = .clear
         return cell
     }
 

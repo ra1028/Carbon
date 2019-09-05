@@ -38,7 +38,7 @@ final class HelloViewController: UIViewController {
                 HelloMessage(name: "Butch")
             }
 
-            Footer(text: "Tap anywhere 💡")
+            Footer(text: "👋 Greeting from Carbon")
                 .identified(by: \.text)
         }
     }

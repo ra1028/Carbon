@@ -27,7 +27,7 @@ final class FormDatePickerContent: UIView, NibLoadable {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        datePicker.setValue(UIColor.primaryWhite, forKeyPath: "textColor")
+        datePicker.setValue(UIColor.label, forKeyPath: "textColor")
         datePicker.addTarget(self, action: #selector(selected), for: .valueChanged)
     }
 

@@ -2,9 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14865.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14819.2"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,11 +20,9 @@
 Let's add a new task
 from the button below 👇</string>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <color key="textColor" name="primaryWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" name="primaryBlack"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="M99-wh-reI" secondAttribute="trailing" constant="16" id="Lyh-K6-9XQ"/>
                 <constraint firstAttribute="bottom" secondItem="M99-wh-reI" secondAttribute="bottom" constant="8" id="fnC-Ss-C4V"/>
@@ -40,12 +36,4 @@ from the button below 👇</string>
             <point key="canvasLocation" x="-158" y="36"/>
         </view>
     </objects>
-    <resources>
-        <namedColor name="primaryBlack">
-            <color red="0.098039215686274508" green="0.11764705882352941" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="primaryWhite">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

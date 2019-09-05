@@ -6,10 +6,10 @@ struct PangramLabel: IdentifiableComponent, Hashable {
 
     func renderContent() -> UILabel {
         let label = UILabel()
-        label.textColor = .primaryGreen
+        label.textColor = .systemGreen
         label.textAlignment = .center
         label.font = .boldSystemFont(ofSize: 20)
-        label.backgroundColor = UIColor.primaryWhite.withAlphaComponent(0.1)
+        label.backgroundColor = UIColor.systemGray6
         return label
     }
 

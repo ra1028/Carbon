@@ -3,11 +3,10 @@ import Carbon
 
 final class FormViewController: UIViewController {
     enum ID {
-        case about
-        case note
-        case detail
         case genderPicker
         case birthdayPicker
+        case note
+        case detail
     }
 
     enum Gender: String, CaseIterable {
@@ -46,19 +45,16 @@ final class FormViewController: UIViewController {
         title = "Profile Form"
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChangeFrame), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
 
-        tableView.contentInset.bottom = 150
         renderer.target = tableView
         renderer.updater.deleteRowsAnimation = .middle
         renderer.updater.insertRowsAnimation = .middle
-        renderer.updater.insertSectionsAnimation = .top
-        renderer.updater.deleteSectionsAnimation = .top
 
         render()
     }
 
     func render() {
         renderer.render {
-            Section(id: ID.about) {
+            CellGroup {
                 Header(title: "ABOUT")
                     .identified(by: \.title)
 
@@ -89,7 +85,7 @@ final class FormViewController: UIViewController {
                 }
             }
 
-            Section(id: ID.note) {
+            CellGroup {
                 Header(title: "NOTE")
                     .identified(by: \.title)
 
@@ -99,7 +95,7 @@ final class FormViewController: UIViewController {
                 .identified(by: ID.note)
             }
 
-            Section(id: ID.detail) {
+            CellGroup {
                 Header(title: "DETAILS")
                     .identified(by: \.title)
 
