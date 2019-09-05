@@ -1,13 +1,13 @@
 public struct CellGroup: CellsBuildable {
     private var _buildCells: () -> [CellNode]
 
-    public init<C: CellsBuildable>(@CellsBuilder _ cells: @escaping () -> C) {
+    public init<C: CellsBuildable>(@CellsBuilder cells: () -> C) {
         _buildCells = cells().buildCells
     }
 
-    public init<Seq: Sequence, C: CellsBuildable>(of sequence: Seq, cell: @escaping (Seq.Element) -> C) {
+    public init<Data: Sequence, C: CellsBuildable>(of data: Data, cell: @escaping (Data.Element) -> C) {
         _buildCells = {
-            sequence.flatMap { element in
+            data.flatMap { element in
                 cell(element).buildCells()
             }
         }

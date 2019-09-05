@@ -103,13 +103,8 @@ open class Renderer<Updater: Carbon.Updater> {
     }
 
     open func render<C: CellsBuildable>(@CellsBuilder cells: () -> C) {
-        render(
-            Section(
-                id: UniqueIdentifier(),
-                cells: cells().buildCells()
-            )
-        )
+        render {
+            SectionGroup(cells: cells)
+        }
     }
 }
-
-private struct UniqueIdentifier: Hashable {}
