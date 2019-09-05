@@ -52,8 +52,8 @@ renderer.render {
     HelloMessage(name: "Jules")
     HelloMessage(name: "Butch")
 
-    Footer(text: "💡 Tap anywhere")
-        .identified(by: \.title)
+    Footer(text: "👋 Greeting from Carbon")
+        .identified(by: \.text)
 }
 ```
 
