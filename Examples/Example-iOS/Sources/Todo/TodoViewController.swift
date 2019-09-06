@@ -1,6 +1,5 @@
 import UIKit
 import Carbon
-import SwipeCellKit
 
 final class TodoViewController: UIViewController, UITextViewDelegate {
     enum ID {
@@ -25,7 +24,7 @@ final class TodoViewController: UIViewController, UITextViewDelegate {
     }
 
     private let renderer = Renderer(
-        adapter: SwipeCellKitTodoAdapter(),
+        adapter: TodoSwipeCellKitAdapter(),
         updater: UITableViewUpdater()
     )
 
@@ -54,7 +53,7 @@ final class TodoViewController: UIViewController, UITextViewDelegate {
             else {
                 Section(
                     id: ID.task,
-                    header: Header(title: "TASKS (\(state.todos.count))"),
+                    header: Header("TASKS (\(state.todos.count))"),
                     cells: {
                         Group(of: state.todos.enumerated()) { offset, todo in
                             TodoText(todo: todo, isCompleted: false) { [weak self] event in
@@ -74,7 +73,7 @@ final class TodoViewController: UIViewController, UITextViewDelegate {
             if !state.completed.isEmpty {
                 Section(
                     id: ID.completed,
-                    header: Header(title: "COMPLETED (\(state.completed.count))"),
+                    header: Header("COMPLETED (\(state.completed.count))"),
                     cells: {
                         Group(of: state.completed.enumerated()) { offset, todo in
                             TodoText(todo: todo, isCompleted: true) { [weak self] event in
@@ -125,36 +124,6 @@ final class TodoViewController: UIViewController, UITextViewDelegate {
             self.inputViewBottom.constant = 0
             self.view.layoutIfNeeded()
         }
-    }
-}
-
-extension SwipeTableViewCell: ComponentRenderable {}
-
-final class SwipeCellKitTodoAdapter: UITableViewAdapter, SwipeTableViewCellDelegate {
-    override func cellRegistration(tableView: UITableView, indexPath: IndexPath, node: CellNode) -> CellRegistration {
-        return CellRegistration(class: SwipeTableViewCell.self)
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAt: indexPath) as! SwipeTableViewCell
-        cell.delegate = self
-        cell.selectionStyle = .none
-        cell.backgroundColor = .clear
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard let deletable = cellNode(at: indexPath).component(as: Deletable.self), orientation == .right else {
-            return nil
-        }
-
-        let deleteAction = SwipeAction(style: .destructive, title: nil) { action, _ in
-            deletable.delete()
-            action.fulfill(with: .delete)
-        }
-
-        deleteAction.image = #imageLiteral(resourceName: "Trash")
-        return [deleteAction]
     }
 }
 

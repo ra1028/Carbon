@@ -25,7 +25,7 @@ final class HomeViewController: UIViewController {
         renderer.target = tableView
 
         renderer.render {
-            Header(title: "EXAMPLES")
+            Header("EXAMPLES")
                 .identified(by: \.title)
 
             HomeItem(title: "👋 Hello") { [weak self] in

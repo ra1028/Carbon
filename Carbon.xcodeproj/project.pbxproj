@@ -177,6 +177,8 @@
 			children = (
 				6B65949921E2532100291AAF /* Component.swift */,
 				6B65948621E2532100291AAF /* IdentifiableComponent.swift */,
+				6B37B2F32320339300A80D62 /* IdentifiedComponentWrapper.swift */,
+				6B37B2F42320339300A80D62 /* ComponentWrapping.swift */,
 				6B65949A21E2532100291AAF /* AnyComponent.swift */,
 				6B65949121E2532100291AAF /* ViewNode.swift */,
 				6B65949821E2532100291AAF /* CellNode.swift */,
@@ -321,8 +323,6 @@
 				6BC83E4C231ED17300350855 /* CellsBuildable.swift */,
 				6BC83E50231ED21700350855 /* SectionsBuilder.swift */,
 				6BC83E52231ED42C00350855 /* SectionsBuildable.swift */,
-				6B37B2F42320339300A80D62 /* ComponentWrapping.swift */,
-				6B37B2F32320339300A80D62 /* IdentifiedComponentWrapper.swift */,
 			);
 			path = FunctionBuilder;
 			sourceTree = "<group>";

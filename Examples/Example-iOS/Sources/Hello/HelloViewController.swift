@@ -25,20 +25,20 @@ final class HelloViewController: UIViewController {
 
     func render() {
         renderer.render {
-            Header(title: "GREET")
+            Header("GREET")
                 .identified(by: \.title)
 
             if isToggled {
-                HelloMessage(name: "Jules")
-                HelloMessage(name: "Vincent")
+                HelloMessage("Jules")
+                HelloMessage("Vincent")
             }
             else {
-                HelloMessage(name: "Vincent")
-                HelloMessage(name: "Jules")
-                HelloMessage(name: "Butch")
+                HelloMessage("Vincent")
+                HelloMessage("Jules")
+                HelloMessage("Mia")
             }
 
-            Footer(text: "👋 Greeting from Carbon")
+            Footer("👋 Greeting from Carbon")
                 .identified(by: \.text)
         }
     }

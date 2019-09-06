@@ -4,6 +4,10 @@ import Carbon
 struct Footer: Component {
     var text: String
 
+    init(_ text: String) {
+        self.text = text
+    }
+
     func renderContent() -> FooterContent {
         return .loadFromNib()
     }

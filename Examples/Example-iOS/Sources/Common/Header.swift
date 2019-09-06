@@ -4,6 +4,10 @@ import Carbon
 struct Header: Component {
     var title: String
 
+    init(_ title: String) {
+        self.title = title
+    }
+
     func renderContent() -> HeaderContent {
         return .loadFromNib()
     }

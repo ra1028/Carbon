@@ -4,6 +4,10 @@ import Carbon
 struct Spacing: Component {
     var height: CGFloat
 
+    init(_ height: CGFloat) {
+        self.height = height
+    }
+
     func renderContent() -> UIView {
         return UIView()
     }

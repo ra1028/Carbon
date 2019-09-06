@@ -55,7 +55,7 @@ final class FormViewController: UIViewController {
     func render() {
         renderer.render {
             Group {
-                Header(title: "ABOUT")
+                Header("ABOUT")
                     .identified(by: \.title)
 
                 FormTextField(title: "Name", text: state.name) { [weak self] text in
@@ -86,7 +86,7 @@ final class FormViewController: UIViewController {
             }
 
             Group {
-                Header(title: "NOTE")
+                Header("NOTE")
                     .identified(by: \.title)
 
                 FormTextView(text: state.note) { [weak self] text in
@@ -96,7 +96,7 @@ final class FormViewController: UIViewController {
             }
 
             Group {
-                Header(title: "DETAILS")
+                Header("DETAILS")
                     .identified(by: \.title)
 
                 FormSwitch(title: "Show Details", isOn: state.isOpenDetails) { [weak self] isOn in
@@ -104,7 +104,7 @@ final class FormViewController: UIViewController {
                 }
 
                 if state.isOpenDetails {
-                    Spacing(height: 12)
+                    Spacing(12)
                         .identified(by: ID.detail)
 
                     FormTextField(title: "Location", text: state.location) { [weak self] text in
