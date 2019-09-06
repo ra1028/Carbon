@@ -56,7 +56,7 @@ final class TodoViewController: UIViewController, UITextViewDelegate {
                     id: ID.task,
                     header: Header(title: "TASKS (\(state.todos.count))"),
                     cells: {
-                        CellGroup(of: state.todos.enumerated()) { offset, todo in
+                        Group(of: state.todos.enumerated()) { offset, todo in
                             TodoText(todo: todo, isCompleted: false) { [weak self] event in
                                 switch event {
                                 case .toggleCompleted:
@@ -76,7 +76,7 @@ final class TodoViewController: UIViewController, UITextViewDelegate {
                     id: ID.completed,
                     header: Header(title: "COMPLETED (\(state.completed.count))"),
                     cells: {
-                        CellGroup(of: state.completed.enumerated()) { offset, todo in
+                        Group(of: state.completed.enumerated()) { offset, todo in
                             TodoText(todo: todo, isCompleted: true) { [weak self] event in
                                 switch event {
                                 case .toggleCompleted:

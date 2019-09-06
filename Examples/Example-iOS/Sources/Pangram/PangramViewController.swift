@@ -30,9 +30,9 @@ final class PangramViewController: UIViewController {
             : ["THE", "QUICK", "BROWN", "FOX", "JUMPS", "OVER", "THE", "LAZY", "DOG"]
 
         renderer.render {
-            SectionGroup(of: pangram.enumerated()) { offset, word in
+            Group(of: pangram.enumerated()) { offset, word in
                 Section(id: offset) {
-                    CellGroup(of: word) { text in
+                    Group(of: word) { text in
                         PangramLabel(text: String(text))
                     }
                 }

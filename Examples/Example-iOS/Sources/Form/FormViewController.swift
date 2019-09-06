@@ -54,7 +54,7 @@ final class FormViewController: UIViewController {
 
     func render() {
         renderer.render {
-            CellGroup {
+            Group {
                 Header(title: "ABOUT")
                     .identified(by: \.title)
 
@@ -85,7 +85,7 @@ final class FormViewController: UIViewController {
                 }
             }
 
-            CellGroup {
+            Group {
                 Header(title: "NOTE")
                     .identified(by: \.title)
 
@@ -95,7 +95,7 @@ final class FormViewController: UIViewController {
                 .identified(by: ID.note)
             }
 
-            CellGroup {
+            Group {
                 Header(title: "DETAILS")
                     .identified(by: \.title)
 

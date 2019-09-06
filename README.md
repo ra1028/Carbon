@@ -29,7 +29,7 @@ Made with ❤️ by <a href="https://github.com/ra1028">Ryo Aoyama</a>
 
 ## Introduction
 
-Carbon is a library for building component-based user interfaces in UITableView and UICollectionView inspired by [React](https://reactjs.org).  
+Carbon is a library for building component-based user interfaces in UITableView and UICollectionView inspired by [SwiftUI](https://developer.apple.com/xcode/swiftui) and [React](https://reactjs.org).  
 This make it painless to build and maintain the complex UIs.  
 
 Uses [DifferenceKit](https://github.com/ra1028/DifferenceKit) which is highly optimized based on Paul Heckel's paper for diffing.  
@@ -41,7 +41,7 @@ Our goal is similar to [Instagram/IGListKit](https://github.com/Instagram/IGList
 
 ## Examples
 
-<img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/hello.png" height=260 align=right>
+<img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/hello.png" height=250 align=right>
 
 ```swift
 renderer.render {
@@ -97,7 +97,7 @@ All elements are made up of components, and it can be animated by diffing update
 You can declare fixed size component by implementing `referenceSize(in bounds: CGRect) -> CGSize?`.  
 Returned `CGSize` value is used to the size of component on the list UI. Note that UITableView ignores width.  
 If returning `nil`, it falls back to default value such as `UITableView.rowHeight` or `UICollectionViewFlowLayout.itemSize` defined in `Adapter`.  
-Returns `nil` by default, it works as automatic sizing.  
+Returns `nil` by default and it works as automatic sizing.  
 
 Definition below is the simplest implementation.  
 

@@ -27,7 +27,7 @@ final class EmojiViewController: UIViewController {
 
     func render() {
         renderer.render {
-            CellGroup(of: emojiCodes.enumerated()) { offset, code in
+            Group(of: emojiCodes.enumerated()) { offset, code in
                 EmojiLabel(code: code) { [weak self] in
                     self?.emojiCodes.remove(at: offset)
                 }
