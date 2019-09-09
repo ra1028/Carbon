@@ -1,5 +1,7 @@
 import UIKit
 
+#if swift(>=5.1)
+
 /// Represents a wrapper of component that forwards all actions to wrapped component.
 /// You can easily conform arbitrary type to `Component` protocol by wrapping component instance.
 @dynamicMemberLookup
@@ -17,11 +19,27 @@ public extension ComponentWrapping {
     subscript<T>(dynamicMember keyPath: KeyPath<Wrapped, T>) -> T {
         wrapped[keyPath: keyPath]
     }
+}
 
+#else
+
+/// Represents a wrapper of component that forwards all actions to wrapped component.
+/// You can easily conform arbitrary type to `Component` protocol by wrapping component instance.
+public protocol ComponentWrapping: Component {
+    /// The type of wrapped component.
+    associatedtype Wrapped: Component
+
+    /// The wrapped component instance.
+    var wrapped: Wrapped { get }
+}
+
+#endif
+
+public extension ComponentWrapping {
     /// A string used to identify a element that is reusable. Default is the type name of `Content`.
     @inlinable
     var reuseIdentifier: String {
-        wrapped.reuseIdentifier
+        return wrapped.reuseIdentifier
     }
 
     /// Returns a new instance of `Content`.
@@ -29,7 +47,7 @@ public extension ComponentWrapping {
     /// - Returns: A new `Content` instance.
     @inlinable
     func renderContent() -> Wrapped.Content {
-        wrapped.renderContent()
+        return wrapped.renderContent()
     }
 
     /// Render properties into the content.
@@ -55,7 +73,7 @@ public extension ComponentWrapping {
     ///            like `UITableView.rowHeight` or `UICollectionViewFlowLayout.itemSize`.
     @inlinable
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        wrapped.referenceSize(in: bounds)
+        return wrapped.referenceSize(in: bounds)
     }
 
     /// Returns a `Bool` value indicating whether the content should be reloaded.
@@ -70,7 +88,7 @@ public extension ComponentWrapping {
     /// - Returns: A `Bool` value indicating whether the content should be reloaded.
     @inlinable
     func shouldContentUpdate(with next: Self) -> Bool {
-        wrapped.shouldContentUpdate(with: next.wrapped)
+        return wrapped.shouldContentUpdate(with: next.wrapped)
     }
 
     /// Returns a `Bool` value indicating whether component should be render again.
@@ -82,7 +100,7 @@ public extension ComponentWrapping {
     /// - Returns: A `Bool` value indicating whether the component should be render again.
     @inlinable
     func shouldRender(next: Self, in content: Wrapped.Content) -> Bool {
-        wrapped.shouldRender(next: next.wrapped, in: content)
+        return wrapped.shouldRender(next: next.wrapped, in: content)
     }
 
     /// Layout the content on top of element of the list UI.

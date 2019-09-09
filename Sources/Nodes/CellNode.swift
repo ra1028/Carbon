@@ -50,7 +50,7 @@ public struct CellNode {
 
 extension CellNode: CellsBuildable {
     public func buildCells() -> [CellNode] {
-        [self]
+        return [self]
     }
 }
 

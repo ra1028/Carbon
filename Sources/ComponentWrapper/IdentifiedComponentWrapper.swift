@@ -26,7 +26,7 @@ public extension Component {
     /// - Returns: An identified component wrapping `self` and given `id`.
     @inlinable
     func identified<ID: Hashable>(by id: ID) -> IdentifiedComponentWrapper<ID, Self> {
-        IdentifiedComponentWrapper(id: id, wrapped: self)
+        return IdentifiedComponentWrapper(id: id, wrapped: self)
     }
 
     /// Returns an identified component wrapping `self` and the `id` that accessed by given key path.
@@ -36,6 +36,6 @@ public extension Component {
     /// - Returns: An identified component wrapping `self` and the `id` that accessed by given key path.
     @inlinable
     func identified<ID: Hashable>(by keyPath: KeyPath<Self, ID>) -> IdentifiedComponentWrapper<ID, Self> {
-        identified(by: self[keyPath: keyPath])
+        return identified(by: self[keyPath: keyPath])
     }
 }

@@ -1,6 +1,8 @@
 // swiftlint:disable line_length
 // swiftlint:disable function_parameter_count
 
+#if swift(>=5.1)
+
 /// The custom parameter attribute that constructs sections from multi-statement closures.
 @_functionBuilder
 public struct SectionsBuilder: SectionsBuildable {
@@ -171,3 +173,5 @@ internal extension SectionsBuilder {
         sections = sections0 + sections1 + sections2 + s9.buildSections()
     }
 }
+
+#endif

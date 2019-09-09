@@ -1,3 +1,5 @@
+#if swift(>=5.1)
+
 /// An affordance for grouping component or section.
 ///
 /// Example for simple grouping of cells.
@@ -79,3 +81,5 @@ extension Group: SectionsBuildable where Element == Section {
         elements
     }
 }
+
+#endif

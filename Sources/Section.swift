@@ -93,6 +93,8 @@ public struct Section {
     }
 }
 
+#if swift(>=5.1)
+
 public extension Section {
     /// Create a section wrapping given id and cells with function builder syntax.
     ///
@@ -196,10 +198,12 @@ public extension Section {
     }
 }
 
+#endif
+
 extension Section: SectionsBuildable {
     /// Build an array of section.
     public func buildSections() -> [Section] {
-        [self]
+        return [self]
     }
 }
 

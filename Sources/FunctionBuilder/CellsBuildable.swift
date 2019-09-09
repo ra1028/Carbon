@@ -8,6 +8,6 @@ extension Optional: CellsBuildable where Wrapped: CellsBuildable {
     /// Build an array of cell.
     @inlinable
     public func buildCells() -> [CellNode] {
-        self?.buildCells() ?? []
+        return self?.buildCells() ?? []
     }
 }

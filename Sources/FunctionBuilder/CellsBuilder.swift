@@ -1,6 +1,8 @@
 // swiftlint:disable line_length
 // swiftlint:disable function_parameter_count
 
+#if swift(>=5.1)
+
 /// The custom parameter attribute that constructs cells from multi-statement closures.
 @_functionBuilder
 public struct CellsBuilder: CellsBuildable {
@@ -172,3 +174,5 @@ internal extension CellsBuilder {
         cellNodes = cellNodes0 + cellNodes1 + cellNodes2 + c9.buildCells()
     }
 }
+
+#endif
