@@ -1,5 +1,6 @@
 import UIKit
 
+@dynamicMemberLookup
 public protocol ComponentWrapping: Component {
     associatedtype Wrapped: Component
 
@@ -7,6 +8,10 @@ public protocol ComponentWrapping: Component {
 }
 
 public extension ComponentWrapping {
+    subscript<T>(dynamicMember keyPath: KeyPath<Wrapped, T>) -> T {
+        wrapped[keyPath: keyPath]
+    }
+
     var reuseIdentifier: String {
         wrapped.reuseIdentifier
     }

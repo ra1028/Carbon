@@ -152,6 +152,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6B4B11B223244A8500D2E7E0 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				6B65949121E2532100291AAF /* ViewNode.swift */,
+				6B65949821E2532100291AAF /* CellNode.swift */,
+			);
+			path = Nodes;
+			sourceTree = "<group>";
+		};
+		6B4B11B323244AE800D2E7E0 /* ComponentWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				6B37B2F42320339300A80D62 /* ComponentWrapping.swift */,
+				6B37B2F32320339300A80D62 /* IdentifiedComponentWrapper.swift */,
+			);
+			path = ComponentWrapper;
+			sourceTree = "<group>";
+		};
 		6B65947021E252E300291AAF = {
 			isa = PBXGroup;
 			children = (
@@ -177,15 +195,13 @@
 			children = (
 				6B65949921E2532100291AAF /* Component.swift */,
 				6B65948621E2532100291AAF /* IdentifiableComponent.swift */,
-				6B37B2F32320339300A80D62 /* IdentifiedComponentWrapper.swift */,
-				6B37B2F42320339300A80D62 /* ComponentWrapping.swift */,
 				6B65949A21E2532100291AAF /* AnyComponent.swift */,
-				6B65949121E2532100291AAF /* ViewNode.swift */,
-				6B65949821E2532100291AAF /* CellNode.swift */,
 				6B65949021E2532100291AAF /* Section.swift */,
 				6B6594A321E2532100291AAF /* Renderer.swift */,
 				6B5304522201EDB200A3E21E /* DataChangeset.swift */,
 				6BC83E47231ECE5000350855 /* FunctionBuilder */,
+				6B4B11B323244AE800D2E7E0 /* ComponentWrapper */,
+				6B4B11B223244A8500D2E7E0 /* Nodes */,
 				6B65948921E2532100291AAF /* Adapters */,
 				6B65949221E2532100291AAF /* Updaters */,
 				6B65949D21E2532100291AAF /* Interfaces */,

@@ -168,16 +168,6 @@ public extension Component {
     func contentDidEndDisplay(_ content: Content) {}
 }
 
-public extension Component {
-    func identified<ID: Hashable>(by keyPath: KeyPath<Self, ID>) -> IdentifiedComponentWrapper<ID, Self> {
-        IdentifiedComponentWrapper(id: self[keyPath: keyPath], wrapped: self)
-    }
-
-    func identified<ID: Hashable>(by id: ID) -> IdentifiedComponentWrapper<ID, Self> {
-        IdentifiedComponentWrapper(id: id, wrapped: self)
-    }
-}
-
 public extension Component where Content: UIView {
     /// Layout the content on top of element of the list UI.
     ///
