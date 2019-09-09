@@ -18,6 +18,6 @@ struct PangramLabel: IdentifiableComponent, Hashable {
     }
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: 30, height: 30)
+        CGSize(width: 30, height: 30)
     }
 }

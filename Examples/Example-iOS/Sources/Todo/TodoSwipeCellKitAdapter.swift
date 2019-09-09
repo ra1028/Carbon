@@ -5,7 +5,7 @@ extension SwipeTableViewCell: ComponentRenderable {}
 
 final class TodoSwipeCellKitAdapter: UITableViewAdapter, SwipeTableViewCellDelegate {
     override func cellRegistration(tableView: UITableView, indexPath: IndexPath, node: CellNode) -> CellRegistration {
-        return CellRegistration(class: SwipeTableViewCell.self)
+        CellRegistration(class: SwipeTableViewCell.self)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

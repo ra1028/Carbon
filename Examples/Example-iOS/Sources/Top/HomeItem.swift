@@ -6,11 +6,11 @@ struct HomeItem: IdentifiableComponent {
     var onSelect: () -> Void
 
     var id: String {
-        return title
+        title
     }
 
     func renderContent() -> HomeItemContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: HomeItemContent) {

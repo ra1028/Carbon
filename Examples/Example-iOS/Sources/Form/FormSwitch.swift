@@ -7,11 +7,11 @@ struct FormSwitch: IdentifiableComponent {
     var onSwitch: (Bool) -> Void
 
     var id: String {
-        return title
+        title
     }
 
     func renderContent() -> FormSwitchContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: FormSwitchContent) {

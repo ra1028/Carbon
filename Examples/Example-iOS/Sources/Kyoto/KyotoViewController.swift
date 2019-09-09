@@ -16,7 +16,7 @@ final class KyotoViewController: UIViewController {
     )
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
+        .portrait
     }
 
     override func viewDidLoad() {

@@ -6,7 +6,7 @@ struct KyotoImage: IdentifiableComponent, Hashable {
     var image: UIImage
 
     func renderContent() -> KyotoImageContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: KyotoImageContent) {

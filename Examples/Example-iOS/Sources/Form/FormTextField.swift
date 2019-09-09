@@ -15,11 +15,11 @@ struct FormTextField: IdentifiableComponent {
     }
 
     var id: String {
-        return title
+        title
     }
 
     func renderContent() -> FormTextFieldContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: FormTextFieldContent) {

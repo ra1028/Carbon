@@ -6,7 +6,7 @@ struct FormDatePicker: Component {
     var onSelect: (Date) -> Void
 
     func renderContent() -> FormDatePickerContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: FormDatePickerContent) {
@@ -15,7 +15,7 @@ struct FormDatePicker: Component {
     }
 
     func shouldRender(next: FormDatePicker, in content: FormDatePickerContent) -> Bool {
-        return false
+        false
     }
 }
 

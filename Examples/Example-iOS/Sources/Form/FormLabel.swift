@@ -7,11 +7,11 @@ struct FormLabel: IdentifiableComponent {
     var onSelect: () -> Void
 
     var id: String {
-        return title
+        title
     }
 
     func renderContent() -> FormLabelContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: FormLabelContent) {

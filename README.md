@@ -106,7 +106,7 @@ struct HelloMessage: Component {
     var name: String
 
     func renderContent() -> UILabel {
-        return UILabel()
+        UILabel()
     }
 
     func render(in content: UILabel) {
@@ -277,7 +277,7 @@ struct HelloMessage: Component {
     var name: String
 
     func renderContent() -> HelloMessageContent {
-        return HelloMessageContent.loadFromNib()  // Extension for instantiate from Xib. Not in Carbon.
+        HelloMessageContent.loadFromNib()  // Extension for instantiate from Xib. Not in Carbon.
     }
 
     func render(in content: HelloMessageContent) {
@@ -295,7 +295,7 @@ struct HelloMessage: IdentifiableComponent {
     var name: String
 
     var id: String {
-        return name
+        name
     }
 
     ...
@@ -364,7 +364,7 @@ struct MenuItem: Component {
     var onSelect: () -> Void
 
     func renderContent() -> MenuItemContent {
-        return MenuItemContent.loadFromNib()
+        MenuItemContent.loadFromNib()
     }
 
     func render(in content: MenuItemContent) {
@@ -379,13 +379,13 @@ In this way, in order to cancel the selection by scrolling, you need to implemen
 ```swift
 extension UITableView {
     open override func touchesShouldCancel(in view: UIView) -> Bool {
-        return true
+        true
     }
 }
 
 extension UICollectionView {
     open override func touchesShouldCancel(in view: UIView) -> Bool {
-        return true
+        true
     }
 }
 ```
@@ -397,7 +397,7 @@ You can add methods of `delegate`, `dataSource` by subclassing each adapter.
 ```swift
 class CustomTableViewdapter: UITableViewAdapter {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Header title for section\(section)"
+        "Header title for section\(section)"
     }
 }
 
@@ -414,17 +414,17 @@ You can also use `xib` by giving nib as parameter of init of the return value Re
 class CustomTableViewAdapter: UITableViewAdapter {
     // Use custom cell.
     override func cellRegistration(tableView: UITableView, indexPath: IndexPath, node: CellNode) -> CellRegistration {
-        return CellRegistration(class: CustomTableViewCell.self)
+        CellRegistration(class: CustomTableViewCell.self)
     }
 
     // Use custom header view.
     override func headerViewRegistration(tableView: UITableView, section: Int, node: ViewNode) -> ViewRegistration {
-        return ViewRegistration(class: CustomTableViewHeaderFooterView.self)
+        ViewRegistration(class: CustomTableViewHeaderFooterView.self)
     }
 
     // Use custom footer view.
     override func footerViewRegistration(tableView: UITableView, section: Int, node: ViewNode) -> ViewRegistration {
-        return ViewRegistration(class: CustomTableViewHeaderFooterView.self)
+        ViewRegistration(class: CustomTableViewHeaderFooterView.self)
     }
 }
 ```

@@ -9,7 +9,7 @@ struct Footer: Component {
     }
 
     func renderContent() -> FooterContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: FooterContent) {
@@ -17,7 +17,7 @@ struct Footer: Component {
     }
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: 64)
+        CGSize(width: bounds.width, height: 64)
     }
 }
 

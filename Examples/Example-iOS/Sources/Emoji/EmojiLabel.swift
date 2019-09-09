@@ -6,11 +6,11 @@ struct EmojiLabel: IdentifiableComponent {
     var onSelect: () -> Void
 
     var id: Int {
-        return code
+        code
     }
 
     func renderContent() -> EmojiLabelContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: EmojiLabelContent) {
@@ -19,7 +19,7 @@ struct EmojiLabel: IdentifiableComponent {
     }
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: 50, height: 30)
+        CGSize(width: 50, height: 30)
     }
 }
 

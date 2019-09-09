@@ -9,7 +9,7 @@ struct HelloMessage: IdentifiableComponent, Hashable {
     }
 
     func renderContent() -> HelloMessageContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: HelloMessageContent) {

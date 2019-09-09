@@ -6,7 +6,7 @@ struct FormTextView: Component {
     var onInput: (String?) -> Void
 
     func renderContent() -> FormTextViewContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: FormTextViewContent) {

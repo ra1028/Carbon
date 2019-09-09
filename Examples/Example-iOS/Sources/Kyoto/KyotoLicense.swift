@@ -5,7 +5,7 @@ struct KyotoLicense: Component {
     var onSelected: () -> Void
 
     func renderContent() -> KyotoLicenseContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: KyotoLicenseContent) {
