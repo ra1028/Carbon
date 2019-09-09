@@ -23,8 +23,11 @@ struct FormTextField: IdentifiableComponent {
     }
 
     func render(in content: FormTextFieldContent) {
+        if !content.textField.isFirstResponder {
+            content.textField.text = text
+        }
+
         content.titleLabel.text = title
-        content.textField.text = text
         content.textField.keyboardType = keyboardType
         content.onInput = onInput
     }

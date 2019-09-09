@@ -41,7 +41,7 @@ Our goal is similar to [Instagram/IGListKit](https://github.com/Instagram/IGList
 
 ## Examples
 
-<img src="./assets/hello.png" height=240 align=right>
+<img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/hello.png" height=240 align=right>
 
 ```swift
 renderer.render {
@@ -118,63 +118,6 @@ struct HelloMessage: Component {
 Component used as a cell requires to specify an arbitrary `id`.  
 Give an `id` by `Component.identified(by:)` or declare it by using [`IdentifiableComponent`](https://github.com/ra1028/Carbon#identifiablecomponent) protocol.
 
-### Section
-
-A section can have a header, footer and a collection of cells.  
-This also needs to specify `id` for identify from among multiple sections.  
-The cells can be declared using a function builder as below:
-
-```swift
-let appearsFourthMan: Bool = ...
-
-Section(
-    id: "Greet",
-    header: Header("GREET"),
-    cells: {
-        HelloMessage("Brett")
-        HelloMessage("Roger")
-
-        if appearsFourthMan {
-            HelloMessage("Fourth Man")
-        }
-    }
-)
-```
-
-### Group
-
-The number of limit to write Cell or Section with declarative syntax is until `10`. You can avoid that limitation by grouping with `Group`.  
-It can also be used to create a cell or section from an array with N elements.  
-
-Group of Components:
-```swift
-Group {
-    Header("GREET")
-        .identified(by: \.title)
-
-    HelloMessage("Vincent")
-    HelloMessage("Jules")
-}
-
-Group(of: ["Pumpkin", "Honey Bunny"]) { name in
-    HelloMessage(name)
-}
-```
-
-Group of Sections:
-```swift
-Group {
-    Section(id: 0) { ... }
-    Section(id: 1) { ... }
-}
-
-Group(of: ["Lance", "Jody"]) { name in
-    Section(id: name) {
-        HelloMessage(name)
-    }
-}
-```
-
 ### Renderer
 
 The components are displayed on top of list UI by `Renderer.render`.  
@@ -219,7 +162,7 @@ override func viewDidLoad() {
 }
 ```
 
-Render with Components:
+Render Components:
 ```swift
 renderer.render {
     Header("GREET")
@@ -230,20 +173,78 @@ renderer.render {
 }
 ```
 
-Render with Sections:
+### Section
+
+A section can have a header, footer and a collection of cells.  
+This also needs to specify `id` for identify from among multiple sections.  
+The cells can be declared using a function builder as below:
+
 ```swift
-let appearsBottom: Bool = ...
+let appearsBottomSection: Bool = ...
+let appearsFourthMan: Bool = ...
 
 renderer.render {
-    Section(id: "Top") {
-        HelloMessage("Lance")
-        HelloMessage("Jody")
-    }
-
-    if appearsBottom {
-        Section(id: "Bottom") {
+    Section(
+        id: "Bottom",
+        header: Header("GREET"),
+        footer: Footer("👋 Greeting from Carbon"),
+        cells: {
             HelloMessage("Marsellus")
             HelloMessage("The Wolf")
+        }
+    )
+
+    if appearsBottomSection {
+        Section(id: "Top") {
+            HelloMessage("Brett")
+            HelloMessage("Roger")
+
+            if appearsFourthMan {
+                HelloMessage("Fourth Man")
+            }
+        }
+    }
+}
+```
+
+### Group
+
+The number of limit to declare cells or section with function builder syntax is until `10`. You can avoid that limitation by grouping with `Group`.  
+It can also be used to create a cell or section from an array with N elements.  
+
+Group of Components:
+```swift
+renderer.render {
+    Group {
+        Header("GREET")
+            .identified(by: \.title)
+
+        HelloMessage("Vincent")
+        HelloMessage("Jules")
+    }
+
+    Group(of: ["Pumpkin", "Honey Bunny"]) { name in
+        HelloMessage(name)
+    }
+}
+```
+
+Group of Sections:
+```swift
+renderer.render {
+    Group {
+        Section(id: 0) {
+            HelloMessage("Jimmie")
+        }
+
+        Section(id: 1) {
+            HelloMessage("Bonnie")
+        }
+    }
+
+    Group(of: ["Lance", "Jody"]) { name in
+        Section(id: name) {
+            HelloMessage(name)
         }
     }
 }
@@ -263,7 +264,7 @@ renderer.render {
 Of course, the content of component can use custom class. You can also instantiate it from Xib.  
 It can be inherited whichever class, but the common means is inherit `UIView` or `UIViewController`.  
 
-<img src="./assets/content-xib.png" height=90 align=right>
+<img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/content-xib.png" height=90 align=right>
 
 ```swift
 class HelloMessageContent: UIView {
