@@ -28,12 +28,12 @@ public extension ComponentWrapping {
         wrapped.referenceSize(in: bounds)
     }
 
-    func shouldContentUpdate(with next: Wrapped) -> Bool {
-        wrapped.shouldContentUpdate(with: next)
+    func shouldContentUpdate(with next: Self) -> Bool {
+        wrapped.shouldContentUpdate(with: next.wrapped)
     }
 
-    func shouldRender(next: Wrapped, in content: Wrapped.Content) -> Bool {
-        wrapped.shouldRender(next: next, in: content)
+    func shouldRender(next: Self, in content: Wrapped.Content) -> Bool {
+        wrapped.shouldRender(next: next.wrapped, in: content)
     }
 
     func layout(content: Wrapped.Content, in container: UIView) {
