@@ -3,6 +3,24 @@ import DifferenceKit
 /// Represents a section of list UI, containing header node, footer node
 /// and collection of cell nodes.
 /// This works as an intermediary for `DifferenceKit`.
+///
+/// Example for simple section.
+///
+///     Section(
+///         id: 0,
+///         header: Label("Header"),
+///         footer: Label("Footer"),
+///         cells: {
+///             Label("Cell 0")
+///                 .identified(by: \.text)
+///
+///             Label("Cell 1")
+///                 .identified(by: \.text)
+///
+///             Label("Cell 2")
+///                 .identified(by: \.text)
+///         }
+///     )
 public struct Section {
     /// A type-erased identifier that can be used to uniquely
     /// identify the section.
@@ -50,7 +68,12 @@ public struct Section {
     ///   - footer: A node for footer view.
     @inlinable
     public init<I: Hashable, C: Swift.Collection>(id: I, header: ViewNode? = nil, cells: C, footer: ViewNode? = nil) where C.Element == CellNode? {
-        self.init(id: id, header: header, cells: cells.compactMap { $0 }, footer: footer)
+        self.init(
+            id: id,
+            header: header,
+            cells: cells.compactMap { $0 },
+            footer: footer
+        )
     }
 
     /// Create a section wrapping id, header node, footer node.
@@ -61,16 +84,36 @@ public struct Section {
     ///   - footer: A node for footer view.
     @inlinable
     public init<I: Hashable>(id: I, header: ViewNode? = nil, footer: ViewNode? = nil) {
-        self.init(id: id, header: header, cells: [], footer: footer)
+        self.init(
+            id: id,
+            header: header,
+            cells: [],
+            footer: footer
+        )
     }
 }
 
 public extension Section {
+    /// Create a section wrapping given id and cells with function builder syntax.
+    ///
+    /// - Parameters:
+    ///   - id: An identifier to be wrapped.
+    ///   - cells: A closure that constructs cells.
     @inlinable
     init<I: Hashable, C: CellsBuildable>(id: I, @CellsBuilder cells: () -> C) {
-        self.init(id: id, cells: cells().buildCells())
+        self.init(
+            id: id,
+            cells: cells().buildCells()
+        )
     }
 
+    /// Create a section wrapping given id, header, footer and cells with function builder syntax.
+    ///
+    /// - Parameters:
+    ///   - id: An identifier to be wrapped.
+    ///   - header: A header component.
+    ///   - footer: A footer component.
+    ///   - cells: A closure that constructs cells.
     @inlinable
     init<I: Hashable, H: Component, F: Component, C: CellsBuildable>(id: I, header: H?, footer: F?, @CellsBuilder cells: () -> C) {
         self.init(
@@ -81,6 +124,12 @@ public extension Section {
         )
     }
 
+    /// Create a section wrapping given id, header and footer.
+    ///
+    /// - Parameters:
+    ///   - id: An identifier to be wrapped.
+    ///   - header: A header component.
+    ///   - footer: A footer component.
     @inlinable
     init<I: Hashable, H: Component, F: Component>(id: I, header: H?, footer: F?) {
         self.init(
@@ -90,6 +139,12 @@ public extension Section {
         )
     }
 
+    /// Create a section wrapping given id, header and cells with function builder syntax.
+    ///
+    /// - Parameters:
+    ///   - id: An identifier to be wrapped.
+    ///   - header: A header component.
+    ///   - cells: A closure that constructs cells.
     @inlinable
     init<I: Hashable, H: Component>(id: I, header: H?, @CellsBuilder cells: () -> CellsBuildable) {
         self.init(
@@ -99,6 +154,12 @@ public extension Section {
         )
     }
 
+    /// Create a section wrapping given id, footer and cells with function builder syntax.
+    ///
+    /// - Parameters:
+    ///   - id: An identifier to be wrapped.
+    ///   - footer: A footer component.
+    ///   - cells: A closure that constructs cells.
     @inlinable
     init<I: Hashable, F: Component, C: CellsBuildable>(id: I, footer: F?, @CellsBuilder cells: () -> C) {
         self.init(
@@ -108,18 +169,35 @@ public extension Section {
         )
     }
 
+    /// Create a section wrapping given id and header.
+    ///
+    /// - Parameters:
+    ///   - id: An identifier to be wrapped.
+    ///   - header: A header component.
     @inlinable
     init<I: Hashable, H: Component>(id: I, header: H?) {
-        self.init(id: id, header: header.map(ViewNode.init))
+        self.init(
+            id: id,
+            header: header.map(ViewNode.init)
+        )
     }
 
+    /// Create a section wrapping given id and footer.
+    ///
+    /// - Parameters:
+    ///   - id: An identifier to be wrapped.
+    ///   - footer: A footer component.
     @inlinable
     init<I: Hashable, F: Component>(id: I, footer: F?) {
-        self.init(id: id, footer: footer.map(ViewNode.init))
+        self.init(
+            id: id,
+            footer: footer.map(ViewNode.init)
+        )
     }
 }
 
 extension Section: SectionsBuildable {
+    /// Build an array of section.
     public func buildSections() -> [Section] {
         [self]
     }

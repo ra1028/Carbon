@@ -14,9 +14,6 @@
 ///             content.text = name
 ///         }
 ///     }
-///
-///     let view = ViewNode(UserLabel(id: 0, name: "John"))
-///     let cell = CellNode(UserLabel(id: 0, name: "Jane"))
 public protocol IdentifiableComponent: Component, CellsBuildable {
     /// A type that represents an id that used to uniquely identify the component.
     associatedtype ID: Hashable
@@ -26,6 +23,7 @@ public protocol IdentifiableComponent: Component, CellsBuildable {
 }
 
 public extension IdentifiableComponent {
+    /// Build an array of section.
     func buildCells() -> [CellNode] {
         return [CellNode(self)]
     }

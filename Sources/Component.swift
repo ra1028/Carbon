@@ -10,6 +10,10 @@ import UIKit
 ///     struct Label: Component {
 ///         var text: String
 ///
+///         init(_ text: String) {
+///             self.text = text
+///         }
+///
 ///         func renderContent() -> UILabel {
 ///             return UILabel()
 ///         }
@@ -18,9 +22,6 @@ import UIKit
 ///             content.text = text
 ///         }
 ///     }
-///
-///     let view = ViewNode(Label(text: "Hello"))
-///     let cell = CellNode(id: 0, Label(text: "World"))
 public protocol Component {
     /// A type that represents a content to be render on the element of list UI.
     associatedtype Content

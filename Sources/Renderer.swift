@@ -16,18 +16,16 @@ import UIKit
 ///
 ///     renderer.target = tableView
 ///
-///     renderer.render(
-///         Section(
-///             id: "section",
-///             header: ViewNode(Label(text: "header")),
-///             cells: [
-///                 CellNode(id: 0, Label(text: "cell 0")),
-///                 CellNode(id: 1, Label(text: "cell 1")),
-///                 CellNode(id: 2, Label(text: "cell 2"))
-///             ],
-///             footer: ViewNode(Label(text: "footer"))
-///         )
-///     )
+///     renderer.render {
+///         Label("Cell 1")
+///             .identified(by: \.text)
+///
+///         Label("Cell 2")
+///             .identified(by: \.text)
+///
+///         Label("Cell 3")
+///             .identified(by: \.text)
+///     }
 open class Renderer<Updater: Carbon.Updater> {
     /// An instance of adapter that specified at initialized.
     public let adapter: Updater.Adapter
@@ -72,9 +70,7 @@ open class Renderer<Updater: Carbon.Updater> {
         updater.performUpdates(target: target, adapter: adapter, data: data)
     }
 
-    /// Render given collection of sections after removes contained nil, immediately.
-    ///
-    /// - Note: It's rendered with nil removed from the passed collection of sections.
+    /// Render given collection of sections skipping nil, immediately.
     ///
     /// - Parameters:
     ///   - data: A collection of sections to be rendered that can be contains nil.
@@ -82,7 +78,7 @@ open class Renderer<Updater: Carbon.Updater> {
         render(data.compactMap { $0 })
     }
 
-    /// Render a given variadic number of sections, immediately.
+    /// Render given collection sections, immediately.
     ///
     /// - Parameters:
     ///   - data: A variadic number of sections to be rendered.
@@ -90,7 +86,7 @@ open class Renderer<Updater: Carbon.Updater> {
         render(data)
     }
 
-    /// Render a given variadic number of sections after removes contained nil, immediately.
+    /// Render given variadic number of sections skipping nil, immediately.
     ///
     /// - Parameters:
     ///   - data: A variadic number of sections to be rendered that can be contains nil.
@@ -98,10 +94,18 @@ open class Renderer<Updater: Carbon.Updater> {
         render(data.compactMap { $0 })
     }
 
+    /// Render given variadic number of sections with function builder syntax, immediately.
+    ///
+    /// - Parameters:
+    ///   - sections: A closure that constructs sections.
     open func render<S: SectionsBuildable>(@SectionsBuilder sections: () -> S) {
         render(sections().buildSections())
     }
 
+    /// Render a single section contains given cells with function builder syntax, immediately.
+    ///
+    /// - Parameters:
+    ///   - cells: A closure that constructs cells.
     open func render<C: CellsBuildable>(@CellsBuilder cells: () -> C) {
         render {
             Section(id: UniqueIdentifier(), cells: cells)

@@ -194,8 +194,8 @@
 			isa = PBXGroup;
 			children = (
 				6B65949921E2532100291AAF /* Component.swift */,
-				6B65948621E2532100291AAF /* IdentifiableComponent.swift */,
 				6B65949A21E2532100291AAF /* AnyComponent.swift */,
+				6B65948621E2532100291AAF /* IdentifiableComponent.swift */,
 				6B65949021E2532100291AAF /* Section.swift */,
 				6B6594A321E2532100291AAF /* Renderer.swift */,
 				6B5304522201EDB200A3E21E /* DataChangeset.swift */,
