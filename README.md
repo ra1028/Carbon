@@ -457,7 +457,7 @@ Default is `true`.
 
 - **isAnimationEnabledWhileScrolling**  
 Indicating whether enables animation for diffing updates while target is scrolling, setting `false` will perform it  using `UIView.performWithoutAnimation`.  
-Default is `true`.  
+Default is `false`.  
 
 - **animatableChangeCount**  
 The max number of changes to perform diffing updates. It falls back to `reloadData` if it exceeded.  
