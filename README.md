@@ -459,7 +459,7 @@ Default is `true`.
 
 - **isAnimationEnabledWhileScrolling**  
 Indicating whether enables animation for diffing updates while target is scrolling, setting `false` will perform it  using `UIView.performWithoutAnimation`.  
-Default is `true`.  
+Default is `false`.  
 
 - **animatableChangeCount**  
 The max number of changes to perform diffing updates. It falls back to `reloadData` if it exceeded.  
@@ -469,7 +469,7 @@ Default is `300`.
 Indicating whether that to reset content offset after updated.  
 The content offset become unintended position after diffing updates in some case.
  If set `true`, revert content offset after updates.  
-Default is `false`.  
+Default is `true`.  
 
 [See more](https://ra1028.github.io/Carbon/Updaters.html)
 
