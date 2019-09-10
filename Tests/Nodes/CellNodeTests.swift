@@ -10,6 +10,14 @@ final class CellNodeTests: XCTestCase {
         XCTAssertEqual(node.component.as(A.Component.self), component)
     }
 
+    func testInitWithIdentifiedComponentWrapper() {
+        let component = A.Component()
+        let node = CellNode(component.identified(by: \.value))
+
+        XCTAssertEqual(node.id.base as? Int, component.value)
+        XCTAssertEqual(node.component.as(IdentifiedComponentWrapper<Int, A.Component>.self)?.wrapped, component)
+    }
+
     func testInitWithIdentifiableComponent() {
         let component = MockIdentifiableComponent(id: TestID.a)
         let node = CellNode(component)

@@ -1,7 +1,7 @@
+#if swift(>=5.1)
+
 // swiftlint:disable line_length
 // swiftlint:disable function_parameter_count
-
-#if swift(>=5.1)
 
 /// The custom parameter attribute that constructs sections from multi-statement closures.
 @_functionBuilder

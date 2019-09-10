@@ -54,6 +54,7 @@ enum B {
 }
 
 class MockComponent: Component, Equatable {
+    let reuseIdentifier: String
     let referenceSize: CGSize?
     let shouldContentUpdate: Bool
     let shouldRender: Bool
@@ -62,13 +63,16 @@ class MockComponent: Component, Equatable {
     private(set) weak var contentCapturedOnWillDisplay: UIView?
     private(set) weak var contentCapturedOnDidEndDisplay: UIView?
     private(set) weak var contentCapturedOnRender: UIView?
+    private(set) weak var contentCapturedOnLayout: UIView?
 
     init(
+        reuseIdentifier: String = "MockComponent",
         referenceSize: CGSize? = nil,
         shouldContentUpdate: Bool = false,
         shouldRender: Bool = false,
         content: UIView = UIView()
         ) {
+        self.reuseIdentifier = reuseIdentifier
         self.referenceSize = referenceSize
         self.shouldContentUpdate = shouldContentUpdate
         self.shouldRender = shouldRender
@@ -95,6 +99,10 @@ class MockComponent: Component, Equatable {
         return referenceSize
     }
 
+    func layout(content: UIView, in container: UIView) {
+        contentCapturedOnLayout = content
+    }
+
     func contentWillDisplay(_ content: UIView) {
         contentCapturedOnWillDisplay = content
     }
@@ -116,9 +124,29 @@ final class MockIdentifiableComponent<ID: Hashable>: MockComponent, Identifiable
     }
 }
 
+struct MockComponentWrapper<Wrapped: Component>: ComponentWrapping {
+    var wrapped: Wrapped
+}
+
 final class MockTarget: Equatable {
     static func == (lhs: MockTarget, rhs: MockTarget) -> Bool {
         return lhs === rhs
+    }
+}
+
+struct MockCellsBuildable: CellsBuildable {
+    var cells: [CellNode]
+
+    func buildCells() -> [CellNode] {
+        return cells
+    }
+}
+
+struct MockSectionsBuildable: SectionsBuildable {
+    var sections: [Section]
+
+    func buildSections() -> [Section] {
+        return sections
     }
 }
 
