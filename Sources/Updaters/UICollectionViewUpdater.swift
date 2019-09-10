@@ -7,7 +7,7 @@ open class UICollectionViewUpdater<Adapter: UICollectionViewAdapter>: Updater {
 
     /// A Bool value indicating whether that enable diffing animation while target is
     /// scrolling. Default is false.
-    open var isAnimationEnabledWhileScrolling = true
+    open var isAnimationEnabledWhileScrolling = false
 
     /// A Bool value indicating whether that to always render visible components
     /// after diffing updated. Default is true.
