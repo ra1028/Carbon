@@ -467,7 +467,7 @@ Default is `300`.
 Indicating whether that to reset content offset after updated.  
 The content offset become unintended position after diffing updates in some case.
  If set `true`, revert content offset after updates.  
-Default is `false`.  
+Default is `true`.  
 
 [See more](https://ra1028.github.io/Carbon/Updaters.html)
 

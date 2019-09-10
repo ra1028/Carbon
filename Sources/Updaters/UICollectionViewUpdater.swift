@@ -14,8 +14,8 @@ open class UICollectionViewUpdater<Adapter: UICollectionViewAdapter>: Updater {
     open var alwaysRenderVisibleComponents = true
 
     /// A Bool value indicating whether that to reset content offset after
-    /// updated if not scrolling. Default is false.
-    open var keepsContentOffset = false
+    /// updated if not scrolling. Default is true.
+    open var keepsContentOffset = true
 
     /// Max number of changes that can be animated for diffing updates. Default is 300.
     open var animatableChangeCount = 300
