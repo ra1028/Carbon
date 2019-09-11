@@ -41,7 +41,7 @@ public protocol Component {
 
     // MARK: - Rendering - optional
 
-    /// A string used to identify a element that is reusable. Default is the type name of `Content`.
+    /// A string used to identify a element that is reusable. Default is the type name of `self`.
     var reuseIdentifier: String { get }
 
     /// Returns the referencing size of content to render on the list UI.
@@ -104,10 +104,10 @@ public protocol Component {
 }
 
 public extension Component {
-    /// A string used to identify a element that is reusable. Default is the type name of `Content`.
+    /// A string used to identify a element that is reusable. Default is the type name of `self`.
     @inlinable
     var reuseIdentifier: String {
-        return String(reflecting: Content.self)
+        return String(reflecting: Self.self)
     }
 
     /// Returns the referencing size of content to render on the list UI. Returns nil by default.

@@ -36,7 +36,7 @@ public protocol ComponentWrapping: Component {
 #endif
 
 public extension ComponentWrapping {
-    /// A string used to identify a element that is reusable. Default is the type name of `Content`.
+    /// A string used to identify a element that is reusable. Default is the type name of `self`.
     @inlinable
     var reuseIdentifier: String {
         return wrapped.reuseIdentifier

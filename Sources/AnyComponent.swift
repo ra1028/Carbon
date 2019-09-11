@@ -11,7 +11,7 @@ public struct AnyComponent: Component {
         return box.base
     }
 
-    /// A string used to identify a element that is reusable. Default is the type name of `Content`.
+    /// A string used to identify a element that is reusable. Default is the type name of `self`.
     @inlinable
     public var reuseIdentifier: String {
         return box.reuseIdentifier
