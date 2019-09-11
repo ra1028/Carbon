@@ -92,12 +92,10 @@ And the more practical examples are [here](https://github.com/ra1028/Carbon/tree
 
 `Component` is the base unit of the UI in Carbon.  
 All elements are made up of components, and it can be animated by diffing update.  
-`UIView`, `UIViewController`, and its subclasses are laid out with edge constraints by default. Other classes can also be rendered as `Content` by implementing `layout` function to component.  
 
-You can declare fixed size component by implementing `referenceSize(in bounds: CGRect) -> CGSize?`.  
-Returned `CGSize` value is used to the size of component on the list UI. Note that UITableView ignores width.  
-If returning `nil`, it falls back to default value such as `UITableView.rowHeight` or `UICollectionViewFlowLayout.itemSize` defined in `Adapter`.  
-Returns `nil` by default and it works as automatic sizing.  
+`UIView`, `UIViewController` and its subclasses are available as `content` of component by default.  
+You can declare fixed size component by implementing `referenceSize(in bounds: CGRect) -> CGSize?`. The default is to return nil and falls back to a value such as `UITableView.rowHeight` or `UICollectionViewFlowLayout.itemSize`.  
+See [here](https://github.com/ra1028/Carbon#component-in-depth) for more depth of component.
 
 Definition below is the simplest implementation.  
 
@@ -120,15 +118,14 @@ Give an `id` by `Component.identified(by:)` or declare it by using [`Identifiabl
 
 ### Renderer
 
-The components are displayed on top of list UI by `Renderer.render`.  
+The components are displayed on the list UI by `Renderer.render`.  
 Boilerplates such as registering element types to a table view are no longer needed in Carbon.  
 
 The adapter acts as delegate and dataSource, the updater handles updates.  
-You can also change the behaviors by inheriting the class and customizing it.  
+You can also change the behaviors by inheriting and customizing it.  
 There are also `UITableViewReloadDataUpdater` and `UICollectionViewReloadDataUpdater` which update by `reloadData` without diffing updates.  
 
 When `render` called again, the updater calculates the diff from the currently rendered components and updates them with the system animation.  
-Since there are several style syntaxes for passing group of sections, please check the [API docs](https://ra1028.github.io/Carbon/Classes/Renderer.html).  
 
 Renderer for UITableView:
 ```swift
@@ -175,7 +172,7 @@ renderer.render {
 
 ### Section
 
-A section can have a header, footer and a collection of cells.  
+A section can include header, footer and cells.  
 This also needs to specify `id` for identify from among multiple sections.  
 The cells can be declared using a function builder as below:
 
@@ -475,6 +472,8 @@ Default is `true`.
 
 ### Without FunctionBuilder Syntax
 
+If you are using Swift 5, you cannot use the function builder that you have queried so far, but Carbon can also build a UI with declarative syntax without function builder as following.  
+
 - **ViewNode**
 
 This is a node representing header or footer. The node is wrap an instance of type conforming to `Component` protocol.  
@@ -519,7 +518,9 @@ renderer.render(
 ## Requirements
 
 - Swift 5.0+
-- iOS 10.2+
+- Xcode 10.2+
+
+Note: function builder syntax requires Swift5.1+ and Xcode 11.0+
 
 ---
 
