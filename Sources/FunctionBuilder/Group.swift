@@ -4,13 +4,13 @@
 ///
 /// Example for simple grouping of cells.
 ///
-///    Group {
-///        Label("Cell 0")
+///     Group {
+///         Label("Cell 0")
 ///
-///        Label("Cell 1")
+///         Label("Cell 1")
 ///
-///        Label("Cell 2")
-///    }
+///         Label("Cell 2")
+///     }
 public struct Group<Element> {
     @usableFromInline
     internal var elements: [Element]

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>ViewNode Structure Reference</title>
+    <title>Group Structure Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Struct/ViewNode" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Struct/Group" class="dashAnchor"></a>
 
-    <a title="ViewNode Structure Reference"></a>
+    <a title="Group Structure Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">Carbon Reference</a>
       <img class="carat" src="../img/carat.png" />
-      ViewNode Structure Reference
+      Group Structure Reference
     </p>
 
     <div class="content-wrapper">
@@ -215,16 +215,24 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>ViewNode</h1>
+            <h1>Group</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ViewNode</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">Group</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span></code></pre>
 
                 </div>
               </div>
-            <p>The node for view which need not be uniquely identified like header or footer.
-Erase the type of component and wrapping it.
-This works as an intermediary for <code>DifferenceKit</code>.</p>
+            <p>An affordance for grouping component or section.</p>
+
+<p>Example for simple grouping of cells.</p>
+<pre class="highlight swift"><code><span class="kt">Group</span> <span class="p">{</span>
+    <span class="kt">Label</span><span class="p">(</span><span class="s">"Cell 0"</span><span class="p">)</span>
+
+    <span class="kt">Label</span><span class="p">(</span><span class="s">"Cell 1"</span><span class="p">)</span>
+
+    <span class="kt">Label</span><span class="p">(</span><span class="s">"Cell 2"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
 
           </div>
         </section>
@@ -236,9 +244,9 @@ This works as an intermediary for <code>DifferenceKit</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Carbon8ViewNodeV9componentAA12AnyComponentVvp"></a>
-                    <a name="//apple_ref/swift/Property/component" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon8ViewNodeV9componentAA12AnyComponentVvp">component</a>
+                    <a name="/s:6Carbon5GroupVA2A8CellNodeVRszlE5cellsACyAEGqd__yXE_tcAA14CellsBuildableRd__lufc"></a>
+                    <a name="//apple_ref/swift/Method/init(cells:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon5GroupVA2A8CellNodeVRszlE5cellsACyAEGqd__yXE_tcAA14CellsBuildableRd__lufc">init(cells:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -246,14 +254,15 @@ This works as an intermediary for <code>DifferenceKit</code>.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A type-erased component which wrapped in <code>self</code>.</p>
+                        <p>Creates a group with given cells.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">component</span><span class="p">:</span> <span class="kt"><a href="../Structs/AnyComponent.html">AnyComponent</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">C</span><span class="o">&gt;</span><span class="p">(</span><span class="kd">@CellsBuilder</span> <span class="nv">cells</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">C</span><span class="p">)</span> <span class="k">where</span> <span class="kt">C</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/CellsBuildable.html">CellsBuildable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -263,9 +272,9 @@ This works as an intermediary for <code>DifferenceKit</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Carbon8ViewNodeVyACxcAA9ComponentRzlufc"></a>
-                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon8ViewNodeVyACxcAA9ComponentRzlufc">init(_:)</a>
+                    <a name="/s:6Carbon5GroupVA2A8CellNodeVRszlE2of4cellACyAEGqd___qd_0_7ElementQyd__XEtcSTRd__AA14CellsBuildableRd_0_r0_lufc"></a>
+                    <a name="//apple_ref/swift/Method/init(of:cell:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon5GroupVA2A8CellNodeVRszlE2of4cellACyAEGqd___qd_0_7ElementQyd__XEtcSTRd__AA14CellsBuildableRd_0_r0_lufc">init(of:cell:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -273,7 +282,7 @@ This works as an intermediary for <code>DifferenceKit</code>.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create a node wrapping given component.</p>
+                        <p>Creates a group with cells mapped from given elements.</p>
 
                       </div>
                       <div class="declaration">
@@ -281,7 +290,7 @@ This works as an intermediary for <code>DifferenceKit</code>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">C</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">component</span><span class="p">:</span> <span class="kt">C</span><span class="p">)</span> <span class="k">where</span> <span class="kt">C</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Component.html">Component</a></span></code></pre>
+<span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">Data</span><span class="p">,</span> <span class="kt">C</span><span class="o">&gt;</span><span class="p">(</span><span class="n">of</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="nv">cell</span><span class="p">:</span> <span class="p">(</span><span class="kt">Data</span><span class="o">.</span><span class="kt">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">C</span><span class="p">)</span> <span class="k">where</span> <span class="kt">Data</span> <span class="p">:</span> <span class="kt">Sequence</span><span class="p">,</span> <span class="kt">C</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/CellsBuildable.html">CellsBuildable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -291,9 +300,9 @@ This works as an intermediary for <code>DifferenceKit</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Carbon8ViewNodeV9component2asxSgxm_tlF"></a>
-                    <a name="//apple_ref/swift/Method/component(as:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon8ViewNodeV9component2asxSgxm_tlF">component(as:)</a>
+                    <a name="/s:6Carbon5GroupVA2A8CellNodeVRszlE10buildCellsSayAEGyF"></a>
+                    <a name="//apple_ref/swift/Method/buildCells()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon5GroupVA2A8CellNodeVRszlE10buildCellsSayAEGyF">buildCells()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -301,7 +310,7 @@ This works as an intermediary for <code>DifferenceKit</code>.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Returns a base instance of component casted as given type if possible.</p>
+                        <p>Build an array of cell.</p>
 
                       </div>
                       <div class="declaration">
@@ -309,13 +318,13 @@ This works as an intermediary for <code>DifferenceKit</code>.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="n"><a href="../Structs/ViewNode.html#/s:6Carbon8ViewNodeV9componentAA12AnyComponentVvp">component</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="k">as</span> <span class="nv">_</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span></code></pre>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildCells</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Structs/CellNode.html">CellNode</a></span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A casted base instance.</p>
+                        <p>An array of cell.</p>
                       </div>
                     </section>
                   </div>
@@ -327,9 +336,9 @@ This works as an intermediary for <code>DifferenceKit</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Carbon8ViewNodeV14isContentEqual2toSbAC_tF"></a>
-                    <a name="//apple_ref/swift/Method/isContentEqual(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon8ViewNodeV14isContentEqual2toSbAC_tF">isContentEqual(to:)</a>
+                    <a name="/s:6Carbon5GroupVA2A7SectionVRszlE8sectionsACyAEGqd__yXE_tcAA17SectionsBuildableRd__lufc"></a>
+                    <a name="//apple_ref/swift/Method/init(sections:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon5GroupVA2A7SectionVRszlE8sectionsACyAEGqd__yXE_tcAA17SectionsBuildableRd__lufc">init(sections:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -337,8 +346,7 @@ This works as an intermediary for <code>DifferenceKit</code>.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Indicate whether the content of <code>self</code> is equals to the content of
-the given source value.</p>
+                        <p>Creates a group with given sections.</p>
 
                       </div>
                       <div class="declaration">
@@ -346,23 +354,19 @@ the given source value.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">isContentEqual</span><span class="p">(</span><span class="n">to</span> <span class="nv">source</span><span class="p">:</span> <span class="kt">ViewNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+<span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">S</span><span class="o">&gt;</span><span class="p">(</span><span class="kd">@SectionsBuilder</span> <span class="nv">sections</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">S</span><span class="p">)</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/SectionsBuildable.html">SectionsBuildable</a></span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Carbon8ViewNodeV16debugDescriptionSSvp"></a>
-                    <a name="//apple_ref/swift/Property/debugDescription" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon8ViewNodeV16debugDescriptionSSvp">debugDescription</a>
+                    <a name="/s:6Carbon5GroupVA2A7SectionVRszlE2of7sectionACyAEGqd___qd_0_7ElementQyd__XEtcSTRd__AA17SectionsBuildableRd_0_r0_lufc"></a>
+                    <a name="//apple_ref/swift/Method/init(of:section:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon5GroupVA2A7SectionVRszlE2of7sectionACyAEGqd___qd_0_7ElementQyd__XEtcSTRd__AA17SectionsBuildableRd_0_r0_lufc">init(of:section:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -370,7 +374,7 @@ the given source value.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A textual representation of this instance, suitable for debugging.</p>
+                        <p>Creates a group with sections mapped from given elements.</p>
 
                       </div>
                       <div class="declaration">
@@ -378,9 +382,41 @@ the given source value.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="k">var</span> <span class="nv">debugDescription</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+<span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">Data</span><span class="p">,</span> <span class="kt">S</span><span class="o">&gt;</span><span class="p">(</span><span class="n">of</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">,</span> <span class="nv">section</span><span class="p">:</span> <span class="p">(</span><span class="kt">Data</span><span class="o">.</span><span class="kt">Element</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">S</span><span class="p">)</span> <span class="k">where</span> <span class="kt">Data</span> <span class="p">:</span> <span class="kt">Sequence</span><span class="p">,</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/SectionsBuildable.html">SectionsBuildable</a></span></code></pre>
 
                         </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Carbon5GroupVA2A7SectionVRszlE13buildSectionsSayAEGyF"></a>
+                    <a name="//apple_ref/swift/Method/buildSections()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon5GroupVA2A7SectionVRszlE13buildSectionsSayAEGyF">buildSections()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Build an array of section.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildSections</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Structs/Section.html">Section</a></span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An array of section.</p>
                       </div>
                     </section>
                   </div>

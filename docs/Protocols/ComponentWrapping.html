@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>ViewNode Structure Reference</title>
+    <title>ComponentWrapping Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Struct/ViewNode" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Protocol/ComponentWrapping" class="dashAnchor"></a>
 
-    <a title="ViewNode Structure Reference"></a>
+    <a title="ComponentWrapping Protocol Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">Carbon Reference</a>
       <img class="carat" src="../img/carat.png" />
-      ViewNode Structure Reference
+      ComponentWrapping Protocol Reference
     </p>
 
     <div class="content-wrapper">
@@ -215,16 +215,9 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>ViewNode</h1>
-              <div class="declaration">
-                <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">ViewNode</span></code></pre>
-
-                </div>
-              </div>
-            <p>The node for view which need not be uniquely identified like header or footer.
-Erase the type of component and wrapping it.
-This works as an intermediary for <code>DifferenceKit</code>.</p>
+            <h1>ComponentWrapping</h1>
+            <p>Represents a wrapper of component that forwards all actions to wrapped component.
+You can easily conform arbitrary type to <code><a href="../Protocols/Component.html">Component</a></code> protocol by wrapping component instance.</p>
 
           </div>
         </section>
@@ -236,9 +229,9 @@ This works as an intermediary for <code>DifferenceKit</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Carbon8ViewNodeV9componentAA12AnyComponentVvp"></a>
-                    <a name="//apple_ref/swift/Property/component" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon8ViewNodeV9componentAA12AnyComponentVvp">component</a>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Alias/Wrapped" class="dashAnchor"></a>
+                    <a class="token" href="#/">Wrapped</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -246,16 +239,8 @@ This works as an intermediary for <code>DifferenceKit</code>.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A type-erased component which wrapped in <code>self</code>.</p>
+                        <p>The type of wrapped component.</p>
 
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">component</span><span class="p">:</span> <span class="kt"><a href="../Structs/AnyComponent.html">AnyComponent</a></span></code></pre>
-
-                        </div>
                       </div>
                     </section>
                   </div>
@@ -263,9 +248,9 @@ This works as an intermediary for <code>DifferenceKit</code>.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Carbon8ViewNodeVyACxcAA9ComponentRzlufc"></a>
-                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon8ViewNodeVyACxcAA9ComponentRzlufc">init(_:)</a>
+                    <a name="/"></a>
+                    <a name="//apple_ref/swift/Property/wrapped" class="dashAnchor"></a>
+                    <a class="token" href="#/">wrapped</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -273,114 +258,8 @@ This works as an intermediary for <code>DifferenceKit</code>.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create a node wrapping given component.</p>
+                        <p>The wrapped component instance.</p>
 
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">C</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">component</span><span class="p">:</span> <span class="kt">C</span><span class="p">)</span> <span class="k">where</span> <span class="kt">C</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Component.html">Component</a></span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:6Carbon8ViewNodeV9component2asxSgxm_tlF"></a>
-                    <a name="//apple_ref/swift/Method/component(as:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon8ViewNodeV9component2asxSgxm_tlF">component(as:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Returns a base instance of component casted as given type if possible.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="n"><a href="../Structs/ViewNode.html#/s:6Carbon8ViewNodeV9componentAA12AnyComponentVvp">component</a></span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="k">as</span> <span class="nv">_</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">T</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Return Value</h4>
-                        <p>A casted base instance.</p>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:6Carbon8ViewNodeV14isContentEqual2toSbAC_tF"></a>
-                    <a name="//apple_ref/swift/Method/isContentEqual(to:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon8ViewNodeV14isContentEqual2toSbAC_tF">isContentEqual(to:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Indicate whether the content of <code>self</code> is equals to the content of
-the given source value.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">isContentEqual</span><span class="p">(</span><span class="n">to</span> <span class="nv">source</span><span class="p">:</span> <span class="kt">ViewNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul class="item-container">
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:6Carbon8ViewNodeV16debugDescriptionSSvp"></a>
-                    <a name="//apple_ref/swift/Property/debugDescription" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon8ViewNodeV16debugDescriptionSSvp">debugDescription</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A textual representation of this instance, suitable for debugging.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="k">var</span> <span class="nv">debugDescription</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
                       </div>
                     </section>
                   </div>

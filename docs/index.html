@@ -50,7 +50,7 @@
       <nav class="navigation">
         <ul class="nav-groups">
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Components.html">Components</a>
+            <a class="nav-group-name-link" href="Element.html">Element</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/Component.html">Component</a>
@@ -61,24 +61,36 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/AnyComponent.html">AnyComponent</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Section.html">Section</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/Group.html">Group</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Nodes.html">Nodes</a>
+            <a class="nav-group-name-link" href="ComponentWrapper.html">ComponentWrapper</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/IdentifiedComponentWrapper.html">IdentifiedComponentWrapper</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/ComponentWrapping.html">ComponentWrapping</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/ComponentWrapping.html">ComponentWrapping</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Node.html">Node</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/CellNode.html">CellNode</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Structs/ViewNode.html">ViewNode</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Section.html">Section</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Structs/Section.html">Section</a>
               </li>
             </ul>
           </li>
@@ -91,7 +103,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Adapters.html">Adapters</a>
+            <a class="nav-group-name-link" href="Adapter.html">Adapter</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/Adapter.html">Adapter</a>
@@ -126,7 +138,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Updaters.html">Updaters</a>
+            <a class="nav-group-name-link" href="Updater.html">Updater</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/Updater.html">Updater</a>
@@ -146,7 +158,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Interfaces.html">Interfaces</a>
+            <a class="nav-group-name-link" href="Interface.html">Interface</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="Protocols/ComponentRenderable.html">ComponentRenderable</a>
@@ -166,13 +178,33 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="Changesets.html">Changesets</a>
+            <a class="nav-group-name-link" href="Builder.html">Builder</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Changesets.html#/s:6Carbon13DataChangeseta">DataChangeset</a>
+                <a class="nav-group-task-link" href="Structs/CellsBuilder.html">CellsBuilder</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="Changesets.html#/s:6Carbon19StagedDataChangeseta">StagedDataChangeset</a>
+                <a class="nav-group-task-link" href="Structs/SectionsBuilder.html">SectionsBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/CellsBuildable.html">CellsBuildable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/SectionsBuildable.html">SectionsBuildable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Optional.html">Optional</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Changeset.html">Changeset</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Changeset.html#/s:6Carbon13DataChangeseta">DataChangeset</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Changeset.html#/s:6Carbon19StagedDataChangeseta">StagedDataChangeset</a>
               </li>
             </ul>
           </li>
@@ -224,7 +256,7 @@ Made with ❤️ by <a href="https://github.com/ra1028">Ryo Aoyama</a>
 <hr>
 <h2 id='introduction' class='heading'>Introduction</h2>
 
-<p>Carbon is a library for building component-based user interfaces in UITableView and UICollectionView inspired by <a href="https://reactjs.org">React</a>.<br>
+<p>Carbon is a library for building component-based user interfaces in UITableView and UICollectionView inspired by <a href="https://developer.apple.com/xcode/swiftui">SwiftUI</a> and <a href="https://reactjs.org">React</a>.<br>
 This make it painless to build and maintain the complex UIs.  </p>
 
 <p>Uses <a href="https://github.com/ra1028/DifferenceKit">DifferenceKit</a> which is highly optimized based on Paul Heckel&rsquo;s paper for diffing.<br>
@@ -235,19 +267,18 @@ Declarative design and diffing algorithm make your code more predictable, debugg
 <hr>
 <h2 id='examples' class='heading'>Examples</h2>
 
-<p><img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/hello.png" height=260 align=right></p>
-<pre class="highlight swift"><code><span class="n">renderer</span><span class="o">.</span><span class="nf">render</span><span class="p">(</span>
-    <span class="kt">Section</span><span class="p">(</span>
-        <span class="nv">id</span><span class="p">:</span> <span class="kt">ID</span><span class="o">.</span><span class="n">greet</span><span class="p">,</span>
-        <span class="nv">header</span><span class="p">:</span> <span class="kt">ViewNode</span><span class="p">(</span><span class="kt">Header</span><span class="p">(</span><span class="nv">title</span><span class="p">:</span> <span class="s">"GREET"</span><span class="p">)),</span>
-        <span class="nv">cells</span><span class="p">:</span> <span class="p">[</span>
-            <span class="kt">CellNode</span><span class="p">(</span><span class="kt">HelloMessage</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Vincent"</span><span class="p">)),</span>
-            <span class="kt">CellNode</span><span class="p">(</span><span class="kt">HelloMessage</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Jules"</span><span class="p">)),</span>
-            <span class="kt">CellNode</span><span class="p">(</span><span class="kt">HelloMessage</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Butch"</span><span class="p">))</span>
-        <span class="p">],</span>
-        <span class="nv">footer</span><span class="p">:</span> <span class="kt">ViewNode</span><span class="p">(</span><span class="kt">Footer</span><span class="p">(</span><span class="nv">text</span><span class="p">:</span> <span class="s">"💡 Tap anywhere"</span><span class="p">))</span>
-    <span class="p">)</span>
-<span class="p">)</span>
+<p><img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/hello.png" height=240 align=right></p>
+<pre class="highlight swift"><code><span class="n">renderer</span><span class="o">.</span><span class="n">render</span> <span class="p">{</span>
+    <span class="kt">Header</span><span class="p">(</span><span class="s">"GREET"</span><span class="p">)</span>
+        <span class="o">.</span><span class="nf">identified</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="p">\</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+
+    <span class="kt">HelloMessage</span><span class="p">(</span><span class="s">"Vincent"</span><span class="p">)</span>
+    <span class="kt">HelloMessage</span><span class="p">(</span><span class="s">"Jules"</span><span class="p">)</span>
+    <span class="kt">HelloMessage</span><span class="p">(</span><span class="s">"Mia"</span><span class="p">)</span>
+
+    <span class="kt">Footer</span><span class="p">(</span><span class="s">"👋 Greeting from Carbon"</span><span class="p">)</span>
+        <span class="o">.</span><span class="nf">identified</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="p">\</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre>
 
 <hr>
@@ -271,7 +302,7 @@ Declarative design and diffing algorithm make your code more predictable, debugg
 <li><a href="https://github.com/ra1028/Carbon/tree/master/Examples">Example Apps</a></li>
 <li><a href="https://github.com/ra1028/Carbon/blob/master/Carbon.playground/Contents.swift">Playground</a></li>
 </ul>
-<h4 id='build-for-development' class='heading'>Build for Development</h4>
+<h3 id='build-for-development' class='heading'>Build for Development</h3>
 <pre class="highlight shell"><code><span class="nv">$ </span>git clone https://github.com/ra1028/Carbon.git
 <span class="nv">$ </span><span class="nb">cd </span>Carbon/
 <span class="nv">$ </span>make setup
@@ -285,23 +316,21 @@ Declarative design and diffing algorithm make your code more predictable, debugg
 <a href="https://ra1028.github.io/Carbon">The API document</a> will help you understand the details of each type.<br>
 For more advanced usage, see the <a href="https://github.com/ra1028/Carbon#advanced-guide">Advanced Guide</a>.<br>
 And the more practical examples are <a href="https://github.com/ra1028/Carbon/tree/master/Examples">here</a>.  </p>
-<h4 id='component' class='heading'>Component</h4>
+<h3 id='component' class='heading'>Component</h3>
 
 <p><code><a href="Protocols/Component.html">Component</a></code> is the base unit of the UI in Carbon.<br>
-All elements are made up of components, and it can be animated by diffing update.<br>
-<code>UIView</code>, <code>UIViewController</code>, and its subclasses are laid out with edge constraints by default. Other classes can also be rendered as <code>Content</code> by implementing <code>layout</code> function to component.</p>
+All elements are made up of components, and it can be animated by diffing update.  </p>
 
-<p>You can declare fixed size component by implementing <code>referenceSize(in bounds: CGRect) -&gt; CGSize?</code>.<br>
-Returned <code>CGSize</code> value is used to the size of component on the list UI. Note that UITableView ignores width.<br>
-If returning <code>nil</code>, it falls back to default value such as <code>UITableView.rowHeight</code> or <code>UICollectionViewFlowLayout.itemSize</code> defined in <code><a href="Protocols/Adapter.html">Adapter</a></code>.<br>
-Returns <code>nil</code> by default, it works as automatic sizing.  </p>
+<p><code>UIView</code>, <code>UIViewController</code> and its subclasses are available as <code>content</code> of component by default.<br>
+You can declare fixed size component by implementing <code>referenceSize(in bounds: CGRect) -&gt; CGSize?</code>. The default is to return nil and falls back to a value such as <code>UITableView.rowHeight</code> or <code>UICollectionViewFlowLayout.itemSize</code>.<br>
+See <a href="https://github.com/ra1028/Carbon#component-in-depth">here</a> for more depth of component.</p>
 
 <p>Definition below is the simplest implementation.  </p>
 <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">HelloMessage</span><span class="p">:</span> <span class="kt">Component</span> <span class="p">{</span>
     <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
 
     <span class="kd">func</span> <span class="nf">renderContent</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UILabel</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kt">UILabel</span><span class="p">()</span>
+        <span class="kt">UILabel</span><span class="p">()</span>
     <span class="p">}</span>
 
     <span class="kd">func</span> <span class="nf">render</span><span class="p">(</span><span class="k">in</span> <span class="nv">content</span><span class="p">:</span> <span class="kt">UILabel</span><span class="p">)</span> <span class="p">{</span>
@@ -309,71 +338,21 @@ Returns <code>nil</code> by default, it works as automatic sizing.  </p>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
-<h4 id='viewnode' class='heading'>ViewNode</h4>
 
-<p>This is a node representing header or footer.<br>
-The node is wrap an instance of type conforming to <code><a href="Protocols/Component.html">Component</a></code> protocol and works as an intermediary with <code>DifferenceKit</code> for diffing.  </p>
-<pre class="highlight swift"><code><span class="kt">ViewNode</span><span class="p">(</span><span class="kt">HelloMessage</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Vincent"</span><span class="p">))</span>
-</code></pre>
-<h4 id='cellnode' class='heading'>CellNode</h4>
+<p>Component used as a cell requires to specify an arbitrary <code>id</code>.<br>
+Give an <code>id</code> by <code><a href="Protocols/Component.html#/s:6Carbon9ComponentPAAE10identified2byAA010IdentifiedB7WrapperVyqd__xGqd___tSHRd__lF">Component.identified(by:)</a></code> or declare it by using <a href="https://github.com/ra1028/Carbon#identifiablecomponent"><code><a href="Protocols/IdentifiableComponent.html">IdentifiableComponent</a></code></a> protocol.</p>
+<h3 id='renderer' class='heading'>Renderer</h3>
 
-<p><code><a href="Structs/CellNode.html">CellNode</a></code> is a node representing cell.<br>
-Unlike in the ViewNode, this needs an <code>id</code> which <code>Hashable</code> type to identify from among a lot of cells.<br>
-The <code>id</code> is used to find the same component in the list data before and after changed, then calculate the all kind of diff.  </p>
-
-<ul>
-<li>deletes</li>
-<li>inserts</li>
-<li>moves</li>
-<li>updates</li>
-</ul>
-<pre class="highlight swift"><code><span class="kt">CellNode</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="kt">HelloMessage</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Jules"</span><span class="p">))</span>
-</code></pre>
-
-<p>The <code>id</code> can be predefined if conforming to <a href="https://github.com/ra1028/Carbon#identifiablecomponent"><code><a href="Protocols/IdentifiableComponent.html">IdentifiableComponent</a></code></a>.  </p>
-<pre class="highlight swift"><code><span class="kt">CellNode</span><span class="p">(</span><span class="kt">HelloMessage</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Jules"</span><span class="p">))</span>
-</code></pre>
-<h4 id='section' class='heading'>Section</h4>
-
-<p><code><a href="Structs/Section.html">Section</a></code> has a header, a footer and a collection of cells.<br>
-A group of cells can be contains nil, then skipped rendering of it cell.<br>
-This also needs to specify <code>id</code> for identify from among multiple sections, then can be calculate the all kind of diff.  </p>
-
-<ul>
-<li>section deletes</li>
-<li>section inserts</li>
-<li>section moves</li>
-<li>section updates</li>
-</ul>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">emptySection</span> <span class="o">=</span> <span class="kt">Section</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">showsHelloMia</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="o">...</span>
-
-<span class="k">let</span> <span class="nv">section</span> <span class="o">=</span> <span class="kt">Section</span><span class="p">(</span>
-    <span class="nv">id</span><span class="p">:</span> <span class="s">"hello"</span><span class="p">,</span>
-    <span class="nv">header</span><span class="p">:</span> <span class="kt">ViewNode</span><span class="p">(</span><span class="kt">HelloMessage</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Vincent"</span><span class="p">)),</span>
-    <span class="nv">cells</span><span class="p">:</span> <span class="p">[</span>
-        <span class="kt">CellNode</span><span class="p">(</span><span class="kt">HelloMessage</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Jules"</span><span class="p">)),</span>
-        <span class="kt">CellNode</span><span class="p">(</span><span class="kt">HelloMessage</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Butch"</span><span class="p">)),</span>
-        <span class="o">!</span><span class="n">showsHelloMia</span>
-            <span class="p">?</span> <span class="nv">nil</span>
-            <span class="p">:</span> <span class="kt">CellNode</span><span class="p">(</span><span class="kt">HelloMessage</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Mia"</span><span class="p">))</span>
-    <span class="p">],</span>
-    <span class="nv">footer</span><span class="p">:</span> <span class="kt">ViewNode</span><span class="p">(</span><span class="kt">HelloMessage</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Marsellus"</span><span class="p">))</span>
-<span class="p">)</span>
-</code></pre>
-<h4 id='renderer' class='heading'>Renderer</h4>
-
-<p>The components are displayed on top of list UI by <code>render</code> via <code><a href="Classes/Renderer.html">Renderer</a></code>.<br>
+<p>The components are displayed on the list UI by <code>Renderer.render</code>.<br>
 Boilerplates such as registering element types to a table view are no longer needed in Carbon.  </p>
 
 <p>The adapter acts as delegate and dataSource, the updater handles updates.<br>
-You can also change the behaviors by inheriting the class and customizing it.<br>
-There are also <code><a href="Classes/UITableViewReloadDataUpdater.html">UITableViewReloadDataUpdater</a></code> and <code><a href="Classes/UICollectionViewReloadDataUpdater.html">UICollectionViewReloadDataUpdater</a></code> which update by <code>reloadData</code> without diffing updates.<br>
-Note that it doesn&rsquo;t retain <code>target</code> inside <code><a href="Classes/Renderer.html">Renderer</a></code> because it avoids circular references.  </p>
+You can also change the behaviors by inheriting and customizing it.<br>
+There are also <code><a href="Classes/UITableViewReloadDataUpdater.html">UITableViewReloadDataUpdater</a></code> and <code><a href="Classes/UICollectionViewReloadDataUpdater.html">UICollectionViewReloadDataUpdater</a></code> which update by <code>reloadData</code> without diffing updates.  </p>
 
-<p>When <code>render</code> called again, the updater calculates the diff from currently rendering components and update them with system animation.<br>
-Since there are several style syntaxes for passing group of sections, please check the <a href="https://ra1028.github.io/Carbon/Classes/Renderer.html">API docs</a>.  </p>
+<p>When <code>render</code> called again, the updater calculates the diff from the currently rendered components and updates them with the system animation.  </p>
+
+<p>Renderer for UITableView:</p>
 <pre class="highlight swift"><code><span class="kd">@IBOutlet</span> <span class="k">var</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="o">!</span>
 
 <span class="k">let</span> <span class="nv">renderer</span> <span class="o">=</span> <span class="kt">Renderer</span><span class="p">(</span>
@@ -387,6 +366,8 @@ Since there are several style syntaxes for passing group of sections, please che
     <span class="n">renderer</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">tableView</span>
 <span class="p">}</span>
 </code></pre>
+
+<p>Renderer for UICollectionView:</p>
 <pre class="highlight swift"><code><span class="kd">@IBOutlet</span> <span class="k">var</span> <span class="nv">collectionView</span><span class="p">:</span> <span class="kt">UICollectionView</span><span class="o">!</span>
 
 <span class="k">let</span> <span class="nv">renderer</span> <span class="o">=</span> <span class="kt">Renderer</span><span class="p">(</span>
@@ -400,38 +381,96 @@ Since there are several style syntaxes for passing group of sections, please che
     <span class="n">renderer</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">collectionView</span>
 <span class="p">}</span>
 </code></pre>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">showsBottomSection</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="o">...</span>
 
-<span class="n">renderer</span><span class="o">.</span><span class="nf">render</span><span class="p">(</span>
+<p>Render Components:</p>
+<pre class="highlight swift"><code><span class="n">renderer</span><span class="o">.</span><span class="n">render</span> <span class="p">{</span>
+    <span class="kt">Header</span><span class="p">(</span><span class="s">"GREET"</span><span class="p">)</span>
+        <span class="o">.</span><span class="nf">identified</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="p">\</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+
+    <span class="kt">HelloMessage</span><span class="p">(</span><span class="s">"Butch"</span><span class="p">)</span>
+    <span class="kt">HelloMessage</span><span class="p">(</span><span class="s">"Fabianne"</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre>
+<h3 id='section' class='heading'>Section</h3>
+
+<p>A section can include header, footer and cells.<br>
+This also needs to specify <code>id</code> for identify from among multiple sections.<br>
+The cells can be declared using a function builder as below:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">appearsBottomSection</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="o">...</span>
+<span class="k">let</span> <span class="nv">appearsFourthMan</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="o">...</span>
+
+<span class="n">renderer</span><span class="o">.</span><span class="n">render</span> <span class="p">{</span>
     <span class="kt">Section</span><span class="p">(</span>
-        <span class="nv">id</span><span class="p">:</span> <span class="s">"top section"</span><span class="p">,</span>
-        <span class="nv">cells</span><span class="p">:</span> <span class="p">[</span>
-            <span class="kt">CellNode</span><span class="p">(</span><span class="kt">HelloMessage</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Vincent"</span><span class="p">)),</span>
-            <span class="kt">CellNode</span><span class="p">(</span><span class="kt">HelloMessage</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Jules"</span><span class="p">)),</span>
-            <span class="kt">CellNode</span><span class="p">(</span><span class="kt">HelloMessage</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Butch"</span><span class="p">))</span>
-        <span class="p">]</span>
-    <span class="p">),</span>
-    <span class="o">!</span><span class="n">showsBottomSection</span>
-        <span class="p">?</span> <span class="nv">nil</span>
-        <span class="p">:</span> <span class="kt">Section</span><span class="p">(</span>
-            <span class="nv">id</span><span class="p">:</span> <span class="s">"bottom section"</span><span class="p">,</span>
-            <span class="nv">header</span><span class="p">:</span> <span class="kt">ViewNode</span><span class="p">(</span><span class="kt">HelloMessage</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Pumpkin"</span><span class="p">)),</span>
-            <span class="nv">cells</span><span class="p">:</span> <span class="p">[</span>
-                <span class="kt">CellNode</span><span class="p">(</span><span class="kt">HelloMessage</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Marsellus"</span><span class="p">)),</span>
-                <span class="kt">CellNode</span><span class="p">(</span><span class="kt">HelloMessage</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Mia"</span><span class="p">))</span>
-            <span class="p">],</span>
-            <span class="nv">footer</span><span class="p">:</span> <span class="kt">ViewNode</span><span class="p">(</span><span class="kt">HelloMessage</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Honey Bunny"</span><span class="p">))</span>
-        <span class="p">)</span>
-<span class="p">)</span>
+        <span class="nv">id</span><span class="p">:</span> <span class="s">"Bottom"</span><span class="p">,</span>
+        <span class="nv">header</span><span class="p">:</span> <span class="kt">Header</span><span class="p">(</span><span class="s">"GREET"</span><span class="p">),</span>
+        <span class="nv">footer</span><span class="p">:</span> <span class="kt">Footer</span><span class="p">(</span><span class="s">"👋 Greeting from Carbon"</span><span class="p">),</span>
+        <span class="nv">cells</span><span class="p">:</span> <span class="p">{</span>
+            <span class="kt">HelloMessage</span><span class="p">(</span><span class="s">"Marsellus"</span><span class="p">)</span>
+            <span class="kt">HelloMessage</span><span class="p">(</span><span class="s">"The Wolf"</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">appearsBottomSection</span> <span class="p">{</span>
+        <span class="kt">Section</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="s">"Top"</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">HelloMessage</span><span class="p">(</span><span class="s">"Brett"</span><span class="p">)</span>
+            <span class="kt">HelloMessage</span><span class="p">(</span><span class="s">"Roger"</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">appearsFourthMan</span> <span class="p">{</span>
+                <span class="kt">HelloMessage</span><span class="p">(</span><span class="s">"Fourth Man"</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h3 id='group' class='heading'>Group</h3>
+
+<p>The number of limit to declare cells or section with function builder syntax is until <code>10</code>. You can avoid that limitation by grouping with <code><a href="Structs/Group.html">Group</a></code>.<br>
+It can also be used to create a cell or section from an array with N elements.  </p>
+
+<p>Group of Components:</p>
+<pre class="highlight swift"><code><span class="n">renderer</span><span class="o">.</span><span class="n">render</span> <span class="p">{</span>
+    <span class="kt">Group</span> <span class="p">{</span>
+        <span class="kt">Header</span><span class="p">(</span><span class="s">"GREET"</span><span class="p">)</span>
+            <span class="o">.</span><span class="nf">identified</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="p">\</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+
+        <span class="kt">HelloMessage</span><span class="p">(</span><span class="s">"Vincent"</span><span class="p">)</span>
+        <span class="kt">HelloMessage</span><span class="p">(</span><span class="s">"Jules"</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="kt">Group</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="p">[</span><span class="s">"Pumpkin"</span><span class="p">,</span> <span class="s">"Honey Bunny"</span><span class="p">])</span> <span class="p">{</span> <span class="n">name</span> <span class="k">in</span>
+        <span class="kt">HelloMessage</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Group of Sections:</p>
+<pre class="highlight swift"><code><span class="n">renderer</span><span class="o">.</span><span class="n">render</span> <span class="p">{</span>
+    <span class="kt">Group</span> <span class="p">{</span>
+        <span class="kt">Section</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">HelloMessage</span><span class="p">(</span><span class="s">"Jimmie"</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="kt">Section</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">HelloMessage</span><span class="p">(</span><span class="s">"Bonnie"</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kt">Group</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="p">[</span><span class="s">"Lance"</span><span class="p">,</span> <span class="s">"Jody"</span><span class="p">])</span> <span class="p">{</span> <span class="n">name</span> <span class="k">in</span>
+        <span class="kt">Section</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">HelloMessage</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 
 <H3 align="center">
 <a href="https://ra1028.github.io/Carbon">[See More Usage]</a>
+<a href="https://github.com/ra1028/Carbon/tree/declarative/Examples/Example-iOS">[See Example App]</a>
 </H3>
 
 <hr>
 <h2 id='advanced-guide' class='heading'>Advanced Guide</h2>
-<h4 id='custom-content' class='heading'>Custom Content</h4>
+<h3 id='custom-content' class='heading'>Custom Content</h3>
 
 <p>Of course, the content of component can use custom class. You can also instantiate it from Xib.<br>
 It can be inherited whichever class, but the common means is inherit <code>UIView</code> or <code>UIViewController</code>.  </p>
@@ -445,14 +484,14 @@ It can be inherited whichever class, but the common means is inherit <code>UIVie
     <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
 
     <span class="kd">func</span> <span class="nf">renderContent</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">HelloMessageContent</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kt">HelloMessageContent</span><span class="o">.</span><span class="nf">loadFromNib</span><span class="p">()</span>  <span class="c1">// Extension for instantiate from Xib. Not in Carbon.</span>
+        <span class="kt">HelloMessageContent</span><span class="o">.</span><span class="nf">loadFromNib</span><span class="p">()</span>  <span class="c1">// Extension for instantiate from Xib. Not in Carbon.</span>
     <span class="p">}</span>
 
     <span class="kd">func</span> <span class="nf">render</span><span class="p">(</span><span class="k">in</span> <span class="nv">content</span><span class="p">:</span> <span class="kt">HelloMessageContent</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">content</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s">"Hello </span><span class="se">\(</span><span class="n">name</span><span class="se">)</span><span class="s">"</span>
     <span class="p">}</span>
 </code></pre>
-<h4 id='identifiablecomponent' class='heading'>IdentifiableComponent</h4>
+<h3 id='identifiablecomponent' class='heading'>IdentifiableComponent</h3>
 
 <p><code><a href="Protocols/IdentifiableComponent.html">IdentifiableComponent</a></code> is a component that simply can predefine an identifier.<br>
 It can be omitted the definition of <code>id</code> if the component conforms to <code>Hashable</code>.  </p>
@@ -460,18 +499,40 @@ It can be omitted the definition of <code>id</code> if the component conforms to
     <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span>
 
     <span class="k">var</span> <span class="nv">id</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">name</span>
+        <span class="n">name</span>
     <span class="p">}</span>
 
     <span class="o">...</span>
 </code></pre>
-<h4 id='selection' class='heading'>Selection</h4>
+<h3 id='component-in-depth' class='heading'>Component in-Depth</h3>
+
+<p>Components can define more detailed behaviors.<br>
+Following are part of it.  </p>
+
+<ul>
+<li><p><strong>shouldContentUpdate(with next: Self) -&gt; Bool</strong><br>
+If the result is <code>true</code>, the component displayed as a cell is reloaded individually, header or footer is reloaded with entire section.<br>
+By default it returns <code>false</code>, but the updater will always re-render visible components changed.  </p></li>
+<li><p><strong>referenceSize(in bounds: CGRect) -&gt; CGSize?</strong><br>
+Defining the size of component on the list UI.<br>
+You can use default value such as <code>UITableView.rowHeight</code> or <code>UICollectionViewLayout.itemSize</code> by returning <code>nil</code>.<br>
+Returns <code>nil</code> by default.  </p></li>
+<li><p><strong>shouldRender(next: Self, in content: Content) -&gt; Bool</strong><br>
+By returning <code>false</code>, you can skip component re-rendering when reloading or dequeuing element.<br>
+Instead of re-rendering, detects component changes by comparing with next value.<br>
+This is recommended to use only for performance tuning.  </p></li>
+<li><p><strong>contentWillDisplay(_ content: Content)</strong><br>
+Invoked every time of before a component got into visible area.  </p></li>
+<li><p><strong>contentDidEndDisplay(_ content: Content)</strong><br>
+Invoked every time of after a component went out from visible area.  </p></li>
+</ul>
+
+<p><a href="https://ra1028.github.io/Carbon/Protocols/Component.html">See more</a></p>
+<h3 id='selection' class='heading'>Selection</h3>
 
 <p>Cell selection can be handled by setting <code>didSelect</code> to the instance of <code><a href="Classes/UITableViewAdapter.html">UITableViewAdapter</a></code> or <code><a href="Classes/UICollectionViewAdapter.html">UICollectionViewAdapter</a></code>.  </p>
-<pre class="highlight swift"><code><span class="n">adapter</span><span class="o">.</span><span class="n">didSelect</span> <span class="p">{</span> <span class="n">context</span> <span class="k">in</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">tableView</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">node</span><span class="p">)</span>
-    <span class="nf">print</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">indexPath</span><span class="p">)</span>
+<pre class="highlight swift"><code><span class="n">renderer</span><span class="o">.</span><span class="n">adapter</span><span class="o">.</span><span class="n">didSelect</span> <span class="p">{</span> <span class="n">context</span> <span class="k">in</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre>
 
@@ -497,7 +558,7 @@ It&rsquo;s more maintainable and extensible.  </p>
     <span class="k">var</span> <span class="nv">onSelect</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
 
     <span class="kd">func</span> <span class="nf">renderContent</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">MenuItemContent</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kt">MenuItemContent</span><span class="o">.</span><span class="nf">loadFromNib</span><span class="p">()</span>
+        <span class="kt">MenuItemContent</span><span class="o">.</span><span class="nf">loadFromNib</span><span class="p">()</span>
     <span class="p">}</span>
 
     <span class="kd">func</span> <span class="nf">render</span><span class="p">(</span><span class="k">in</span> <span class="nv">content</span><span class="p">:</span> <span class="kt">MenuItemContent</span><span class="p">)</span> <span class="p">{</span>
@@ -510,46 +571,22 @@ It&rsquo;s more maintainable and extensible.  </p>
 <p>In this way, in order to cancel the selection by scrolling, you need to implement the following extension.  </p>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">UITableView</span> <span class="p">{</span>
     <span class="kd">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">touchesShouldCancel</span><span class="p">(</span><span class="k">in</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kc">true</span>
+        <span class="kc">true</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="kd">extension</span> <span class="kt">UICollectionView</span> <span class="p">{</span>
     <span class="kd">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">touchesShouldCancel</span><span class="p">(</span><span class="k">in</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kc">true</span>
+        <span class="kc">true</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
-<h4 id='component-in-depth' class='heading'>Component in-Depth</h4>
-
-<p>Components can define more detailed behaviors.<br>
-Following are part of it.  </p>
-
-<ul>
-<li><p><strong>shouldContentUpdate(with next: Self) -&gt; Bool</strong><br>
-If the result is <code>true</code>, the component displayed as a cell is reloaded individually, header or footer is reloaded with entire section.<br>
-By default it returns <code>false</code>, but the updater will always re-render visible components changed.  </p></li>
-<li><p><strong>referenceSize(in bounds: CGRect) -&gt; CGSize?</strong><br>
-Defining the size of component on the list UI.<br>
-You can use default value such as <code>UITableView.rowHeight</code> or <code>UICollectionViewLayout.itemSize</code> by returning <code>nil</code>.<br>
-Returns <code>nil</code> by default.  </p></li>
-<li><p><strong>shouldRender(next: Self, in content: Content) -&gt; Bool</strong><br>
-By returning <code>false</code>, you can skip component re-rendering when reloading or dequeuing element.<br>
-Instead of re-rendering, detects component changes by comparing with next value.<br>
-This is recommended to use only for performance tuning.  </p></li>
-<li><p><strong>contentWillDisplay(_ content: Content)</strong><br>
-Invoked every time of before a component got into visible area.  </p></li>
-<li><p><strong>contentDidEndDisplay(_ content: Content)</strong><br>
-Invoked every time of after a component went out from visible area.  </p></li>
-</ul>
-
-<p><a href="https://ra1028.github.io/Carbon/Protocols/Component.html">See more</a></p>
-<h4 id='adapter-customization' class='heading'>Adapter Customization</h4>
+<h3 id='adapter-customization' class='heading'>Adapter Customization</h3>
 
 <p>You can add methods of <code>delegate</code>, <code>dataSource</code> by subclassing each adapter.  </p>
 <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">CustomTableViewdapter</span><span class="p">:</span> <span class="kt">UITableViewAdapter</span> <span class="p">{</span>
     <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">titleForHeaderInSection</span> <span class="nv">section</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="s">"Header title for section</span><span class="se">\(</span><span class="n">section</span><span class="se">)</span><span class="s">"</span>
+        <span class="s">"Header title for section</span><span class="se">\(</span><span class="n">section</span><span class="se">)</span><span class="s">"</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
@@ -564,17 +601,17 @@ You can also use <code>xib</code> by giving nib as parameter of init of the retu
 <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">CustomTableViewAdapter</span><span class="p">:</span> <span class="kt">UITableViewAdapter</span> <span class="p">{</span>
     <span class="c1">// Use custom cell.</span>
     <span class="k">override</span> <span class="kd">func</span> <span class="nf">cellRegistration</span><span class="p">(</span><span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">,</span> <span class="nv">node</span><span class="p">:</span> <span class="kt">CellNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CellRegistration</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kt">CellRegistration</span><span class="p">(</span><span class="nv">class</span><span class="p">:</span> <span class="kt">CustomTableViewCell</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+        <span class="kt">CellRegistration</span><span class="p">(</span><span class="nv">class</span><span class="p">:</span> <span class="kt">CustomTableViewCell</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
     <span class="p">}</span>
 
     <span class="c1">// Use custom header view.</span>
     <span class="k">override</span> <span class="kd">func</span> <span class="nf">headerViewRegistration</span><span class="p">(</span><span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="nv">section</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">node</span><span class="p">:</span> <span class="kt">ViewNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ViewRegistration</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kt">ViewRegistration</span><span class="p">(</span><span class="nv">class</span><span class="p">:</span> <span class="kt">CustomTableViewHeaderFooterView</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+        <span class="kt">ViewRegistration</span><span class="p">(</span><span class="nv">class</span><span class="p">:</span> <span class="kt">CustomTableViewHeaderFooterView</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
     <span class="p">}</span>
 
     <span class="c1">// Use custom footer view.</span>
     <span class="k">override</span> <span class="kd">func</span> <span class="nf">footerViewRegistration</span><span class="p">(</span><span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="nv">section</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="nv">node</span><span class="p">:</span> <span class="kt">ViewNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">ViewRegistration</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kt">ViewRegistration</span><span class="p">(</span><span class="nv">class</span><span class="p">:</span> <span class="kt">CustomTableViewHeaderFooterView</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+        <span class="kt">ViewRegistration</span><span class="p">(</span><span class="nv">class</span><span class="p">:</span> <span class="kt">CustomTableViewHeaderFooterView</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
@@ -593,8 +630,8 @@ You can also use <code>xib</code> by giving nib as parameter of init of the retu
 <span class="p">}</span>
 </code></pre>
 
-<p><a href="https://ra1028.github.io/Carbon/Adapters.html">See more</a></p>
-<h4 id='updater-customization' class='heading'>Updater Customization</h4>
+<p><a href="https://ra1028.github.io/Carbon/Adapter.html">See more</a></p>
+<h3 id='updater-customization' class='heading'>Updater Customization</h3>
 
 <p>It can be modify the updating behavior of the list UI by inheriting <code><a href="Protocols/Updater.html">Updater</a></code>.<br>
 This is important thing to make Carbon well adapted to your project.<br>
@@ -617,15 +654,59 @@ If set <code>true</code>, revert content offset after updates.<br>
 Default is <code>true</code>.  </p></li>
 </ul>
 
-<p><a href="https://ra1028.github.io/Carbon/Updaters.html">See more</a></p>
+<p><a href="https://ra1028.github.io/Carbon/Updater.html">See more</a></p>
+<h3 id='without-functionbuilder-syntax' class='heading'>Without FunctionBuilder Syntax</h3>
+
+<p>If you are using Swift 5, you cannot use the function builder that you have queried so far, but Carbon can also build a UI with declarative syntax without function builder as following.  </p>
+
+<ul>
+<li><strong>ViewNode</strong></li>
+</ul>
+
+<p>This is a node representing header or footer. The node is wrap an instance of type conforming to <code><a href="Protocols/Component.html">Component</a></code> protocol.  </p>
+<pre class="highlight swift"><code><span class="kt">ViewNode</span><span class="p">(</span><span class="kt">Header</span><span class="p">(</span><span class="s">"GREET"</span><span class="p">))</span>
+</code></pre>
+
+<ul>
+<li><strong>CellNode</strong></li>
+</ul>
+
+<p><code><a href="Structs/CellNode.html">CellNode</a></code> is a node representing cell.<br>
+Unlike in the ViewNode, this needs an <code>id</code> which <code>Hashable</code> type to identify from among a lot of cells.<br>
+The <code>id</code> is used to find the same component in the list data before and after changed.  </p>
+<pre class="highlight swift"><code><span class="kt">CellNode</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="kt">HelloMessage</span><span class="p">(</span><span class="s">"Jules"</span><span class="p">))</span>
+<span class="kt">CellNode</span><span class="p">(</span><span class="kt">HelloMessage</span><span class="p">(</span><span class="s">"Jules"</span><span class="p">)</span><span class="o">.</span><span class="nf">identified</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="p">\</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+<span class="kt">CellNode</span><span class="p">(</span><span class="kt">HelloMessage</span><span class="p">(</span><span class="s">"Jules"</span><span class="p">))</span>  <span class="c1">// Using `IdentifiableComponent`.</span>
+</code></pre>
+
+<ul>
+<li><strong>Section</strong> and render</li>
+</ul>
+<pre class="highlight swift"><code><span class="n">renderer</span><span class="o">.</span><span class="nf">render</span><span class="p">(</span>
+    <span class="kt">Section</span><span class="p">(</span>
+        <span class="nv">id</span><span class="p">:</span> <span class="s">"Section"</span><span class="p">,</span>
+        <span class="nv">header</span><span class="p">:</span> <span class="kt">ViewNode</span><span class="p">(</span><span class="kt">Header</span><span class="p">(</span><span class="s">"GREET"</span><span class="p">)),</span>
+        <span class="nv">cells</span><span class="p">:</span> <span class="p">[</span>
+            <span class="kt">CellNode</span><span class="p">(</span><span class="kt">HelloMessage</span><span class="p">(</span><span class="s">"Vincent"</span><span class="p">)),</span>
+            <span class="kt">CellNode</span><span class="p">(</span><span class="kt">HelloMessage</span><span class="p">(</span><span class="s">"Mia"</span><span class="p">)),</span>
+            <span class="kt">CellNode</span><span class="p">(</span><span class="kt">HelloMessage</span><span class="p">(</span><span class="s">"Jules"</span><span class="p">))</span>
+        <span class="p">],</span>
+        <span class="nv">footer</span><span class="p">:</span> <span class="kt">ViewNode</span><span class="p">(</span><span class="kt">Footer</span><span class="p">(</span><span class="s">"👋 Greeting from Carbon"</span><span class="p">))</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+</code></pre>
+
+<p><a href="https://ra1028.github.io/Carbon/Node.html">See more</a></p>
 
 <hr>
 <h2 id='requirements' class='heading'>Requirements</h2>
 
 <ul>
 <li>Swift 5.0+</li>
-<li>iOS 10.2+</li>
+<li>Xcode 10.2+</li>
 </ul>
+
+<p>Note: function builder syntax requires Swift5.1+ and Xcode 11.0+</p>
 
 <hr>
 <h2 id='installation' class='heading'>Installation</h2>
@@ -680,7 +761,7 @@ Uses DifferenceKit as well as Carbon for the diffing algorithm.<br></li>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2019 <a class="link" href="https://github.com/ra1028" target="_blank" rel="external">Ryo Aoyama</a>. All rights reserved. (Last updated: 2019-09-10)</p>
+      <p>&copy; 2019 <a class="link" href="https://github.com/ra1028" target="_blank" rel="external">Ryo Aoyama</a>. All rights reserved. (Last updated: 2019-09-12)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

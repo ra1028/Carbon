@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Renderer  Reference</title>
+    <title>Updater  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Section/Renderer" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Section/Updater" class="dashAnchor"></a>
 
-    <a title="Renderer  Reference"></a>
+    <a title="Updater  Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="index.html">Carbon Reference</a>
       <img class="carat" src="img/carat.png" />
-      Renderer  Reference
+      Updater  Reference
     </p>
 
     <div class="content-wrapper">
@@ -215,7 +215,7 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>Renderer</h1>
+            <h1>Updater</h1>
             
           </div>
         </section>
@@ -227,9 +227,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Carbon8RendererC"></a>
-                    <a name="//apple_ref/swift/Class/Renderer" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon8RendererC">Renderer</a>
+                    <a name="/s:6Carbon7UpdaterP"></a>
+                    <a name="//apple_ref/swift/Protocol/Updater" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon7UpdaterP">Updater</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -237,40 +237,143 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Renderer is a controller to render passed data to target
-immediately using specific adapter and updater.</p>
+                        <p>Represents an updater that manages the updation for target.</p>
 
-<p>Its behavior can be changed by using other type of adapter,
-updater, or by customizing it.</p>
-
-<p>Example for render a section containing simple nodes.</p>
-<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span> <span class="o">=</span> <span class="o">...</span>
-<span class="k">let</span> <span class="nv">renderer</span> <span class="o">=</span> <span class="kt">Renderer</span><span class="p">(</span>
-    <span class="nv">adapter</span><span class="p">:</span> <span class="kt">UITableViewAdapter</span><span class="p">(),</span>
-    <span class="nv">updater</span><span class="p">:</span> <span class="kt">UITableViewUpdater</span><span class="p">()</span>
-<span class="p">)</span>
-
-<span class="n">renderer</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">tableView</span>
-
-<span class="n">renderer</span><span class="o">.</span><span class="n">render</span> <span class="p">{</span>
-    <span class="kt">Label</span><span class="p">(</span><span class="s">"Cell 1"</span><span class="p">)</span>
-        <span class="o">.</span><span class="nf">identified</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="p">\</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-
-    <span class="kt">Label</span><span class="p">(</span><span class="s">"Cell 2"</span><span class="p">)</span>
-        <span class="o">.</span><span class="nf">identified</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="p">\</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-
-    <span class="kt">Label</span><span class="p">(</span><span class="s">"Cell 3"</span><span class="p">)</span>
-        <span class="o">.</span><span class="nf">identified</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="p">\</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre>
-
-                        <a href="Classes/Renderer.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/Updater.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">Renderer</span><span class="o">&lt;</span><span class="kt"><a href="Protocols/Updater.html">Updater</a></span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt"><a href="Protocols/Updater.html">Updater</a></span> <span class="p">:</span> <span class="kt"><a href="Protocols/Updater.html">Updater</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Updater</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Carbon18UITableViewUpdaterC"></a>
+                    <a name="//apple_ref/swift/Class/UITableViewUpdater" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon18UITableViewUpdaterC">UITableViewUpdater</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An updater for managing diffing updates to render data to the <code>UITableView</code>.</p>
+
+                        <a href="Classes/UITableViewUpdater.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">UITableViewUpdater</span><span class="o">&lt;</span><span class="kt"><a href="Protocols/Adapter.html">Adapter</a></span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Updater.html">Updater</a></span> <span class="k">where</span> <span class="kt"><a href="Protocols/Adapter.html">Adapter</a></span> <span class="p">:</span> <span class="kt"><a href="Classes/UITableViewAdapter.html">UITableViewAdapter</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Carbon28UITableViewReloadDataUpdaterC"></a>
+                    <a name="//apple_ref/swift/Class/UITableViewReloadDataUpdater" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon28UITableViewReloadDataUpdaterC">UITableViewReloadDataUpdater</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An updater for managing to perform reload data to render data to the <code>UITableView</code>.</p>
+
+                        <a href="Classes/UITableViewReloadDataUpdater.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">UITableViewReloadDataUpdater</span><span class="o">&lt;</span><span class="kt"><a href="Protocols/Adapter.html">Adapter</a></span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Updater.html">Updater</a></span> <span class="k">where</span> <span class="kt"><a href="Protocols/Adapter.html">Adapter</a></span> <span class="p">:</span> <span class="kt"><a href="Classes/UITableViewAdapter.html">UITableViewAdapter</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Carbon23UICollectionViewUpdaterC"></a>
+                    <a name="//apple_ref/swift/Class/UICollectionViewUpdater" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon23UICollectionViewUpdaterC">UICollectionViewUpdater</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An updater for managing diffing updates to render data to the <code>UICollectionView</code>.</p>
+
+                        <a href="Classes/UICollectionViewUpdater.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">UICollectionViewUpdater</span><span class="o">&lt;</span><span class="kt"><a href="Protocols/Adapter.html">Adapter</a></span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Updater.html">Updater</a></span> <span class="k">where</span> <span class="kt"><a href="Protocols/Adapter.html">Adapter</a></span> <span class="p">:</span> <span class="kt"><a href="Classes/UICollectionViewAdapter.html">UICollectionViewAdapter</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Carbon33UICollectionViewReloadDataUpdaterC"></a>
+                    <a name="//apple_ref/swift/Class/UICollectionViewReloadDataUpdater" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon33UICollectionViewReloadDataUpdaterC">UICollectionViewReloadDataUpdater</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An updater for managing to perform reload data to render data to the <code>UICollectionView</code>.</p>
+
+                        <a href="Classes/UICollectionViewReloadDataUpdater.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">UICollectionViewReloadDataUpdater</span><span class="o">&lt;</span><span class="kt"><a href="Protocols/Adapter.html">Adapter</a></span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="Protocols/Updater.html">Updater</a></span> <span class="k">where</span> <span class="kt"><a href="Protocols/Adapter.html">Adapter</a></span> <span class="p">:</span> <span class="kt"><a href="Classes/UICollectionViewAdapter.html">UICollectionViewAdapter</a></span></code></pre>
 
                         </div>
                       </div>

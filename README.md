@@ -442,7 +442,7 @@ class CustomCollectionViewAdapter: UICollectionViewAdapter {
 }
 ```
 
-[See more](https://ra1028.github.io/Carbon/Adapters.html)
+[See more](https://ra1028.github.io/Carbon/Adapter.html)
 
 ### Updater Customization
 
@@ -468,7 +468,7 @@ The content offset become unintended position after diffing updates in some case
  If set `true`, revert content offset after updates.  
 Default is `true`.  
 
-[See more](https://ra1028.github.io/Carbon/Updaters.html)
+[See more](https://ra1028.github.io/Carbon/Updater.html)
 
 ### Without FunctionBuilder Syntax
 
@@ -511,7 +511,7 @@ renderer.render(
 )
 ```
 
-[See more](https://ra1028.github.io/Carbon/Nodes.html)
+[See more](https://ra1028.github.io/Carbon/Node.html)
 
 ---
 
