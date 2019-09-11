@@ -48,6 +48,8 @@
 		6B7ADEFC21FDD77A003803BE /* HelloViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B7ADEFB21FDD77A003803BE /* HelloViewController.xib */; };
 		6B7ADF0021FDE3F2003803BE /* HelloMessageContent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B7ADEFF21FDE3F2003803BE /* HelloMessageContent.xib */; };
 		6B7ADF0221FDEEC7003803BE /* HelloMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7ADF0121FDEEC7003803BE /* HelloMessage.swift */; };
+		6B7BE5BE23244FEF001EB507 /* KyotoMagazineLayoutAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7BE5BD23244FEF001EB507 /* KyotoMagazineLayoutAdapter.swift */; };
+		6B7BE5C02324500A001EB507 /* TodoSwipeCellKitAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7BE5BF23245009001EB507 /* TodoSwipeCellKitAdapter.swift */; };
 		6BBC279121ECF91A00446FB7 /* TodoEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBC279021ECF91A00446FB7 /* TodoEmpty.swift */; };
 		6BBC279321ECFE6A00446FB7 /* TodoEmptyContent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BBC279221ECFE6A00446FB7 /* TodoEmptyContent.xib */; };
 		6BBC279821EE2B9A00446FB7 /* KyotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBC279721EE2B9A00446FB7 /* KyotoViewController.swift */; };
@@ -111,6 +113,8 @@
 		6B7ADEFB21FDD77A003803BE /* HelloViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelloViewController.xib; sourceTree = "<group>"; };
 		6B7ADEFF21FDE3F2003803BE /* HelloMessageContent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelloMessageContent.xib; sourceTree = "<group>"; };
 		6B7ADF0121FDEEC7003803BE /* HelloMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloMessage.swift; sourceTree = "<group>"; };
+		6B7BE5BD23244FEF001EB507 /* KyotoMagazineLayoutAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KyotoMagazineLayoutAdapter.swift; sourceTree = "<group>"; };
+		6B7BE5BF23245009001EB507 /* TodoSwipeCellKitAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodoSwipeCellKitAdapter.swift; sourceTree = "<group>"; };
 		6BBC279021ECF91A00446FB7 /* TodoEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoEmpty.swift; sourceTree = "<group>"; };
 		6BBC279221ECFE6A00446FB7 /* TodoEmptyContent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoEmptyContent.xib; sourceTree = "<group>"; };
 		6BBC279721EE2B9A00446FB7 /* KyotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KyotoViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				6B5A987621E8ED220013BB95 /* TodoViewController.swift */,
+				6B7BE5BF23245009001EB507 /* TodoSwipeCellKitAdapter.swift */,
 				6B5A987821E8ED740013BB95 /* TodoViewController.xib */,
 				6B5A987A21E8EED30013BB95 /* TodoText.swift */,
 				6B5A987E21E8F2090013BB95 /* TodoTextContent.xib */,
@@ -284,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				6BBC279721EE2B9A00446FB7 /* KyotoViewController.swift */,
+				6B7BE5BD23244FEF001EB507 /* KyotoMagazineLayoutAdapter.swift */,
 				6BBC279921EE2C7500446FB7 /* KyotoViewController.xib */,
 				6BBC279D21EE326000446FB7 /* KyotoTop.swift */,
 				6BBC279F21EE335A00446FB7 /* KyotoTopContent.xib */,
@@ -486,6 +492,7 @@
 				6B7ADEFA21FDD5D3003803BE /* HelloViewController.swift in Sources */,
 				6BBC279E21EE326000446FB7 /* KyotoTop.swift in Sources */,
 				6B6594E921E2655400291AAF /* HomeItem.swift in Sources */,
+				6B7BE5BE23244FEF001EB507 /* KyotoMagazineLayoutAdapter.swift in Sources */,
 				6B7ADF0221FDEEC7003803BE /* HelloMessage.swift in Sources */,
 				6BBC279821EE2B9A00446FB7 /* KyotoViewController.swift in Sources */,
 				6B09264421FE17B300CFEC2F /* Footer.swift in Sources */,
@@ -493,6 +500,7 @@
 				6B21A4A521E3A92F00568841 /* FormTextField.swift in Sources */,
 				6B5A987D21E8F16F0013BB95 /* Todo.swift in Sources */,
 				6B6594D021E2619B00291AAF /* AppDelegate.swift in Sources */,
+				6B7BE5C02324500A001EB507 /* TodoSwipeCellKitAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,11 +641,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_NOTICES = YES;
 				ASSETCATALOG_WARNINGS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -657,11 +665,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_NOTICES = YES;
 				ASSETCATALOG_WARNINGS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

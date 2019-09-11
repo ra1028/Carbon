@@ -4,8 +4,12 @@ import Carbon
 struct HelloMessage: IdentifiableComponent, Hashable {
     var name: String
 
+    init(_ name: String) {
+        self.name = name
+    }
+
     func renderContent() -> HelloMessageContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: HelloMessageContent) {

@@ -1,9 +1,9 @@
 import UIKit
 import Carbon
 
-struct KyotoTop: Component {
+struct KyotoTop: Component, Hashable {
     func renderContent() -> KyotoTopContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: KyotoTopContent) {}

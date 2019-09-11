@@ -1,15 +1,15 @@
 import UIKit
 import Carbon
 
-struct TodoEmpty: Component {
+struct TodoEmpty: IdentifiableComponent, Hashable {
     func renderContent() -> TodoEmptyContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: TodoEmptyContent) {}
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: 150)
+        CGSize(width: bounds.width, height: 150)
     }
 }
 

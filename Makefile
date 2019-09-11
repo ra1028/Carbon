@@ -5,7 +5,7 @@ gems-install:
 	bundle install --path vendor/bundle
 
 docs-gen:
-	bundle exec jazzy --config .jazzy.yml
+	bundle exec jazzy --config .jazzy.yml --swift-version 5.1 -x USE_SWIFT_RESPONSE_FILE=NO
 
 lib-lint:
 	bundle exec pod lib lint

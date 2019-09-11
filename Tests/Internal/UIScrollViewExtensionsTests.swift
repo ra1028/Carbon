@@ -1,7 +1,6 @@
 import XCTest
 @testable import Carbon
 
-@available(iOS 11.0, *)
 final class MockScrollViewExtensionsTests: XCTestCase {
     func testIsScrolling() {
         let scrollView1 = MockScrollView()

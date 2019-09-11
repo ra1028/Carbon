@@ -51,7 +51,7 @@
       <nav class="navigation">
         <ul class="nav-groups">
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Components.html">Components</a>
+            <a class="nav-group-name-link" href="../Element.html">Element</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/Component.html">Component</a>
@@ -62,24 +62,36 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/AnyComponent.html">AnyComponent</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Section.html">Section</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Group.html">Group</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Nodes.html">Nodes</a>
+            <a class="nav-group-name-link" href="../ComponentWrapper.html">ComponentWrapper</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/IdentifiedComponentWrapper.html">IdentifiedComponentWrapper</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/ComponentWrapping.html">ComponentWrapping</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/ComponentWrapping.html">ComponentWrapping</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Node.html">Node</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/CellNode.html">CellNode</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/ViewNode.html">ViewNode</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Section.html">Section</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Structs/Section.html">Section</a>
               </li>
             </ul>
           </li>
@@ -92,7 +104,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Adapters.html">Adapters</a>
+            <a class="nav-group-name-link" href="../Adapter.html">Adapter</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/Adapter.html">Adapter</a>
@@ -127,7 +139,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Updaters.html">Updaters</a>
+            <a class="nav-group-name-link" href="../Updater.html">Updater</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/Updater.html">Updater</a>
@@ -147,7 +159,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Interfaces.html">Interfaces</a>
+            <a class="nav-group-name-link" href="../Interface.html">Interface</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/ComponentRenderable.html">ComponentRenderable</a>
@@ -167,13 +179,33 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Changesets.html">Changesets</a>
+            <a class="nav-group-name-link" href="../Builder.html">Builder</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Changesets.html#/s:6Carbon13DataChangeseta">DataChangeset</a>
+                <a class="nav-group-task-link" href="../Structs/CellsBuilder.html">CellsBuilder</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Changesets.html#/s:6Carbon19StagedDataChangeseta">StagedDataChangeset</a>
+                <a class="nav-group-task-link" href="../Structs/SectionsBuilder.html">SectionsBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CellsBuildable.html">CellsBuildable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/SectionsBuildable.html">SectionsBuildable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Optional.html">Optional</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Changeset.html">Changeset</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Changeset.html#/s:6Carbon13DataChangeseta">DataChangeset</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Changeset.html#/s:6Carbon19StagedDataChangeseta">StagedDataChangeset</a>
               </li>
             </ul>
           </li>
@@ -240,7 +272,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A string used to identify a element that is reusable. Default is the type name of <code>Content</code>.</p>
+                        <p>A string used to identify a element that is reusable. Default is the type name of <code>self</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -690,7 +722,7 @@
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2019 <a class="link" href="https://github.com/ra1028" target="_blank" rel="external">Ryo Aoyama</a>. All rights reserved. (Last updated: 2019-09-10)</p>
+      <p>&copy; 2019 <a class="link" href="https://github.com/ra1028" target="_blank" rel="external">Ryo Aoyama</a>. All rights reserved. (Last updated: 2019-09-12)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

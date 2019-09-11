@@ -51,7 +51,7 @@
       <nav class="navigation">
         <ul class="nav-groups">
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Components.html">Components</a>
+            <a class="nav-group-name-link" href="../Element.html">Element</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/Component.html">Component</a>
@@ -62,24 +62,36 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/AnyComponent.html">AnyComponent</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Section.html">Section</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/Group.html">Group</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Nodes.html">Nodes</a>
+            <a class="nav-group-name-link" href="../ComponentWrapper.html">ComponentWrapper</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/IdentifiedComponentWrapper.html">IdentifiedComponentWrapper</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/ComponentWrapping.html">ComponentWrapping</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/ComponentWrapping.html">ComponentWrapping</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Node.html">Node</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/CellNode.html">CellNode</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/ViewNode.html">ViewNode</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Section.html">Section</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Structs/Section.html">Section</a>
               </li>
             </ul>
           </li>
@@ -92,7 +104,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Adapters.html">Adapters</a>
+            <a class="nav-group-name-link" href="../Adapter.html">Adapter</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/Adapter.html">Adapter</a>
@@ -127,7 +139,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Updaters.html">Updaters</a>
+            <a class="nav-group-name-link" href="../Updater.html">Updater</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/Updater.html">Updater</a>
@@ -147,7 +159,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Interfaces.html">Interfaces</a>
+            <a class="nav-group-name-link" href="../Interface.html">Interface</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/ComponentRenderable.html">ComponentRenderable</a>
@@ -167,13 +179,33 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Changesets.html">Changesets</a>
+            <a class="nav-group-name-link" href="../Builder.html">Builder</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Changesets.html#/s:6Carbon13DataChangeseta">DataChangeset</a>
+                <a class="nav-group-task-link" href="../Structs/CellsBuilder.html">CellsBuilder</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Changesets.html#/s:6Carbon19StagedDataChangeseta">StagedDataChangeset</a>
+                <a class="nav-group-task-link" href="../Structs/SectionsBuilder.html">SectionsBuilder</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/CellsBuildable.html">CellsBuildable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/SectionsBuildable.html">SectionsBuildable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Extensions/Optional.html">Optional</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Changeset.html">Changeset</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Changeset.html#/s:6Carbon13DataChangeseta">DataChangeset</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Changeset.html#/s:6Carbon19StagedDataChangeseta">StagedDataChangeset</a>
               </li>
             </ul>
           </li>
@@ -193,6 +225,24 @@
             <p>Represents a section of list UI, containing header node, footer node
 and collection of cell nodes.
 This works as an intermediary for <code>DifferenceKit</code>.</p>
+
+<p>Example for simple section.</p>
+<pre class="highlight swift"><code><span class="kt">Section</span><span class="p">(</span>
+    <span class="nv">id</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nv">header</span><span class="p">:</span> <span class="kt">Label</span><span class="p">(</span><span class="s">"Header"</span><span class="p">),</span>
+    <span class="nv">footer</span><span class="p">:</span> <span class="kt">Label</span><span class="p">(</span><span class="s">"Footer"</span><span class="p">),</span>
+    <span class="nv">cells</span><span class="p">:</span> <span class="p">{</span>
+        <span class="kt">Label</span><span class="p">(</span><span class="s">"Cell 0"</span><span class="p">)</span>
+            <span class="o">.</span><span class="nf">identified</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="p">\</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+        <span class="kt">Label</span><span class="p">(</span><span class="s">"Cell 1"</span><span class="p">)</span>
+            <span class="o">.</span><span class="nf">identified</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="p">\</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+        <span class="kt">Label</span><span class="p">(</span><span class="s">"Cell 2"</span><span class="p">)</span>
+            <span class="o">.</span><span class="nf">identified</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="p">\</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</code></pre>
 
           </div>
         </section>
@@ -552,12 +602,16 @@ identify the section.</p>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Carbon7SectionV2id_ACx_yACzXEtcSHRzlufc"></a>
-                    <a name="//apple_ref/swift/Method/init(id:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Carbon7SectionV2id_ACx_yACzXEtcSHRzlufc">init(id:_:)</a>
+                    <a name="/s:6Carbon7SectionV2id5cellsACx_q_yXEtcSHRzAA14CellsBuildableR_r0_lufc"></a>
+                    <a name="//apple_ref/swift/Method/init(id:cells:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon7SectionV2id5cellsACx_q_yXEtcSHRzAA14CellsBuildableR_r0_lufc">init(id:cells:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -565,16 +619,15 @@ identify the section.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Create a section by given closure.</p>
+                        <p>Create a section wrapping given id and cells with function builder syntax.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@available(*, deprecated, message: "This method will be removed next version owing to avoid ambiguity with new syntax using function builder.")</span>
-<span class="kd">@inlinable</span>
-<span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">I</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">I</span><span class="p">,</span> <span class="n">_</span> <span class="nv">buildSection</span><span class="p">:</span> <span class="p">(</span><span class="k">inout</span> <span class="kt">Section</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="k">where</span> <span class="kt">I</span> <span class="p">:</span> <span class="kt">Hashable</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">init</span><span class="o">&lt;</span><span class="kt">I</span><span class="p">,</span> <span class="kt">C</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">I</span><span class="p">,</span> <span class="kd">@CellsBuilder</span> <span class="nv">cells</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">C</span><span class="p">)</span> <span class="k">where</span> <span class="kt">I</span> <span class="p">:</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">C</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/CellsBuildable.html">CellsBuildable</a></span></code></pre>
 
                         </div>
                       </div>
@@ -597,17 +650,462 @@ identify the section.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>buildSection</em>
+                                <em>cells</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>A closure to build section.</p>
+                                  <p>A closure that constructs cells.</p>
                                 </div>
                               </td>
                             </tr>
                           </tbody>
                         </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Carbon7SectionV2id6header6footer5cellsACx_q_Sgq0_Sgq1_yXEtcSHRzAA9ComponentR_AaJR0_AA14CellsBuildableR1_r2_lufc"></a>
+                    <a name="//apple_ref/swift/Method/init(id:header:footer:cells:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon7SectionV2id6header6footer5cellsACx_q_Sgq0_Sgq1_yXEtcSHRzAA9ComponentR_AaJR0_AA14CellsBuildableR1_r2_lufc">init(id:header:footer:cells:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a section wrapping given id, header, footer and cells with function builder syntax.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">init</span><span class="o">&lt;</span><span class="kt">I</span><span class="p">,</span> <span class="kt">H</span><span class="p">,</span> <span class="kt">F</span><span class="p">,</span> <span class="kt">C</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">I</span><span class="p">,</span> <span class="nv">header</span><span class="p">:</span> <span class="kt">H</span><span class="p">?,</span> <span class="nv">footer</span><span class="p">:</span> <span class="kt">F</span><span class="p">?,</span> <span class="kd">@CellsBuilder</span> <span class="nv">cells</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">C</span><span class="p">)</span> <span class="k">where</span> <span class="kt">I</span> <span class="p">:</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">H</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Component.html">Component</a></span><span class="p">,</span> <span class="kt">F</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Component.html">Component</a></span><span class="p">,</span> <span class="kt">C</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/CellsBuildable.html">CellsBuildable</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>id</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An identifier to be wrapped.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>header</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A header component.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>footer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A footer component.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cells</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A closure that constructs cells.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Carbon7SectionV2id6header6footerACx_q_Sgq0_SgtcSHRzAA9ComponentR_AaIR0_r1_lufc"></a>
+                    <a name="//apple_ref/swift/Method/init(id:header:footer:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon7SectionV2id6header6footerACx_q_Sgq0_SgtcSHRzAA9ComponentR_AaIR0_r1_lufc">init(id:header:footer:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a section wrapping given id, header and footer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">init</span><span class="o">&lt;</span><span class="kt">I</span><span class="p">,</span> <span class="kt">H</span><span class="p">,</span> <span class="kt">F</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">I</span><span class="p">,</span> <span class="nv">header</span><span class="p">:</span> <span class="kt">H</span><span class="p">?,</span> <span class="nv">footer</span><span class="p">:</span> <span class="kt">F</span><span class="p">?)</span> <span class="k">where</span> <span class="kt">I</span> <span class="p">:</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">H</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Component.html">Component</a></span><span class="p">,</span> <span class="kt">F</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Component.html">Component</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>id</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An identifier to be wrapped.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>header</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A header component.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>footer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A footer component.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Carbon7SectionV2id6header5cellsACx_q_SgAA14CellsBuildable_pyXEtcSHRzAA9ComponentR_r0_lufc"></a>
+                    <a name="//apple_ref/swift/Method/init(id:header:cells:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon7SectionV2id6header5cellsACx_q_SgAA14CellsBuildable_pyXEtcSHRzAA9ComponentR_r0_lufc">init(id:header:cells:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a section wrapping given id, header and cells with function builder syntax.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">init</span><span class="o">&lt;</span><span class="kt">I</span><span class="p">,</span> <span class="kt">H</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">I</span><span class="p">,</span> <span class="nv">header</span><span class="p">:</span> <span class="kt">H</span><span class="p">?,</span> <span class="kd">@CellsBuilder</span> <span class="nv">cells</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/CellsBuildable.html">CellsBuildable</a></span><span class="p">)</span> <span class="k">where</span> <span class="kt">I</span> <span class="p">:</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">H</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Component.html">Component</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>id</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An identifier to be wrapped.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>header</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A header component.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cells</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A closure that constructs cells.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Carbon7SectionV2id6footer5cellsACx_q_Sgq0_yXEtcSHRzAA9ComponentR_AA14CellsBuildableR0_r1_lufc"></a>
+                    <a name="//apple_ref/swift/Method/init(id:footer:cells:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon7SectionV2id6footer5cellsACx_q_Sgq0_yXEtcSHRzAA9ComponentR_AA14CellsBuildableR0_r1_lufc">init(id:footer:cells:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a section wrapping given id, footer and cells with function builder syntax.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">init</span><span class="o">&lt;</span><span class="kt">I</span><span class="p">,</span> <span class="kt">F</span><span class="p">,</span> <span class="kt">C</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">I</span><span class="p">,</span> <span class="nv">footer</span><span class="p">:</span> <span class="kt">F</span><span class="p">?,</span> <span class="kd">@CellsBuilder</span> <span class="nv">cells</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">C</span><span class="p">)</span> <span class="k">where</span> <span class="kt">I</span> <span class="p">:</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">F</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Component.html">Component</a></span><span class="p">,</span> <span class="kt">C</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/CellsBuildable.html">CellsBuildable</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>id</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An identifier to be wrapped.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>footer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A footer component.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cells</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A closure that constructs cells.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Carbon7SectionV2id6headerACx_q_SgtcSHRzAA9ComponentR_r0_lufc"></a>
+                    <a name="//apple_ref/swift/Method/init(id:header:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon7SectionV2id6headerACx_q_SgtcSHRzAA9ComponentR_r0_lufc">init(id:header:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a section wrapping given id and header.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">init</span><span class="o">&lt;</span><span class="kt">I</span><span class="p">,</span> <span class="kt">H</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">I</span><span class="p">,</span> <span class="nv">header</span><span class="p">:</span> <span class="kt">H</span><span class="p">?)</span> <span class="k">where</span> <span class="kt">I</span> <span class="p">:</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">H</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Component.html">Component</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>id</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An identifier to be wrapped.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>header</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A header component.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Carbon7SectionV2id6footerACx_q_SgtcSHRzAA9ComponentR_r0_lufc"></a>
+                    <a name="//apple_ref/swift/Method/init(id:footer:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon7SectionV2id6footerACx_q_SgtcSHRzAA9ComponentR_r0_lufc">init(id:footer:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create a section wrapping given id and footer.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@inlinable</span>
+<span class="kd">init</span><span class="o">&lt;</span><span class="kt">I</span><span class="p">,</span> <span class="kt">F</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">id</span><span class="p">:</span> <span class="kt">I</span><span class="p">,</span> <span class="nv">footer</span><span class="p">:</span> <span class="kt">F</span><span class="p">?)</span> <span class="k">where</span> <span class="kt">I</span> <span class="p">:</span> <span class="kt">Hashable</span><span class="p">,</span> <span class="kt">F</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Component.html">Component</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>id</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An identifier to be wrapped.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>footer</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A footer component.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Carbon7SectionV13buildSectionsSayACGyF"></a>
+                    <a name="//apple_ref/swift/Method/buildSections()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Carbon7SectionV13buildSectionsSayACGyF">buildSections()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Build an array of section.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">buildSections</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">Section</span><span class="p">]</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -737,7 +1235,7 @@ the given source value.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2019 <a class="link" href="https://github.com/ra1028" target="_blank" rel="external">Ryo Aoyama</a>. All rights reserved. (Last updated: 2019-09-10)</p>
+      <p>&copy; 2019 <a class="link" href="https://github.com/ra1028" target="_blank" rel="external">Ryo Aoyama</a>. All rights reserved. (Last updated: 2019-09-12)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>

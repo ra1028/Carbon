@@ -5,50 +5,45 @@ final class SectionTests: XCTestCase {
     func testInitWithFullParameters() {
         let section = Section(
             id: TestID.a,
-            header: ViewNode(A.Component()),
+            header: ViewNode(A.Component(value: 100)),
             cells: [
                 CellNode(MockIdentifiableComponent(id: TestID.a)),
                 CellNode(MockIdentifiableComponent(id: TestID.b)),
                 CellNode(MockIdentifiableComponent(id: TestID.c))
             ],
-            footer: ViewNode(A.Component())
+            footer: ViewNode(A.Component(value: 200))
         )
 
         XCTAssertEqual(section.id.base as? TestID, .a)
-        XCTAssertNotNil(section.header)
-        XCTAssertNotNil(section.footer)
+        XCTAssertEqual(section.header?.component(as: A.Component.self)?.value, 100)
+        XCTAssertEqual(section.footer?.component(as: A.Component.self)?.value, 200)
         XCTAssertEqual(section.cells.count, 3)
+        XCTAssertEqual(section.cells[0].component(as: MockIdentifiableComponent<TestID>.self)?.id, TestID.a)
+        XCTAssertEqual(section.cells[1].component(as: MockIdentifiableComponent<TestID>.self)?.id, TestID.b)
+        XCTAssertEqual(section.cells[2].component(as: MockIdentifiableComponent<TestID>.self)?.id, TestID.c)
     }
 
     func testInitWithCellCollectionContainingNil() {
-        let section = Section(
+         let section = Section(
             id: TestID.a,
+            header: ViewNode(A.Component(value: 100)),
             cells: [
                 CellNode(MockIdentifiableComponent(id: TestID.a)),
                 nil,
+                CellNode(MockIdentifiableComponent(id: TestID.b)),
+                nil,
                 CellNode(MockIdentifiableComponent(id: TestID.c))
-            ]
+            ],
+            footer: ViewNode(A.Component(value: 200))
         )
 
-        XCTAssertEqual(section.cells.count, 2)
-    }
-
-    @available(*, deprecated)
-    func testInitWithBuilderClosure() {
-        let section = Section(id: TestID.a) { section in
-            section.header = ViewNode(A.Component())
-            section.cells = [
-                CellNode(MockIdentifiableComponent(id: TestID.a)),
-                CellNode(MockIdentifiableComponent(id: TestID.b)),
-                CellNode(MockIdentifiableComponent(id: TestID.c))
-            ]
-            section.footer = ViewNode(A.Component())
-        }
-
         XCTAssertEqual(section.id.base as? TestID, .a)
-        XCTAssertNotNil(section.header)
-        XCTAssertNotNil(section.footer)
+        XCTAssertEqual(section.header?.component(as: A.Component.self)?.value, 100)
+        XCTAssertEqual(section.footer?.component(as: A.Component.self)?.value, 200)
         XCTAssertEqual(section.cells.count, 3)
+        XCTAssertEqual(section.cells[0].component(as: MockIdentifiableComponent<TestID>.self)?.id, TestID.a)
+        XCTAssertEqual(section.cells[1].component(as: MockIdentifiableComponent<TestID>.self)?.id, TestID.b)
+        XCTAssertEqual(section.cells[2].component(as: MockIdentifiableComponent<TestID>.self)?.id, TestID.c)
     }
 
     func testContentEquatableConformance() {
@@ -150,3 +145,41 @@ final class SectionTests: XCTestCase {
         XCTAssertEqual(section2.id, TestID.b)
     }
 }
+
+#if swift(>=5.1)
+
+extension SectionTests {
+    func testInitWithCellsBuilder() {
+        let condition = false
+        let section = Section(
+            id: TestID.a,
+            header: A.Component(value: 100),
+            footer: A.Component(value: 200),
+            cells: {
+                MockIdentifiableComponent(id: TestID.a)
+                MockIdentifiableComponent(id: TestID.b)
+                MockIdentifiableComponent(id: TestID.c)
+
+                if condition {
+                    MockIdentifiableComponent(id: TestID.d)
+                }
+
+                Group {
+                    A.Component(value: 100)
+                    B.Component(value: 200)
+                }
+        })
+
+        XCTAssertEqual(section.id.base as? TestID, .a)
+        XCTAssertEqual(section.header?.component(as: A.Component.self)?.value, 100)
+        XCTAssertEqual(section.footer?.component(as: A.Component.self)?.value, 200)
+        XCTAssertEqual(section.cells.count, 5)
+        XCTAssertEqual(section.cells[0].component(as: MockIdentifiableComponent<TestID>.self)?.id, TestID.a)
+        XCTAssertEqual(section.cells[1].component(as: MockIdentifiableComponent<TestID>.self)?.id, TestID.b)
+        XCTAssertEqual(section.cells[2].component(as: MockIdentifiableComponent<TestID>.self)?.id, TestID.c)
+        XCTAssertEqual(section.cells[3].component(as: A.Component.self)?.value, 100)
+        XCTAssertEqual(section.cells[4].component(as: B.Component.self)?.value, 200)
+    }
+}
+
+#endif

@@ -55,7 +55,7 @@ final class AnyComponentTests: XCTestCase {
     }
 
     func testLayout() {
-        let component = MockComponent()
+        let component = A.Component()
         let anyComponent = AnyComponent(component)
         let anyContent = anyComponent.renderContent()
         let frame = CGRect(x: 0, y: 0, width: 200, height: 300)

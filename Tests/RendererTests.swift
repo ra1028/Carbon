@@ -155,28 +155,85 @@ final class RendererTests: XCTestCase {
         XCTAssertEqual(renderer.updater.targetCapturedOnUpdates, target)
         XCTAssertEqual(renderer.updater.adapterCapturedOnUpdates, adapter)
     }
+}
 
-    @available(*, deprecated)
-    func testRenderWithBuilderClosure() {
+#if swift(>=5.1)
+
+extension RendererTests {
+    func testRenderWithSectionsBuilder() {
         let target = MockTarget()
         let adapter = MockAdapter()
         let renderer = Renderer(
             adapter: adapter,
             updater: MockUpdater()
         )
-
-        let data = [
-            Section(id: TestID.a),
-            Section(id: TestID.b),
-            Section(id: TestID.c),
-            Section(id: TestID.d)
-        ]
+        let condition = false
 
         renderer.target = target
-        renderer.render { $0 = data }
+        renderer.render {
+            Section(id: TestID.a)
+            Section(id: TestID.b)
+            Section(id: TestID.c)
 
-        XCTAssertEqual(renderer.adapter.data.count, 4)
+            if condition {
+                Section(id: TestID.d)
+            }
+
+            Group {
+                Section(id: 100)
+                Section(id: 200)
+            }
+        }
+
+        XCTAssertEqual(renderer.adapter.data.count, 5)
+        XCTAssertEqual(renderer.adapter.data[0].id, TestID.a)
+        XCTAssertEqual(renderer.adapter.data[1].id, TestID.b)
+        XCTAssertEqual(renderer.adapter.data[2].id, TestID.c)
+        XCTAssertEqual(renderer.adapter.data[3].id, 100)
+        XCTAssertEqual(renderer.adapter.data[4].id, 200)
+        XCTAssertEqual(renderer.updater.targetCapturedOnUpdates, target)
+        XCTAssertEqual(renderer.updater.adapterCapturedOnUpdates, adapter)
+    }
+
+    func testRenderWithCellsBuilder() {
+        let target = MockTarget()
+        let adapter = MockAdapter()
+        let renderer = Renderer(
+            adapter: adapter,
+            updater: MockUpdater()
+        )
+        let condition = false
+
+        renderer.target = target
+        renderer.render {
+            A.Component(value: 0)
+            A.Component(value: 1)
+            A.Component(value: 2)
+            A.Component(value: 3)
+
+            if condition {
+                A.Component(value: 4)
+            }
+
+            Group {
+                A.Component(value: 5)
+                A.Component(value: 6)
+            }
+        }
+
+        XCTAssertEqual(renderer.adapter.data.count, 1)
+
+        let section = renderer.adapter.data[0]
+        XCTAssertEqual(section.cells.count, 6)
+        XCTAssertEqual(section.cells[0].component(as: A.Component.self)?.value, 0)
+        XCTAssertEqual(section.cells[1].component(as: A.Component.self)?.value, 1)
+        XCTAssertEqual(section.cells[2].component(as: A.Component.self)?.value, 2)
+        XCTAssertEqual(section.cells[3].component(as: A.Component.self)?.value, 3)
+        XCTAssertEqual(section.cells[4].component(as: A.Component.self)?.value, 5)
+        XCTAssertEqual(section.cells[5].component(as: A.Component.self)?.value, 6)
         XCTAssertEqual(renderer.updater.targetCapturedOnUpdates, target)
         XCTAssertEqual(renderer.updater.adapterCapturedOnUpdates, adapter)
     }
 }
+
+#endif

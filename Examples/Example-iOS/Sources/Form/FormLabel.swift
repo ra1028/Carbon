@@ -7,11 +7,11 @@ struct FormLabel: IdentifiableComponent {
     var onSelect: () -> Void
 
     var id: String {
-        return title
+        title
     }
 
     func renderContent() -> FormLabelContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: FormLabelContent) {
@@ -29,7 +29,7 @@ final class FormLabelContent: UIControl, NibLoadable {
 
     override var isHighlighted: Bool {
         didSet {
-            backgroundColor = isHighlighted ? .primaryBlack : .secondaryBlack
+            backgroundColor = isHighlighted ? .systemGray4 : .secondarySystemBackground
         }
     }
 

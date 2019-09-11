@@ -6,11 +6,13 @@ struct FormTextView: Component {
     var onInput: (String?) -> Void
 
     func renderContent() -> FormTextViewContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: FormTextViewContent) {
-        content.textView.text = text
+        if !content.textView.isFirstResponder {
+            content.textView.text = text
+        }
         content.onInput = onInput
     }
 }

@@ -12,11 +12,11 @@ struct TodoText: IdentifiableComponent, Deletable {
     var onEvent: (Event) -> Void
 
     var id: Todo.ID {
-        return todo.id
+        todo.id
     }
 
     func renderContent() -> TodoTextContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: TodoTextContent) {

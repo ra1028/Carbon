@@ -6,11 +6,11 @@ struct HomeItem: IdentifiableComponent {
     var onSelect: () -> Void
 
     var id: String {
-        return title
+        title
     }
 
     func renderContent() -> HomeItemContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: HomeItemContent) {
@@ -27,7 +27,7 @@ final class HomeItemContent: UIControl, NibLoadable {
 
     override var isHighlighted: Bool {
         didSet {
-            backgroundColor = isHighlighted ? .secondaryBlack : .primaryBlack
+            backgroundColor = isHighlighted ? .systemGray4 : .clear
         }
     }
 

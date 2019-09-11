@@ -41,18 +41,9 @@ final class ComponentContainerTests: XCTestCase {
 
         container.render(component: AnyComponent(component))
 
-        if
-            let subview = componentContainerView.subviews.first,
-            let renderedContent = container.renderedContent as? UIView?,
-            let renderedComponent = container.renderedComponent?.as(MockComponent.self),
-            let capturedContentInComponent = component.contentCapturedOnRender {
-            XCTAssertEqual(renderedContent, subview)
-            XCTAssertEqual(capturedContentInComponent, renderedContent)
-            XCTAssertEqual(renderedComponent, component)
-        }
-        else {
-            XCTFail()
-        }
+        XCTAssertEqual(component.contentCapturedOnLayout, container.renderedContent as? UIView?)
+        XCTAssertEqual(component.contentCapturedOnRender, container.renderedContent as? UIView?)
+        XCTAssertEqual(component, container.renderedComponent?.as(MockComponent.self))
     }
 
     func testShouldRenderComponent() {

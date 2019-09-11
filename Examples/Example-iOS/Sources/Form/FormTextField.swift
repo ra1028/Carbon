@@ -15,16 +15,19 @@ struct FormTextField: IdentifiableComponent {
     }
 
     var id: String {
-        return title
+        title
     }
 
     func renderContent() -> FormTextFieldContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: FormTextFieldContent) {
+        if !content.textField.isFirstResponder {
+            content.textField.text = text
+        }
+
         content.titleLabel.text = title
-        content.textField.text = text
         content.textField.keyboardType = keyboardType
         content.onInput = onInput
     }

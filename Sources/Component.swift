@@ -10,6 +10,10 @@ import UIKit
 ///     struct Label: Component {
 ///         var text: String
 ///
+///         init(_ text: String) {
+///             self.text = text
+///         }
+///
 ///         func renderContent() -> UILabel {
 ///             return UILabel()
 ///         }
@@ -18,9 +22,6 @@ import UIKit
 ///             content.text = text
 ///         }
 ///     }
-///
-///     let view = ViewNode(Label(text: "Hello"))
-///     let cell = CellNode(id: 0, Label(text: "World"))
 public protocol Component {
     /// A type that represents a content to be render on the element of list UI.
     associatedtype Content
@@ -40,7 +41,7 @@ public protocol Component {
 
     // MARK: - Rendering - optional
 
-    /// A string used to identify a element that is reusable. Default is the type name of `Content`.
+    /// A string used to identify a element that is reusable. Default is the type name of `self`.
     var reuseIdentifier: String { get }
 
     /// Returns the referencing size of content to render on the list UI.
@@ -103,10 +104,10 @@ public protocol Component {
 }
 
 public extension Component {
-    /// A string used to identify a element that is reusable. Default is the type name of `Content`.
+    /// A string used to identify a element that is reusable. Default is the type name of `self`.
     @inlinable
     var reuseIdentifier: String {
-        return String(reflecting: Content.self)
+        return String(reflecting: Self.self)
     }
 
     /// Returns the referencing size of content to render on the list UI. Returns nil by default.
