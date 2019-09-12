@@ -18,11 +18,13 @@ let package = Package(
         .target(
             name: "Carbon",
             dependencies: ["DifferenceKit"],
-            path: "Sources"),
+            path: "Sources"
+        ),
         .testTarget(
             name: "Tests",
             dependencies: ["Carbon"],
-            path: "Tests")
+            path: "Tests"
+        )
     ],
-    swiftLanguageVersions: [.v4_2, .v5]
+    swiftLanguageVersions: [.v5]
 )

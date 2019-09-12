@@ -1,7 +1,7 @@
 import UIKit
 
 /// An updater for managing to perform reload data to render data to the `UITableView`.
-open class UITableViewReloadDataUpdater<Adapter: Carbon.Adapter & UITableViewDelegate & UITableViewDataSource>: Updater {
+open class UITableViewReloadDataUpdater<Adapter: UITableViewAdapter>: Updater {
     /// Create a new updater.
     public init() {}
 
@@ -17,16 +17,13 @@ open class UITableViewReloadDataUpdater<Adapter: Carbon.Adapter & UITableViewDel
     }
 
     /// Perform reload data to render given data to the target.
-    /// The completion is called after reload data, not after completion of the layout.
     ///
     /// - Parameters:
     ///   - target: A target instance to be updated to render given data.
     ///   - adapter: An adapter holding currently rendered data.
     ///   - data: A collection of sections to be rendered next.
-    ///   - completion: A closure that to callback end of update.
-    open func performUpdates(target: UITableView, adapter: Adapter, data: [Section], completion: (() -> Void)?) {
+    open func performUpdates(target: UITableView, adapter: Adapter, data: [Section]) {
         adapter.data = data
         target.reloadData()
-        completion?()
     }
 }

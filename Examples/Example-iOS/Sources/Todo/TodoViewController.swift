@@ -1,6 +1,5 @@
 import UIKit
 import Carbon
-import SwipeCellKit
 
 final class TodoViewController: UIViewController, UITextViewDelegate {
     enum ID {
@@ -25,7 +24,7 @@ final class TodoViewController: UIViewController, UITextViewDelegate {
     }
 
     private let renderer = Renderer(
-        adapter: SwipeCellKitTodoAdapter(),
+        adapter: TodoSwipeCellKitAdapter(),
         updater: UITableViewUpdater()
     )
 
@@ -36,59 +35,61 @@ final class TodoViewController: UIViewController, UITextViewDelegate {
         addButton.layer.cornerRadius = addButton.bounds.height / 2
         inputTextView.textContainerInset = .zero
         inputContainerView.layer.cornerRadius = 24
+
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.contentInset.bottom = view.bounds.height - addButton.frame.minY
-
         renderer.target = tableView
-        renderer.updater.skipReloadComponents = true
-        renderer.updater.alwaysRenderVisibleComponents = true
 
         render()
     }
 
     func render() {
-        renderer.render(
-            Section(id: ID.task) { section in
-                section.header = state.todos.isEmpty
-                    ? ViewNode(TodoEmpty())
-                    : ViewNode(Header(title: "TASKS"))
-
-                section.cells = state.todos.enumerated().map { offset, todo in
-                    CellNode(TodoText(todo: todo, isCompleted: false) { [weak self] event in
-                        switch event {
-                        case .toggleCompleted:
-                            self?.state.todos.remove(at: offset)
-                            self?.state.completed.insert(todo, at: 0)
-
-                        case .delete:
-                            self?.state.todos.remove(at: offset)
-                        }
-                    })
-                }
-            },
-            Section(id: ID.completed) { section in
-                if !state.completed.isEmpty {
-                    section.header = ViewNode(Header(title: "COMPLETED"))
-                }
-
-                section.cells = state.completed.enumerated().map { offset, todo in
-                    CellNode(TodoText(todo: todo, isCompleted: true) { [weak self] event in
-                        switch event {
-                        case .toggleCompleted:
-                            self?.state.completed.remove(at: offset)
-                            self?.state.todos.insert(todo, at: 0)
-
-                        case .delete:
-                            self?.state.completed.remove(at: offset)
-                        }
-                    })
-                }
+        renderer.render {
+            if state.todos.isEmpty {
+                Section(id: ID.task, header: TodoEmpty())
             }
-        )
+            else {
+                Section(
+                    id: ID.task,
+                    header: Header("TASKS (\(state.todos.count))"),
+                    cells: {
+                        Group(of: state.todos.enumerated()) { offset, todo in
+                            TodoText(todo: todo, isCompleted: false) { [weak self] event in
+                                switch event {
+                                case .toggleCompleted:
+                                    self?.state.todos.remove(at: offset)
+                                    self?.state.completed.append(todo)
+
+                                case .delete:
+                                    self?.state.todos.remove(at: offset)
+                                }
+                            }
+                        }
+                })
+            }
+
+            if !state.completed.isEmpty {
+                Section(
+                    id: ID.completed,
+                    header: Header("COMPLETED (\(state.completed.count))"),
+                    cells: {
+                        Group(of: state.completed.enumerated()) { offset, todo in
+                            TodoText(todo: todo, isCompleted: true) { [weak self] event in
+                                switch event {
+                                case .toggleCompleted:
+                                    self?.state.completed.remove(at: offset)
+                                    self?.state.todos.append(todo)
+
+                                case .delete:
+                                    self?.state.completed.remove(at: offset)
+                                }
+                            }
+                        }
+                })
+            }
+        }
     }
 
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -123,35 +124,6 @@ final class TodoViewController: UIViewController, UITextViewDelegate {
             self.inputViewBottom.constant = 0
             self.view.layoutIfNeeded()
         }
-    }
-}
-
-extension SwipeTableViewCell: ComponentRenderable {}
-
-final class SwipeCellKitTodoAdapter: UITableViewAdapter, SwipeTableViewCellDelegate {
-    override func cellRegistration(tableView: UITableView, indexPath: IndexPath, node: CellNode) -> CellRegistration {
-        return CellRegistration(class: SwipeTableViewCell.self)
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAt: indexPath) as! SwipeTableViewCell
-        cell.delegate = self
-        cell.selectionStyle = .none
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        guard let deletable = cellNode(at: indexPath).component(as: Deletable.self), orientation == .right else {
-            return nil
-        }
-
-        let deleteAction = SwipeAction(style: .destructive, title: nil) { action, _ in
-            deletable.delete()
-            action.fulfill(with: .delete)
-        }
-
-        deleteAction.image = #imageLiteral(resourceName: "Trash")
-        return [deleteAction]
     }
 }
 

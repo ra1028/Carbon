@@ -1,6 +1,6 @@
 import Foundation
 
-struct Todo: Equatable {
+struct Todo {
     typealias ID = UUID
 
     var id: ID

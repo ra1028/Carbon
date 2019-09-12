@@ -18,11 +18,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     func configureUIAppearance() {
         let appearance = UINavigationBar.appearance()
         let titleTextAttributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: UIColor.primaryWhite
+            .foregroundColor: UIColor.label
         ]
 
-        appearance.tintColor = .primaryWhite
-        appearance.setBackgroundImage(UIColor.primaryBlack.image(), for: .default)
+        appearance.tintColor = .label
         appearance.prefersLargeTitles = true
         appearance.isTranslucent = true
         appearance.titleTextAttributes = titleTextAttributes

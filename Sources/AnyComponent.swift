@@ -11,7 +11,7 @@ public struct AnyComponent: Component {
         return box.base
     }
 
-    /// A string used to identify a element that is reusable. Default is the type name of `Content`.
+    /// A string used to identify a element that is reusable. Default is the type name of `self`.
     @inlinable
     public var reuseIdentifier: String {
         return box.reuseIdentifier
@@ -156,42 +156,42 @@ internal protocol AnyComponentBox {
 @usableFromInline
 internal struct ComponentBox<Base: Component>: AnyComponentBox {
     @usableFromInline
-    internal let baseComponent: Base
+    let baseComponent: Base
 
     @inlinable
-    internal var base: Any {
+    var base: Any {
         return baseComponent
     }
 
     @inlinable
-    internal var reuseIdentifier: String {
+    var reuseIdentifier: String {
         return baseComponent.reuseIdentifier
     }
 
     @inlinable
-    internal init(_ base: Base) {
+    init(_ base: Base) {
         baseComponent = base
     }
 
     @inlinable
-    internal func renderContent() -> Any {
+    func renderContent() -> Any {
         return baseComponent.renderContent()
     }
 
     @inlinable
-    internal func render(in content: Any) {
+    func render(in content: Any) {
         guard let content = content as? Base.Content else { return }
 
         baseComponent.render(in: content)
     }
 
     @inlinable
-    internal func referenceSize(in bounds: CGRect) -> CGSize? {
+    func referenceSize(in bounds: CGRect) -> CGSize? {
         return baseComponent.referenceSize(in: bounds)
     }
 
     @inlinable
-    internal func layout(content: Any, in container: UIView) {
+    func layout(content: Any, in container: UIView) {
         guard let content = content as? Base.Content else { return }
 
         baseComponent.layout(content: content, in: container)
@@ -212,14 +212,14 @@ internal struct ComponentBox<Base: Component>: AnyComponentBox {
     }
 
     @inlinable
-    internal func contentWillDisplay(_ content: Any) {
+    func contentWillDisplay(_ content: Any) {
         guard let content = content as? Base.Content else { return }
 
         baseComponent.contentWillDisplay(content)
     }
 
     @inlinable
-    internal func contentDidEndDisplay(_ content: Any) {
+    func contentDidEndDisplay(_ content: Any) {
         guard let content = content as? Base.Content else { return }
 
         baseComponent.contentDidEndDisplay(content)

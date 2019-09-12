@@ -7,26 +7,17 @@ struct FormLabel: IdentifiableComponent {
     var onSelect: () -> Void
 
     var id: String {
-        return title
+        title
     }
 
     func renderContent() -> FormLabelContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: FormLabelContent) {
         content.titleLabel.text = title
         content.textLabel.text = text
         content.onSelect = onSelect
-    }
-
-    func shouldContentUpdate(with next: FormLabel) -> Bool {
-        return title != next.title
-            || text != next.text
-    }
-
-    func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: 44)
     }
 }
 
@@ -38,7 +29,7 @@ final class FormLabelContent: UIControl, NibLoadable {
 
     override var isHighlighted: Bool {
         didSet {
-            backgroundColor = isHighlighted ? .primaryBlack : .secondaryBlack
+            backgroundColor = isHighlighted ? .systemGray4 : .secondarySystemBackground
         }
     }
 

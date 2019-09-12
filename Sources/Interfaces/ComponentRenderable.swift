@@ -21,7 +21,9 @@ public extension ComponentRenderable {
         get { return renderedComponentAssociation[self] }
         set { renderedComponentAssociation[self] = newValue }
     }
+}
 
+internal extension ComponentRenderable {
     /// Invoked every time of before a component got into visible area.
     func contentWillDisplay() {
         guard let content = renderedContent else { return }

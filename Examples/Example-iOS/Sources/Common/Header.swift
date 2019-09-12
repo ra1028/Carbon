@@ -1,11 +1,15 @@
 import UIKit
 import Carbon
 
-struct Header: Component, Equatable {
+struct Header: Component {
     var title: String
 
+    init(_ title: String) {
+        self.title = title
+    }
+
     func renderContent() -> HeaderContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: HeaderContent) {
@@ -13,7 +17,7 @@ struct Header: Component, Equatable {
     }
 
     func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: 64)
+        CGSize(width: bounds.width, height: 64)
     }
 }
 

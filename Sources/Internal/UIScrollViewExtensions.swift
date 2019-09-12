@@ -1,22 +1,23 @@
 import UIKit
 
 internal extension UIScrollView {
-    var _isContentRectContainsBounds: Bool {
-        return CGRect(origin: .zero, size: contentSize)
-            .inset(by: availableContentInset.inverted)
-            .contains(bounds)
-    }
-
-    var _maxContentOffsetX: CGFloat {
-        return contentSize.width + availableContentInset.right - bounds.width
-    }
-
-    var _maxContentOffsetY: CGFloat {
-        return contentSize.height + availableContentInset.bottom - bounds.height
-    }
-
     var _isScrolling: Bool {
         return isTracking || isDragging || isDecelerating
+    }
+
+    func _setAdjustedContentOffsetIfNeeded(_ contentOffset: CGPoint) {
+        let maxContentOffsetX = contentSize.width + availableContentInset.right - bounds.width
+        let maxContentOffsetY = contentSize.height + availableContentInset.bottom - bounds.height
+        let isContentRectContainsBounds = CGRect(origin: .zero, size: contentSize)
+            .inset(by: availableContentInset.inverted)
+            .contains(bounds)
+
+        if isContentRectContainsBounds && !_isScrolling {
+            self.contentOffset = CGPoint(
+                x: min(maxContentOffsetX, contentOffset.x),
+                y: min(maxContentOffsetY, contentOffset.y)
+            )
+        }
     }
 }
 

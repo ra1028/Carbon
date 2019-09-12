@@ -6,24 +6,16 @@ struct HomeItem: IdentifiableComponent {
     var onSelect: () -> Void
 
     var id: String {
-        return title
+        title
     }
 
     func renderContent() -> HomeItemContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: HomeItemContent) {
         content.titleLabel.text = title
         content.onSelect = onSelect
-    }
-
-    func shouldContentUpdate(with next: HomeItem) -> Bool {
-        return title != next.title
-    }
-
-    func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: 70)
     }
 }
 
@@ -35,7 +27,7 @@ final class HomeItemContent: UIControl, NibLoadable {
 
     override var isHighlighted: Bool {
         didSet {
-            backgroundColor = isHighlighted ? .secondaryBlack : .primaryBlack
+            backgroundColor = isHighlighted ? .systemGray4 : .clear
         }
     }
 

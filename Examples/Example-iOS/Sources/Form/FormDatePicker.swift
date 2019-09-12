@@ -6,7 +6,7 @@ struct FormDatePicker: Component {
     var onSelect: (Date) -> Void
 
     func renderContent() -> FormDatePickerContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: FormDatePickerContent) {
@@ -14,16 +14,8 @@ struct FormDatePicker: Component {
         content.onSelect = onSelect
     }
 
-    func shouldContentUpdate(with next: FormDatePicker) -> Bool {
-        return false
-    }
-
     func shouldRender(next: FormDatePicker, in content: FormDatePickerContent) -> Bool {
-        return false
-    }
-
-    func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: 194)
+        false
     }
 }
 
@@ -35,7 +27,7 @@ final class FormDatePickerContent: UIView, NibLoadable {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        datePicker.setValue(UIColor.primaryWhite, forKeyPath: "textColor")
+        datePicker.setValue(UIColor.label, forKeyPath: "textColor")
         datePicker.addTarget(self, action: #selector(selected), for: .valueChanged)
     }
 
