@@ -6,7 +6,7 @@ struct FormTextPicker: Component {
     var onSelect: (String) -> Void
 
     func renderContent() -> FormTextPickerContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: FormTextPickerContent) {
@@ -14,16 +14,8 @@ struct FormTextPicker: Component {
         content.onSelect = onSelect
     }
 
-    func shouldContentUpdate(with next: FormTextPicker) -> Bool {
-        return texts != next.texts
-    }
-
     func shouldRender(next: FormTextPicker, in content: FormTextPickerContent) -> Bool {
-        return shouldContentUpdate(with: next)
-    }
-
-    func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: 162)
+        texts != next.texts
     }
 }
 
@@ -43,15 +35,15 @@ final class FormTextPickerContent: UIView, NibLoadable, UIPickerViewDelegate, UI
     var onSelect: ((String) -> Void)?
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        1
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return texts.count
+        texts.count
     }
 
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: texts[row], attributes: [.foregroundColor: UIColor.white])
+        NSAttributedString(string: texts[row], attributes: [.foregroundColor: UIColor.label])
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

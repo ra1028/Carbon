@@ -7,25 +7,17 @@ struct FormSwitch: IdentifiableComponent {
     var onSwitch: (Bool) -> Void
 
     var id: String {
-        return title
+        title
     }
 
     func renderContent() -> FormSwitchContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: FormSwitchContent) {
         content.titleLabel.text = title
         content.switch.isOn = isOn
         content.onSwitch = onSwitch
-    }
-
-    func shouldContentUpdate(with next: FormSwitch) -> Bool {
-        return title != next.title
-    }
-
-    func referenceSize(in bounds: CGRect) -> CGSize? {
-        return CGSize(width: bounds.width, height: 44)
     }
 }
 

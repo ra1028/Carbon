@@ -14,13 +14,10 @@ public protocol Updater {
     func prepare(target: Target, adapter: Adapter)
 
     /// Perform updates to render given data to the target.
-    /// The completion is expected to be called after all updates
-    /// and the its animations.
     ///
     /// - Parameters:
     ///   - target: A target instance to be updated to render given data.
     ///   - adapter: An adapter holding currently rendered data.
     ///   - data: A collection of sections to be rendered next.
-    ///   - completion: A closure that to callback end of update.
-    func performUpdates(target: Target, adapter: Adapter, data: [Section], completion: (() -> Void)?)
+    func performUpdates(target: Target, adapter: Adapter, data: [Section])
 }

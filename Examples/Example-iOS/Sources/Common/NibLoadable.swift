@@ -7,20 +7,20 @@ protocol NibLoadable: class {
 
 extension NibLoadable {
     static var nib: UINib {
-        return UINib(nibName: nibName, bundle: nibBundle)
+        UINib(nibName: nibName, bundle: nibBundle)
     }
 
     static var nibName: String {
-        return String(describing: self)
+        String(describing: self)
     }
 
     static var nibBundle: Bundle? {
-        return Bundle(for: self)
+        Bundle(for: self)
     }
 }
 
 extension NibLoadable where Self: UIView {
     static func loadFromNib() -> Self {
-        return nib.instantiate(withOwner: nil, options: nil).first as! Self
+        nib.instantiate(withOwner: nil, options: nil).first as! Self
     }
 }

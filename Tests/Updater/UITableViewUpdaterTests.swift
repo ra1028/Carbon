@@ -33,9 +33,9 @@ final class UITableViewUpdaterTests: XCTestCase {
 
         performAsyncTests(
             block: { e in
-                updater.performUpdates(target: tableView, adapter: adapter, data: [Section(id: TestID.a)]) {
-                    e.fulfill()
-                }},
+                updater.completion = e.fulfill
+                updater.performUpdates(target: tableView, adapter: adapter, data: [Section(id: TestID.a)])
+        },
             testing: {
                 XCTAssertEqual(adapter.data.count, 1)
                 XCTAssertTrue(tableView.isReloadDataCalled)
@@ -46,18 +46,22 @@ final class UITableViewUpdaterTests: XCTestCase {
         let updater = MockTableViewUpdater()
         let adapter = MockTableViewAdapter()
         let tableView = MockTableView().addingToWindow()
-        let stagedChangeset: StagedDataChangeset = [
-            DataChangeset(data: [], sectionDeleted: [0]),
-            DataChangeset(data: [], sectionInserted: [1, 2])
+        let sourceData = [
+            Section(id: 0)
+        ]
+        let targetData = [
+            Section(id: 1),
+            Section(id: 2)
         ]
 
         updater.animatableChangeCount = 1
+        adapter.data = sourceData
 
         performAsyncTests(
             block: { e in
-                updater.performDifferentialUpdates(target: tableView, adapter: adapter, data: [], stagedChangeset: stagedChangeset) {
-                    e.fulfill()
-                }},
+                updater.completion = e.fulfill
+                updater.performUpdates(target: tableView, adapter: adapter, data: targetData)
+        },
             testing: {
                 XCTAssertTrue(tableView.isReloadDataCalled)
                 XCTAssertEqual(tableView.deletedSections, [])
@@ -69,12 +73,15 @@ final class UITableViewUpdaterTests: XCTestCase {
         let updater = MockTableViewUpdater()
         let adapter = MockTableViewAdapter()
         let tableView = MockTableView().addingToWindow()
+        let data = [Section(id: TestID.a)]
+
+        adapter.data = data
 
         performAsyncTests(
             block: { e in
-                updater.performDifferentialUpdates(target: tableView, adapter: adapter, data: [Section(id: TestID.a)], stagedChangeset: []) {
-                    e.fulfill()
-                }},
+                updater.completion = e.fulfill
+                updater.performUpdates(target: tableView, adapter: adapter, data: data)
+        },
             testing: {
                 XCTAssertEqual(adapter.data.count, 1)
                 XCTAssertFalse(tableView.hasChanges)
@@ -87,6 +94,9 @@ final class UITableViewUpdaterTests: XCTestCase {
         let adapter = MockTableViewAdapter()
         let tableView = MockTableView().addingToWindow()
 
+        // Rendering visible components is no needed in this test.
+        updater.alwaysRenderVisibleComponents = false
+
         let stagedChangeset: StagedDataChangeset = [
             DataChangeset(data: [], sectionDeleted: [0, 1]),
             DataChangeset(data: [], sectionInserted: [2, 3]),
@@ -98,88 +108,79 @@ final class UITableViewUpdaterTests: XCTestCase {
             DataChangeset(data: [], elementMoved: [(source: ElementPath(element: 14, section: 15), target: ElementPath(element: 16, section: 17))])
         ]
 
-        performAsyncTests(
-            block: { e in
-                updater.performDifferentialUpdates(target: tableView, adapter: adapter, data: [Section(id: TestID.a)], stagedChangeset: stagedChangeset) {
-                    e.fulfill()
-                }},
-            testing: {
-                XCTAssertEqual(tableView.deletedSections, [0, 1])
-                XCTAssertEqual(tableView.insertedSections, [2, 3])
-                XCTAssertEqual(tableView.reloadedSections, [4, 5])
-                XCTAssertEqual(tableView.movedSections.map(Pair.init), [Pair(6, 7)])
-                XCTAssertEqual(tableView.deletedRows, [IndexPath(row: 8, section: 9)])
-                XCTAssertEqual(tableView.insertedRows, [IndexPath(row: 10, section: 11)])
-                XCTAssertEqual(tableView.reloadedRows, [IndexPath(row: 12, section: 13)])
-                XCTAssertEqual(tableView.movedRows.map(Pair.init), [Pair(IndexPath(row: 14, section: 15), IndexPath(row: 16, section: 17))])
-                XCTAssertFalse(tableView.isReloadDataCalled)
-        })
-    }
+        updater.performDifferentialUpdates(target: tableView, adapter: adapter, stagedChangeset: stagedChangeset)
 
-    func testSkipReloadComponents() {
-        let updater = MockTableViewUpdater()
-        let adapter = MockTableViewAdapter()
-        let tableView = MockTableView().addingToWindow()
-
-        let stagedChangeset: StagedDataChangeset = [
-            DataChangeset(data: [], elementUpdated: [ElementPath(element: 0, section: 0)])
-        ]
-
-        updater.skipReloadComponents = true
-
-        performAsyncTests(
-            block: { e in
-                updater.performDifferentialUpdates(target: tableView, adapter: adapter, data: [Section(id: TestID.a)], stagedChangeset: stagedChangeset) {
-                    e.fulfill()
-                }},
-            testing: {
-                XCTAssertEqual(tableView.reloadedRows, [])
-                XCTAssertFalse(tableView.isReloadDataCalled)
-        })
+        XCTAssertEqual(tableView.deletedSections, [0, 1])
+        XCTAssertEqual(tableView.insertedSections, [2, 3])
+        XCTAssertEqual(tableView.reloadedSections, [4, 5])
+        XCTAssertEqual(tableView.movedSections.map(Pair.init), [Pair(6, 7)])
+        XCTAssertEqual(tableView.deletedRows, [IndexPath(row: 8, section: 9)])
+        XCTAssertEqual(tableView.insertedRows, [IndexPath(row: 10, section: 11)])
+        XCTAssertEqual(tableView.reloadedRows, [IndexPath(row: 12, section: 13)])
+        XCTAssertEqual(tableView.movedRows.map(Pair.init), [Pair(IndexPath(row: 14, section: 15), IndexPath(row: 16, section: 17))])
+        XCTAssertFalse(tableView.isReloadDataCalled)
     }
 
     func testAlwaysRenderVisibleComponents() {
         let updater = MockTableViewUpdater()
         let adapter = MockTableViewAdapter()
         let tableView = MockTableView().addingToWindow()
-        let header = UITableViewComponentHeaderFooterView(reuseIdentifier: nil)
-        let cell = UITableViewComponentCell(style: .default, reuseIdentifier: nil)
-        let footer = UITableViewComponentHeaderFooterView(reuseIdentifier: nil)
-        let component = MockIdentifiableComponent(id: TestID.b)
-        let data = [
+
+        let visible = (
+            header: UITableViewComponentHeaderFooterView(reuseIdentifier: nil),
+            cell: UITableViewComponentCell(style: .default, reuseIdentifier: nil),
+            footer: UITableViewComponentHeaderFooterView(reuseIdentifier: nil),
+            component: MockIdentifiableComponent(id: TestID.a),
+            indexPath: IndexPath(item: 0, section: 0)
+        )
+        let unvisible = (
+            header: UITableViewComponentHeaderFooterView(reuseIdentifier: nil),
+            cell: UITableViewComponentCell(style: .default, reuseIdentifier: nil),
+            footer: UITableViewComponentHeaderFooterView(reuseIdentifier: nil),
+            component: MockIdentifiableComponent(id: TestID.b),
+            indexPath: IndexPath(item: 0, section: 1)
+        )
+
+        let data = [visible, unvisible].map { mock in
             Section(
                 id: TestID.a,
-                header: ViewNode(component),
+                header: ViewNode(mock.component),
                 cells: [
-                    CellNode(component)
+                    CellNode(mock.component)
                 ],
-                footer: ViewNode(component)
+                footer: ViewNode(mock.component)
             )
-        ]
+        }
 
         tableView.bounds = CGRect(x: 0, y: 0, width: 500, height: 500)
         tableView.customNumberOfSections = data.count
-        tableView.customIndexPathsForVisibleRows = [IndexPath(row: 0, section: 0)]
-        tableView.customCellForRowAt = { _ in cell }
-        tableView.customHeaderViewForSection = { _ in header }
-        tableView.customFooterViewForSection = { _ in footer }
-
-        updater.alwaysRenderVisibleComponents = true
-
-        XCTAssertNil(cell.renderedComponent)
-
-        updater.performDifferentialUpdates(target: tableView, adapter: adapter, data: data, stagedChangeset: [], completion: nil)
-
-        if
-            let cellComponent = cell.renderedComponent?.as(MockIdentifiableComponent<TestID>.self),
-            let headerComponent = header.renderedComponent?.as(MockIdentifiableComponent<TestID>.self),
-            let footerComponent = footer.renderedComponent?.as(MockIdentifiableComponent<TestID>.self) {
-            XCTAssertEqual(cellComponent, component)
-            XCTAssertEqual(headerComponent, component)
-            XCTAssertEqual(footerComponent, component)
+        tableView.customIndexPathsForVisibleRows = [visible.indexPath]
+        tableView.customCellForRowAt = { indexPath in
+            indexPath == visible.indexPath ? visible.cell : unvisible.cell
         }
-        else {
-            XCTFail()
+        tableView.customHeaderViewForSection = { section in
+            section == visible.indexPath.section ? visible.header : unvisible.header
         }
+        tableView.customFooterViewForSection = { section in
+            section == visible.indexPath.section ? visible.footer : unvisible.footer
+        }
+        tableView.customRectForSection = { section in
+            let y: CGFloat = section == visible.indexPath.section ? 0 : 1000
+            return CGRect(x: 0, y: y, width: 500, height: 500)
+        }
+
+        XCTAssertNil(visible.cell.renderedComponent)
+        XCTAssertNil(visible.header.renderedComponent)
+        XCTAssertNil(visible.footer.renderedComponent)
+
+        adapter.data = data
+        updater.performDifferentialUpdates(target: tableView, adapter: adapter, stagedChangeset: [])
+
+        XCTAssertEqual(visible.component, visible.cell.renderedComponent?.as(MockIdentifiableComponent<TestID>.self))
+        XCTAssertEqual(visible.component, visible.header.renderedComponent?.as(MockIdentifiableComponent<TestID>.self))
+        XCTAssertEqual(visible.component, visible.footer.renderedComponent?.as(MockIdentifiableComponent<TestID>.self))
+        XCTAssertNil(unvisible.cell.renderedComponent)
+        XCTAssertNil(unvisible.header.renderedComponent)
+        XCTAssertNil(unvisible.footer.renderedComponent)
     }
 }

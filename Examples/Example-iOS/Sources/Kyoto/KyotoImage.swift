@@ -6,16 +6,12 @@ struct KyotoImage: IdentifiableComponent, Hashable {
     var image: UIImage
 
     func renderContent() -> KyotoImageContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: KyotoImageContent) {
         content.imageView.image = image
         content.titleLabel.text = title
-    }
-
-    func referenceSize(in bounds: CGRect) -> CGSize? {
-        return nil
     }
 }
 

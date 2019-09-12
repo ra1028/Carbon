@@ -12,11 +12,11 @@ struct TodoText: IdentifiableComponent, Deletable {
     var onEvent: (Event) -> Void
 
     var id: Todo.ID {
-        return todo.id
+        todo.id
     }
 
     func renderContent() -> TodoTextContent {
-        return .loadFromNib()
+        .loadFromNib()
     }
 
     func render(in content: TodoTextContent) {
@@ -26,15 +26,6 @@ struct TodoText: IdentifiableComponent, Deletable {
         content.onToggleCompleted = {
             self.onEvent(.toggleCompleted)
         }
-    }
-
-    func shouldContentUpdate(with next: TodoText) -> Bool {
-        return todo != next.todo
-            || isCompleted != next.isCompleted
-    }
-
-    func referenceSize(in bounds: CGRect) -> CGSize? {
-        return nil
     }
 
     func delete() {

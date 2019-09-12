@@ -2,10 +2,6 @@ import UIKit
 import Carbon
 
 final class HelloViewController: UIViewController {
-    enum ID {
-        case greet
-    }
-
     @IBOutlet var tableView: UITableView!
 
     var isToggled = false {
@@ -28,27 +24,23 @@ final class HelloViewController: UIViewController {
     }
 
     func render() {
-        renderer.render(
-            Section(id: ID.greet) { section in
-                section.header = ViewNode(Header(title: "GREET"))
+        renderer.render {
+            Header("GREET")
+                .identified(by: \.title)
 
-                if isToggled {
-                    section.cells = [
-                        CellNode(HelloMessage(name: "Jules")),
-                        CellNode(HelloMessage(name: "Vincent"))
-                    ]
-                }
-                else {
-                    section.cells = [
-                        CellNode(HelloMessage(name: "Vincent")),
-                        CellNode(HelloMessage(name: "Jules")),
-                        CellNode(HelloMessage(name: "Butch"))
-                    ]
-                }
-
-                section.footer = ViewNode(Footer(text: "💡 Tap anywhere"))
+            if isToggled {
+                HelloMessage("Jules")
+                HelloMessage("Vincent")
             }
-        )
+            else {
+                HelloMessage("Vincent")
+                HelloMessage("Jules")
+                HelloMessage("Mia")
+            }
+
+            Footer("👋 Greeting from Carbon")
+                .identified(by: \.text)
+        }
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -1,7 +1,7 @@
 import UIKit
 
 /// An updater for managing diffing updates to render data to the `UITableView`.
-open class UITableViewUpdater<Adapter: Carbon.Adapter & UITableViewDelegate & UITableViewDataSource>: Updater {
+open class UITableViewUpdater<Adapter: UITableViewAdapter>: Updater {
     /// An animation for section deletions. Default is fade.
     open var deleteSectionsAnimation = UITableView.RowAnimation.fade
 
@@ -25,21 +25,21 @@ open class UITableViewUpdater<Adapter: Carbon.Adapter & UITableViewDelegate & UI
 
     /// A Bool value indicating whether that enable diffing animation while target is
     /// scrolling. Default is false.
-    open var isAnimationEnabledWhileScrolling = true
-
-    /// A Bool value indicating whether that skips reload components. Default is false.
-    open var skipReloadComponents = false
+    open var isAnimationEnabledWhileScrolling = false
 
     /// A Bool value indicating whether that to always render visible components
-    /// after diffing updated. Default is false.
-    open var alwaysRenderVisibleComponents = false
+    /// after diffing updated. Default is true.
+    open var alwaysRenderVisibleComponents = true
 
     /// A Bool value indicating whether that to reset content offset after
-    /// updated if not scrolling. Default is false.
-    open var keepsContentOffset = false
+    /// updated if not scrolling. Default is true.
+    open var keepsContentOffset = true
 
     /// Max number of changes that can be animated for diffing updates. Default is 300.
     open var animatableChangeCount = 300
+
+    /// A completion handler to be called after each updates.
+    open var completion: (() -> Void)?
 
     /// Create a new updater.
     public init() {}
@@ -68,14 +68,15 @@ open class UITableViewUpdater<Adapter: Carbon.Adapter & UITableViewDelegate & UI
         target.reloadData()
     }
 
-    /// Calculates a set of changes to perform diffing updates.
+    /// Perform updates to render given data to the target.
+    /// The completion is expected to be called after all updates
+    /// and the its animations.
     ///
     /// - Parameters:
     ///   - target: A target instance to be updated to render given data.
     ///   - adapter: An adapter holding currently rendered data.
     ///   - data: A collection of sections to be rendered next.
-    ///   - completion: A closure that to callback end of update and animations.
-    open func performUpdates(target: UITableView, adapter: Adapter, data: [Section], completion: (() -> Void)?) {
+    open func performUpdates(target: UITableView, adapter: Adapter, data: [Section]) {
         guard case .some = target.window else {
             adapter.data = data
             target.reloadData()
@@ -84,28 +85,10 @@ open class UITableViewUpdater<Adapter: Carbon.Adapter & UITableViewDelegate & UI
         }
 
         let stagedChangeset = StagedDataChangeset(source: adapter.data, target: data)
-        performDifferentialUpdates(target: target, adapter: adapter, data: data, stagedChangeset: stagedChangeset, completion: completion)
-    }
-
-    /// Perform diffing updates to render given data to the target.
-    /// The completion is called after all updates and the its animations.
-    ///
-    /// - Parameters:
-    ///   - target: A target instance to be updated to render given data.
-    ///   - adapter: An adapter holding currently rendered data.
-    ///   - data: A collection of sections to be rendered next.
-    ///   - stagedChangeset: A staged set of changes of current data and next data..
-    ///   - completion: A closure that to callback end of update and animations.
-    open func performDifferentialUpdates(target: UITableView, adapter: Adapter, data: [Section], stagedChangeset: StagedDataChangeset, completion: (() -> Void)?) {
-        func renderVisibleComponentsIfNeeded() {
-            if alwaysRenderVisibleComponents {
-                renderVisibleComponents(in: target, adapter: adapter)
-            }
-        }
 
         guard !stagedChangeset.isEmpty else {
             adapter.data = data
-            renderVisibleComponentsIfNeeded()
+            renderVisibleComponentsIfNeeded(in: target, adapter: adapter)
             completion?()
             return
         }
@@ -121,12 +104,24 @@ open class UITableViewUpdater<Adapter: Carbon.Adapter & UITableViewDelegate & UI
             return
         }
 
-        func performAnimatedUpdates() {
-            let contentOffsetYBeforeUpdates = target.contentOffset.y
+        CATransaction.begin()
+        CATransaction.setCompletionBlock(completion)
 
-            CATransaction.begin()
-            CATransaction.setCompletionBlock(completion)
+        performDifferentialUpdates(target: target, adapter: adapter, stagedChangeset: stagedChangeset)
 
+        CATransaction.commit()
+    }
+
+    /// Perform diffing updates to render given data to the target.
+    ///
+    /// - Parameters:
+    ///   - target: A target instance to be updated to render given data.
+    ///   - adapter: An adapter holding currently rendered data.
+    ///   - stagedChangeset: A staged set of changes of current data and next data.
+    open func performDifferentialUpdates(target: UITableView, adapter: Adapter, stagedChangeset: StagedDataChangeset) {
+        let contentOffsetBeforeUpdates = target.contentOffset
+
+        func performBatchUpdates() {
             for changeset in stagedChangeset {
                 target._performBatchUpdates {
                     adapter.data = changeset.data
@@ -155,7 +150,7 @@ open class UITableViewUpdater<Adapter: Carbon.Adapter & UITableViewDelegate & UI
                         target.insertRows(at: changeset.elementInserted.map { IndexPath(row: $0.element, section: $0.section) }, with: insertRowsAnimation)
                     }
 
-                    if !skipReloadComponents && !changeset.elementUpdated.isEmpty {
+                    if !changeset.elementUpdated.isEmpty {
                         target.reloadRows(at: changeset.elementUpdated.map { IndexPath(row: $0.element, section: $0.section) }, with: reloadRowsAnimation)
                     }
 
@@ -164,22 +159,20 @@ open class UITableViewUpdater<Adapter: Carbon.Adapter & UITableViewDelegate & UI
                     }
                 }
             }
-
-            renderVisibleComponentsIfNeeded()
-
-            CATransaction.commit()
-
-            if keepsContentOffset && target._isContentRectContainsBounds && !target._isScrolling {
-                target.contentOffset.y = min(target._maxContentOffsetY, contentOffsetYBeforeUpdates)
-            }
         }
 
-        if isAnimationEnabled && (!target._isScrolling || isAnimationEnabledWhileScrolling) {
-            performAnimatedUpdates()
+        if isAnimationEnabled && (isAnimationEnabledWhileScrolling || !target._isScrolling) {
+            performBatchUpdates()
         }
         else {
-            UIView.performWithoutAnimation(performAnimatedUpdates)
+            UIView.performWithoutAnimation(performBatchUpdates)
         }
+
+        if keepsContentOffset {
+            target._setAdjustedContentOffsetIfNeeded(contentOffsetBeforeUpdates)
+        }
+
+        renderVisibleComponentsIfNeeded(in: target, adapter: adapter)
     }
 
     /// Renders components displayed in visible area again.
@@ -188,29 +181,41 @@ open class UITableViewUpdater<Adapter: Carbon.Adapter & UITableViewDelegate & UI
     ///   - target: A target instance to render components.
     ///   - adapter: An adapter holding currently rendered data.
     open func renderVisibleComponents(in target: UITableView, adapter: Adapter) {
-        let sections = 0..<target.numberOfSections
-        let visibleRect = target.bounds
+        UIView.performWithoutAnimation {
+            target._performBatchUpdates {
+                let sections = 0..<target.numberOfSections
+                let visibleRect = target.bounds
 
-        for section in sections {
-            guard target.rect(forSection: section).intersects(visibleRect) else {
-                continue
-            }
+                for section in sections {
+                    guard target.rect(forSection: section).intersects(visibleRect) else {
+                        continue
+                    }
 
-            if let headerNode = adapter.headerNode(in: section) {
-                let view = target.headerView(forSection: section) as? ComponentRenderable
-                view?.render(component: headerNode.component)
-            }
+                    if let headerNode = adapter.headerNode(in: section) {
+                        let view = target.headerView(forSection: section) as? ComponentRenderable
+                        view?.render(component: headerNode.component)
+                    }
 
-            if let footerNode = adapter.footerNode(in: section) {
-                let view = target.footerView(forSection: section) as? ComponentRenderable
-                view?.render(component: footerNode.component)
+                    if let footerNode = adapter.footerNode(in: section) {
+                        let view = target.footerView(forSection: section) as? ComponentRenderable
+                        view?.render(component: footerNode.component)
+                    }
+                }
+
+                for indexPath in target.indexPathsForVisibleRows ?? [] {
+                    let cellNode = adapter.cellNode(at: indexPath)
+                    let cell = target.cellForRow(at: indexPath) as? ComponentRenderable
+                    cell?.render(component: cellNode.component)
+                }
             }
         }
+    }
+}
 
-        for indexPath in target.indexPathsForVisibleRows ?? [] {
-            let cellNode = adapter.cellNode(at: indexPath)
-            let cell = target.cellForRow(at: indexPath) as? ComponentRenderable
-            cell?.render(component: cellNode.component)
+private extension UITableViewUpdater {
+    func renderVisibleComponentsIfNeeded(in target: UITableView, adapter: Adapter) {
+        if alwaysRenderVisibleComponents {
+            renderVisibleComponents(in: target, adapter: adapter)
         }
     }
 }

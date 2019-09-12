@@ -1,27 +1,27 @@
 import UIKit
 
 /// An updater for managing diffing updates to render data to the `UICollectionView`.
-open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDelegate & UICollectionViewDataSource>: Updater {
+open class UICollectionViewUpdater<Adapter: UICollectionViewAdapter>: Updater {
     /// A Bool value indicating whether that enable diffing animation. Default is true.
     open var isAnimationEnabled = true
 
     /// A Bool value indicating whether that enable diffing animation while target is
     /// scrolling. Default is false.
-    open var isAnimationEnabledWhileScrolling = true
-
-    /// A Bool value indicating whether that skips reload components. Default is false.
-    open var skipReloadComponents = false
+    open var isAnimationEnabledWhileScrolling = false
 
     /// A Bool value indicating whether that to always render visible components
-    /// after diffing updated. Default is false.
-    open var alwaysRenderVisibleComponents = false
+    /// after diffing updated. Default is true.
+    open var alwaysRenderVisibleComponents = true
 
     /// A Bool value indicating whether that to reset content offset after
-    /// updated if not scrolling. Default is false.
-    open var keepsContentOffset = false
+    /// updated if not scrolling. Default is true.
+    open var keepsContentOffset = true
 
     /// Max number of changes that can be animated for diffing updates. Default is 300.
     open var animatableChangeCount = 300
+
+    /// A completion handler to be called after each updates.
+    open var completion: (() -> Void)?
 
     /// Create a new updater.
     public init() {}
@@ -38,14 +38,15 @@ open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDel
         target.collectionViewLayout.invalidateLayout()
     }
 
-    /// Calculates a set of changes to perform diffing updates.
+    /// Perform updates to render given data to the target.
+    /// The completion is expected to be called after all updates
+    /// and the its animations.
     ///
     /// - Parameters:
     ///   - target: A target instance to be updated to render given data.
     ///   - adapter: An adapter holding currently rendered data.
     ///   - data: A collection of sections to be rendered next.
-    ///   - completion: A closure that to callback end of update and animations.
-    open func performUpdates(target: UICollectionView, adapter: Adapter, data: [Section], completion: (() -> Void)?) {
+    open func performUpdates(target: UICollectionView, adapter: Adapter, data: [Section]) {
         guard case .some = target.window else {
             adapter.data = data
             target.reloadData()
@@ -54,28 +55,10 @@ open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDel
         }
 
         let stagedChangeset = StagedDataChangeset(source: adapter.data, target: data)
-        performDifferentialUpdates(target: target, adapter: adapter, data: data, stagedChangeset: stagedChangeset, completion: completion)
-    }
-
-    /// Perform diffing updates to render given data to the target.
-    /// The completion is called after all updates and the its animations.
-    ///
-    /// - Parameters:
-    ///   - target: A target instance to be updated to render given data.
-    ///   - adapter: An adapter holding currently rendered data.
-    ///   - data: A collection of sections to be rendered next.
-    ///   - stagedChangeset: A staged set of changes of current data and next data..
-    ///   - completion: A closure that to callback end of update and animations.
-    open func performDifferentialUpdates(target: UICollectionView, adapter: Adapter, data: [Section], stagedChangeset: StagedDataChangeset, completion: (() -> Void)?) {
-        func renderVisibleComponentsIfNeeded() {
-            if alwaysRenderVisibleComponents {
-                renderVisibleComponents(in: target, adapter: adapter)
-            }
-        }
 
         guard !stagedChangeset.isEmpty else {
             adapter.data = data
-            renderVisibleComponentsIfNeeded()
+            renderVisibleComponentsIfNeeded(in: target, adapter: adapter)
             completion?()
             return
         }
@@ -91,12 +74,24 @@ open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDel
             return
         }
 
-        func performAnimatedUpdates() {
-            let contentOffsetBeforeUpdates = target.contentOffset
+        CATransaction.begin()
+        CATransaction.setCompletionBlock(completion)
 
-            CATransaction.begin()
-            CATransaction.setCompletionBlock(completion)
+        performDifferentialUpdates(target: target, adapter: adapter, stagedChangeset: stagedChangeset)
 
+        CATransaction.commit()
+    }
+
+    /// Perform diffing updates to render given data to the target.
+    ///
+    /// - Parameters:
+    ///   - target: A target instance to be updated to render given data.
+    ///   - adapter: An adapter holding currently rendered data.
+    ///   - stagedChangeset: A staged set of changes of current data and next data.
+    open func performDifferentialUpdates(target: UICollectionView, adapter: Adapter, stagedChangeset: StagedDataChangeset) {
+        let contentOffsetBeforeUpdates = target.contentOffset
+
+        func performBatchUpdates() {
             for changeset in stagedChangeset {
                 target.performBatchUpdates({
                     adapter.data = changeset.data
@@ -125,7 +120,7 @@ open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDel
                         target.insertItems(at: changeset.elementInserted.map { IndexPath(item: $0.element, section: $0.section) })
                     }
 
-                    if !skipReloadComponents && !changeset.elementUpdated.isEmpty {
+                    if !changeset.elementUpdated.isEmpty {
                         target.reloadItems(at: changeset.elementUpdated.map { IndexPath(item: $0.element, section: $0.section) })
                     }
 
@@ -134,25 +129,20 @@ open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDel
                     }
                 })
             }
-
-            renderVisibleComponentsIfNeeded()
-
-            CATransaction.commit()
-
-            if keepsContentOffset && target._isContentRectContainsBounds && !target._isScrolling {
-                target.contentOffset = CGPoint(
-                    x: min(target._maxContentOffsetX, contentOffsetBeforeUpdates.x),
-                    y: min(target._maxContentOffsetY, contentOffsetBeforeUpdates.y)
-                )
-            }
         }
 
-        if isAnimationEnabled && (!target._isScrolling || isAnimationEnabledWhileScrolling) {
-            performAnimatedUpdates()
+        if isAnimationEnabled && (isAnimationEnabledWhileScrolling || !target._isScrolling) {
+            performBatchUpdates()
         }
         else {
-            UIView.performWithoutAnimation(performAnimatedUpdates)
+            UIView.performWithoutAnimation(performBatchUpdates)
         }
+
+        if keepsContentOffset {
+            target._setAdjustedContentOffsetIfNeeded(contentOffsetBeforeUpdates)
+        }
+
+        renderVisibleComponentsIfNeeded(in: target, adapter: adapter)
     }
 
     /// Renders components displayed in visible area again.
@@ -161,31 +151,33 @@ open class UICollectionViewUpdater<Adapter: Carbon.Adapter & UICollectionViewDel
     ///   - target: A target instance to render components.
     ///   - adapter: An adapter holding currently rendered data.
     open func renderVisibleComponents(in target: UICollectionView, adapter: Adapter) {
-        let headerElementKind = UICollectionView.elementKindSectionHeader
-        let footerElementKind = UICollectionView.elementKindSectionFooter
+        UIView.performWithoutAnimation {
+            target.performBatchUpdates({
+                for kind in adapter.registeredSupplementaryViewKinds(for: target) {
+                    for indexPath in target.indexPathsForVisibleSupplementaryElements(ofKind: kind) {
+                        guard let node = adapter.supplementaryViewNode(forElementKind: kind, collectionView: target, at: indexPath) else {
+                            continue
+                        }
 
-        for indexPath in target.indexPathsForVisibleSupplementaryElements(ofKind: headerElementKind) {
-            guard let headerNode = adapter.headerNode(in: indexPath.section) else {
-                continue
-            }
+                        let view = target.supplementaryView(forElementKind: kind, at: indexPath) as? ComponentRenderable
+                        view?.render(component: node.component)
+                    }
+                }
 
-            let view = target.supplementaryView(forElementKind: headerElementKind, at: indexPath) as? ComponentRenderable
-            view?.render(component: headerNode.component)
+                for indexPath in target.indexPathsForVisibleItems {
+                    let cellNode = adapter.cellNode(at: indexPath)
+                    let cell = target.cellForItem(at: indexPath) as? ComponentRenderable
+                    cell?.render(component: cellNode.component)
+                }
+            })
         }
+    }
+}
 
-        for indexPath in target.indexPathsForVisibleSupplementaryElements(ofKind: footerElementKind) {
-            guard let footerNode = adapter.headerNode(in: indexPath.section) else {
-                continue
-            }
-
-            let view = target.supplementaryView(forElementKind: footerElementKind, at: indexPath) as? ComponentRenderable
-            view?.render(component: footerNode.component)
-        }
-
-        for indexPath in target.indexPathsForVisibleItems {
-            let cellNode = adapter.cellNode(at: indexPath)
-            let cell = target.cellForItem(at: indexPath) as? ComponentRenderable
-            cell?.render(component: cellNode.component)
+private extension UICollectionViewUpdater {
+    func renderVisibleComponentsIfNeeded(in target: UICollectionView, adapter: Adapter) {
+        if alwaysRenderVisibleComponents {
+            renderVisibleComponents(in: target, adapter: adapter)
         }
     }
 }
