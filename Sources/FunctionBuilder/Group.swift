@@ -15,7 +15,8 @@ public struct Group<Element> {
     @usableFromInline
     internal var elements: [Element]
 
-    private init() {
+    /// Creates a group without elements.
+    public init() {
         elements = []
     }
 }

@@ -4,6 +4,11 @@ import XCTest
 @testable import Carbon
 
 final class GroupTests: XCTestCase {
+    func testInitWithoutElements() {
+        let group = Group<CellNode>()
+        XCTAssertTrue(group.elements.isEmpty)
+    }
+
     func testCellsWithFunctionBuilder() {
         let componentA = A.Component()
         let componentB = B.Component()
