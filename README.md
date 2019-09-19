@@ -1,29 +1,28 @@
-<H1 align="center">
-Carbon
-</H1>
+<p align="center">
+<img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/logo/png/logo_carbon_bnr3_white.png" width=700>
+</p>
+
 <H4 align="center">
 A declarative library for building component-based user interfaces</br>
 in UITableView and UICollectionView.</br>
 </H4>
 
+|Declarative|Component-Based|Non-Destructive|
+|:----------|:--------------|:--------------|
+|Provides a declarative design with power of diffing algorithm for building list UIs.|Declare component once, it can be reused regardless kind of the list element.|Solves the various problems by architecture and algorithm without destructing UIKit.|
+
+<br>
+
 <p align="center">
-<a href="https://developer.apple.com/swift"><img alt="Swift5" src="https://img.shields.io/badge/language-Swift5-orange.svg"/></a>
 <a href="https://github.com/ra1028/Carbon/releases/latest"><img alt="Release" src="https://img.shields.io/github/release/ra1028/Carbon.svg"/></a>
 <a href="https://cocoapods.org/pods/Carbon"><img alt="CocoaPods" src="https://img.shields.io/cocoapods/v/Carbon.svg"/></a>
 <a href="https://github.com/Carthage/Carthage"><img alt="Carthage" src="https://img.shields.io/badge/carthage-compatible-yellow.svg"/></a>
 </br>
 <a href="https://dev.azure.com/ra1028/GitHub/_build/latest?definitionId=2&branchName=master"><img alt="Build Status" src="https://dev.azure.com/ra1028/GitHub/_apis/build/status/ra1028.Carbon?branchName=master"/></a>
+<a href="https://developer.apple.com/swift"><img alt="Swift5" src="https://img.shields.io/badge/language-Swift5-orange.svg"/></a>
 <a href="https://developer.apple.com/"><img alt="Platform" src="https://img.shields.io/badge/platform-iOS-green.svg"/></a>
 <a href="https://github.com/ra1028/Carbon/blob/master/LICENSE"><img alt="Lincense" src="https://img.shields.io/badge/License-Apache%202.0-black.svg"/></a>
 </p>
-
-<p align="center">
-Made with ❤️ by <a href="https://github.com/ra1028">Ryo Aoyama</a>
-</p>
-
-|Declarative|Component-Based|Non-Destructive|
-|:----------|:--------------|:--------------|
-|Provides a declarative design with power of diffing algorithm for building list UIs.|Declare component once, it can be reused regardless kind of the list element.|Solves the various problems by architecture and algorithm without destructing UIKit.|
 
 ---
 
@@ -355,7 +354,6 @@ class MenuItemContent: UIControl {
 }
 ```
 
-```swift
 struct MenuItem: Component {
     var text: String
     var onSelect: () -> Void
@@ -571,3 +569,7 @@ Libraries for list UIs using diffing algorithm that I have sincerely ❤️ and 
 ## License
 
 Carbon is released under the [Apache 2.0 License](https://github.com/ra1028/Carbon/blob/master/LICENSE).  
+
+---
+
+![Carbon Logo](https://raw.githubusercontent.com/ra1028/Carbon/master/assets/logo/png/logo_carbon_bnr1_white.png)
