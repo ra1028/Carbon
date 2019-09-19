@@ -1,28 +1,30 @@
 trigger:
-- master
+  - master
 
 jobs:
-- job: macOS
-  pool:
-    vmImage: 'macOS 10.14'
-  strategy:
-    maxParallel: 10
-    matrix:
-      xcode10_2:
-        DEVELOPER_DIR: /Applications/Xcode_10.2.app
-      xcode11:
-        DEVELOPER_DIR: /Applications/Xcode_11.app
-  steps:
-    - checkout: self
-      submodules: true
-    - script: |
-        set -o pipefail &&
-        xcodebuild build-for-testing test-without-building -workspace Carbon.xcworkspace -scheme Carbon -configuration Release -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone Xs' ENABLE_TESTABILITY=YES |
-        xcpretty -c -r junit -o build/reports/xcodebuild-iOS.xml
-      displayName: xcodebuild test iOS
-      condition: succeededOrFailed()
-    - task: PublishTestResults@2
-      inputs:
-        testRunner: JUnit
-        testResultsFiles: build/reports/**
-      condition: succeededOrFailed()
+  - job: macOS
+    pool:
+      vmImage: "macOS 10.14"
+    strategy:
+      maxParallel: 10
+      matrix:
+        xcode10_2:
+          DEVELOPER_DIR: /Applications/Xcode_10.2.app
+          SIMULATOR_NAME: iPhone Xs
+        xcode11:
+          DEVELOPER_DIR: /Applications/Xcode_11.app
+          SIMULATOR_NAME: iPhone 11 Pro
+    steps:
+      - checkout: self
+        submodules: true
+      - script: |
+          set -o pipefail &&
+          xcodebuild build-for-testing test-without-building -workspace Carbon.xcworkspace -scheme Carbon -configuration Release -sdk iphonesimulator -destination 'platform=iOS Simulator,name=$(SIMULATOR_NAME)' ENABLE_TESTABILITY=YES |
+          xcpretty -c -r junit -o build/reports/xcodebuild-iOS.xml
+        displayName: xcodebuild test iOS on $(SIMULATOR_NAME)
+        condition: succeededOrFailed()
+      - task: PublishTestResults@2
+        inputs:
+          testRunner: JUnit
+          testResultsFiles: build/reports/**
+        condition: succeededOrFailed()
