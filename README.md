@@ -279,6 +279,7 @@ struct HelloMessage: Component {
     func render(in content: HelloMessageContent) {
         content.label.text = "Hello \(name)"
     }
+}
 ```
 
 ### IdentifiableComponent
@@ -354,6 +355,7 @@ class MenuItemContent: UIControl {
 }
 ```
 
+```swift
 struct MenuItem: Component {
     var text: String
     var onSelect: () -> Void
