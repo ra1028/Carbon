@@ -1,4 +1,3 @@
-<p align="center">
 <img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/logo/png/logo_carbon_bnr3_white.png" width=700>
 </p>
 
@@ -30,6 +29,7 @@ in UITableView and UICollectionView.</br>
 
 Carbon is a library for building component-based user interfaces in UITableView and UICollectionView inspired by [SwiftUI](https://developer.apple.com/xcode/swiftui) and [React](https://reactjs.org).  
 This make it painless to build and maintain the complex UIs.  
+Since components made with `Carbon` can be works directly on `SwiftUI`, the cost of future migration can be greatly reduced.  
 
 Uses [DifferenceKit](https://github.com/ra1028/DifferenceKit) which is highly optimized based on Paul Heckel's paper for diffing.  
 Declarative design and diffing algorithm make your code more predictable, debugging easier and providing beautiful animations to users.  
@@ -60,6 +60,24 @@ renderer.render {
 
 |![Pangram](https://raw.githubusercontent.com/ra1028/Carbon/master/assets/pangram.gif)|![Kyoto](https://raw.githubusercontent.com/ra1028/Carbon/master/assets/kyoto.gif)|![Emoji](https://raw.githubusercontent.com/ra1028/Carbon/master/assets/emoji.gif)|![Todo](https://raw.githubusercontent.com/ra1028/Carbon/master/assets/todo.gif)|![Form](https://raw.githubusercontent.com/ra1028/Carbon/master/assets/form.gif)|
 |:----------------------------:|:------------------------:|:------------------------:|:----------------------:|:----------------------:|
+
+---
+
+### SwiftUI Compatible
+
+```swift
+struct ContentView: View {
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("GREET")
+
+            HelloMessage("World")
+
+            Spacer()
+        }
+    }
+}
+```
 
 ---
 
@@ -296,6 +314,36 @@ struct HelloMessage: IdentifiableComponent {
     }
 
     ...
+```
+
+### SwiftUI Compatible
+
+Components made with `Carbon` are compatible with `SwiftUI`.  
+The component can easily works as SwiftUI by composing with `View` protocol.  
+However, SwiftUI doesn't support self-sizing by auto layout, so we need to specify the height explicitly by `Component.referenceSize(in:)` or `View.frame(height:)`.  
+
+```swift
+struct HelloMessage: Component, View {
+    ...
+}
+```
+
+```swift
+struct ContentView: View {
+    var body: some View {
+        ScrollView {
+            VStack {
+                Text("GREET")
+                    .font(.title)
+                    .padding(.horizontal, 16)
+
+                HelloMessage("World")
+                    .frame(height: 60)
+                    .background(Color.red)
+            }
+        }
+    }
+}
 ```
 
 ### Component in-Depth
@@ -536,6 +584,12 @@ pod 'Carbon'
 Add the following to your `Cartfile`:
 ```
 github "ra1028/Carbon"
+```
+
+### [Swift Package Manager](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app)
+Select Xcode menu File > Swift Packages > Add Package Dependency and enter repository URL with GUI.
+```
+Repository: https://github.com/ra1028/Carbon
 ```
 
 ---
