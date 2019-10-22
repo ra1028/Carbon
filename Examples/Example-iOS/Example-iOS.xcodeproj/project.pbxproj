@@ -66,10 +66,28 @@
 		6BBC27B321EF8A6600446FB7 /* EmojiLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBC27B221EF8A6600446FB7 /* EmojiLabel.swift */; };
 		6BBC27B521EF8CDC00446FB7 /* EmojiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BBC27B421EF8CDB00446FB7 /* EmojiViewController.xib */; };
 		6BBC27B721EF8D4D00446FB7 /* EmojiLabelContent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BBC27B621EF8D4D00446FB7 /* EmojiLabelContent.xib */; };
+		6BD04F13235F875200E53082 /* DifferenceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6594F721E272D500291AAF /* DifferenceKit.framework */; };
+		6BD04F14235F875200E53082 /* DifferenceKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6594F721E272D500291AAF /* DifferenceKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6BE9F755235F7CBF0023EF98 /* MagazineLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 6BE9F754235F7CBF0023EF98 /* MagazineLayout */; };
 		6BE9F758235F7CF50023EF98 /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6BE9F757235F7CF50023EF98 /* SwipeCellKit */; };
-		6BE9F760235F80960023EF98 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE9F75F235F80960023EF98 /* Carbon.framework */; };
+		6BE9F763235F85CA0023EF98 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE9F75F235F80960023EF98 /* Carbon.framework */; };
+		6BE9F764235F85CA0023EF98 /* Carbon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE9F75F235F80960023EF98 /* Carbon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6BE9F765235F85CA0023EF98 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6BD04F14235F875200E53082 /* DifferenceKit.framework in Embed Frameworks */,
+				6BE9F764235F85CA0023EF98 /* Carbon.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6B00B0A3233AA23F002A45E5 /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
@@ -145,7 +163,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6BE9F755235F7CBF0023EF98 /* MagazineLayout in Frameworks */,
-				6BE9F760235F80960023EF98 /* Carbon.framework in Frameworks */,
+				6BE9F763235F85CA0023EF98 /* Carbon.framework in Frameworks */,
+				6BD04F13235F875200E53082 /* DifferenceKit.framework in Frameworks */,
 				6BE9F758235F7CF50023EF98 /* SwipeCellKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,6 +350,7 @@
 				6B6594C921E2619B00291AAF /* Frameworks */,
 				6B6594CA21E2619B00291AAF /* Resources */,
 				6B7ADEF521FDC40B003803BE /* SwiftLint */,
+				6BE9F765235F85CA0023EF98 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -630,7 +650,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -653,7 +673,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
