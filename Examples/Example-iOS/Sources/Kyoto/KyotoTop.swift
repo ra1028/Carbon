@@ -1,7 +1,7 @@
-import UIKit
+import SwiftUI
 import Carbon
 
-struct KyotoTop: Component, Hashable {
+struct KyotoTop: Component, View, Hashable {
     func renderContent() -> KyotoTopContent {
         .loadFromNib()
     }

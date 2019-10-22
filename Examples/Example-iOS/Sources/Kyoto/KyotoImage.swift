@@ -1,7 +1,7 @@
-import UIKit
+import SwiftUI
 import Carbon
 
-struct KyotoImage: IdentifiableComponent, Hashable {
+struct KyotoImage: IdentifiableComponent, View, Hashable {
     var title: String
     var image: UIImage
 
@@ -12,6 +12,10 @@ struct KyotoImage: IdentifiableComponent, Hashable {
     func render(in content: KyotoImageContent) {
         content.imageView.image = image
         content.titleLabel.text = title
+    }
+
+    func referenceSize(in bounds: CGRect) -> CGSize? {
+        CGSize(width: bounds.width, height: 150)
     }
 }
 

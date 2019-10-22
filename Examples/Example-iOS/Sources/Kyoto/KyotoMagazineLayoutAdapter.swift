@@ -22,7 +22,12 @@ final class KyotoMagazineLayoutAdapter: UICollectionViewAdapter, UICollectionVie
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeModeForItemAt indexPath: IndexPath) -> MagazineLayoutItemSizeMode {
-        MagazineLayoutItemSizeMode(widthMode: .halfWidth, heightMode: .static(height: 150))
+        let node = cellNode(at: indexPath)
+        guard let size = node.component.referenceSize(in: collectionView.bounds) else {
+            return MagazineLayoutItemSizeMode(widthMode: .halfWidth, heightMode: .dynamic)
+        }
+
+        return MagazineLayoutItemSizeMode(widthMode: .halfWidth, heightMode: .static(height: size.height))
     }
 
     func collectionView(

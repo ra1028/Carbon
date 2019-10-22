@@ -1,9 +1,8 @@
 import UIKit
 
-/// Represents a component of a list UI such as `UITableView` or `UICollectionView`.
-///
-/// - Note: Components are designed to be available for `UITableView`, `UICollectionView`,
-///         and its cell, header, footer or other generally elements.
+/// A component represents a small reusable piece of code of element to be rendered.
+/// This behaves as all elements of UIKit's UITableView and UICollectionView, and can
+/// be easily support SwiftUI by used in conjunction with the `View` protocol.
 ///
 /// Example for the simple component:
 ///
@@ -20,6 +19,19 @@ import UIKit
 ///
 ///         func render(in content: UILabel) {
 ///             content.text = text
+///         }
+///     }
+///
+/// Example for use with SwiftUI:
+///
+///     extension Label: View {}
+///
+///     struct ContentView: View {
+///         var body: some View {
+///             VStack {
+///                 Text("This is SwiftUI view")
+///                 Label("This is Carbon component")
+///             }
 ///         }
 ///     }
 public protocol Component {

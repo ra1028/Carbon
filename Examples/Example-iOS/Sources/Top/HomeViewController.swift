@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 import Carbon
 
 final class HomeViewController: UIViewController {
@@ -9,6 +10,7 @@ final class HomeViewController: UIViewController {
         case emoji
         case todo
         case form
+        case kyotoSwiftUI
     }
 
     @IBOutlet var tableView: UITableView!
@@ -51,6 +53,10 @@ final class HomeViewController: UIViewController {
             HomeItem(title: "👤 Profile Form") { [weak self] in
                 self?.push(.form)
             }
+
+            HomeItem(title: "⛩ Kyoto SwiftUI") { [weak self] in
+                self?.push(.kyotoSwiftUI)
+            }
         }
     }
 
@@ -75,6 +81,9 @@ final class HomeViewController: UIViewController {
 
         case .form:
             controller = FormViewController()
+
+        case .kyotoSwiftUI:
+            controller = HostingController(rootView: KyotoSwiftUIView())
         }
 
         navigationController?.pushViewController(controller, animated: true)

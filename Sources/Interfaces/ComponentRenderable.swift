@@ -60,6 +60,13 @@ internal extension ComponentRenderable {
     }
 }
 
+public extension ComponentRenderable where Self: UIView {
+    /// The container view to be render a component.
+    var componentContainerView: UIView {
+        return self
+    }
+}
+
 public extension ComponentRenderable where Self: UITableViewCell {
     /// The container view to be render a component.
     var componentContainerView: UIView {
