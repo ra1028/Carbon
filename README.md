@@ -40,6 +40,11 @@ Our goal is similar to [Instagram/IGListKit](https://github.com/Instagram/IGList
 
 ## Examples
 
+|![Pangram](https://raw.githubusercontent.com/ra1028/Carbon/master/assets/pangram.gif)|![Kyoto](https://raw.githubusercontent.com/ra1028/Carbon/master/assets/kyoto.gif)|![Emoji](https://raw.githubusercontent.com/ra1028/Carbon/master/assets/emoji.gif)|![Todo](https://raw.githubusercontent.com/ra1028/Carbon/master/assets/todo.gif)|![Form](https://raw.githubusercontent.com/ra1028/Carbon/master/assets/form.gif)|
+|:----------------------------:|:------------------------:|:------------------------:|:----------------------:|:----------------------:|
+
+---
+
 <img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/hello.png" height=240 align=right>
 
 ```swift
@@ -58,22 +63,21 @@ renderer.render {
 
 ---
 
-|![Pangram](https://raw.githubusercontent.com/ra1028/Carbon/master/assets/pangram.gif)|![Kyoto](https://raw.githubusercontent.com/ra1028/Carbon/master/assets/kyoto.gif)|![Emoji](https://raw.githubusercontent.com/ra1028/Carbon/master/assets/emoji.gif)|![Todo](https://raw.githubusercontent.com/ra1028/Carbon/master/assets/todo.gif)|![Form](https://raw.githubusercontent.com/ra1028/Carbon/master/assets/form.gif)|
-|:----------------------------:|:------------------------:|:------------------------:|:----------------------:|:----------------------:|
-
----
-
-### SwiftUI Compatible
+### [SwiftUI Compatibility](https://github.com/ra1028/Carbon#swiftui-compatibility-1)
 
 ```swift
 struct ContentView: View {
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("GREET")
+        ScrollView {
+            VStack {
+                Text("GREET")
+                    .font(.title)
+                    .padding(.horizontal, 16)
 
-            HelloMessage("World")
-
-            Spacer()
+                HelloMessage("World")
+                    .frame(height: 60)
+                    .background(Color.red)
+            }
         }
     }
 }
@@ -316,7 +320,7 @@ struct HelloMessage: IdentifiableComponent {
     ...
 ```
 
-### SwiftUI Compatible
+### SwiftUI Compatibility
 
 Components made with `Carbon` are compatible with `SwiftUI`.  
 The component can easily works as SwiftUI by composing with `View` protocol.  
@@ -331,16 +335,13 @@ struct HelloMessage: Component, View {
 ```swift
 struct ContentView: View {
     var body: some View {
-        ScrollView {
-            VStack {
-                Text("GREET")
-                    .font(.title)
-                    .padding(.horizontal, 16)
+        VStack(alignment: .leading) {
+            Text("GREET")
 
-                HelloMessage("World")
-                    .frame(height: 60)
-                    .background(Color.red)
-            }
+            HelloMessage("World")
+                .frame(height: 60)
+
+            Spacer()
         }
     }
 }

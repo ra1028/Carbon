@@ -215,9 +215,8 @@
         <section class="section">
           <div class="section-content">
             
-            <p align="center">
-<img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/logo/png/logo_carbon_bnr3_white.png" width=700>
-</p>
+            <p><img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/logo/png/logo_carbon_bnr3_white.png" width=700>
+</p></p>
 
 <H4 align="center">
 A declarative library for building component-based user interfaces</br>
@@ -255,7 +254,8 @@ in UITableView and UICollectionView.</br>
 <h2 id='introduction' class='heading'>Introduction</h2>
 
 <p>Carbon is a library for building component-based user interfaces in UITableView and UICollectionView inspired by <a href="https://developer.apple.com/xcode/swiftui">SwiftUI</a> and <a href="https://reactjs.org">React</a>.<br>
-This make it painless to build and maintain the complex UIs.  </p>
+This make it painless to build and maintain the complex UIs.<br>
+Since components made with <code>Carbon</code> can be works directly on <code>SwiftUI</code>, the cost of future migration can be greatly reduced.  </p>
 
 <p>Uses <a href="https://github.com/ra1028/DifferenceKit">DifferenceKit</a> which is highly optimized based on Paul Heckel&rsquo;s paper for diffing.<br>
 Declarative design and diffing algorithm make your code more predictable, debugging easier and providing beautiful animations to users.  </p>
@@ -264,6 +264,19 @@ Declarative design and diffing algorithm make your code more predictable, debugg
 
 <hr>
 <h2 id='examples' class='heading'>Examples</h2>
+
+<table><thead>
+<tr>
+<th style="text-align: center"><img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/pangram.gif" alt="Pangram"></th>
+<th style="text-align: center"><img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/kyoto.gif" alt="Kyoto"></th>
+<th style="text-align: center"><img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/emoji.gif" alt="Emoji"></th>
+<th style="text-align: center"><img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/todo.gif" alt="Todo"></th>
+<th style="text-align: center"><img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/form.gif" alt="Form"></th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<hr>
 
 <p><img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/hello.png" height=240 align=right></p>
 <pre class="highlight swift"><code><span class="n">renderer</span><span class="o">.</span><span class="n">render</span> <span class="p">{</span>
@@ -280,17 +293,23 @@ Declarative design and diffing algorithm make your code more predictable, debugg
 </code></pre>
 
 <hr>
+<h3 id='a-href-https-github-com-ra1028-carbon-swiftui-compatibility-1-swiftui-compatibility-a' class='heading'><a href="https://github.com/ra1028/Carbon#swiftui-compatibility-1">SwiftUI Compatibility</a></h3>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">ContentView</span><span class="p">:</span> <span class="kt">View</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="kt">View</span> <span class="p">{</span>
+        <span class="kt">ScrollView</span> <span class="p">{</span>
+            <span class="kt">VStack</span> <span class="p">{</span>
+                <span class="kt">Text</span><span class="p">(</span><span class="s">"GREET"</span><span class="p">)</span>
+                    <span class="o">.</span><span class="nf">font</span><span class="p">(</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+                    <span class="o">.</span><span class="nf">padding</span><span class="p">(</span><span class="o">.</span><span class="n">horizontal</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
 
-<table><thead>
-<tr>
-<th style="text-align: center"><img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/pangram.gif" alt="Pangram"></th>
-<th style="text-align: center"><img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/kyoto.gif" alt="Kyoto"></th>
-<th style="text-align: center"><img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/emoji.gif" alt="Emoji"></th>
-<th style="text-align: center"><img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/todo.gif" alt="Todo"></th>
-<th style="text-align: center"><img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/form.gif" alt="Form"></th>
-</tr>
-</thead><tbody>
-</tbody></table>
+                <span class="kt">HelloMessage</span><span class="p">(</span><span class="s">"World"</span><span class="p">)</span>
+                    <span class="o">.</span><span class="nf">frame</span><span class="p">(</span><span class="nv">height</span><span class="p">:</span> <span class="mi">60</span><span class="p">)</span>
+                    <span class="o">.</span><span class="nf">background</span><span class="p">(</span><span class="kt">Color</span><span class="o">.</span><span class="n">red</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
 
 <hr>
 <h2 id='getting-started' class='heading'>Getting Started</h2>
@@ -502,6 +521,28 @@ It can be omitted the definition of <code>id</code> if the component conforms to
     <span class="p">}</span>
 
     <span class="o">...</span>
+</code></pre>
+<h3 id='swiftui-compatibility' class='heading'>SwiftUI Compatibility</h3>
+
+<p>Components made with <code>Carbon</code> are compatible with <code>SwiftUI</code>.<br>
+The component can easily works as SwiftUI by composing with <code>View</code> protocol.<br>
+However, SwiftUI doesn&rsquo;t support self-sizing by auto layout, so we need to specify the height explicitly by <code><a href="Protocols/Component.html#/s:6Carbon9ComponentP13referenceSize2inSo6CGSizeVSgSo6CGRectV_tF">Component.referenceSize(in:)</a></code> or <code>View.frame(height:)</code>.  </p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">HelloMessage</span><span class="p">:</span> <span class="kt">Component</span><span class="p">,</span> <span class="kt">View</span> <span class="p">{</span>
+    <span class="o">...</span>
+<span class="p">}</span>
+</code></pre>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">ContentView</span><span class="p">:</span> <span class="kt">View</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">body</span><span class="p">:</span> <span class="n">some</span> <span class="kt">View</span> <span class="p">{</span>
+        <span class="kt">VStack</span><span class="p">(</span><span class="nv">alignment</span><span class="p">:</span> <span class="o">.</span><span class="n">leading</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">Text</span><span class="p">(</span><span class="s">"GREET"</span><span class="p">)</span>
+
+            <span class="kt">HelloMessage</span><span class="p">(</span><span class="s">"World"</span><span class="p">)</span>
+                <span class="o">.</span><span class="nf">frame</span><span class="p">(</span><span class="nv">height</span><span class="p">:</span> <span class="mi">60</span><span class="p">)</span>
+
+            <span class="kt">Spacer</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </code></pre>
 <h3 id='component-in-depth' class='heading'>Component in-Depth</h3>
 
@@ -719,6 +760,11 @@ The <code>id</code> is used to find the same component in the list data before a
 <p>Add the following to your <code>Cartfile</code>:</p>
 <pre class="highlight plaintext"><code>github "ra1028/Carbon"
 </code></pre>
+<h3 id='a-href-https-developer-apple-com-documentation-xcode-adding_package_dependencies_to_your_app-swift-package-manager-a' class='heading'><a href="https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app">Swift Package Manager</a></h3>
+
+<p>Select Xcode menu File &gt; Swift Packages &gt; Add Package Dependency and enter repository URL with GUI.</p>
+<pre class="highlight plaintext"><code>Repository: https://github.com/ra1028/Carbon
+</code></pre>
 
 <hr>
 <h2 id='contributing' class='heading'>Contributing</h2>
@@ -764,7 +810,7 @@ Uses DifferenceKit as well as Carbon for the diffing algorithm.<br></li>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2019 <a class="link" href="https://github.com/ra1028" target="_blank" rel="external">Ryo Aoyama</a>. All rights reserved. (Last updated: 2019-09-21)</p>
+      <p>&copy; 2019 <a class="link" href="https://github.com/ra1028" target="_blank" rel="external">Ryo Aoyama</a>. All rights reserved. (Last updated: 2019-10-23)</p>
       <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.10.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
