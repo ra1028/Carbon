@@ -68,6 +68,7 @@
 		6BC83E4D231ED17300350855 /* CellsBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC83E4C231ED17300350855 /* CellsBuildable.swift */; };
 		6BC83E51231ED21700350855 /* SectionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC83E50231ED21700350855 /* SectionsBuilder.swift */; };
 		6BC83E53231ED42C00350855 /* SectionsBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC83E52231ED42C00350855 /* SectionsBuildable.swift */; };
+		6BD04F3E235FA9B800E53082 /* ComponentSwiftUISupportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD04F3D235FA9B800E53082 /* ComponentSwiftUISupportTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +147,7 @@
 		6BC83E4C231ED17300350855 /* CellsBuildable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellsBuildable.swift; sourceTree = "<group>"; };
 		6BC83E50231ED21700350855 /* SectionsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsBuilder.swift; sourceTree = "<group>"; };
 		6BC83E52231ED42C00350855 /* SectionsBuildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsBuildable.swift; sourceTree = "<group>"; };
+		6BD04F3D235FA9B800E53082 /* ComponentSwiftUISupportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentSwiftUISupportTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,6 +337,7 @@
 				6B7ADEBB21F8B464003803BE /* AnyComponentTests.swift */,
 				6B7ADEC121F8C976003803BE /* SectionTests.swift */,
 				6B7ADEC821F9F9A6003803BE /* RendererTests.swift */,
+				6BD04F3C235FA99E00E53082 /* SwiftUISupport */,
 				6B55C18A23278F57004F89F2 /* FunctionBuilder */,
 				6B55C185232789DE004F89F2 /* ComponentWrapper */,
 				6B55C1842327881A004F89F2 /* Nodes */,
@@ -397,6 +400,14 @@
 				6BC83E52231ED42C00350855 /* SectionsBuildable.swift */,
 			);
 			path = FunctionBuilder;
+			sourceTree = "<group>";
+		};
+		6BD04F3C235FA99E00E53082 /* SwiftUISupport */ = {
+			isa = PBXGroup;
+			children = (
+				6BD04F3D235FA9B800E53082 /* ComponentSwiftUISupportTests.swift */,
+			);
+			path = SwiftUISupport;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -581,6 +592,7 @@
 				6B7ADEE121FBA6D1003803BE /* ComponentContainerElementTests.swift in Sources */,
 				6B7ADEC021F8C651003803BE /* CellNodeTests.swift in Sources */,
 				6B55C18923278E53004F89F2 /* IdentifiedComponentWrapperTests.swift in Sources */,
+				6BD04F3E235FA9B800E53082 /* ComponentSwiftUISupportTests.swift in Sources */,
 				6B7ADECE21FA1B32003803BE /* UICollectionViewFlowLayoutAdapterTests.swift in Sources */,
 				6B7ADEB121F783E3003803BE /* ComponentTests.swift in Sources */,
 				6B7ADEDE21FBA59D003803BE /* UICollectionViewReloadDataTests.swift in Sources */,
@@ -755,6 +767,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryo.Carbon;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -785,6 +798,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryo.Carbon;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
