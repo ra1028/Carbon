@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A729640B3FDCE139DDB84E1 /* Pods_Example_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C676BFED3D0A58EBFA76D7DA /* Pods_Example_iOS.framework */; };
 		6B00B0A4233AA23F002A45E5 /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B00B0A3233AA23F002A45E5 /* HostingController.swift */; };
 		6B09264421FE17B300CFEC2F /* Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B09264321FE17B300CFEC2F /* Footer.swift */; };
 		6B09264621FE183300CFEC2F /* FooterContent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B09264521FE183300CFEC2F /* FooterContent.xib */; };
@@ -67,10 +66,12 @@
 		6BBC27B321EF8A6600446FB7 /* EmojiLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBC27B221EF8A6600446FB7 /* EmojiLabel.swift */; };
 		6BBC27B521EF8CDC00446FB7 /* EmojiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BBC27B421EF8CDB00446FB7 /* EmojiViewController.xib */; };
 		6BBC27B721EF8D4D00446FB7 /* EmojiLabelContent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BBC27B621EF8D4D00446FB7 /* EmojiLabelContent.xib */; };
+		6BE9F755235F7CBF0023EF98 /* MagazineLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 6BE9F754235F7CBF0023EF98 /* MagazineLayout */; };
+		6BE9F758235F7CF50023EF98 /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6BE9F757235F7CF50023EF98 /* SwipeCellKit */; };
+		6BE9F760235F80960023EF98 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE9F75F235F80960023EF98 /* Carbon.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		21CAE3C8FFB1A0F4BD270D3B /* Pods-Example-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-iOS.release.xcconfig"; path = "Target Support Files/Pods-Example-iOS/Pods-Example-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		6B00B0A3233AA23F002A45E5 /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
 		6B09264321FE17B300CFEC2F /* Footer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Footer.swift; sourceTree = "<group>"; };
 		6B09264521FE183300CFEC2F /* FooterContent.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FooterContent.xib; sourceTree = "<group>"; };
@@ -134,8 +135,8 @@
 		6BBC27B221EF8A6600446FB7 /* EmojiLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiLabel.swift; sourceTree = "<group>"; };
 		6BBC27B421EF8CDB00446FB7 /* EmojiViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmojiViewController.xib; sourceTree = "<group>"; };
 		6BBC27B621EF8D4D00446FB7 /* EmojiLabelContent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmojiLabelContent.xib; sourceTree = "<group>"; };
-		C676BFED3D0A58EBFA76D7DA /* Pods_Example_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA7767A4E02CFCA79CE0E01E /* Pods-Example-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Example-iOS/Pods-Example-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		6BE9F75B235F7FBE0023EF98 /* Carbon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Carbon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BE9F75F235F80960023EF98 /* Carbon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Carbon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,22 +144,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A729640B3FDCE139DDB84E1 /* Pods_Example_iOS.framework in Frameworks */,
+				6BE9F755235F7CBF0023EF98 /* MagazineLayout in Frameworks */,
+				6BE9F760235F80960023EF98 /* Carbon.framework in Frameworks */,
+				6BE9F758235F7CF50023EF98 /* SwipeCellKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4A86BB19C6009EA031F77B52 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				CA7767A4E02CFCA79CE0E01E /* Pods-Example-iOS.debug.xcconfig */,
-				21CAE3C8FFB1A0F4BD270D3B /* Pods-Example-iOS.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		6B21A49D21E3A63A00568841 /* Form */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,7 +229,6 @@
 				6B6594CE21E2619B00291AAF /* Sources */,
 				6B6594CD21E2619B00291AAF /* Products */,
 				6B6594E121E262C400291AAF /* Frameworks */,
-				4A86BB19C6009EA031F77B52 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -270,9 +263,10 @@
 		6B6594E121E262C400291AAF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6BE9F75F235F80960023EF98 /* Carbon.framework */,
+				6BE9F75B235F7FBE0023EF98 /* Carbon.framework */,
 				6B6594F721E272D500291AAF /* DifferenceKit.framework */,
 				6B6594E221E262C400291AAF /* Carbon.framework */,
-				C676BFED3D0A58EBFA76D7DA /* Pods_Example_iOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -333,18 +327,20 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6B6594DE21E2619E00291AAF /* Build configuration list for PBXNativeTarget "Example-iOS" */;
 			buildPhases = (
-				B42E1DF0DCAF8D02E3E2C6FD /* [CP] Check Pods Manifest.lock */,
 				6B6594C821E2619B00291AAF /* Sources */,
 				6B6594C921E2619B00291AAF /* Frameworks */,
 				6B6594CA21E2619B00291AAF /* Resources */,
 				6B7ADEF521FDC40B003803BE /* SwiftLint */,
-				BF42A6766E4C867797999EB1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Example-iOS";
+			packageProductDependencies = (
+				6BE9F754235F7CBF0023EF98 /* MagazineLayout */,
+				6BE9F757235F7CF50023EF98 /* SwipeCellKit */,
+			);
 			productName = "Example-iOS";
 			productReference = 6B6594CC21E2619B00291AAF /* Example-iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -374,6 +370,10 @@
 				Base,
 			);
 			mainGroup = 6B6594C321E2619B00291AAF;
+			packageReferences = (
+				6BE9F753235F7CBF0023EF98 /* XCRemoteSwiftPackageReference "MagazineLayout" */,
+				6BE9F756235F7CF50023EF98 /* XCRemoteSwiftPackageReference "SwipeCellKit" */,
+			);
 			productRefGroup = 6B6594CD21E2619B00291AAF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -436,45 +436,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint --config ../../.swiftlint.yml\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		B42E1DF0DCAF8D02E3E2C6FD /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Example-iOS-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BF42A6766E4C867797999EB1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Example-iOS/Pods-Example-iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Example-iOS/Pods-Example-iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example-iOS/Pods-Example-iOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -652,7 +613,6 @@
 		};
 		6B6594DF21E2619E00291AAF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA7767A4E02CFCA79CE0E01E /* Pods-Example-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_NOTICES = YES;
@@ -676,7 +636,6 @@
 		};
 		6B6594E021E2619E00291AAF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 21CAE3C8FFB1A0F4BD270D3B /* Pods-Example-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_NOTICES = YES;
@@ -720,6 +679,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6BE9F753235F7CBF0023EF98 /* XCRemoteSwiftPackageReference "MagazineLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/MagazineLayout";
+			requirement = {
+				kind = revision;
+				revision = 61fd38f770fb1b635fe486a6670381061424ff80;
+			};
+		};
+		6BE9F756235F7CF50023EF98 /* XCRemoteSwiftPackageReference "SwipeCellKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwipeCellKit/SwipeCellKit";
+			requirement = {
+				kind = exactVersion;
+				version = 2.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6BE9F754235F7CBF0023EF98 /* MagazineLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6BE9F753235F7CBF0023EF98 /* XCRemoteSwiftPackageReference "MagazineLayout" */;
+			productName = MagazineLayout;
+		};
+		6BE9F757235F7CF50023EF98 /* SwipeCellKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6BE9F756235F7CF50023EF98 /* XCRemoteSwiftPackageReference "SwipeCellKit" */;
+			productName = SwipeCellKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6B6594C421E2619B00291AAF /* Project object */;
 }

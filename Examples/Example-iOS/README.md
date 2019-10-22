@@ -1,7 +1,5 @@
 # How to Run
 
-1. Change directory from the root of repository  `cd ./Examples/Example-iOS`
-1. Install gems by Bundler  `make gems-install`
-1. Install dependencies by CocoaPods `make pods-install`
-1. Open `Example-iOS.xcworkspace` on Xcode
+1. Setup project by command `make setup` in project root directory
+1. Open `Example-iOS.xcworkspace` via Xcode
 1. Run `Example-iOS` scheme
