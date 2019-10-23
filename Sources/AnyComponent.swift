@@ -110,7 +110,7 @@ public struct AnyComponent: Component {
     /// - Returns: A `CGSize` value represents a natural size of the passed content.
     @inlinable
     public func intrinsicContentSize(for content: Any) -> CGSize {
-        box.intrinsicContentSize(for: content)
+        return box.intrinsicContentSize(for: content)
     }
 
     /// Invoked every time of before a component got into visible area.

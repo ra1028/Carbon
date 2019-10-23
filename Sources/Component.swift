@@ -207,7 +207,7 @@ public extension Component where Content: UIView {
     ///
     /// - Returns: A `CGSize` value represents a natural size of the passed content.
     func intrinsicContentSize(for content: Content) -> CGSize {
-        content.intrinsicContentSize
+        return content.intrinsicContentSize
     }
 }
 
@@ -229,7 +229,7 @@ public extension Component where Content: UIViewController {
     ///
     /// - Returns: A `CGSize` value represents a natural size of the passed content.
     func intrinsicContentSize(for content: Content) -> CGSize {
-        content.view.intrinsicContentSize
+        return content.view.intrinsicContentSize
     }
 }
 

@@ -69,7 +69,7 @@ final class AnyComponentTests: XCTestCase {
     func testIntrinsicContentSizeForView() {
         struct TestComponent: Component {
             func renderContent() -> UILabel {
-                UILabel()
+                return UILabel()
             }
 
             func render(in content: UILabel) {

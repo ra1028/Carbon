@@ -107,7 +107,7 @@ class MockComponent: Component, Equatable {
     }
 
     func intrinsicContentSize(for content: UIView) -> CGSize {
-        intrinsicContentSize
+        return intrinsicContentSize
     }
 
     func contentWillDisplay(_ content: UIView) {
