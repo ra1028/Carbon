@@ -215,8 +215,9 @@
         <section class="section">
           <div class="section-content">
             
-            <p><img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/logo/png/logo_carbon_bnr3_white.png" width=700>
-</p></p>
+            <p align="center">
+<img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/logo/png/logo_carbon_bnr3_white.png" width=700>
+</p>
 
 <H4 align="center">
 A declarative library for building component-based user interfaces</br>
@@ -526,7 +527,7 @@ It can be omitted the definition of <code>id</code> if the component conforms to
 
 <p>Components made with <code>Carbon</code> are compatible with <code>SwiftUI</code>.<br>
 The component can easily works as SwiftUI by composing with <code>View</code> protocol.<br>
-However, SwiftUI doesn&rsquo;t support self-sizing by auto layout, so we need to specify the height explicitly by <code><a href="Protocols/Component.html#/s:6Carbon9ComponentP13referenceSize2inSo6CGSizeVSgSo6CGRectV_tF">Component.referenceSize(in:)</a></code> or <code>View.frame(height:)</code>.  </p>
+Currently SwiftUI doesn&rsquo;t support self-sizing, so can use <code>UIView.intrinsicContentSize</code> or specify the height explicitly by <code><a href="Protocols/Component.html#/s:6Carbon9ComponentP13referenceSize2inSo6CGSizeVSgSo6CGRectV_tF">Component.referenceSize(in:)</a></code> or <code>View.frame(height:)</code>.  </p>
 <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">HelloMessage</span><span class="p">:</span> <span class="kt">Component</span><span class="p">,</span> <span class="kt">View</span> <span class="p">{</span>
     <span class="o">...</span>
 <span class="p">}</span>

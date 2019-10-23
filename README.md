@@ -1,3 +1,4 @@
+<p align="center">
 <img src="https://raw.githubusercontent.com/ra1028/Carbon/master/assets/logo/png/logo_carbon_bnr3_white.png" width=700>
 </p>
 
@@ -324,7 +325,7 @@ struct HelloMessage: IdentifiableComponent {
 
 Components made with `Carbon` are compatible with `SwiftUI`.  
 The component can easily works as SwiftUI by composing with `View` protocol.  
-However, SwiftUI doesn't support self-sizing by auto layout, so we need to specify the height explicitly by `Component.referenceSize(in:)` or `View.frame(height:)`.  
+Currently SwiftUI doesn't support self-sizing, so can use `UIView.intrinsicContentSize` or specify the height explicitly by `Component.referenceSize(in:)` or `View.frame(height:)`.  
 
 ```swift
 struct HelloMessage: Component, View {
