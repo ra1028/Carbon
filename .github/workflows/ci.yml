@@ -1,0 +1,21 @@
+name: GitHub Actions
+on: push
+jobs:
+  macOS:
+    name: Test on macOS
+    runs-on: macOS-10.14
+    strategy:
+      fail-fast: false
+      matrix:
+        xcode_version: ["10.2", "11.1"]
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode_version }}.app
+    steps:
+      - uses: actions/checkout@v1
+      - name: Show environments
+        run: |
+          swift --version
+          xcodebuild -version
+      - name: Xcode iOS
+        run: |
+          set -o pipefail && xcodebuild build-for-testing test-without-building -workspace Carbon.xcworkspace -scheme Carbon -configuration Release -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' ENABLE_TESTABILITY=YES | xcpretty -c
