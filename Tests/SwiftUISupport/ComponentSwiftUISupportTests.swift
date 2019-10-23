@@ -74,6 +74,27 @@ final class ComponentSwiftUISupportTests: XCTestCase {
 
         XCTAssertEqual(hostingController.view.sizeThatFits(.zero), TestComponent.testSize)
     }
+
+    func testIntrinsicContentSize() {
+        struct TestComponent: Component, View {
+            static let testSize = CGSize(width: 123, height: 456)
+
+            func renderContent() -> UIView {
+                UIView()
+            }
+
+            func render(in content: UIView) {}
+
+            func intrinsicContentSize(for content: UIView) -> CGSize {
+                Self.testSize
+            }
+        }
+
+        let component = TestComponent()
+        let hostingController = UIHostingController(rootView: component.body)
+
+        XCTAssertEqual(hostingController.view.sizeThatFits(.zero), TestComponent.testSize)
+    }
 }
 
 #endif

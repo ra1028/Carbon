@@ -22,6 +22,24 @@ final class ComponentTests: XCTestCase {
         XCTAssertEqual(content.frame, frame)
     }
 
+    func testIntrinsicContentSizeForView() {
+        struct TestComponent: Component {
+            func renderContent() -> UILabel {
+                UILabel()
+            }
+
+            func render(in content: UILabel) {
+                content.text = "Test"
+            }
+        }
+
+        let component = TestComponent()
+        let content = component.renderContent()
+        component.render(in: content)
+
+        XCTAssertEqual(component.intrinsicContentSize(for: content), content.intrinsicContentSize)
+    }
+
     func testShouldContentUpdateWhenEquatable() {
         let component1 = A.Component(value: 100)
         let component2 = A.Component(value: 200)

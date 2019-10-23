@@ -56,6 +56,7 @@ enum B {
 class MockComponent: Component, Equatable {
     let reuseIdentifier: String
     let referenceSize: CGSize?
+    let intrinsicContentSize: CGSize
     let shouldContentUpdate: Bool
     let shouldRender: Bool
     let content: UIView
@@ -68,12 +69,14 @@ class MockComponent: Component, Equatable {
     init(
         reuseIdentifier: String = "MockComponent",
         referenceSize: CGSize? = nil,
+        intrinsicContentSize: CGSize = .zero,
         shouldContentUpdate: Bool = false,
         shouldRender: Bool = false,
         content: UIView = UIView()
         ) {
         self.reuseIdentifier = reuseIdentifier
         self.referenceSize = referenceSize
+        self.intrinsicContentSize = intrinsicContentSize
         self.shouldContentUpdate = shouldContentUpdate
         self.shouldRender = shouldRender
         self.content = content
@@ -101,6 +104,10 @@ class MockComponent: Component, Equatable {
 
     func layout(content: UIView, in container: UIView) {
         contentCapturedOnLayout = content
+    }
+
+    func intrinsicContentSize(for content: UIView) -> CGSize {
+        intrinsicContentSize
     }
 
     func contentWillDisplay(_ content: UIView) {
