@@ -5,6 +5,9 @@
       location = "group:Example-iOS.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Pods/Pods.xcodeproj">
+      location = "group:../../Carbon.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:../../Carthage/Checkouts/DifferenceKit/DifferenceKit.xcodeproj">
    </FileRef>
 </Workspace>

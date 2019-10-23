@@ -1,9 +1,8 @@
 import UIKit
 
-/// Represents a component of a list UI such as `UITableView` or `UICollectionView`.
-///
-/// - Note: Components are designed to be available for `UITableView`, `UICollectionView`,
-///         and its cell, header, footer or other generally elements.
+/// A component represents a small reusable piece of code of element to be rendered.
+/// This behaves as all elements of UIKit's UITableView and UICollectionView, and can
+/// be easily support SwiftUI by used in conjunction with the `View` protocol.
 ///
 /// Example for the simple component:
 ///
@@ -20,6 +19,19 @@ import UIKit
 ///
 ///         func render(in content: UILabel) {
 ///             content.text = text
+///         }
+///     }
+///
+/// Example for use with SwiftUI:
+///
+///     extension Label: View {}
+///
+///     struct ContentView: View {
+///         var body: some View {
+///             VStack {
+///                 Text("This is SwiftUI view")
+///                 Label("This is Carbon component")
+///             }
 ///         }
 ///     }
 public protocol Component {
@@ -87,6 +99,14 @@ public protocol Component {
     ///   - content: An instance of content to be laid out on top of element.
     ///   - container: A container view to layout content.
     func layout(content: Content, in container: UIView)
+
+    /// The natural size for the passed content.
+    ///
+    /// - Parameter:
+    ///   - content: An instance of content.
+    ///
+    /// - Returns: A `CGSize` value represents a natural size of the passed content.
+    func intrinsicContentSize(for content: Content) -> CGSize
 
     // MARK: - Lifecycle - optional
 
@@ -179,6 +199,16 @@ public extension Component where Content: UIView {
     func layout(content: Content, in container: UIView) {
         container.addSubviewWithEdgeConstraints(content)
     }
+
+    /// The natural size for the passed content.
+    ///
+    /// - Parameter:
+    ///   - content: An instance of content.
+    ///
+    /// - Returns: A `CGSize` value represents a natural size of the passed content.
+    func intrinsicContentSize(for content: Content) -> CGSize {
+        return content.intrinsicContentSize
+    }
 }
 
 public extension Component where Content: UIViewController {
@@ -190,6 +220,16 @@ public extension Component where Content: UIViewController {
     ///                Default is laid out with edge constraints.
     func layout(content: Content, in container: UIView) {
         container.addSubviewWithEdgeConstraints(content.view)
+    }
+
+    /// The natural size for the passed content.
+    ///
+    /// - Parameter:
+    ///   - content: An instance of content.
+    ///
+    /// - Returns: A `CGSize` value represents a natural size of the passed content.
+    func intrinsicContentSize(for content: Content) -> CGSize {
+        return content.view.intrinsicContentSize
     }
 }
 

@@ -1,7 +1,7 @@
-import UIKit
+import SwiftUI
 import Carbon
 
-struct Header: Component {
+struct Header: Component, View {
     var title: String
 
     init(_ title: String) {

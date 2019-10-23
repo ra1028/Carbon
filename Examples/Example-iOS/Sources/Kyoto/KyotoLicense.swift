@@ -1,7 +1,7 @@
-import UIKit
+import SwiftUI
 import Carbon
 
-struct KyotoLicense: Component {
+struct KyotoLicense: Component, View {
     var onSelected: () -> Void
 
     func renderContent() -> KyotoLicenseContent {
@@ -10,6 +10,10 @@ struct KyotoLicense: Component {
 
     func render(in content: KyotoLicenseContent) {
         content.onSelected = onSelected
+    }
+
+    func referenceSize(in bounds: CGRect) -> CGSize? {
+        CGSize(width: bounds.size.width, height: 71)
     }
 }
 

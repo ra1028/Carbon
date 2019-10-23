@@ -4,7 +4,8 @@ import XCTest
 final class ComponentWrappingTests: XCTestCase {
     func testForwardingActions() {
         let reuseIdentifier = "testForwardingActions"
-        let referenceSize =  CGSize(width: 200, height: 200)
+        let referenceSize = CGSize(width: 200, height: 200)
+        let intrinsicContentSize = CGSize(width: 300, height: 300)
         let shouldContentUpdate = true
         let shouldRender = true
         let content = UIView()
@@ -12,6 +13,7 @@ final class ComponentWrappingTests: XCTestCase {
         let mock = MockComponent(
             reuseIdentifier: reuseIdentifier,
             referenceSize: referenceSize,
+            intrinsicContentSize: intrinsicContentSize,
             shouldContentUpdate: shouldContentUpdate,
             shouldRender: shouldRender,
             content: content
@@ -26,6 +28,7 @@ final class ComponentWrappingTests: XCTestCase {
         XCTAssertEqual(wrapper.renderContent(), content)
         XCTAssertEqual(mock.contentCapturedOnRender, content)
         XCTAssertEqual(wrapper.referenceSize(in: .zero), referenceSize)
+        XCTAssertEqual(wrapper.intrinsicContentSize(for: content), intrinsicContentSize)
         XCTAssertEqual(wrapper.shouldContentUpdate(with: wrapper), shouldContentUpdate)
         XCTAssertEqual(wrapper.shouldRender(next: wrapper, in: content), shouldRender)
         XCTAssertEqual(mock.contentCapturedOnLayout, content)
