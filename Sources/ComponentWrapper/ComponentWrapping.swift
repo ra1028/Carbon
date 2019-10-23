@@ -115,6 +115,16 @@ public extension ComponentWrapping {
         wrapped.layout(content: content, in: container)
     }
 
+    /// The natural size for the passed content.
+    ///
+    /// - Parameter:
+    ///   - content: An instance of content.
+    ///
+    /// - Returns: A `CGSize` value represents a natural size of the passed content.
+    func intrinsicContentSize(for content: Wrapped.Content) -> CGSize {
+        wrapped.intrinsicContentSize(for: content)
+    }
+
     /// Invoked every time of before a component got into visible area.
     ///
     /// - Parameter:

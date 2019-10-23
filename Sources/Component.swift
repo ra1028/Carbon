@@ -100,6 +100,14 @@ public protocol Component {
     ///   - container: A container view to layout content.
     func layout(content: Content, in container: UIView)
 
+    /// The natural size for the passed content.
+    ///
+    /// - Parameter:
+    ///   - content: An instance of content.
+    ///
+    /// - Returns: A `CGSize` value represents a natural size of the passed content.
+    func intrinsicContentSize(for content: Content) -> CGSize
+
     // MARK: - Lifecycle - optional
 
     /// Invoked every time of before a component got into visible area.
@@ -191,6 +199,16 @@ public extension Component where Content: UIView {
     func layout(content: Content, in container: UIView) {
         container.addSubviewWithEdgeConstraints(content)
     }
+
+    /// The natural size for the passed content.
+    ///
+    /// - Parameter:
+    ///   - content: An instance of content.
+    ///
+    /// - Returns: A `CGSize` value represents a natural size of the passed content.
+    func intrinsicContentSize(for content: Content) -> CGSize {
+        content.intrinsicContentSize
+    }
 }
 
 public extension Component where Content: UIViewController {
@@ -202,6 +220,16 @@ public extension Component where Content: UIViewController {
     ///                Default is laid out with edge constraints.
     func layout(content: Content, in container: UIView) {
         container.addSubviewWithEdgeConstraints(content.view)
+    }
+
+    /// The natural size for the passed content.
+    ///
+    /// - Parameter:
+    ///   - content: An instance of content.
+    ///
+    /// - Returns: A `CGSize` value represents a natural size of the passed content.
+    func intrinsicContentSize(for content: Content) -> CGSize {
+        content.view.intrinsicContentSize
     }
 }
 

@@ -102,6 +102,17 @@ public struct AnyComponent: Component {
         box.layout(content: content, in: container)
     }
 
+    /// The natural size for the passed content.
+    ///
+    /// - Parameter:
+    ///   - content: An instance of content.
+    ///
+    /// - Returns: A `CGSize` value represents a natural size of the passed content.
+    @inlinable
+    public func intrinsicContentSize(for content: Any) -> CGSize {
+        box.intrinsicContentSize(for: content)
+    }
+
     /// Invoked every time of before a component got into visible area.
     ///
     /// - Parameter:
@@ -146,6 +157,7 @@ internal protocol AnyComponentBox {
     func render(in content: Any)
     func referenceSize(in bounds: CGRect) -> CGSize?
     func layout(content: Any, in container: UIView)
+    func intrinsicContentSize(for content: Any) -> CGSize
     func shouldContentUpdate(with next: AnyComponentBox) -> Bool
     func shouldRender(next: AnyComponentBox, in content: Any) -> Bool
 
@@ -195,6 +207,13 @@ internal struct ComponentBox<Base: Component>: AnyComponentBox {
         guard let content = content as? Base.Content else { return }
 
         baseComponent.layout(content: content, in: container)
+    }
+
+    @inlinable
+    func intrinsicContentSize(for content: Any) -> CGSize {
+        guard let content = content as? Base.Content else { return .zero }
+
+        return baseComponent.intrinsicContentSize(for: content)
     }
 
     @inlinable

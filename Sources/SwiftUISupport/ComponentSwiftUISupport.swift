@@ -53,10 +53,15 @@ private final class UIComponentView: UIView, ComponentRenderable {
     }
 
     override var intrinsicContentSize: CGSize {
-        guard let referenceSize = renderedComponent?.referenceSize(in: bounds) else {
+        if let referenceSize = renderedComponent?.referenceSize(in: bounds) {
+            return referenceSize
+        }
+        else if let component = renderedComponent, let content = renderedContent {
+            return component.intrinsicContentSize(for: content)
+        }
+        else {
             return super.intrinsicContentSize
         }
-        return referenceSize
     }
 }
 
