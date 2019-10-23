@@ -15,14 +15,36 @@ private struct ComponentView<C: Component>: View {
     var component: C
     var proxy = ComponentViewProxy()
 
+    @State var bounds: CGRect?
+
     init(_ component: C) {
         self.component = component
     }
 
     var body: some View {
-        ComponentRepresenting(component: component, proxy: proxy)
+        let size: CGSize? = bounds.flatMap { bounds in
+            if let referenceSize = component.referenceSize(in: bounds) {
+                return referenceSize
+            }
+
+            return proxy.uiView?.systemLayoutSizeFitting(
+                bounds.size,
+                withHorizontalFittingPriority: .required,
+                verticalFittingPriority: .fittingSizeLevel
+            )
+        }
+
+        return ComponentRepresenting(component: component, proxy: proxy)
+            .frame(width: size?.width, height: size?.height)
             .onAppear { self.proxy.uiView?.contentWillDisplay() }
             .onDisappear { self.proxy.uiView?.contentDidEndDisplay() }
+            .background(
+                GeometryReader { geometry in
+                    Color.clear.onAppear {
+                        self.bounds = geometry.frame(in: .local)
+                    }
+                }
+        )
     }
 }
 
@@ -35,8 +57,8 @@ private struct ComponentRepresenting<C: Component>: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: UIComponentView, context: Context) {
-        uiView.render(component: AnyComponent(component))
         proxy.uiView = uiView
+        uiView.render(component: AnyComponent(component))
     }
 }
 
@@ -50,18 +72,6 @@ private final class UIComponentView: UIView, ComponentRenderable {
         super.init(frame: frame)
 
         backgroundColor = .clear
-    }
-
-    override var intrinsicContentSize: CGSize {
-        if let referenceSize = renderedComponent?.referenceSize(in: bounds) {
-            return referenceSize
-        }
-        else if let component = renderedComponent, let content = renderedContent {
-            return component.intrinsicContentSize(for: content)
-        }
-        else {
-            return super.intrinsicContentSize
-        }
     }
 }
 

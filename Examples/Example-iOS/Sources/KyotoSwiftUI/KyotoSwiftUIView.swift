@@ -5,7 +5,6 @@ struct KyotoSwiftUIView: View {
         ScrollView {
             VStack {
                 KyotoTop()
-                    .frame(height: 435)
 
                 Header("PHOTOS")
 
