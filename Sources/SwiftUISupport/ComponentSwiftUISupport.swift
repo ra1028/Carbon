@@ -35,17 +35,21 @@ private struct ComponentView<C: Component>: View {
         }
 
         return ComponentRepresenting(component: component, proxy: proxy)
-            .frame(width: size?.width, height: size?.height)
+            .frame(height: size?.height)
+            .frame(idealWidth: size?.width)
             .onAppear { self.proxy.uiView?.contentWillDisplay() }
             .onDisappear { self.proxy.uiView?.contentDidEndDisplay() }
-            .background(
-                GeometryReader { geometry in
-                    Color.clear.onAppear {
-                        self.bounds = geometry.frame(in: .local)
-                    }
-                }
-        )
+            .background(GeometryReader { geometry in
+                Color.clear.preference(key: BoundsPreferenceKey.self, value: geometry.frame(in: .local))
+            })
+            .onPreferenceChange(BoundsPreferenceKey.self) { self.bounds = $0 }
     }
+}
+
+private struct BoundsPreferenceKey: PreferenceKey {
+    static let defaultValue: CGRect? = nil
+
+    static func reduce(value: inout CGRect?, nextValue: () -> CGRect?) {}
 }
 
 private struct ComponentRepresenting<C: Component>: UIViewRepresentable {
