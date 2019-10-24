@@ -47,8 +47,6 @@ private struct ComponentView<C: Component>: View {
 }
 
 private struct BoundsPreferenceKey: PreferenceKey {
-    static let defaultValue: CGRect? = nil
-
     static func reduce(value: inout CGRect?, nextValue: () -> CGRect?) {}
 }
 
