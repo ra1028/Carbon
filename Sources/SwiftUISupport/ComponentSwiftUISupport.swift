@@ -22,27 +22,40 @@ private struct ComponentView<C: Component>: View {
     }
 
     var body: some View {
-        let size: CGSize? = bounds.flatMap { bounds in
-            if let referenceSize = component.referenceSize(in: bounds) {
-                return referenceSize
-            }
-
-            return proxy.uiView?.systemLayoutSizeFitting(
-                bounds.size,
-                withHorizontalFittingPriority: .required,
-                verticalFittingPriority: .fittingSizeLevel
-            )
-        }
-
+        let idealSize = self.idealSize()
         return ComponentRepresenting(component: component, proxy: proxy)
-            .frame(height: size?.height)
-            .frame(idealWidth: size?.width)
+            .frame(idealWidth: idealSize?.width)
+            .frame(height: idealSize?.height)
+            .clipped()
             .onAppear { self.proxy.uiView?.contentWillDisplay() }
             .onDisappear { self.proxy.uiView?.contentDidEndDisplay() }
             .background(GeometryReader { geometry in
                 Color.clear.preference(key: BoundsPreferenceKey.self, value: geometry.frame(in: .local))
             })
             .onPreferenceChange(BoundsPreferenceKey.self) { self.bounds = $0 }
+    }
+}
+
+@available(iOS 13.0, *)
+extension ComponentView {
+    func idealSize() -> CGSize? {
+        guard let bounds = bounds else {
+            return nil
+        }
+
+        if let referenceSize = component.referenceSize(in: bounds) {
+            return referenceSize
+        }
+        else {
+            return proxy.uiView?.systemLayoutSizeFitting(
+                CGSize(
+                    width: bounds.size.width,
+                    height: UIView.layoutFittingCompressedSize.height
+                ),
+                withHorizontalFittingPriority: .required,
+                verticalFittingPriority: .fittingSizeLevel
+            )
+        }
     }
 }
 
@@ -65,15 +78,15 @@ private struct ComponentRepresenting<C: Component>: UIViewRepresentable {
 }
 
 private final class UIComponentView: UIView, ComponentRenderable {
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         backgroundColor = .clear
+    }
+
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
