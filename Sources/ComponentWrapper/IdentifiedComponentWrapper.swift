@@ -39,3 +39,12 @@ public extension Component {
         return identified(by: self[keyPath: keyPath])
     }
 }
+
+#if canImport(SwiftUI) && canImport(Combine)
+
+import SwiftUI
+
+@available(iOS 13.0, *)
+extension IdentifiedComponentWrapper: View {}
+
+#endif
