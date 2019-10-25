@@ -143,16 +143,3 @@ public extension ComponentWrapping {
         wrapped.contentDidEndDisplay(content)
     }
 }
-
-#if canImport(SwiftUI) && canImport(Combine)
-
-import SwiftUI
-
-@available(iOS 13.0, *)
-public extension ComponentWrapping where Wrapped: View {
-    var body: some View {
-        wrapped.body
-    }
-}
-
-#endif

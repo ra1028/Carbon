@@ -46,4 +46,11 @@ final class KyotoViewController: UIViewController {
             })
         }
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        // This solves sizing bug in MagazineLayout.
+        collectionView.performBatchUpdates(nil)
+    }
 }
