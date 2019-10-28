@@ -63,6 +63,7 @@
 		6B7ADEE121FBA6D1003803BE /* ComponentContainerElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7ADEE021FBA6D1003803BE /* ComponentContainerElementTests.swift */; };
 		6B7EED9E224CA5DD00060872 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7EED9D224CA5DD00060872 /* UIScrollViewExtensions.swift */; };
 		6B7EEDA0224CE4E100060872 /* UIScrollViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7EED9F224CE4E000060872 /* UIScrollViewExtensionsTests.swift */; };
+		6B8E5D7F2367777C000C7B35 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BDAB63B23675D5100D0BFA2 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		6BAEA43D228D4E920026F81E /* RuntimeAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEA43C228D4E920026F81E /* RuntimeAssociation.swift */; };
 		6BC83E4B231ED14700350855 /* CellsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC83E4A231ED14600350855 /* CellsBuilder.swift */; };
 		6BC83E4D231ED17300350855 /* CellsBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC83E4C231ED17300350855 /* CellsBuildable.swift */; };
@@ -156,6 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B8E5D7F2367777C000C7B35 /* SwiftUI.framework in Frameworks */,
 				6B6594C221E2599600291AAF /* DifferenceKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
