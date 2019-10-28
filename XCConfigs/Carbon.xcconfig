@@ -16,3 +16,4 @@ DYLIB_CURRENT_VERSION = 1
 DYLIB_INSTALL_NAME_BASE = @rpath
 LD_RUNPATH_SEARCH_PATHS = $(inherited) @executable_path/../Frameworks @loader_path/Frameworks @loader_path/../Frameworks
 DEFINES_MODULE = NO
+OTHER_LDFLAGS = -weak_framework SwiftUI -weak_framework Combine

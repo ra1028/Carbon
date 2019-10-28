@@ -69,6 +69,7 @@
 		6BC83E51231ED21700350855 /* SectionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC83E50231ED21700350855 /* SectionsBuilder.swift */; };
 		6BC83E53231ED42C00350855 /* SectionsBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC83E52231ED42C00350855 /* SectionsBuildable.swift */; };
 		6BD04F3E235FA9B800E53082 /* ComponentSwiftUISupportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD04F3D235FA9B800E53082 /* ComponentSwiftUISupportTests.swift */; };
+		6BDAB63C23675D5100D0BFA2 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BDAB63B23675D5100D0BFA2 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +149,7 @@
 		6BC83E50231ED21700350855 /* SectionsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsBuilder.swift; sourceTree = "<group>"; };
 		6BC83E52231ED42C00350855 /* SectionsBuildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsBuildable.swift; sourceTree = "<group>"; };
 		6BD04F3D235FA9B800E53082 /* ComponentSwiftUISupportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentSwiftUISupportTests.swift; sourceTree = "<group>"; };
+		6BDAB63B23675D5100D0BFA2 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BDAB63C23675D5100D0BFA2 /* SwiftUI.framework in Frameworks */,
 				6B6594C221E2599600291AAF /* DifferenceKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,6 +326,7 @@
 		6B6594C021E2599600291AAF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6BDAB63B23675D5100D0BFA2 /* SwiftUI.framework */,
 				6B6594C121E2599600291AAF /* DifferenceKit.framework */,
 			);
 			name = Frameworks;
@@ -767,7 +771,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryo.Carbon;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -798,7 +802,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ryo.Carbon;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

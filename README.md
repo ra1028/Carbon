@@ -271,7 +271,7 @@ renderer.render {
 
 <H3 align="center">
 <a href="https://ra1028.github.io/Carbon">[See More Usage]</a>
-<a href="https://github.com/ra1028/Carbon/tree/declarative/Examples/Example-iOS">[See Example App]</a>
+<a href="https://github.com/ra1028/Carbon/tree/master/Examples/Example-iOS">[See Example App]</a>
 </H3>
 
 ---
