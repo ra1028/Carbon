@@ -63,14 +63,12 @@
 		6B7ADEE121FBA6D1003803BE /* ComponentContainerElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7ADEE021FBA6D1003803BE /* ComponentContainerElementTests.swift */; };
 		6B7EED9E224CA5DD00060872 /* UIScrollViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7EED9D224CA5DD00060872 /* UIScrollViewExtensions.swift */; };
 		6B7EEDA0224CE4E100060872 /* UIScrollViewExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B7EED9F224CE4E000060872 /* UIScrollViewExtensionsTests.swift */; };
-		6B8250CB23676BF700BCA20D /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BDAB63B23675D5100D0BFA2 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		6BAEA43D228D4E920026F81E /* RuntimeAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BAEA43C228D4E920026F81E /* RuntimeAssociation.swift */; };
 		6BC83E4B231ED14700350855 /* CellsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC83E4A231ED14600350855 /* CellsBuilder.swift */; };
 		6BC83E4D231ED17300350855 /* CellsBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC83E4C231ED17300350855 /* CellsBuildable.swift */; };
 		6BC83E51231ED21700350855 /* SectionsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC83E50231ED21700350855 /* SectionsBuilder.swift */; };
 		6BC83E53231ED42C00350855 /* SectionsBuildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BC83E52231ED42C00350855 /* SectionsBuildable.swift */; };
 		6BD04F3E235FA9B800E53082 /* ComponentSwiftUISupportTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BD04F3D235FA9B800E53082 /* ComponentSwiftUISupportTests.swift */; };
-		6BDAB63C23675D5100D0BFA2 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BDAB63B23675D5100D0BFA2 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,7 +156,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6BDAB63C23675D5100D0BFA2 /* SwiftUI.framework in Frameworks */,
 				6B6594C221E2599600291AAF /* DifferenceKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -167,7 +164,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B8250CB23676BF700BCA20D /* SwiftUI.framework in Frameworks */,
 				6B7ADEB321F783E3003803BE /* Carbon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
