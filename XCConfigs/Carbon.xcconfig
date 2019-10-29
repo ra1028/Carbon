@@ -5,7 +5,8 @@ SUPPORTED_PLATFORMS = iphoneos iphonesimulator
 TARGETED_DEVICE_FAMILY = 1,2
 VALID_ARCHS[sdk=iphoneos*] = arm64 armv7 armv7s
 VALID_ARCHS[sdk=iphonesimulator*] = i386 x86_64
-OTHER_LDFLAGS = -weak_framework SwiftUI
+OTHER_LDFLAGS[sdk=iphoneos13.0] = -weak_framework SwiftUI
+OTHER_LDFLAGS[sdk=iphonesimulator13.0] = -weak_framework SwiftUI
 
 CODE_SIGNING_REQUIRED = NO
 CODE_SIGN_IDENTITY =
