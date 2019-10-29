@@ -1,7 +1,5 @@
 import UIKit
 
-#if swift(>=5.1)
-
 /// Represents a wrapper of component that forwards all actions to wrapped component.
 /// You can easily conform arbitrary type to `Component` protocol by wrapping component instance.
 @dynamicMemberLookup
@@ -20,20 +18,6 @@ public extension ComponentWrapping {
         wrapped[keyPath: keyPath]
     }
 }
-
-#else
-
-/// Represents a wrapper of component that forwards all actions to wrapped component.
-/// You can easily conform arbitrary type to `Component` protocol by wrapping component instance.
-public protocol ComponentWrapping: Component {
-    /// The type of wrapped component.
-    associatedtype Wrapped: Component
-
-    /// The wrapped component instance.
-    var wrapped: Wrapped { get }
-}
-
-#endif
 
 public extension ComponentWrapping {
     /// A string used to identify a element that is reusable. Default is the type name of `self`.

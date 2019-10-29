@@ -144,11 +144,7 @@ final class SectionTests: XCTestCase {
         let section2 = Section(id: AnyHashable(TestID.b), cells: [dummyNode, nil])
         XCTAssertEqual(section2.id, TestID.b)
     }
-}
 
-#if swift(>=5.1)
-
-extension SectionTests {
     func testInitWithCellsBuilder() {
         let condition = false
         let section = Section(
@@ -181,5 +177,3 @@ extension SectionTests {
         XCTAssertEqual(section.cells[4].component(as: B.Component.self)?.value, 200)
     }
 }
-
-#endif

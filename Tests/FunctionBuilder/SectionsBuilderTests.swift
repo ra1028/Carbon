@@ -1,5 +1,3 @@
-#if swift(>=5.1)
-
 import XCTest
 @testable import Carbon
 
@@ -257,5 +255,3 @@ final class SectionsBuilderTests: XCTestCase {
         }
     }
 }
-
-#endif
