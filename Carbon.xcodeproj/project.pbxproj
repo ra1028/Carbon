@@ -148,7 +148,6 @@
 		6BC83E50231ED21700350855 /* SectionsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsBuilder.swift; sourceTree = "<group>"; };
 		6BC83E52231ED42C00350855 /* SectionsBuildable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsBuildable.swift; sourceTree = "<group>"; };
 		6BD04F3D235FA9B800E53082 /* ComponentSwiftUISupportTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentSwiftUISupportTests.swift; sourceTree = "<group>"; };
-		6BDAB63B23675D5100D0BFA2 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/System/Library/Frameworks/SwiftUI.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -324,7 +323,6 @@
 		6B6594C021E2599600291AAF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6BDAB63B23675D5100D0BFA2 /* SwiftUI.framework */,
 				6B6594C121E2599600291AAF /* DifferenceKit.framework */,
 			);
 			name = Frameworks;
