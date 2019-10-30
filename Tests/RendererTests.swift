@@ -155,11 +155,7 @@ final class RendererTests: XCTestCase {
         XCTAssertEqual(renderer.updater.targetCapturedOnUpdates, target)
         XCTAssertEqual(renderer.updater.adapterCapturedOnUpdates, adapter)
     }
-}
 
-#if swift(>=5.1)
-
-extension RendererTests {
     func testRenderWithSectionsBuilder() {
         let target = MockTarget()
         let adapter = MockAdapter()
@@ -235,5 +231,3 @@ extension RendererTests {
         XCTAssertEqual(renderer.updater.adapterCapturedOnUpdates, adapter)
     }
 }
-
-#endif

@@ -1,5 +1,3 @@
-#if swift(>=5.1)
-
 // swiftlint:disable line_length
 // swiftlint:disable function_parameter_count
 
@@ -173,5 +171,3 @@ internal extension SectionsBuilder {
         sections = sections0 + sections1 + sections2 + s9.buildSections()
     }
 }
-
-#endif

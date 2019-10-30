@@ -1,5 +1,3 @@
-#if swift(>=5.1)
-
 // swiftlint:disable line_length
 // swiftlint:disable function_parameter_count
 
@@ -174,5 +172,3 @@ internal extension CellsBuilder {
         cellNodes = cellNodes0 + cellNodes1 + cellNodes2 + c9.buildCells()
     }
 }
-
-#endif

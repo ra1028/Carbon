@@ -19,7 +19,7 @@ in UITableView and UICollectionView.</br>
 <a href="https://github.com/Carthage/Carthage"><img alt="Carthage" src="https://img.shields.io/badge/carthage-compatible-yellow.svg"/></a>
 </br>
 <a href="https://github.com/ra1028/Carbon/actions"><img alt="CI Status" src="https://github.com/ra1028/Carbon/workflows/GitHub%20Actions/badge.svg"/></a>
-<a href="https://developer.apple.com/swift"><img alt="Swift5" src="https://img.shields.io/badge/language-Swift5-orange.svg"/></a>
+<a href="https://developer.apple.com/swift"><img alt="Swift 5.1" src="https://img.shields.io/badge/language-Swift 5.1-orange.svg"/></a>
 <a href="https://developer.apple.com/"><img alt="Platform" src="https://img.shields.io/badge/platform-iOS-green.svg"/></a>
 <a href="https://github.com/ra1028/Carbon/blob/master/LICENSE"><img alt="Lincense" src="https://img.shields.io/badge/License-Apache%202.0-black.svg"/></a>
 </p>
@@ -271,7 +271,7 @@ renderer.render {
 
 <H3 align="center">
 <a href="https://ra1028.github.io/Carbon">[See More Usage]</a>
-<a href="https://github.com/ra1028/Carbon/tree/declarative/Examples/Example-iOS">[See Example App]</a>
+<a href="https://github.com/ra1028/Carbon/tree/master/Examples/Example-iOS">[See Example App]</a>
 </H3>
 
 ---
@@ -522,7 +522,7 @@ Default is `true`.
 
 ### Without FunctionBuilder Syntax
 
-If you are using Swift 5, you cannot use the function builder that you have queried so far, but Carbon can also build a UI with declarative syntax without function builder as following.  
+Carbon can also build a UI with declarative syntax without function builder as following.  
 
 - **ViewNode**
 
@@ -567,10 +567,8 @@ renderer.render(
 
 ## Requirements
 
-- Swift 5.0+
-- Xcode 10.2+
-
-Note: function builder syntax requires Swift5.1+ and Xcode 11.0+
+- Swift 5.1+
+- Xcode 11.0+
 
 ---
 
@@ -589,7 +587,7 @@ github "ra1028/Carbon"
 ```
 
 ### [Swift Package Manager](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app)
-Select Xcode menu File > Swift Packages > Add Package Dependency and enter repository URL with GUI.
+Select Xcode menu `File > Swift Packages > Add Package Dependency...` and enter repository URL with GUI.
 ```
 Repository: https://github.com/ra1028/Carbon
 ```

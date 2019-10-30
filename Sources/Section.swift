@@ -91,18 +91,14 @@ public struct Section {
             footer: footer
         )
     }
-}
 
-#if swift(>=5.1)
-
-public extension Section {
     /// Create a section wrapping given id and cells with function builder syntax.
     ///
     /// - Parameters:
     ///   - id: An identifier to be wrapped.
     ///   - cells: A closure that constructs cells.
     @inlinable
-    init<I: Hashable, C: CellsBuildable>(id: I, @CellsBuilder cells: () -> C) {
+    public init<I: Hashable, C: CellsBuildable>(id: I, @CellsBuilder cells: () -> C) {
         self.init(
             id: id,
             cells: cells().buildCells()
@@ -117,7 +113,7 @@ public extension Section {
     ///   - footer: A footer component.
     ///   - cells: A closure that constructs cells.
     @inlinable
-    init<I: Hashable, H: Component, F: Component, C: CellsBuildable>(id: I, header: H?, footer: F?, @CellsBuilder cells: () -> C) {
+    public init<I: Hashable, H: Component, F: Component, C: CellsBuildable>(id: I, header: H?, footer: F?, @CellsBuilder cells: () -> C) {
         self.init(
             id: id,
             header: header.map(ViewNode.init),
@@ -133,7 +129,7 @@ public extension Section {
     ///   - header: A header component.
     ///   - footer: A footer component.
     @inlinable
-    init<I: Hashable, H: Component, F: Component>(id: I, header: H?, footer: F?) {
+    public init<I: Hashable, H: Component, F: Component>(id: I, header: H?, footer: F?) {
         self.init(
             id: id,
             header: header.map(ViewNode.init),
@@ -148,7 +144,7 @@ public extension Section {
     ///   - header: A header component.
     ///   - cells: A closure that constructs cells.
     @inlinable
-    init<I: Hashable, H: Component>(id: I, header: H?, @CellsBuilder cells: () -> CellsBuildable) {
+    public init<I: Hashable, H: Component>(id: I, header: H?, @CellsBuilder cells: () -> CellsBuildable) {
         self.init(
             id: id,
             header: header.map(ViewNode.init),
@@ -163,7 +159,7 @@ public extension Section {
     ///   - footer: A footer component.
     ///   - cells: A closure that constructs cells.
     @inlinable
-    init<I: Hashable, F: Component, C: CellsBuildable>(id: I, footer: F?, @CellsBuilder cells: () -> C) {
+    public init<I: Hashable, F: Component, C: CellsBuildable>(id: I, footer: F?, @CellsBuilder cells: () -> C) {
         self.init(
             id: id,
             cells: cells().buildCells(),
@@ -177,7 +173,7 @@ public extension Section {
     ///   - id: An identifier to be wrapped.
     ///   - header: A header component.
     @inlinable
-    init<I: Hashable, H: Component>(id: I, header: H?) {
+    public init<I: Hashable, H: Component>(id: I, header: H?) {
         self.init(
             id: id,
             header: header.map(ViewNode.init)
@@ -190,15 +186,13 @@ public extension Section {
     ///   - id: An identifier to be wrapped.
     ///   - footer: A footer component.
     @inlinable
-    init<I: Hashable, F: Component>(id: I, footer: F?) {
+    public init<I: Hashable, F: Component>(id: I, footer: F?) {
         self.init(
             id: id,
             footer: footer.map(ViewNode.init)
         )
     }
 }
-
-#endif
 
 extension Section: SectionsBuildable {
     /// Build an array of section.

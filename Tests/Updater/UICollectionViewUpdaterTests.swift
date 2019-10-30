@@ -110,6 +110,9 @@ final class UICollectionViewUpdaterTests: XCTestCase {
         let updater = MockCollectionViewUpdater()
         let adapter = MockCollectionViewFlowLayoutAdapter()
         let collectionView = MockCollectionView().addingToWindow()
+        collectionView.dataSource = adapter
+        collectionView.delegate = adapter
+        collectionView.layoutIfNeeded()
 
         let visible = (
             header: UICollectionComponentReusableView(frame: .zero),
@@ -137,6 +140,10 @@ final class UICollectionViewUpdaterTests: XCTestCase {
             )
         }
 
+        collectionView.frame.size = CGSize(width: 500, height: 500)
+        collectionView.flowLayout.itemSize = CGSize(width: 100, height: 100)
+        collectionView.flowLayout.headerReferenceSize = CGSize(width: 100, height: 100)
+        collectionView.flowLayout.footerReferenceSize = CGSize(width: 100, height: 100)
         collectionView.customIndexPathsForVisibleItems = [visible.indexPath]
         collectionView.customIndexPathsForVisibleSupplementaryElementsOfKind = { _ in [visible.indexPath] }
         collectionView.customCellForItemAt = { indexPath in

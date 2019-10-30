@@ -1,5 +1,3 @@
-#if swift(>=5.1)
-
 import XCTest
 @testable import Carbon
 
@@ -93,5 +91,3 @@ final class GroupTests: XCTestCase {
         XCTAssertEqual(sections[2].id, 2)
     }
 }
-
-#endif

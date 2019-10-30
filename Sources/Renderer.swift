@@ -93,11 +93,7 @@ open class Renderer<Updater: Carbon.Updater> {
     open func render(_ data: Section?...) {
         render(data.compactMap { $0 })
     }
-}
 
-#if swift(>=5.1)
-
-extension Renderer {
     /// Render given variadic number of sections with function builder syntax, immediately.
     ///
     /// - Parameters:
@@ -116,7 +112,5 @@ extension Renderer {
         }
     }
 }
-
-#endif
 
 private struct UniqueIdentifier: Hashable {}

@@ -4,9 +4,12 @@ import XCTest
 import SwiftUI
 @testable import Carbon
 
-@available(iOS 13.0, *)
 final class ComponentSwiftUISupportTests: XCTestCase {
     func testDisplayLifecycle() {
+        guard #available(iOS 13.0, *) else {
+            return
+        }
+
         struct TestComponent: Component, View {
             var willDisplay: () -> Void
             var didEndDisplay: () -> Void
@@ -55,6 +58,10 @@ final class ComponentSwiftUISupportTests: XCTestCase {
     }
 
     func testReferenceSize() {
+        guard #available(iOS 13.0, *) else {
+            return
+        }
+
         struct TestComponent: Component, View {
             static let testSize = CGSize(width: 123, height: 456)
 
@@ -76,6 +83,10 @@ final class ComponentSwiftUISupportTests: XCTestCase {
     }
 
     func testIntrinsicContentSize() {
+        guard #available(iOS 13.0, *) else {
+            return
+        }
+
         struct TestComponent: Component, View {
             static let testSize = CGSize(width: 123, height: 456)
 

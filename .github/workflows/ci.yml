@@ -7,7 +7,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        xcode_version: ["10.2", "11.1"]
+        xcode_version:
+          - 11.1
+        destination:
+          - platform=iOS Simulator,name=iPhone 11 Pro,OS=13.1
+          - platform=iOS Simulator,name=iPhone SE,OS=10.0
     env:
       DEVELOPER_DIR: /Applications/Xcode_${{ matrix.xcode_version }}.app
     steps:
@@ -18,6 +22,6 @@ jobs:
         run: |
           swift --version
           xcodebuild -version
-      - name: Test iOS on Xcode ${{ matrix.xcode_version }}
+      - name: Test iOS on Xcode ${{ matrix.xcode_version }} simulator ${{ matrix.destination }}
         run: |
-          set -o pipefail && xcodebuild build-for-testing test-without-building -workspace Carbon.xcworkspace -scheme Carbon -configuration Release -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8' ENABLE_TESTABILITY=YES | xcpretty -c
+          set -o pipefail && xcodebuild build-for-testing test-without-building -workspace Carbon.xcworkspace -scheme Carbon -configuration Release -sdk iphonesimulator -destination '${{ matrix.destination }}' ENABLE_TESTABILITY=YES | xcpretty -c

@@ -282,7 +282,10 @@ final class UICollectionViewFlowLayoutAdapterTests: XCTestCase {
             )
         ]
 
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        collectionView.dataSource = adapter
+        collectionView.delegate = adapter
+        collectionView.layoutIfNeeded()
 
         func check(expectedClass: (UICollectionViewCell & ComponentRenderable).Type) {
             let cell = adapter.collectionView(
@@ -324,7 +327,14 @@ final class UICollectionViewFlowLayoutAdapterTests: XCTestCase {
             )
         ]
 
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+        let layout = UICollectionViewFlowLayout()
+        layout.headerReferenceSize = CGSize(width: 100, height: 100)
+        layout.footerReferenceSize = CGSize(width: 100, height: 100)
+
+        let collectionView = UICollectionView(
+            frame: CGRect(x: 0, y: 0, width: 500, height: 500),
+            collectionViewLayout: layout
+        )
         collectionView.dataSource = adapter
         collectionView.delegate = adapter
         collectionView.layoutIfNeeded()

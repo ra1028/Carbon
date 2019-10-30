@@ -25,7 +25,7 @@ type_body_length:
   warning: 400
 
 function_body_length:
-  warning: 50
+  warning: 60
 
 cyclomatic_complexity:
   warning: 12
