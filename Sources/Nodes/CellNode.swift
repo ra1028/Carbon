@@ -16,7 +16,6 @@ public struct CellNode {
     /// - Parameters:
     ///   - id: An identifier to be wrapped.
     ///   - component: A component to be wrapped.
-    @inlinable
     public init<I: Hashable, C: Component>(id: I, _ component: C) {
         // This is workaround for avoid redundant `AnyHashable` wrapping.
         if type(of: id) == AnyHashable.self {

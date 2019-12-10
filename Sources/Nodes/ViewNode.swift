@@ -11,7 +11,6 @@ public struct ViewNode {
     ///
     /// - Parameter
     ///   - component: A component to be wrap.
-    @inlinable
     public init<C: Component>(_ component: C) {
         self.component = AnyComponent(component)
     }
@@ -20,7 +19,6 @@ public struct ViewNode {
     ///
     /// - Parameter: An expected type of the base instance of component to casted.
     /// - Returns: A casted base instance.
-    @inlinable
     public func component<T>(as _: T.Type) -> T? {
         return component.as(T.self)
     }

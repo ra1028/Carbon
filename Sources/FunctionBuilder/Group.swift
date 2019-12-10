@@ -24,7 +24,6 @@ extension Group: CellsBuildable where Element == CellNode {
     ///
     /// - Parameter
     ///   - cells: A closure that constructs cells.
-    @inlinable
     public init<C: CellsBuildable>(@CellsBuilder cells: () -> C) {
         elements = cells().buildCells()
     }
@@ -34,7 +33,6 @@ extension Group: CellsBuildable where Element == CellNode {
     /// - Parameter
     ///   - data: The sequence of elements to be mapped to cells.
     ///   - cell: A closure to create a cell with passed element.
-    @inlinable
     public init<Data: Sequence, C: CellsBuildable>(of data: Data, cell: (Data.Element) -> C) {
         elements = data.flatMap { element in
             cell(element).buildCells()
@@ -44,7 +42,6 @@ extension Group: CellsBuildable where Element == CellNode {
     /// Build an array of cell.
     ///
     /// - Returns: An array of cell.
-    @inlinable
     public func buildCells() -> [CellNode] {
         elements
     }
@@ -55,7 +52,6 @@ extension Group: SectionsBuildable where Element == Section {
     ///
     /// - Parameter
     ///   - sections: A closure that constructs sections.
-    @inlinable
     public init<S: SectionsBuildable>(@SectionsBuilder sections: () -> S) {
         elements = sections().buildSections()
     }
@@ -65,7 +61,6 @@ extension Group: SectionsBuildable where Element == Section {
     /// - Parameter
     ///   - data: The sequence of elements to be mapped to sections.
     ///   - section: A closure to create a section with passed element.
-    @inlinable
     public init<Data: Sequence, S: SectionsBuildable>(of data: Data, section: (Data.Element) -> S) {
         elements = data.flatMap { element in
             section(element).buildSections()
@@ -75,7 +70,6 @@ extension Group: SectionsBuildable where Element == Section {
     /// Build an array of section.
     ///
     /// - Returns: An array of section.
-    @inlinable
     public func buildSections() -> [Section] {
         elements
     }
