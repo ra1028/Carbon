@@ -21,7 +21,6 @@ public struct AnyComponent: Component {
     ///
     /// - Parameters:
     ///   - base: A component to be wrap.
-    @inlinable
     public init<Base: Component>(_ base: Base) {
         if let anyComponent = base as? AnyComponent {
             self = anyComponent
@@ -180,7 +179,7 @@ internal struct ComponentBox<Base: Component>: AnyComponentBox {
         return baseComponent.reuseIdentifier
     }
 
-    @inlinable
+    @usableFromInline
     init(_ base: Base) {
         baseComponent = base
     }

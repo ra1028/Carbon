@@ -42,7 +42,6 @@ public struct Section {
     ///   - header: A node for header view.
     ///   - cells: A collection of nodes for cells.
     ///   - footer: A node for footer view.
-    @inlinable
     public init<I: Hashable, C: Swift.Collection>(id: I, header: ViewNode? = nil, cells: C, footer: ViewNode? = nil) where C.Element == CellNode {
         // This is workaround for avoid redundant `AnyHashable` wrapping.
         if type(of: id) == AnyHashable.self {
@@ -66,7 +65,6 @@ public struct Section {
     ///   - header: A node for header view.
     ///   - cells: A collection of nodes for cells that can be contains nil.
     ///   - footer: A node for footer view.
-    @inlinable
     public init<I: Hashable, C: Swift.Collection>(id: I, header: ViewNode? = nil, cells: C, footer: ViewNode? = nil) where C.Element == CellNode? {
         self.init(
             id: id,
@@ -82,7 +80,6 @@ public struct Section {
     ///   - id: An identifier to be wrapped.
     ///   - header: A node for header view.
     ///   - footer: A node for footer view.
-    @inlinable
     public init<I: Hashable>(id: I, header: ViewNode? = nil, footer: ViewNode? = nil) {
         self.init(
             id: id,
@@ -97,7 +94,6 @@ public struct Section {
     /// - Parameters:
     ///   - id: An identifier to be wrapped.
     ///   - cells: A closure that constructs cells.
-    @inlinable
     public init<I: Hashable, C: CellsBuildable>(id: I, @CellsBuilder cells: () -> C) {
         self.init(
             id: id,
@@ -112,7 +108,6 @@ public struct Section {
     ///   - header: A header component.
     ///   - footer: A footer component.
     ///   - cells: A closure that constructs cells.
-    @inlinable
     public init<I: Hashable, H: Component, F: Component, C: CellsBuildable>(id: I, header: H?, footer: F?, @CellsBuilder cells: () -> C) {
         self.init(
             id: id,
@@ -128,7 +123,6 @@ public struct Section {
     ///   - id: An identifier to be wrapped.
     ///   - header: A header component.
     ///   - footer: A footer component.
-    @inlinable
     public init<I: Hashable, H: Component, F: Component>(id: I, header: H?, footer: F?) {
         self.init(
             id: id,
@@ -143,7 +137,6 @@ public struct Section {
     ///   - id: An identifier to be wrapped.
     ///   - header: A header component.
     ///   - cells: A closure that constructs cells.
-    @inlinable
     public init<I: Hashable, H: Component>(id: I, header: H?, @CellsBuilder cells: () -> CellsBuildable) {
         self.init(
             id: id,
@@ -158,7 +151,6 @@ public struct Section {
     ///   - id: An identifier to be wrapped.
     ///   - footer: A footer component.
     ///   - cells: A closure that constructs cells.
-    @inlinable
     public init<I: Hashable, F: Component, C: CellsBuildable>(id: I, footer: F?, @CellsBuilder cells: () -> C) {
         self.init(
             id: id,
@@ -172,7 +164,6 @@ public struct Section {
     /// - Parameters:
     ///   - id: An identifier to be wrapped.
     ///   - header: A header component.
-    @inlinable
     public init<I: Hashable, H: Component>(id: I, header: H?) {
         self.init(
             id: id,
@@ -185,7 +176,6 @@ public struct Section {
     /// - Parameters:
     ///   - id: An identifier to be wrapped.
     ///   - footer: A footer component.
-    @inlinable
     public init<I: Hashable, F: Component>(id: I, footer: F?) {
         self.init(
             id: id,

@@ -11,7 +11,6 @@ public struct IdentifiedComponentWrapper<ID: Hashable, Wrapped: Component>: Comp
     /// - Parameters:
     ///   - id: An identifier to be wrapped.
     ///   - wrapped: A compoennt instance to be wrapped.
-    @inlinable
     public init(id: ID, wrapped: Wrapped) {
         self.id = id
         self.wrapped = wrapped
@@ -24,7 +23,6 @@ public extension Component {
     ///   - id: An identifier to be wrapped.
     ///
     /// - Returns: An identified component wrapping `self` and given `id`.
-    @inlinable
     func identified<ID: Hashable>(by id: ID) -> IdentifiedComponentWrapper<ID, Self> {
         return IdentifiedComponentWrapper(id: id, wrapped: self)
     }
@@ -34,7 +32,6 @@ public extension Component {
     ///   - keyPath: A key path to access an identifier of the `self`.
     ///
     /// - Returns: An identified component wrapping `self` and the `id` that accessed by given key path.
-    @inlinable
     func identified<ID: Hashable>(by keyPath: KeyPath<Self, ID>) -> IdentifiedComponentWrapper<ID, Self> {
         return identified(by: self[keyPath: keyPath])
     }
