@@ -1,4 +1,3 @@
-import UIKit
 import SwiftUI
 import Carbon
 
@@ -83,7 +82,7 @@ final class HomeViewController: UIViewController {
             controller = FormViewController()
 
         case .kyotoSwiftUI:
-            controller = HostingController(rootView: KyotoSwiftUIView())
+            controller = UIHostingController(rootView: KyotoSwiftUIView())
         }
 
         navigationController?.pushViewController(controller, animated: true)

@@ -1,4 +1,4 @@
-/// A wrapper around the compoent to conform to `IdentifiableComponent`.
+/// A wrapper around the component to conform to `IdentifiableComponent`.
 public struct IdentifiedComponentWrapper<ID: Hashable, Wrapped: Component>: ComponentWrapping, IdentifiableComponent {
     /// A type that represents an id that used to uniquely identify the component.
     public var id: ID
@@ -19,6 +19,7 @@ public struct IdentifiedComponentWrapper<ID: Hashable, Wrapped: Component>: Comp
 
 public extension Component {
     /// Returns an identified component wrapping `self` and given `id`.
+    ///
     /// - Parameter:
     ///   - id: An identifier to be wrapped.
     ///
@@ -28,6 +29,7 @@ public extension Component {
     }
 
     /// Returns an identified component wrapping `self` and the `id` that accessed by given key path.
+    ///
     /// - Parameter:
     ///   - keyPath: A key path to access an identifier of the `self`.
     ///
@@ -36,3 +38,12 @@ public extension Component {
         return identified(by: self[keyPath: keyPath])
     }
 }
+
+#if canImport(SwiftUI) && canImport(Combine)
+
+import SwiftUI
+
+@available(iOS 13.0, *)
+extension IdentifiedComponentWrapper: View {}
+
+#endif

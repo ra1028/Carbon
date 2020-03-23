@@ -15,10 +15,6 @@ final class KyotoViewController: UIViewController {
         updater: UICollectionViewUpdater()
     )
 
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        .portrait
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -53,6 +49,8 @@ final class KyotoViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+
+        // This solves sizing bug in MagazineLayout.
         collectionView.performBatchUpdates(nil)
     }
 }
