@@ -2,8 +2,13 @@ import SwiftUI
 
 struct KyotoSwiftUIView: View {
     var body: some View {
-        ScrollView {
+        List {
             KyotoTop()
+//                .referenceSize {
+//                    CGSize(width: $0.width - 100, height: 200)
+//            }
+//                .sizeFitting(nil)
+//                .fixedSize(horizontal: false, vertical: true)
 
             Header("PHOTOS")
 
