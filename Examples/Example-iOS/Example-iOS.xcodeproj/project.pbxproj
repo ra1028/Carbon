@@ -66,23 +66,68 @@
 		6BBC27B321EF8A6600446FB7 /* EmojiLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BBC27B221EF8A6600446FB7 /* EmojiLabel.swift */; };
 		6BBC27B521EF8CDC00446FB7 /* EmojiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BBC27B421EF8CDB00446FB7 /* EmojiViewController.xib */; };
 		6BBC27B721EF8D4D00446FB7 /* EmojiLabelContent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6BBC27B621EF8D4D00446FB7 /* EmojiLabelContent.xib */; };
-		6BD04F13235F875200E53082 /* DifferenceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6594F721E272D500291AAF /* DifferenceKit.framework */; };
-		6BD04F14235F875200E53082 /* DifferenceKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6594F721E272D500291AAF /* DifferenceKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6BE9F755235F7CBF0023EF98 /* MagazineLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 6BE9F754235F7CBF0023EF98 /* MagazineLayout */; };
 		6BE9F758235F7CF50023EF98 /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = 6BE9F757235F7CF50023EF98 /* SwipeCellKit */; };
-		6BE9F763235F85CA0023EF98 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE9F75F235F80960023EF98 /* Carbon.framework */; };
-		6BE9F764235F85CA0023EF98 /* Carbon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6BE9F75F235F80960023EF98 /* Carbon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B3CA657324338E60000610FD /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CA657024338E50000610FD /* Carbon.framework */; };
+		B3CA657424338E60000610FD /* Carbon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B3CA657024338E50000610FD /* Carbon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B3CA657524338E60000610FD /* DifferenceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3CA656724338E4B000610FD /* DifferenceKit.framework */; };
+		B3CA657624338E60000610FD /* DifferenceKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B3CA656724338E4B000610FD /* DifferenceKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B3CA656624338E4B000610FD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B3CA656124338E4B000610FD /* DifferenceKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6B2DF86E210E2C12004D2D40;
+			remoteInfo = DifferenceKit;
+		};
+		B3CA656824338E4B000610FD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B3CA656124338E4B000610FD /* DifferenceKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6B2DF877210E2C12004D2D40;
+			remoteInfo = Tests;
+		};
+		B3CA656F24338E50000610FD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B3CA656A24338E50000610FD /* Carbon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6B65947A21E252E300291AAF;
+			remoteInfo = Carbon;
+		};
+		B3CA657124338E50000610FD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B3CA656A24338E50000610FD /* Carbon.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6B7ADEAE21F783E3003803BE;
+			remoteInfo = Tests;
+		};
+		B3CA657A24338E8E000610FD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B3CA656A24338E50000610FD /* Carbon.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6B65947921E252E300291AAF;
+			remoteInfo = Carbon;
+		};
+		B3CA657C24338E8E000610FD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B3CA656124338E4B000610FD /* DifferenceKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6B2DF86D210E2C12004D2D40;
+			remoteInfo = DifferenceKit;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
-		6BE9F765235F85CA0023EF98 /* Embed Frameworks */ = {
+		B3CA657724338E60000610FD /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				6BD04F14235F875200E53082 /* DifferenceKit.framework in Embed Frameworks */,
-				6BE9F764235F85CA0023EF98 /* Carbon.framework in Embed Frameworks */,
+				B3CA657624338E60000610FD /* DifferenceKit.framework in Embed Frameworks */,
+				B3CA657424338E60000610FD /* Carbon.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -155,6 +200,12 @@
 		6BBC27B621EF8D4D00446FB7 /* EmojiLabelContent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmojiLabelContent.xib; sourceTree = "<group>"; };
 		6BE9F75B235F7FBE0023EF98 /* Carbon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Carbon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BE9F75F235F80960023EF98 /* Carbon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Carbon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3CA655924338DD8000610FD /* Carbon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Carbon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3CA655B24338DD8000610FD /* DifferenceKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DifferenceKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3CA655D24338DE5000610FD /* Carbon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Carbon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3CA655F24338DE5000610FD /* DifferenceKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DifferenceKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3CA656124338E4B000610FD /* DifferenceKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DifferenceKit.xcodeproj; path = ../../Carthage/Checkouts/DifferenceKit/DifferenceKit.xcodeproj; sourceTree = "<group>"; };
+		B3CA656A24338E50000610FD /* Carbon.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Carbon.xcodeproj; path = ../../Carbon.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,8 +214,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6BE9F755235F7CBF0023EF98 /* MagazineLayout in Frameworks */,
-				6BE9F763235F85CA0023EF98 /* Carbon.framework in Frameworks */,
-				6BD04F13235F875200E53082 /* DifferenceKit.framework in Frameworks */,
+				B3CA657324338E60000610FD /* Carbon.framework in Frameworks */,
+				B3CA657524338E60000610FD /* DifferenceKit.framework in Frameworks */,
 				6BE9F758235F7CF50023EF98 /* SwipeCellKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,6 +296,8 @@
 		6B6594C321E2619B00291AAF = {
 			isa = PBXGroup;
 			children = (
+				B3CA656A24338E50000610FD /* Carbon.xcodeproj */,
+				B3CA656124338E4B000610FD /* DifferenceKit.xcodeproj */,
 				6B6594CE21E2619B00291AAF /* Sources */,
 				6B6594CD21E2619B00291AAF /* Products */,
 				6B6594E121E262C400291AAF /* Frameworks */,
@@ -282,6 +335,10 @@
 		6B6594E121E262C400291AAF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B3CA655D24338DE5000610FD /* Carbon.framework */,
+				B3CA655F24338DE5000610FD /* DifferenceKit.framework */,
+				B3CA655924338DD8000610FD /* Carbon.framework */,
+				B3CA655B24338DD8000610FD /* DifferenceKit.framework */,
 				6BE9F75F235F80960023EF98 /* Carbon.framework */,
 				6BE9F75B235F7FBE0023EF98 /* Carbon.framework */,
 				6B6594F721E272D500291AAF /* DifferenceKit.framework */,
@@ -339,6 +396,24 @@
 			path = Emoji;
 			sourceTree = "<group>";
 		};
+		B3CA656224338E4B000610FD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B3CA656724338E4B000610FD /* DifferenceKit.framework */,
+				B3CA656924338E4B000610FD /* Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B3CA656B24338E50000610FD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B3CA657024338E50000610FD /* Carbon.framework */,
+				B3CA657224338E50000610FD /* Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -350,11 +425,13 @@
 				6B6594C921E2619B00291AAF /* Frameworks */,
 				6B6594CA21E2619B00291AAF /* Resources */,
 				6B7ADEF521FDC40B003803BE /* SwiftLint */,
-				6BE9F765235F85CA0023EF98 /* Embed Frameworks */,
+				B3CA657724338E60000610FD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B3CA657B24338E8E000610FD /* PBXTargetDependency */,
+				B3CA657D24338E8E000610FD /* PBXTargetDependency */,
 			);
 			name = "Example-iOS";
 			packageProductDependencies = (
@@ -396,12 +473,53 @@
 			);
 			productRefGroup = 6B6594CD21E2619B00291AAF /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B3CA656B24338E50000610FD /* Products */;
+					ProjectRef = B3CA656A24338E50000610FD /* Carbon.xcodeproj */;
+				},
+				{
+					ProductGroup = B3CA656224338E4B000610FD /* Products */;
+					ProjectRef = B3CA656124338E4B000610FD /* DifferenceKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				6B6594CB21E2619B00291AAF /* Example-iOS */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		B3CA656724338E4B000610FD /* DifferenceKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DifferenceKit.framework;
+			remoteRef = B3CA656624338E4B000610FD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B3CA656924338E4B000610FD /* Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Tests.xctest;
+			remoteRef = B3CA656824338E4B000610FD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B3CA657024338E50000610FD /* Carbon.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Carbon.framework;
+			remoteRef = B3CA656F24338E50000610FD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B3CA657224338E50000610FD /* Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Tests.xctest;
+			remoteRef = B3CA657124338E50000610FD /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		6B6594CA21E2619B00291AAF /* Resources */ = {
@@ -502,6 +620,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B3CA657B24338E8E000610FD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Carbon;
+			targetProxy = B3CA657A24338E8E000610FD /* PBXContainerItemProxy */;
+		};
+		B3CA657D24338E8E000610FD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = DifferenceKit;
+			targetProxy = B3CA657C24338E8E000610FD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6B6594D821E2619E00291AAF /* LaunchScreen.storyboard */ = {
