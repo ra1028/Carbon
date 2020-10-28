@@ -6,8 +6,8 @@ final class ComponentTests: XCTestCase {
         let componentA = A.Component()
         let componentB = B.Component()
 
-        XCTAssertEqual(componentA.reuseIdentifier, "Tests.A.Content")
-        XCTAssertEqual(componentB.reuseIdentifier, "Tests.B.Content")
+        XCTAssertEqual(componentA.reuseIdentifier, "CarbonTests.A.Content")
+        XCTAssertEqual(componentB.reuseIdentifier, "CarbonTests.B.Content")
         XCTAssertNotEqual(componentA.reuseIdentifier, componentB.reuseIdentifier)
     }
 

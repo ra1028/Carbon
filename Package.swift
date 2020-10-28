@@ -7,8 +7,6 @@ let package = Package(
     name: "Carbon",
     platforms: [
            .iOS(.v12),
-           .macOS(.v10_15),
-           .tvOS(.v12),
            .watchOS(.v5)
     ],
     products: [
@@ -22,7 +20,7 @@ let package = Package(
     targets: [
         .target(
             name: "Carbon",
-            dependencies: []),
+            dependencies: ["DifferenceKit"]),
         .testTarget(
             name: "CarbonTests",
             dependencies: ["Carbon"]),
