@@ -121,7 +121,6 @@ extension UICollectionViewAdapter: UICollectionViewDataSource {
             viewClass = config.footerViewClass
         }
         else {
-           // assertionFailure("Header or footer are only supported.")
             return UICollectionReusableView()
         }
 
