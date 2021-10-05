@@ -1,4 +1,4 @@
-#if canImport(SwiftUI) && canImport(Combine)
+#if canImport(SwiftUI) && !(os(iOS) && (arch(i386) || arch(arm)))
 
 import XCTest
 import SwiftUI
